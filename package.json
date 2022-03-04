@@ -9,18 +9,22 @@
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
     "i18next": "^21.6.13",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0-rc.1",
+    "react-dom": "^18.0.0-rc.1",
     "react-i18next": "^11.15.5",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "snext dev",
+    "build": "snext build",
+    "staticize": "snext staticize"
+  },
+  "snext": {
+    "clientEntry": "./src/index.js",
+    "skeletonComponent": "./src/Skeleton.js",
+    "serverComponent": "./src/StaticApp.js",
+    "proxy": "https://timestrata.be"
   },
   "eslintConfig": {
     "extends": [
@@ -39,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "snext": "^0.6.0"
   }
 }
