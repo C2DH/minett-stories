@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, DEFAULT_LANG_SHORT, LANGS, LANGS_SHORT } from './i18n'
 import { useTranslation } from 'react-i18next'
 import { useEffect } from 'react'
+import { Miller } from '@c2dh/react-miller'
 
 function LangApp({ children }) {
   const { lang } = useParams()
@@ -22,7 +23,7 @@ function SyncLang() {
   useEffect(() => {
     const memoryLang = i18n.language.split('_')[0]
     if (memoryLang !== lang) {
-      const nextLang = LANGS.find(l => l.startsWith(lang)) ?? DEFAULT_LANG
+      const nextLang = LANGS.find((l) => l.startsWith(lang)) ?? DEFAULT_LANG
       i18n.changeLanguage(nextLang)
     }
   }, [lang, i18n])
@@ -30,24 +31,27 @@ function SyncLang() {
   return null
 }
 
-function App() {
+function App({ client, apiUrl }) {
+  const { i18n } = useTranslation()
   return (
-    <Routes>
-      <Route
-        path={'/:lang/*'}
-        element={
-          <LangApp>
-            <SyncLang />
-            <Layout />
-          </LangApp>
-        }
-      >
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-      <Route path="/" element={<Navigate to={`/${DEFAULT_LANG_SHORT}`} />} />
-    </Routes>
+    <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
+      <Routes>
+        <Route
+          path={'/:lang/*'}
+          element={
+            <LangApp>
+              <SyncLang />
+              <Layout />
+            </LangApp>
+          }
+        >
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+        <Route path="/" element={<Navigate to={`/${DEFAULT_LANG_SHORT}`} />} />
+      </Routes>
+    </Miller>
   )
 }
 

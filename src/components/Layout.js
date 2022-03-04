@@ -4,9 +4,15 @@ import { LANGS } from '../i18n'
 
 export default function Layout() {
   const { i18n } = useTranslation()
+  const shortLang = i18n.language.split('_')[0]
   return (
     <div>
       <b>{i18n.language}</b>
+      <div>
+        <Link to={`/${shortLang}/about`}>About</Link>
+        {' | '}
+        <Link to={`/${shortLang}`}>Home</Link>
+      </div>
       <div>
         {LANGS.map((lang) => {
           const shortLang = lang.split('_')[0]

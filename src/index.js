@@ -1,17 +1,34 @@
-import React from 'react'
-import { BrowserRouter } from 'react-router-dom'
-import ReactDOM from 'react-dom'
 import './index.css'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { QueryClient } from 'react-query'
+import { BrowserRouter } from 'react-router-dom'
 import App from './App'
-import reportWebVitals from './reportWebVitals'
 import { initI18n } from './i18n'
+import reportWebVitals from './reportWebVitals'
 
 initI18n(window.location.pathname)
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      cacheTime: Infinity,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+      refetchInterval: false,
+      refetchIntervalInBackground: false,
+      refetchOnMount: false,
+      staleTime: Infinity,
+      retry: false,
+      suspense: false,
+    },
+  },
+})
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <App client={queryClient} apiUrl={'/api'} />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
