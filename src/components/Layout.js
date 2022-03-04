@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, Outlet } from 'react-router-dom'
 import { LANGS } from '../i18n'
@@ -30,7 +31,9 @@ export default function Layout() {
           )
         })}
       </div>
-      <Outlet />
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   )
 }

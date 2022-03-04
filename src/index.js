@@ -1,13 +1,12 @@
 import './index.css'
 import React from 'react'
-import ReactDOM from 'react-dom'
-import { QueryClient } from 'react-query'
+import ReactDOM from 'react-dom/client'
+import { QueryClient, hydrate } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
-import App from './App'
-import { initI18n } from './i18n'
+import { createI18n } from './i18n'
+import { I18nextProvider } from 'react-i18next'
 import reportWebVitals from './reportWebVitals'
-
-initI18n(window.location.pathname)
+import App from './App'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,19 +19,43 @@ const queryClient = new QueryClient({
       refetchOnMount: false,
       staleTime: Infinity,
       retry: false,
-      suspense: false,
+      suspense: true,
     },
   },
 })
 
-ReactDOM.render(
-  <React.StrictMode>
+if (typeof window.__INITIAL_DATA__ !== 'undefined') {
+  hydrate(queryClient, window.__INITIAL_DATA__)
+  delete window.__INITIAL_DATA__
+}
+
+const i18n = createI18n(window.location.pathname)
+
+const clientApiUrl = '/api'
+
+const rootElement = document.getElementById('root')
+
+if (rootElement.hasChildNodes()) {
+  ReactDOM.hydrateRoot(
+    rootElement,
     <BrowserRouter>
-      <App client={queryClient} apiUrl={'/api'} />
+      <I18nextProvider i18n={i18n}>
+        <App client={queryClient} apiUrl={clientApiUrl} />
+      </I18nextProvider>
     </BrowserRouter>
-  </React.StrictMode>,
-  document.getElementById('root')
-)
+  )
+} else {
+  ReactDOM.render(
+    <React.StrictMode>
+      <BrowserRouter>
+        <I18nextProvider i18n={i18n}>
+          <App client={queryClient} apiUrl={clientApiUrl} />
+        </I18nextProvider>
+      </BrowserRouter>
+    </React.StrictMode>,
+    rootElement
+  )
+}
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
