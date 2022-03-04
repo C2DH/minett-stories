@@ -1,0 +1,17 @@
+{
+  "fr_FR": {
+    "translation": {
+      "hello": "Bonjour"
+    }
+  },
+  "en_US": {
+    "translation": {
+      "hello": "Hello"
+    }
+  },
+  "de_DE": {
+    "translation": {
+      "hello": "Hallo"
+    }
+  }
+}

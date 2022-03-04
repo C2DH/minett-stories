@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route, useParams, Navigate } from 'react-router-dom'
+import Layout from './components/Layout'
+import About from './pages/About'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
+import { DEFAULT_LANG, DEFAULT_LANG_SHORT, LANGS, LANGS_SHORT } from './i18n'
+import { useTranslation } from 'react-i18next'
+import { useEffect } from 'react'
+
+function LangApp({ children }) {
+  const { lang } = useParams()
+  if (LANGS_SHORT.includes(lang)) {
+    return children
+  }
+  return <NotFound />
+}
+
+function SyncLang() {
+  const { i18n } = useTranslation()
+  const { lang } = useParams()
+
+  useEffect(() => {
+    const memoryLang = i18n.language.split('_')[0]
+    if (memoryLang !== lang) {
+      const nextLang = LANGS.find(l => l.startsWith(lang)) ?? DEFAULT_LANG
+      i18n.changeLanguage(nextLang)
+    }
+  }, [lang, i18n])
+
+  return null
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <Routes>
+      <Route
+        path={'/:lang/*'}
+        element={
+          <LangApp>
+            <SyncLang />
+            <Layout />
+          </LangApp>
+        }
+      >
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+      <Route path="/" element={<Navigate to={`/${DEFAULT_LANG_SHORT}`} />} />
+    </Routes>
+  )
 }
 
-export default App;
+export default App
