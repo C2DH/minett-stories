@@ -1,6 +1,6 @@
 import './index.css'
 import React from 'react'
-import ReactDOM from 'react-dom/client'
+import ReactDOM from 'react-dom'
 import { QueryClient, hydrate } from 'react-query'
 import { BrowserRouter } from 'react-router-dom'
 import { createI18n } from './i18n'
