@@ -1,9 +1,9 @@
 import Layout from '../components/Layout'
 
-export default function NotFound() {
+export default function Archive() {
   return (
     <Layout>
-      <h1>404 Not Found</h1>
+      <h1>Hello Archive!</h1>
     </Layout>
   )
 }

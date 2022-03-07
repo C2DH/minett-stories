@@ -7,13 +7,20 @@ import {
   useNavigate,
 } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { useEffect } from 'react'
+import { Suspense, useEffect } from 'react'
 import { Miller } from '@c2dh/react-miller'
-import Layout from './components/Layout'
 import About from './pages/About'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
+import NavigationWrapper from './components/NavigationWrapper'
+import Loader from './components/Loader'
+import StoriesIntro from './pages/StoriesIntro'
+import { ENABLE_SCREEN_SIZE_REDIRECT } from './consts'
+import Stories from './pages/Stories'
+import Archive from './pages/Archive'
+import Story from './pages/Story'
+import DocDetail from './pages/DocDetail'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -49,11 +56,36 @@ function LangRoutes() {
         <Route path={':lang/*'} element={<SyncLang />} />
       </Routes>
       <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<Home />} />
+        <Route element={<NavigationWrapper />}>
+          <Route
+            index
+            element={
+              <Suspense fallback={<Loader />}>
+                <Home />
+              </Suspense>
+            }
+          />
           <Route path={':lang/*'} element={<AvailablesLang />}>
-            <Route index element={<Home />} />
-            <Route path="a/lot/of/path" element={<Home />} />
+            <Route
+              index
+              element={
+                <Suspense fallback={<Loader />}>
+                  <Home />
+                </Suspense>
+              }
+            />
+            <Route
+              path="stories"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <StoriesIntro />
+                </Suspense>
+              }
+            />
+            <Route path="stories/:type" element={<Stories />} />
+            <Route path="story/:slug" element={<Story />} />
+            <Route path="document/:slug" element={<DocDetail />} />
+            <Route path="archive" element={<Archive />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
@@ -96,9 +128,11 @@ function App({ client, apiUrl }) {
   const { i18n } = useTranslation()
   return (
     <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
-      <Routes>
-        <Route path="/*" element={<CheckClientSideScreenDimensions />} />
-      </Routes>
+      {ENABLE_SCREEN_SIZE_REDIRECT && (
+        <Routes>
+          <Route path="/*" element={<CheckClientSideScreenDimensions />} />
+        </Routes>
+      )}
       <Routes>
         {/* MOBILE */}
         <Route path="/m/*" element={<LangRoutes />} />
