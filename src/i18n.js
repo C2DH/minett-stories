@@ -28,17 +28,25 @@ export function createI18n(pathname) {
   return i18nInstance
 }
 
-export function getStartLang(pathname) {
-  const langMatch = matchPath('/:lang/*', pathname)
-  // No match use default lang
-  if (!langMatch) {
-    return DEFAULT_LANG
-  }
+function getLangFromParam(langParam) {
   // Lang is on of configure...
-  if (LANGS_SHORT.includes(langMatch.params.lang)) {
+  if (LANGS_SHORT.includes(langParam)) {
     // Find them...
-    return LANGS.find(l => l.startsWith(langMatch.params.lang))
+    return LANGS.find(l => l.startsWith(langParam))
   }
   // Fallback 2 default one
   return DEFAULT_LANG
+}
+
+export function getStartLang(pathname) {
+  const langMatchMobile = matchPath('/m/:lang/*', pathname)
+  // No match use default lang
+  if (!langMatchMobile) {
+    const langMatch = matchPath('/:lang/*', pathname)
+    if (langMatch) {
+      return getLangFromParam(langMatch.params.lang)
+    }
+    return DEFAULT_LANG
+  }
+  return getLangFromParam(langMatchMobile.params.lang)
 }
