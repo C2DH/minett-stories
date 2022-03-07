@@ -1,17 +1,17 @@
 {
   "fr_FR": {
     "translation": {
-      "hello": "Bonjour"
+      "view_options": "View options"
     }
   },
   "en_US": {
     "translation": {
-      "hello": "Hello"
+      "view_options": "View options"
     }
   },
   "de_DE": {
     "translation": {
-      "hello": "Hallo"
+      "view_options": "View options"
     }
   }
 }
