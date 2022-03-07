@@ -1,0 +1,16 @@
+.TopBar {
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Offcanvas {
+  background-color: var(--dark-grey);
+  top: 56px
+}
+
+.OffcanvasBody {
+  display: flex;
+  flex-direction: column;
+}
