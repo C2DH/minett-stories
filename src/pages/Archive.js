@@ -6,7 +6,6 @@ import { Fragment, useEffect } from 'react'
 import DocItem from '../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
-import styles from './Archive.module.css'
 
 export default function Archive() {
   const { t } = useTranslation()
