@@ -10,6 +10,7 @@
 
 .item {
   text-decoration: none;
-  border: 1px solid var(--cadet-blue);
-  padding: 30px;
+  border: 1px solid var(--dark-grey);
+  padding: 15px;
+  min-height: 240px;
 }

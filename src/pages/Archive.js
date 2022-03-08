@@ -43,13 +43,13 @@ export default function Archive() {
   return (
     <Layout right={<div>{t('view_options')}</div>}>
       <div className="container-fluid">
-        <div className="row">
+        <div className="row p-5">
           {docGroups &&
             docGroups.pages.map((docs, i) => (
               <Fragment key={i}>
                 {docs &&
                   docs.results.map((doc) => (
-                    <div className="col-md-3" key={doc.id}>
+                    <div className="col-md-3 p-0" key={doc.id}>
                       <DocItem doc={doc} />
                     </div>
                   ))}
