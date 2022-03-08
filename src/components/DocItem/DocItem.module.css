@@ -6,13 +6,18 @@
   color: white;
   text-decoration: none;
   margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 .item {
   text-decoration: none;
   border: 1px solid var(--dark-grey);
-  padding: 15px;
-  min-height: 298px;
+  padding: 16px;
+  min-height: 328px;
 }
 
 .Image {
