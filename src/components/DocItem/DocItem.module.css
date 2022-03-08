@@ -14,3 +14,9 @@
   padding: 15px;
   min-height: 240px;
 }
+
+.Image {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}

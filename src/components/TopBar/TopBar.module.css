@@ -2,7 +2,7 @@
   height: 56px;
   display: flex;
   align-items: center;
-  display: fixed;
+  /* display: fixed; */
   justify-content: space-between;
   position: fixed;
   width: 100%;
