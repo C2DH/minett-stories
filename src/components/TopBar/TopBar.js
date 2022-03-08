@@ -47,36 +47,19 @@ export default function TopBar({ right }) {
           </LangLink>
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
-              <ChangeLangLink
-                className={
-                  i18n.language === LANGS[0]
-                    ? styles.ChangeLangLinkActive
-                    : styles.ChangeLangLink
-                }
-                lang={LANGS[0]}
-              >
-                EN
-              </ChangeLangLink>
-              <ChangeLangLink
-                className={
-                  i18n.language === LANGS[1]
-                    ? styles.ChangeLangLinkActive
-                    : styles.ChangeLangLink
-                }
-                lang={LANGS[1]}
-              >
-                FR
-              </ChangeLangLink>
-              <ChangeLangLink
-                className={
-                  i18n.language === LANGS[2]
-                    ? styles.ChangeLangLinkActive
-                    : styles.ChangeLangLink
-                }
-                lang={LANGS[2]}
-              >
-                DE
-              </ChangeLangLink>
+              {LANGS.map((lang) => (
+                <ChangeLangLink
+                  key={lang}
+                  className={
+                    i18n.language === lang
+                      ? styles.ChangeLangLinkActive
+                      : styles.ChangeLangLink
+                  }
+                  lang={lang}
+                >
+                  {lang.split("_")[0]}
+                </ChangeLangLink>
+              ))}
             </div>
             <div className={styles.BlockTerms}>
               <div>

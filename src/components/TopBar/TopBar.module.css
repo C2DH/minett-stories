@@ -54,6 +54,7 @@
   width: 40px;
   height: 40px;
   border: 1px solid white;
+  text-transform: uppercase;
 }
 
 .ChangeLangLink:hover{
@@ -76,6 +77,7 @@
   border-radius: 50%;
   width: 40px;
   height: 40px;
+  text-transform: uppercase;
 }
 
 .ChangeLangLinkActive:hover{
