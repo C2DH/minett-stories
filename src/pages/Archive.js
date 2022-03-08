@@ -36,6 +36,7 @@ export default function Archive() {
       limit: 50,
       q,
       filters: pickBy(millerFilters, Boolean),
+      exclude: { type: 'entity' },
     },
   })
 

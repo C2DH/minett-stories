@@ -1,12 +1,13 @@
-import { useState } from "react"
-import { Offcanvas, OffcanvasBody } from "reactstrap"
-import ChangeLangLink from "../ChangeLangLink"
-import c2dh from "./assets/c2dh.svg"
-import unilu from "./assets/unilu.svg"
-import LangLink from "../LangLink"
-import styles from "./TopBar.module.css"
-import { useTranslation } from "react-i18next"
-import { LANGS } from "../../i18n"
+import { useState } from 'react'
+import { Offcanvas, OffcanvasBody } from 'reactstrap'
+import ChangeLangLink from '../ChangeLangLink'
+import c2dh from './assets/c2dh.svg'
+import unilu from './assets/unilu.svg'
+import LangLink from '../LangLink'
+import styles from './TopBar.module.css'
+import { useTranslation } from 'react-i18next'
+import { LANGS } from '../../i18n'
+import NavLangLink from '../NavLangLink'
 
 export default function TopBar({ right }) {
   const [open, setOpen] = useState(false)
@@ -20,7 +21,7 @@ export default function TopBar({ right }) {
             onClick={() => {
               setOpen(!open)
             }}
-            style={{ fontSize: "2rem" }}
+            style={{ fontSize: '2rem' }}
             className="bi bi-list cursor-pointer"
           />
         </div>
@@ -33,18 +34,33 @@ export default function TopBar({ right }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <LangLink className={styles.BigLink} to="/">
-            {t("intro")}
-          </LangLink>
-          <LangLink className={styles.BigLink} to="/stories">
-            {t("stories")}
-          </LangLink>
-          <LangLink className={styles.BigLink} to="/archive">
-            {t("archive")}
-          </LangLink>
-          <LangLink className={styles.BigLink} to="/about">
-            {t("about")}
-          </LangLink>
+          <NavLangLink className={styles.BigLink} to="/">
+            {t('intro')}
+          </NavLangLink>
+          <NavLangLink
+            to="/stories"
+            className={({ isActive }) =>
+              isActive ? styles.BigLinkAction : styles.BigLink
+            }
+          >
+            {t('stories')}
+          </NavLangLink>
+          <NavLangLink
+            className={({ isActive }) =>
+              isActive ? styles.BigLinkAction : styles.BigLink
+            }
+            to="/archive"
+          >
+            {t('archive')}
+          </NavLangLink>
+          <NavLangLink
+            to="/about"
+            className={({ isActive }) =>
+              isActive ? styles.BigLinkAction : styles.BigLink
+            }
+          >
+            {t('about')}
+          </NavLangLink>
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
               {LANGS.map((lang) => (
@@ -57,19 +73,19 @@ export default function TopBar({ right }) {
                   }
                   lang={lang}
                 >
-                  {lang.split("_")[0]}
+                  {lang.split('_')[0]}
                 </ChangeLangLink>
               ))}
             </div>
             <div className={styles.BlockTerms}>
               <div>
                 <LangLink className={styles.MediumLink} to="/">
-                  {t("terms_of_use")}
+                  {t('terms_of_use')}
                 </LangLink>
               </div>
               <div>
                 <LangLink className={styles.MediumLink} to="/stories">
-                  {t("contact_us")}
+                  {t('contact_us')}
                 </LangLink>
               </div>
             </div>

@@ -20,6 +20,10 @@
   line-height: 65px;
 }
 
+.BigLinkAction {
+  color: deeppink;
+}
+
 .BigLink:hover, .MediumLink:hover{
   color: var(--orange);
 }
