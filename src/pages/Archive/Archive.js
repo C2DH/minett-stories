@@ -1,5 +1,4 @@
 import Layout from '../../components/Layout'
-import pickBy from 'lodash/pickBy'
 import { useSearchParams } from 'react-router-dom'
 import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
 import { Fragment, useState } from 'react'
@@ -8,30 +7,37 @@ import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
+import Filters from './Filters'
 
 export default function Archive() {
   const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams()
   const [showFilters, setShowFilters] = useState(false)
   const filters = {
-    data__type: searchParams.get('data__type', '') ?? '',
-    q: searchParams.get('q', '') ?? '',
+    grid: searchParams.get('grid') ?? 'M',
+    types: searchParams.getAll('types') ?? [],
+    q: searchParams.get('q') ?? '',
+    orderby: searchParams.get('orderby') ?? 'data__date',
+    noDates: (searchParams.get('noDates') ?? 'yes') === 'yes',
   }
-
   const [docsFacets] = useDocumentsFacets({
     params: {
-      facets: 'data__type',
+      facets: 'type',
+      exclude: { type: 'entity' },
     },
   })
 
-  const { q, ...millerFilters } = filters
   const [docGroups, infiniteDocs] = useInfiniteDocuments({
     // suspense: !filtersOn,
     keepPreviousData: true,
     params: {
+      // TODO: How to filter noDates???
       limit: 50,
-      q,
-      filters: pickBy(millerFilters, Boolean),
+      orderby: filters.orderby,
+      q: filters.q,
+      filters: {
+        type__in: filters.types.length > 0 ? filters.types : undefined,
+      },
       exclude: { type: 'entity' },
     },
   })
@@ -48,12 +54,19 @@ export default function Archive() {
       }
     >
       <Offcanvas
-        backdrop={false}
+        toggle={() => setShowFilters(!showFilters)}
+        backdropClassName={styles.Backdrop}
         direction={'end'}
         className={styles.filters}
         isOpen={showFilters}
       >
-        <OffcanvasBody className={styles.offcanvasBody}>G A N G</OffcanvasBody>
+        <OffcanvasBody>
+          <Filters
+            facets={docsFacets.facets}
+            filters={filters}
+            onFiltersChage={setSearchParams}
+          />
+        </OffcanvasBody>
       </Offcanvas>
       <div className="container-fluid">
         <div className="row p-5">

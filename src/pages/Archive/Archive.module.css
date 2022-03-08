@@ -1,5 +1,10 @@
 .filters {
-    background-color: #FFF;
-    width: 344px;
-    top: 56px;
+  background-color: #fff;
+  color: var(--black);
+  width: 344px;
+  top: 56px;
+}
+
+.Backdrop {
+  background-color: transparent;
 }

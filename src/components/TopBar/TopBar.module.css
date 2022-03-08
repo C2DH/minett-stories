@@ -10,6 +10,10 @@
   padding-right: 14px;
 }
 
+.Backdrop {
+  background: transparent;
+}
+
 .Offcanvas {
   background-color: var(--dark-grey);
   top: 56px;

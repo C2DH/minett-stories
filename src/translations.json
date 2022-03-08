@@ -8,7 +8,15 @@
       "about": "About",
       "terms_of_use": "Terms Of Use",
       "contact_us": "Contact Us",
-      "close_options": "Close options"
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates"
     }
   },
   "en_US": {
@@ -20,7 +28,15 @@
       "about": "About",
       "terms_of_use": "Terms Of Use",
       "contact_us": "Contact Us",
-      "close_options": "Close options"
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates"
     }
   },
   "de_DE": {
@@ -32,7 +48,15 @@
       "about": "About",
       "terms_of_use": "Terms Of Use",
       "contact_us": "Contact Us",
-      "close_options": "Close options"
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates"
     }
   }
 }

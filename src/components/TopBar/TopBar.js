@@ -46,7 +46,7 @@ export default function TopBar({ right }) {
         {right ? right : <span />}
       </div>
       <Offcanvas
-        backdrop={false}
+        backdropClassName={styles.Backdrop}
         isOpen={open}
         toggle={() => setOpen(!open)}
         className={styles.Offcanvas}
