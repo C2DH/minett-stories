@@ -4,7 +4,6 @@
   align-items: center;
   /* display: fixed; */
   justify-content: space-between;
-  position: fixed;
   width: 100%;
   background-color: var(--black);
   padding-left: 14px;

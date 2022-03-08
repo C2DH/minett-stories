@@ -7,7 +7,7 @@ import DocItem from "../components/DocItem"
 import { useTranslation } from "react-i18next"
 import { Waypoint } from "react-waypoint"
 import { Offcanvas } from "reactstrap"
-import styles from './Archive.module.css'
+import styles from "./Archive.module.css"
 
 export default function Archive() {
   const { t } = useTranslation()
@@ -53,9 +53,12 @@ export default function Archive() {
         </div>
       }
     >
-      <Offcanvas backdrop={false} direction={'end'} className={styles.filters} isOpen={showFilters}>
-
-      </Offcanvas>
+      <Offcanvas
+        backdrop={false}
+        direction={"end"}
+        className={styles.filters}
+        isOpen={showFilters}
+      ></Offcanvas>
       <div className="container-fluid">
         <div className="row p-5">
           {docGroups &&
