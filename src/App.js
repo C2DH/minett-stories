@@ -5,9 +5,10 @@ import {
   Outlet,
   matchPath,
   useNavigate,
+  useLocation,
 } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Suspense, useEffect } from 'react'
+import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
 import About from './pages/About'
 import Home from './pages/Home'
@@ -20,7 +21,7 @@ import { ENABLE_SCREEN_SIZE_REDIRECT } from './consts'
 import Stories from './pages/Stories'
 import Archive from './pages/Archive'
 import Story from './pages/Story'
-import DocDetail from './pages/DocDetail'
+import DocDetail from './pages/DocDetail/DocDetail'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -50,12 +51,26 @@ function AvailablesLang() {
 }
 
 function LangRoutes() {
+  const location = useLocation()
+  const prevLocation = useRef(null)
+
+  useEffect(() => {
+    prevLocation.current = location
+  }, [location])
+
+  // NOTE: Avoid "modal" model when no prev location
+  // when user hit refresh page on modal should see non-modal version
+  let backgroundLocation
+  if (location.state?.backgroundLocation && prevLocation.current !== null) {
+    backgroundLocation = location.state.backgroundLocation
+  }
+
   return (
     <>
-      <Routes>
+      <Routes location={backgroundLocation ?? location}>
         <Route path={':lang/*'} element={<SyncLang />} />
       </Routes>
-      <Routes>
+      <Routes location={backgroundLocation ?? location}>
         <Route element={<NavigationWrapper />}>
           <Route
             index
@@ -91,6 +106,13 @@ function LangRoutes() {
           </Route>
         </Route>
       </Routes>
+      {backgroundLocation && (
+        <Routes>
+          <Route path={':lang/*'} element={<AvailablesLang />}>
+            <Route path="document/:slug" element={<DocDetail isModal />} />
+          </Route>
+        </Routes>
+      )}
     </>
   )
 }
@@ -126,6 +148,12 @@ function CheckClientSideScreenDimensions() {
 
 function App({ client, apiUrl }) {
   const { i18n } = useTranslation()
+
+  // const location = useLocation()
+  // const state = location.state
+  // console.log('O.o', state)
+  // const l =  state?.backgroundLocation ?? location
+  // console.log('--->',l, state)
   return (
     <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
       {ENABLE_SCREEN_SIZE_REDIRECT && (

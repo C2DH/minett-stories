@@ -24,3 +24,7 @@ html,
 .cursor-pointer {
   cursor: pointer;
 }
+
+body.block-scroll {
+  overflow: hidden;
+}

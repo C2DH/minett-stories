@@ -2,7 +2,7 @@ import Layout from '../components/Layout'
 import pickBy from 'lodash/pickBy'
 import { useSearchParams } from 'react-router-dom'
 import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
-import { Fragment } from 'react'
+import { Fragment, useEffect } from 'react'
 import DocItem from '../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
@@ -14,6 +14,12 @@ export default function Archive() {
     data__type: searchParams.get('data__type', '') ?? '',
     q: searchParams.get('q', '') ?? '',
   }
+
+  useEffect(() => {
+    return () => {
+      console.log('Unmount archive')
+    }
+  }, [])
 
   const [docsFacets] = useDocumentsFacets({
     params: {
