@@ -60,7 +60,7 @@ export default function Archive() {
         className={styles.filters}
         isOpen={showFilters}
       >
-        <OffcanvasBody>
+        <OffcanvasBody className={styles.OffcanvasBody}>
           <Filters
             facets={docsFacets.facets}
             filters={filters}

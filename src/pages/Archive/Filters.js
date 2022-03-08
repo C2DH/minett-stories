@@ -1,21 +1,22 @@
-import classNames from 'classnames'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import classNames from "classnames"
+import { useState } from "react"
+import { useTranslation } from "react-i18next"
+import styles from "./Archive.module.css"
 
-const GRIDS = ['S', 'M', 'L']
+const GRIDS = ["S", "M", "L"]
 
 const ORDER_BYS = [
   {
-    label: 'most_recent',
-    value: 'data__date',
+    label: "most_recent",
+    value: "data__date",
   },
   {
-    label: 'least_recent',
-    value: '-data__date',
+    label: "least_recent",
+    value: "-data__date",
   },
   {
-    label: 'by_type',
-    value: 'type',
+    label: "by_type",
+    value: "type",
   },
 ]
 
@@ -34,86 +35,102 @@ export default function Filters({ facets, filters, onFiltersChage }) {
           })
         }}
       >
-        <input
-          type="text"
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-        />
+        <div className={styles.blockSearch}>
+          <label>Search</label>
+          <div>
+            <input
+              className={styles.inputSearch}
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+            />
+          </div>
+        </div>
       </form>
 
-      {GRIDS.map((grid) => (
-        <button
-          onClick={() => {
-            onFiltersChage({
-              ...filters,
-              grid,
-            })
-          }}
-          className={classNames('btn', {
-            'btn-primary': filters.grid !== grid,
-            'btn-success': filters.grid === grid,
-          })}
-          key={grid}
-        >
-          {grid}
-        </button>
-      ))}
-
-      <div>Order By</div>
-      <div>
-        {ORDER_BYS.map((orderBy) => (
-          <div key={orderBy.value}>
-            <span>{t(`orderBy_${orderBy.label}`)}</span>
-            <input
-              onChange={() => {
+      <div className={styles.blockSize}>
+        <label>Grid size</label>
+        <div className={styles.gridIcons}>
+          {GRIDS.map((grid) => (
+            <button
+              onClick={() => {
                 onFiltersChage({
                   ...filters,
-                  orderby: orderBy.value,
+                  grid,
                 })
               }}
-              type="radio"
-              name="archive_orderby"
-              checked={filters.orderby === orderBy.value}
+              className={classNames("btn", {
+                [styles.ChangeSizeLink]: filters.grid !== grid,
+                [styles.ChangeSizeLinkActive]: filters.grid === grid,
+              })}
+              key={grid}
+            >
+              {grid}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className={styles.blockOrder}>
+        <label>Sort items</label>
+        <div>
+          {ORDER_BYS.map((orderBy) => (
+            <div key={orderBy.value}>
+              <input
+                onChange={() => {
+                  onFiltersChage({
+                    ...filters,
+                    orderby: orderBy.value,
+                  })
+                }}
+                type="radio"
+                name="archive_orderby"
+                checked={filters.orderby === orderBy.value}
+              />
+              <span className="ms-2">{t(`orderBy_${orderBy.label}`)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <label>Filter by type</label>
+        {facets.type.map((facet) => (
+          <div>
+            <input
+              onChange={() => {
+                if (filters.types.includes(facet.type)) {
+                  onFiltersChage({
+                    ...filters,
+                    types: filters.types.filter((t) => t !== facet.type),
+                  })
+                } else {
+                  onFiltersChage({
+                    ...filters,
+                    types: filters.types.concat(facet.type),
+                  })
+                }
+              }}
+              type="checkbox"
+              checked={filters.types.includes(facet.type)}
             />
+            <span className="ms-2">
+              {t(`documentType_${facet.type}`)} ({facet.count})
+            </span>
           </div>
         ))}
       </div>
-
-      {facets.type.map((facet) => (
-        <div>
-          <span className="me-2">
-            {t(`documentType_${facet.type}`)} ({facet.count})
-          </span>
-          <input
-            onChange={() => {
-              if (filters.types.includes(facet.type)) {
-                onFiltersChage({
-                  ...filters,
-                  types: filters.types.filter((t) => t !== facet.type),
-                })
-              } else {
-                onFiltersChage({
-                  ...filters,
-                  types: filters.types.concat(facet.type),
-                })
-              }
-            }}
-            type="checkbox"
-            checked={filters.types.includes(facet.type)}
-          />
-        </div>
-      ))}
-      <span>{t('include_no_dates')}</span>
-      <input
-        type="checkbox"
-        checked={filters.noDates}
-        onChange={() => {
-          onFiltersChage({
-            ...filters,
-            noDates: filters.noDates ? 'no' : 'yes',
-          })
-        }}
-      />
+      <div className="mt-2">
+        <input
+          type="checkbox"
+          checked={filters.noDates}
+          onChange={() => {
+            onFiltersChage({
+              ...filters,
+              noDates: filters.noDates ? "no" : "yes",
+            })
+          }}
+        />
+        <span className="ms-2">{t("include_no_dates")}</span>
+      </div>
     </div>
   )
 }
