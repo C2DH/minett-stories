@@ -8,6 +8,7 @@ import styles from "./TopBar.module.css"
 import { useTranslation } from "react-i18next"
 import { LANGS } from "../../i18n"
 import NavLangLink from "../NavLangLink"
+import classNames from "classnames"
 
 function LinkTop({ label, to }) {
   return (
@@ -35,7 +36,10 @@ export default function TopBar({ right }) {
               setOpen(!open)
             }}
             style={{ fontSize: "2rem" }}
-            className="bi bi-list cursor-pointer"
+            className={classNames("bi cursor-pointer", {
+              "bi-list": !open,
+              "bi-x-lg": open
+            })}
           />
         </div>
         <div>Minett Stories</div>
@@ -48,22 +52,10 @@ export default function TopBar({ right }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <LinkTop
-            to="/"
-            label={t("intro")}
-          />
-          <LinkTop
-            to="/stories"
-            label={t("stories")}
-          />
-          <LinkTop
-            to="/archive"
-            label={t("archive")}
-          />
-          <LinkTop
-            to="/about"
-            label={t("about")}
-          />
+          <LinkTop to="/" label={t("intro")} />
+          <LinkTop to="/stories" label={t("stories")} />
+          <LinkTop to="/archive" label={t("archive")} />
+          <LinkTop to="/about" label={t("about")} />
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
               {LANGS.map((lang) => (
