@@ -21,10 +21,19 @@
 }
 
 .BigLinkAction {
-  color: deeppink;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  color: var(--orange);
+  text-decoration: none;
+  line-height: 65px;
 }
 
-.BigLink:hover, .MediumLink:hover{
+.BigLinkAction::before {
+  content: '-';
+}
+
+.BigLink:hover, .MediumLink:hover, .BigLinkAction:hover{
   color: var(--orange);
 }
 

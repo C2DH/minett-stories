@@ -17,7 +17,7 @@ function DocItem({ doc }) {
       }}
     >
       <div className={styles.item}>
-        <img width={200} src={imageUrl} alt={doc.data.title} />
+        <img height={100} src={imageUrl} alt={doc.data.title} />
         <h5 className={styles.titleItem}>{doc.data.title}</h5>
       </div>
     </LangLink>
