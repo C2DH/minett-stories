@@ -101,6 +101,7 @@ function LangRoutes() {
             <Route path="story/:slug" element={<Story />} />
             <Route path="document/:slug" element={<DocDetail />} />
             <Route path="archive" element={<Archive />} />
+            <Route path="archive/filter" element={<Archive />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Route>
