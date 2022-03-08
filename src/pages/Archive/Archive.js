@@ -40,7 +40,7 @@ export default function Archive() {
     <Layout
       right={
         <div
-          className="cursor-pointer"
+          className="cursor-pointer position-absolute right-topbar"
           onClick={() => setShowFilters(!showFilters)}
         >
           {showFilters ? t('close_options') : t('view_options')}

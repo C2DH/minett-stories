@@ -5,14 +5,14 @@
   line-height: 24px;
   color: white;
   text-decoration: none;
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .item {
   text-decoration: none;
   border: 1px solid var(--dark-grey);
   padding: 15px;
-  min-height: 240px;
+  min-height: 298px;
 }
 
 .Image {

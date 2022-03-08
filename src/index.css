@@ -28,3 +28,11 @@ html,
 body.block-scroll {
   overflow: hidden;
 }
+
+.right-topbar{
+  right: 14px;
+}
+
+.left-topbar {
+  left: 14px;
+}

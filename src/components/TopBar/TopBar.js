@@ -30,7 +30,7 @@ export default function TopBar({ right }) {
   return (
     <>
       <div className={styles.TopBar}>
-        <div>
+        <div className="position-absolute left-topbar">
           <i
             onClick={() => {
               setOpen(!open)
