@@ -1,17 +1,35 @@
 {
   "fr_FR": {
     "translation": {
-      "view_options": "View options"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us"
     }
   },
   "en_US": {
     "translation": {
-      "view_options": "View options"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us"
     }
   },
   "de_DE": {
     "translation": {
-      "view_options": "View options"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us"
     }
   }
 }

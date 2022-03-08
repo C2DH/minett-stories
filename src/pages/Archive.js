@@ -6,6 +6,7 @@ import { Fragment, useEffect } from 'react'
 import DocItem from '../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
+import styles from './Archive.module.css'
 
 export default function Archive() {
   const { t } = useTranslation()
@@ -47,7 +48,7 @@ export default function Archive() {
               <Fragment key={i}>
                 {docs &&
                   docs.results.map((doc) => (
-                    <div className="col-md-4" key={doc.id}>
+                    <div className="col-md-3" key={doc.id}>
                       <DocItem doc={doc} />
                     </div>
                   ))}
