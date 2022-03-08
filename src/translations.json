@@ -7,7 +7,8 @@
       "archive": "Archive",
       "about": "About",
       "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us"
+      "contact_us": "Contact Us",
+      "close_options": "Close options"
     }
   },
   "en_US": {
@@ -18,7 +19,8 @@
       "archive": "Archive",
       "about": "About",
       "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us"
+      "contact_us": "Contact Us",
+      "close_options": "Close options"
     }
   },
   "de_DE": {
@@ -29,7 +31,8 @@
       "archive": "Archive",
       "about": "About",
       "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us"
+      "contact_us": "Contact Us",
+      "close_options": "Close options"
     }
   }
 }
