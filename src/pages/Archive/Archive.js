@@ -1,13 +1,29 @@
 import Layout from '../../components/Layout'
-import { useSearchParams } from 'react-router-dom'
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useRef, useState } from 'react'
 import DocItem from '../../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
 import Filters from './Filters'
+
+function useFilterRedirect() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const qsRef = useRef(location.search)
+  const filtersOn = location.pathname.endsWith('/filter')
+  useEffect(() => {
+    if (qsRef.current !== location.search) {
+      qsRef.current = location.search
+      if (location.search !== '' && !filtersOn) {
+        navigate(`${location.pathname}/filter${location.search}`)
+      }
+    }
+  })
+  return filtersOn
+}
 
 export default function Archive() {
   const { t } = useTranslation()
@@ -27,8 +43,9 @@ export default function Archive() {
     },
   })
 
+  const filtersOn = useFilterRedirect()
   const [docGroups, infiniteDocs] = useInfiniteDocuments({
-    // suspense: !filtersOn,
+    suspense: !filtersOn,
     keepPreviousData: true,
     params: {
       // TODO: How to filter noDates???
