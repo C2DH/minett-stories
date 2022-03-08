@@ -1,5 +1,5 @@
 .ModalDoc {
-  z-index: 1000;
+  z-index: 10000;
   background: var(--black);
   position: fixed;
   top: 0;
