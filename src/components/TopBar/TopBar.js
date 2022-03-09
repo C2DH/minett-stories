@@ -38,12 +38,16 @@ export default function TopBar({ right }) {
             style={{ fontSize: "2rem" }}
             className={classNames("bi cursor-pointer", {
               "bi-list": !open,
-              "bi-x-lg": open
+              "bi-x-lg": open,
             })}
           />
         </div>
         <div>Minett Stories</div>
-        {right ? right : <span />}
+        {right && (
+          <div className="cursor-pointer position-absolute right-topbar">
+            {right}
+          </div>
+        )}
       </div>
       <Offcanvas
         backdropClassName={styles.Backdrop}

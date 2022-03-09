@@ -36,7 +36,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         }}
       >
         <div className={styles.blockSearch}>
-          <label>Search</label>
+          <label>{t("search")}</label>
           <div>
             <input
               className={styles.inputSearch}
@@ -49,7 +49,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       </form>
 
       <div className={styles.blockSize}>
-        <label>Grid size</label>
+        <label>{t("grid_size")}</label>
         <div className={styles.gridIcons}>
           {GRIDS.map((grid) => (
             <button
@@ -71,7 +71,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         </div>
       </div>
       <div className={styles.blockOrder}>
-        <label>Sort items</label>
+        <label>{t("sort_items")}</label>
         <div>
           {ORDER_BYS.map((orderBy) => (
             <div key={orderBy.value}>
@@ -92,7 +92,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         </div>
       </div>
       <div>
-        <label>Filter by type</label>
+        <label>{t("filter_by_type")}</label>
         {facets.type.map((facet) => (
           <div>
             <input

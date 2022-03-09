@@ -62,12 +62,11 @@ export default function Archive() {
   return (
     <Layout
       right={
-        <div
-          className="cursor-pointer position-absolute right-topbar"
+        <span
           onClick={() => setShowFilters(!showFilters)}
         >
           {showFilters ? t('close_options') : t('view_options')}
-        </div>
+        </span>
       }
     >
       <Offcanvas
