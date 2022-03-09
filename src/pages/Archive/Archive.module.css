@@ -77,7 +77,7 @@ label {
   text-transform: uppercase;
 }
 
-.ChangeLangLinkActive:hover{
+.ChangeSizeLinkActive:hover{
   text-decoration: none;
   color: white;
 }
