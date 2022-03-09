@@ -94,7 +94,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       <div>
         <label>{t("filter_by_type")}</label>
         {facets.type.map((facet) => (
-          <div>
+          <div key={facet.type}>
             <input
               onChange={() => {
                 if (filters.types.includes(facet.type)) {
