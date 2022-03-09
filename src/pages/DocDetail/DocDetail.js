@@ -1,26 +1,25 @@
-import { useDocument } from "@c2dh/react-miller"
-import { Suspense, useEffect } from "react"
-import { useNavigate, useParams } from "react-router-dom"
-import Layout from "../../components/Layout"
-import Loader from "../../components/Loader"
-import styles from "./DocDetail.module.css"
-import DocumentDetailAudio from "./DocumentDetailAudio"
-import DocumentDetailImage from "./DocumentDetailImage"
-import DocumentDetailPdf from "./DocumentDetailPdf"
-import DocumentDetailVideo from "./DocumentDetailVideo"
+import { useDocument } from '@c2dh/react-miller'
+import { Suspense, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import Layout from '../../components/Layout'
+import Loader from '../../components/Loader'
+import styles from './DocDetail.module.css'
+import DocumentDetailAudio from './DocumentDetailAudio'
+import DocumentDetailImage from './DocumentDetailImage'
+import DocumentDetailPdf from './DocumentDetailPdf'
+import DocumentDetailVideo from './DocumentDetailVideo'
 
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
-  const navigate = useNavigate()
   const [doc] = useDocument(slug)
   console.log(doc)
-  if (doc.type === "image") {
+  if (doc.type === 'image') {
     return <DocumentDetailImage isModal={isModal} doc={doc} />
-  } else if (doc.type === "video") {
+  } else if (doc.type === 'video') {
     return <DocumentDetailVideo isModal={isModal} doc={doc} />
-  } else if (doc.type === "audio") {
+  } else if (doc.type === 'audio') {
     return <DocumentDetailAudio isModal={isModal} doc={doc} />
-  } else if (doc.type === "pdf") {
+  } else if (doc.type === 'pdf') {
     return <DocumentDetailPdf isModal={isModal} doc={doc} />
   }
   // TODO: Implement other document types ....
@@ -29,8 +28,8 @@ function DisplayDoc({ isModal = false }) {
 export default function DocDetail({ isModal = false }) {
   useEffect(() => {
     if (isModal) {
-      document.body.classList.add("block-scroll")
-      return () => document.body.classList.remove("block-scroll")
+      document.body.classList.add('block-scroll')
+      return () => document.body.classList.remove('block-scroll')
     }
   }, [isModal])
 

@@ -1,22 +1,22 @@
-import classNames from "classnames"
-import { useState } from "react"
-import { useTranslation } from "react-i18next"
-import styles from "./Archive.module.css"
+import classNames from 'classnames'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import styles from './Archive.module.css'
 
-const GRIDS = ["S", "M", "L"]
+const GRIDS = ['S', 'M', 'L']
 
 const ORDER_BYS = [
   {
-    label: "most_recent",
-    value: "data__date",
+    label: 'most_recent',
+    value: 'data__date',
   },
   {
-    label: "least_recent",
-    value: "-data__date",
+    label: 'least_recent',
+    value: '-data__date',
   },
   {
-    label: "by_type",
-    value: "type",
+    label: 'by_type',
+    value: 'type',
   },
 ]
 
@@ -36,7 +36,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         }}
       >
         <div className={styles.blockSearch}>
-          <label>{t("search")}</label>
+          <label>{t('search')}</label>
           <div>
             <input
               className={styles.inputSearch}
@@ -49,7 +49,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       </form>
 
       <div className={styles.blockSize}>
-        <label>{t("grid_size")}</label>
+        <label>{t('grid_size')}</label>
         <div className={styles.gridIcons}>
           {GRIDS.map((grid) => (
             <button
@@ -59,7 +59,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
                   grid,
                 })
               }}
-              className={classNames("btn", {
+              className={classNames('btn', {
                 [styles.ChangeSizeLink]: filters.grid !== grid,
                 [styles.ChangeSizeLinkActive]: filters.grid === grid,
               })}
@@ -71,7 +71,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         </div>
       </div>
       <div className={styles.blockOrder}>
-        <label>{t("sort_items")}</label>
+        <label>{t('sort_items')}</label>
         <div>
           {ORDER_BYS.map((orderBy) => (
             <div key={orderBy.value}>
@@ -92,7 +92,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         </div>
       </div>
       <div>
-        <label>{t("filter_by_type")}</label>
+        <label>{t('filter_by_type')}</label>
         {facets.type.map((facet) => (
           <div key={facet.type}>
             <input
@@ -125,11 +125,11 @@ export default function Filters({ facets, filters, onFiltersChage }) {
           onChange={() => {
             onFiltersChage({
               ...filters,
-              noDates: filters.noDates ? "no" : "yes",
+              noDates: filters.noDates ? 'no' : 'yes',
             })
           }}
         />
-        <span className="ms-2">{t("include_no_dates")}</span>
+        <span className="ms-2">{t('include_no_dates')}</span>
       </div>
     </div>
   )

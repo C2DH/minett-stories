@@ -1,14 +1,14 @@
-import { useState } from "react"
-import { Offcanvas, OffcanvasBody } from "reactstrap"
-import ChangeLangLink from "../ChangeLangLink"
-import c2dh from "./assets/c2dh.svg"
-import unilu from "./assets/unilu.svg"
-import LangLink from "../LangLink"
-import styles from "./TopBar.module.css"
-import { useTranslation } from "react-i18next"
-import { LANGS } from "../../i18n"
-import NavLangLink from "../NavLangLink"
-import classNames from "classnames"
+import { useState } from 'react'
+import { Offcanvas, OffcanvasBody } from 'reactstrap'
+import ChangeLangLink from '../ChangeLangLink'
+import c2dh from './assets/c2dh.svg'
+import unilu from './assets/unilu.svg'
+import LangLink from '../LangLink'
+import styles from './TopBar.module.css'
+import { useTranslation } from 'react-i18next'
+import { LANGS } from '../../i18n'
+import NavLangLink from '../NavLangLink'
+import classNames from 'classnames'
 
 function LinkTop({ label, to }) {
   return (
@@ -35,10 +35,10 @@ export default function TopBar({ right }) {
             onClick={() => {
               setOpen(!open)
             }}
-            style={{ fontSize: "2rem" }}
-            className={classNames("bi cursor-pointer", {
-              "bi-list": !open,
-              "bi-x-lg": open,
+            style={{ fontSize: '2rem' }}
+            className={classNames('bi cursor-pointer', {
+              'bi-list': !open,
+              'bi-x-lg': open,
             })}
           />
         </div>
@@ -56,10 +56,10 @@ export default function TopBar({ right }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <LinkTop to="/" label={t("intro")} />
-          <LinkTop to="/stories" label={t("stories")} />
-          <LinkTop to="/archive" label={t("archive")} />
-          <LinkTop to="/about" label={t("about")} />
+          <LinkTop to="/" label={t('intro')} />
+          <LinkTop to="/stories" label={t('stories')} />
+          <LinkTop to="/archive" label={t('archive')} />
+          <LinkTop to="/about" label={t('about')} />
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
               {LANGS.map((lang) => (
@@ -72,19 +72,19 @@ export default function TopBar({ right }) {
                   }
                   lang={lang}
                 >
-                  {lang.split("_")[0]}
+                  {lang.split('_')[0]}
                 </ChangeLangLink>
               ))}
             </div>
             <div className={styles.BlockTerms}>
               <div>
                 <LangLink className={styles.MediumLink} to="/">
-                  {t("terms_of_use")}
+                  {t('terms_of_use')}
                 </LangLink>
               </div>
               <div>
                 <LangLink className={styles.MediumLink} to="/stories">
-                  {t("contact_us")}
+                  {t('contact_us')}
                 </LangLink>
               </div>
             </div>

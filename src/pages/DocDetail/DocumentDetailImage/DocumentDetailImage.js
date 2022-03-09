@@ -1,3 +1,3 @@
-export default function DocumentDetailImage({ isModal, doc }) {
+export default function DocumentDetailImage({ isModal, doc }) {
   return <div></div>
 }
