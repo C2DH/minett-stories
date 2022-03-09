@@ -6,4 +6,59 @@
   bottom: 0;
   left: 0;
   right: 0;
+  overflow: scroll;
+}
+
+.Document {
+  margin-left: 56px;
+  margin-right: 56px;
+  position: relative;
+  height: 100%;
+}
+
+.TypeDocument {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  padding-top: 24px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  color: var(--cadet-blue);
+  margin-bottom: 16px;
+}
+
+.TitleDocument {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  text-transform: capitalize;
+  color: white;
+  margin-bottom: 16px;
+}
+
+.YearDocument {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  text-transform: capitalize;
+  color: var(--cadet-blue);
+  margin-bottom: 16px;
+}
+
+.DescriptionDocument {
+  font-family: Sentient Variable;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 24px;
+  color: white;
+}
+
+.CloseModal {
+  position: absolute;
+  top: 24px;
+  right: 10px;
 }

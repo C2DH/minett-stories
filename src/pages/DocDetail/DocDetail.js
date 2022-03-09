@@ -12,7 +12,6 @@ import DocumentDetailVideo from './DocumentDetailVideo'
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
   const [doc] = useDocument(slug)
-  console.log(doc)
   if (doc.type === 'image') {
     return <DocumentDetailImage isModal={isModal} doc={doc} />
   } else if (doc.type === 'video') {
