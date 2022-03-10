@@ -14,7 +14,7 @@ import App from './App'
 console.info('%cMinett Stories', 'font-weight: bold',
   process.env.REACT_APP_GIT_TAG || '(latest)',
   process.env.REACT_APP_GIT_BRANCH,
-  `\nhttps://github.com/C2DH/journal-of-digital-history/commit/${process.env.REACT_APP_GIT_REVISION}`
+  `\nhttps://github.com/C2DH/minett-stories/commit/${process.env.REACT_APP_GIT_REVISION}`
 )
 
 const queryClient = new QueryClient({
