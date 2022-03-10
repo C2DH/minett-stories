@@ -1,17 +1,74 @@
 {
   "fr_FR": {
     "translation": {
-      "hello": "Bonjour"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us",
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates",
+      "grid_size": "Grid size",
+      "sort_items": "Sort items",
+      "search": "Search",
+      "filter_by_type": "Filter by type"
     }
   },
   "en_US": {
     "translation": {
-      "hello": "Hello"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us",
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates",
+      "grid_size": "Grid size",
+      "sort_items": "Sort items",
+      "search": "Search",
+      "filter_by_type": "Filter by type"
     }
   },
   "de_DE": {
     "translation": {
-      "hello": "Hallo"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About",
+      "terms_of_use": "Terms Of Use",
+      "contact_us": "Contact Us",
+      "close_options": "Close options",
+      "documentType_audio": "Audio",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From the most recent",
+      "orderBy_least_recent": "From the least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include elements without dates",
+      "grid_size": "Grid size",
+      "sort_items": "Sort items",
+      "search": "Search",
+      "filter_by_type": "Filter by type"
     }
   }
 }

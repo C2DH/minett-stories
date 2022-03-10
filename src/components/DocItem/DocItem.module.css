@@ -1,0 +1,75 @@
+.titleItem {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.titleItemL {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  color: white;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.itemS {
+  text-decoration: none;
+  border: 1px solid var(--dark-grey);
+  padding: 26px;
+  min-height: 230px;
+}
+
+.itemM {
+  text-decoration: none;
+  border: 1px solid var(--dark-grey);
+  padding: 16px;
+  min-height: 328px;
+}
+
+.itemL {
+  text-decoration: none;
+  border: 1px solid var(--dark-grey);
+  padding: 16px;
+  min-height: 520px;
+  position: relative;
+}
+
+.ImageS {
+  height: 172px;
+  width: 172px;
+  object-fit: contain;
+}
+
+.ImageM {
+  height: 200px;
+  width: 200px;
+  object-fit: contain;
+}
+
+.ImageL {
+  height: 360px;
+  width: 360px;
+  object-fit: contain;
+}
+
+.yearInfo {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--cadet-blue);
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}

@@ -1,0 +1,67 @@
+.ZoomAndPanMedia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 58px;
+  padding-left: 230px;
+  padding-right: 230px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.ZoomAndPanMediaContainer {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.ZoomAndPanMediaContainer .Zoomable {
+  cursor: grab;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  max-height: 100%;
+  vertical-align: middle;
+  user-select: none;
+}
+.ZoomAndPanMediaContainer .Zoomable:active {
+  cursor: grabbing;
+}
+.ZoomAndPanMediaControls {
+  position: absolute;
+  bottom: 58px;
+}
+
+.ZoomAndPanMediaControlsModal {
+  position: absolute;
+  bottom: 10px;
+}
+
+.ZoomButton {
+  border-radius: 40px;
+  color: var(--black);
+  background-color: var(--light-grey);
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.ZoomResetButton {
+  background-color: var(--light-grey);
+  border-radius: 40px;
+  color: var(--black);
+  padding: 12px 24px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 24px;
+  z-index: 100;
+}

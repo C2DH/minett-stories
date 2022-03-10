@@ -1,16 +1,134 @@
 .TopBar {
   height: 56px;
+  text-align: center;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--black);
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.Backdrop {
+  background: transparent;
 }
 
 .Offcanvas {
   background-color: var(--dark-grey);
-  top: 56px
+  top: 56px;
+  width: 396px;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+.BigLink {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  color: white;
+  text-decoration: none;
+  line-height: 65px;
+}
+
+.BigLinkAction {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 60px;
+  color: var(--orange);
+  text-decoration: none;
+  line-height: 65px;
+}
+
+.BigLinkAction::before {
+  content: '-';
+}
+
+.BigLink:hover, .MediumLink:hover, .BigLinkAction:hover{
+  color: var(--orange);
 }
 
 .OffcanvasBody {
   display: flex;
+  padding-left: 60px;
+  padding-top: 27px;
   flex-direction: column;
+}
+
+.OffcanvasBottom {
+  margin-top: 100px;
+}
+
+.BlockLanguages {
+  display: flex;
+}
+
+.ChangeLangLink {
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  margin-right: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.ChangeLangLink:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.ChangeLangLinkActive{
+  background-color: white;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-grey);
+  text-decoration: none;
+  margin-right: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-transform: uppercase;
+}
+
+.ChangeLangLinkActive:hover{
+  text-decoration: none;
+  color: var(--dark-grey);
+}
+
+.BlockTerms {
+  margin-top: 32px;
+  margin-bottom: 20px;
+}
+
+.MediumLink {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 32px;
+  line-height: 38px;
+  color: white;
+  text-decoration: none;
+}
+
+.c2dh {
+  mix-blend-mode: lighten;
+  opacity: 0.5;
+}
+
+.logoUnilu {
+  mix-blend-mode: lighten;
+  opacity: 0.5;
+  margin-left: 18px;
 }
