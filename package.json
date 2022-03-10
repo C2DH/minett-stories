@@ -12,9 +12,9 @@
     "bootstrap-icons": "^1.8.1",
     "classnames": "^2.3.1",
     "i18next": "^21.6.13",
+    "lodash": "^4.17.21",
     "react": "^18.0.0-rc.2",
     "react-dom": "^18.0.0-rc.2",
-    "lodash": "^4.17.21",
     "react-feather": "^2.0.9",
     "react-hammerjs": "^1.0.1",
     "react-i18next": "^11.15.5",
@@ -60,6 +60,6 @@
     ]
   },
   "devDependencies": {
-    "snext": "^0.7.0"
+    "snext": "^0.8.0"
   }
 }
