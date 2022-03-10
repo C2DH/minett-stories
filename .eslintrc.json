@@ -7,7 +7,8 @@
   },
   "extends": [
     "eslint:recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react/jsx-runtime"
   ],
   "parserOptions": {
     "ecmaVersion": 2020,
@@ -16,8 +17,12 @@
   "rules": {
     "no-console": "off",
     "react/prop-types": "off",
-    "react/no-unescaped-entities": "off",
-    "react/react-in-jsx-scope": "off"
+    "react/no-unescaped-entities": "off"
   },
-  "plugins": ["react", "react-hooks"]
+  "plugins": ["react", "react-hooks"],
+  "settings": {
+    "react": {
+       "version": "17.0.2"
+    }
+  }
 }
