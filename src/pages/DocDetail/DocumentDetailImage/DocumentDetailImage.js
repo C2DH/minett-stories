@@ -2,8 +2,21 @@ import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
 import { useNavigate } from 'react-router-dom'
 import { usePreloadImage } from '../../../hooks/preloadImage'
-import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia'
-// import ZoomAndPanMediaNew from '../../../components/ZoomAndPanMedia/ZoomAndPanMediaNew'
+// import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia'
+import ZoomAndPanMediaNew from '../../../components/ZoomAndPanMedia/ZoomAndPanMediaNew'
+
+function BlockInfo({ doc }) {
+  return (
+    <>
+      <div className={stylesCommon.TypeDocument}>{doc.type}</div>
+      <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
+      <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
+      <div className={stylesCommon.DescriptionDocument}>
+        {doc.data.description}
+      </div>
+    </>
+  )
+}
 
 export default function DocumentDetailImage({ isModal, doc }) {
   const navigate = useNavigate()
@@ -28,16 +41,11 @@ export default function DocumentDetailImage({ isModal, doc }) {
     <div className={stylesCommon.Document}>
       <div className="row max-h-100">
         <div className="col-md-4">
-          <div className={stylesCommon.TypeDocument}>{doc.type}</div>
-          <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
-          <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
-          <div className={stylesCommon.DescriptionDocument}>
-            {doc.data.description}
-          </div>
+          <BlockInfo doc={doc} />
         </div>
         <div className="col-md-8">
           <div className={styles.BlockImage}>
-            <ZoomAndPanMedia src={imageUrl} />
+            <ZoomAndPanMediaNew isModal={isModal} src={imageUrl} />
           </div>
         </div>
       </div>

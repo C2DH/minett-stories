@@ -34,6 +34,11 @@
 }
 .ZoomAndPanMediaControls {
   position: absolute;
+  bottom: 58px;
+}
+
+.ZoomAndPanMediaControlsModal {
+  position: absolute;
   bottom: 10px;
 }
 

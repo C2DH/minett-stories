@@ -1,12 +1,12 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { ZoomIn, ZoomOut } from 'react-feather'
-import Hammer from 'react-hammerjs'
 import ReactHammer from 'react-hammerjs'
+import Hammer from 'hammerjs'
 import styles from './ZoomAndPanMedia.module.css'
 
 const PINCH_TIMEOUT = 300
 
-export default function ZoomAndPanMediaNew({ src }) {
+export default function ZoomAndPanMediaNew({ src, isModal }) {
   const [state, setState] = useState({
     zoom: 1,
     pinchingZoom: 1,
@@ -19,18 +19,23 @@ export default function ZoomAndPanMediaNew({ src }) {
     maxHeight: 0,
   })
 
-  function boundsDeltas(deltaX, deltaY, zoom) {
-    const maxDeltaX = (state.maxWidth * (+zoom - 1)) / 2
-    const maxDeltaY = (state.maxHeight * (+zoom - 1)) / 2
+  const mediaContentRef = useRef()
 
-    const boundedDeltaX = Math.max(Math.min(deltaX, maxDeltaX), -maxDeltaX)
-    const boundedDeltaY = Math.max(Math.min(deltaY, maxDeltaY), -maxDeltaY)
+  const boundsDeltas = useCallback(
+    (deltaX, deltaY, zoom) => {
+      const maxDeltaX = (state.maxWidth * (+zoom - 1)) / 2
+      const maxDeltaY = (state.maxHeight * (+zoom - 1)) / 2
 
-    return {
-      deltaX: boundedDeltaX,
-      deltaY: boundedDeltaY,
-    }
-  }
+      const boundedDeltaX = Math.max(Math.min(deltaX, maxDeltaX), -maxDeltaX)
+      const boundedDeltaY = Math.max(Math.min(deltaY, maxDeltaY), -maxDeltaY)
+
+      return {
+        deltaX: boundedDeltaX,
+        deltaY: boundedDeltaY,
+      }
+    },
+    [state.maxHeight, state.maxWidth]
+  )
 
   function getTransform() {
     const translateDeltaX = state.deltaX + state.panDeltaX
@@ -39,22 +44,23 @@ export default function ZoomAndPanMediaNew({ src }) {
     return `translate(${translateDeltaX}px, ${translateDeltaY}px) scale(${scale})`
   }
 
-  function handleZoom(param) {
-    const nextZoom =
-      param + state.zoom > 4 || param + state.zoom < 1
-        ? state.zoom
-        : param + state.zoom
-    setState({
-      ...state,
-      pinchingZoom: 1,
-      zoom: nextZoom,
-      ...boundsDeltas(state.deltaX, state.deltaY, nextZoom),
-    })
-    console.log(state)
-  }
+  const handleZoom = useCallback(
+    (param) => {
+      const nextZoom =
+        param + state.zoom > 4 || param + state.zoom < 1
+          ? state.zoom
+          : param + state.zoom
+      setState({
+        ...state,
+        pinchingZoom: 1,
+        zoom: nextZoom,
+        ...boundsDeltas(state.deltaX, state.deltaY, nextZoom),
+      })
+    },
+    [boundsDeltas, state]
+  )
 
   function handlePinchEnd(e) {
-    console.log(state)
     let newZoom = state.zoom * e.scale
     newZoom = Math.max(Math.min(newZoom, 4), 1)
     setState({
@@ -64,13 +70,15 @@ export default function ZoomAndPanMediaNew({ src }) {
       zoom: newZoom,
       ...boundsDeltas(state.deltaX, state.deltaY, newZoom),
     })
-    console.log(state)
   }
 
-  function handleWheel(e) {
-    e.preventDefault()
-    handleZoom(e.deltaY * -0.01)()
-  }
+  const handleWheel = useCallback(
+    (e) => {
+      e.preventDefault()
+      handleZoom(e.deltaY * -0.01)
+    },
+    [handleZoom]
+  )
 
   function resetZoom() {
     const zoom = 1
@@ -91,7 +99,6 @@ export default function ZoomAndPanMediaNew({ src }) {
   }
 
   function handlePan(e) {
-    console.log(e, 'panned')
     if (
       state.pinchingZoom !== 1 ||
       new Date().getTime() - state.lastPinchedAt < PINCH_TIMEOUT
@@ -132,14 +139,14 @@ export default function ZoomAndPanMediaNew({ src }) {
     })
   }
 
-//   useEffect(() => {
-//     const image = mediaContentRef.current.querySelector('img')
-//     image.addEventListener('wheel', handleWheel, {
-//         passive: false,
-//       })
-//   },[handleWheel])
+  useEffect(() => {
+    const image = mediaContentRef.current
+    image.addEventListener('wheel', (e) => handleWheel(e), {
+      passive: false,
+    })
+    return () => image.removeEventListener('wheel', (e) => handleWheel(e))
+  },[handleWheel])
 
-  const mediaContentRef = useRef()
   return (
     <>
       <div className={styles.ZoomAndPanMedia}>
@@ -156,8 +163,8 @@ export default function ZoomAndPanMediaNew({ src }) {
                 },
               },
             }}
-            onPinch={() => {
-              handlePinch()
+            onPinch={(e) => {
+              handlePinch(e)
             }}
             onPinchEnd={(e) => {
               handlePinchEnd(e)
@@ -184,7 +191,13 @@ export default function ZoomAndPanMediaNew({ src }) {
           </ReactHammer>
         </div>
       </div>
-      <div className={styles.ZoomAndPanMediaControls}>
+      <div
+        className={
+          isModal
+            ? styles.ZoomAndPanMediaControlsModal
+            : styles.ZoomAndPanMediaControls
+        }
+      >
         <div className="d-flex flex-row">
           <div
             className={`${styles.ZoomButton} cursor-pointer btn-zoom mb-2`}
