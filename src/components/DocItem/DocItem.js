@@ -6,7 +6,7 @@ import styles from './DocItem.module.css'
 
 function DocItem({ doc, grid }) {
   const location = useLocation()
-  const imageUrl =
+  const imageUrl = 
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
 
   return (

@@ -2,7 +2,7 @@ import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
 import { useNavigate } from 'react-router-dom'
 import { usePreloadImage } from '../../../hooks/preloadImage'
-// import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia'
+import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia'
 import ZoomAndPanMediaNew from '../../../components/ZoomAndPanMedia/ZoomAndPanMediaNew'
 
 function BlockInfo({ doc }) {
@@ -45,7 +45,7 @@ export default function DocumentDetailImage({ isModal, doc }) {
         </div>
         <div className="col-md-8">
           <div className={styles.BlockImage}>
-            <ZoomAndPanMediaNew isModal={isModal} src={imageUrl} />
+            <ZoomAndPanMedia isModal={isModal} src={imageUrl} />
           </div>
         </div>
       </div>
