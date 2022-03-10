@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ZoomIn, ZoomOut } from 'react-feather'
 import ReactHammer from 'react-hammerjs'
-import Hammer from 'hammerjs'
 import styles from './ZoomAndPanMedia.module.css'
+
+// NOTE: Avoid break my SSR for this s****y number lol
+// https://github.com/hammerjs/hammer.js/blob/master/src/inputjs/input-consts.js
+const HAMMER_DIRECTION_ALL = 30
 
 const PINCH_TIMEOUT = 300
 
@@ -167,7 +170,7 @@ export default function ZoomAndPanMedia({ src, isModal }) {
               recognizers: {
                 pan: {
                   enable: true,
-                  direction: Hammer.DIRECTION_ALL,
+                  direction: HAMMER_DIRECTION_ALL,
                 },
                 pinch: {
                   enable: true,

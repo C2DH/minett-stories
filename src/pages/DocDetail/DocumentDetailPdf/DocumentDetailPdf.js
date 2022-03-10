@@ -4,7 +4,7 @@ import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
 import { ArrowLeft, ArrowRight, Minimize2, ZoomIn, ZoomOut } from 'react-feather'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
 
@@ -45,7 +45,7 @@ export default function DocumentDetailPdf({ isModal, doc }) {
   let pdfUrl = doc.attachment
   if (process.env.NODE_ENV !== 'production') {
     const baseUrlRegex = /http(s)?:\/\/([^/]+)/
-    const baseUrl = `${window.location.protocol}//${window.location.host}`
+    const baseUrl = 'http://localhost:3000'
     pdfUrl = pdfUrl.replace(baseUrlRegex, baseUrl)
   }
 
