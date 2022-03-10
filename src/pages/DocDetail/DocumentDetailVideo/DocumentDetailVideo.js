@@ -1,6 +1,6 @@
 import stylesCommon from '../DocDetail.module.css'
 import { useNavigate } from 'react-router-dom'
-import { useMemo } from 'react'
+// import { useMemo } from 'react'
 
 export default function DocumentDetailVideo({ isModal, doc }) {
   const navigate = useNavigate()
@@ -28,7 +28,7 @@ export default function DocumentDetailVideo({ isModal, doc }) {
               <source src={videoUrl} />
             </video>
           </div>
-          <div className={stylesCommon.DescriptionDocument}>
+          <div className={`${stylesCommon.DescriptionDocument} mt-4`}>
             {doc.data.description}
           </div>
         </div>

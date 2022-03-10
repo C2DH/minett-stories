@@ -2,8 +2,7 @@ import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
 import { useNavigate } from 'react-router-dom'
 import { usePreloadImage } from '../../../hooks/preloadImage'
-import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia'
-import ZoomAndPanMediaNew from '../../../components/ZoomAndPanMedia/ZoomAndPanMediaNew'
+import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 
 function BlockInfo({ doc }) {
   return (
