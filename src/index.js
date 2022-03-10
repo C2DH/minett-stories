@@ -10,6 +10,13 @@ import { I18nextProvider } from 'react-i18next'
 import reportWebVitals from './reportWebVitals'
 import App from './App'
 
+// add information on version on startup
+console.info('%cMinett Stories', 'font-weight: bold',
+  process.env.REACT_APP_GIT_TAG || '(latest)',
+  process.env.REACT_APP_GIT_BRANCH,
+  `\nhttps://github.com/C2DH/journal-of-digital-history/commit/${process.env.REACT_APP_GIT_REVISION}`
+)
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
