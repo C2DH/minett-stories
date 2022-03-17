@@ -10,30 +10,17 @@ function DocItem({ doc, grid }) {
   return (
     <DocLink className="text-decoration-none" slugOrId={doc.slug}>
       <div
-        className={classNames({
+        className={classNames(styles.item, {
           [styles.itemS]: grid === 'S',
-          [styles.itemM]: grid === 'M',
-          [styles.itemL]: grid === 'L',
         })}
       >
-        <img
-          className={classNames({
-            [styles.ImageS]: grid === 'S',
-            [styles.ImageM]: grid === 'M',
-            [styles.ImageL]: grid === 'L',
-          })}
-          src={imageUrl}
-          alt={doc.data.title}
-        />
+        <div className={styles.itemImageContainer}>
+          <div className={styles.innerImageContainer}>
+            <img className={styles.image} src={imageUrl} alt={doc.data.title} />
+          </div>
+        </div>
         {grid !== 'S' && (
-          <h5
-            className={classNames({
-              [styles.titleItem]: grid !== 'L',
-              [styles.titleItemL]: grid === 'L',
-            })}
-          >
-            {doc.data.title}
-          </h5>
+          <h5 className={classNames(styles.titleItem)}>{doc.data.title}</h5>
         )}
         {grid === 'L' && <div className={styles.yearInfo}>{doc.data.year}</div>}
       </div>
