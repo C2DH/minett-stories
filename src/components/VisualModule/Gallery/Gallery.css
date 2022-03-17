@@ -1,0 +1,26 @@
+.slider-slide {
+  display: inline-flex !important;
+  align-items: center;
+  opacity: 0.25;
+  transition: opacity var(--transition), transform 0.4s linear 0s !important;
+}
+
+.slide-current {
+  opacity: 1;
+}
+
+.slider .slider-control-centerright {
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.slider .slider-control-centerleft,
+.slider .slider-control-centerright {
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.slider:hover .slider-control-centerleft,
+.slider:hover .slider-control-centerright {
+  opacity: 1;
+}

@@ -1,22 +1,14 @@
 import classNames from 'classnames'
 import { memo } from 'react'
-import { useLocation } from 'react-router-dom'
-import LangLink from '../LangLink'
+import DocLink from '../DocLink'
 import styles from './DocItem.module.css'
 
 function DocItem({ doc, grid }) {
-  const location = useLocation()
-  const imageUrl = 
+  const imageUrl =
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
 
   return (
-    <LangLink
-      className='text-decoration-none'
-      to={`/document/${doc.slug}`}
-      state={{
-        backgroundLocation: location,
-      }}
-    >
+    <DocLink className="text-decoration-none" slugOrId={doc.slug}>
       <div
         className={classNames({
           [styles.itemS]: grid === 'S',
@@ -45,7 +37,7 @@ function DocItem({ doc, grid }) {
         )}
         {grid === 'L' && <div className={styles.yearInfo}>{doc.data.year}</div>}
       </div>
-    </LangLink>
+    </DocLink>
   )
 }
 export default memo(DocItem)
