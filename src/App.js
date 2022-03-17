@@ -22,6 +22,7 @@ import Stories from './pages/Stories'
 import Archive from './pages/Archive'
 import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
+import TestInteractiveVideo from './pages/TestInteractiveVideo'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -94,6 +95,14 @@ function LangRoutes() {
               element={
                 <Suspense fallback={<Loader />}>
                   <StoriesIntro />
+                </Suspense>
+              }
+            />
+            <Route
+              path="test-interactive-video"
+              element={
+                <Suspense fallback={<Loader />}>
+                  <TestInteractiveVideo />
                 </Suspense>
               }
             />
