@@ -1,6 +1,5 @@
 import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
-import { useNavigate } from 'react-router-dom'
 import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 
@@ -17,8 +16,7 @@ function BlockInfo({ doc }) {
   )
 }
 
-export default function DocumentDetailImage({ isModal, doc }) {
-  const navigate = useNavigate()
+export default function DocumentDetailImage({ isModal, doc, onClose }) {
   const lowResolutionImage = doc.data.resolutions?.preview?.url
   const highResolutionImage = doc.attachment
 
@@ -52,7 +50,7 @@ export default function DocumentDetailImage({ isModal, doc }) {
         <div className={stylesCommon.CloseModal}>
           <i
             className="cursor-pointer bi bi-x-lg"
-            onClick={() => navigate(-1)}
+            onClick={() => onClose()}
           />
         </div>
       )}

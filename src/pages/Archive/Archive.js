@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import DocItem from '../../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
@@ -9,6 +9,7 @@ import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
 import Filters from './Filters'
 import classNames from 'classnames'
+import DocLink from '../../components/DocLink'
 
 function useFilterRedirect() {
   const location = useLocation()
@@ -60,6 +61,18 @@ export default function Archive() {
     },
   })
 
+  const cyclesDocSlugs = useMemo(() => {
+    if (!docGroups) {
+      return []
+    }
+    return docGroups.pages.reduce((all, docs) => {
+      docs.results.forEach((doc) => {
+        all.push(doc.slug)
+      })
+      return all
+    }, [])
+  }, [docGroups])
+
   return (
     <Layout
       right={
@@ -98,7 +111,13 @@ export default function Archive() {
                       })}
                       key={doc.id}
                     >
-                      <DocItem grid={filters.grid} doc={doc} />
+                      <DocLink
+                        slugOrId={doc.slug}
+                        className="text-decoration-none"
+                        state={{ cyclesDocSlugs }}
+                      >
+                        <DocItem grid={filters.grid} doc={doc} />
+                      </DocLink>
                     </div>
                   ))}
               </Fragment>

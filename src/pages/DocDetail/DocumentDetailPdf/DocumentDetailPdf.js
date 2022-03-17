@@ -1,5 +1,4 @@
 import stylesCommon from '../DocDetail.module.css'
-import { useNavigate } from 'react-router-dom'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
@@ -21,8 +20,7 @@ function BlockInfo({ doc }) {
   )
 }
 
-export default function DocumentDetailPdf({ isModal, doc }) {
-  const navigate = useNavigate()
+export default function DocumentDetailPdf({ isModal, doc, onClose }) {
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
   const [scale, setScale] = useState(1)
@@ -144,7 +142,7 @@ export default function DocumentDetailPdf({ isModal, doc }) {
         <div className={stylesCommon.CloseModal}>
           <i
             className="cursor-pointer bi bi-x-lg"
-            onClick={() => navigate(-1)}
+            onClick={() => onClose()}
           />
         </div>
       )}

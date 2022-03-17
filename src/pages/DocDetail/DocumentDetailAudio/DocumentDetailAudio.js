@@ -1,11 +1,8 @@
 import stylesCommon from '../DocDetail.module.css'
 import styles from './DocumentDetailAudio.module.css'
-import { useNavigate } from 'react-router-dom'
 
-export default function DocumentDetailAudio({ isModal, doc }) {
-  const navigate = useNavigate()
+export default function DocumentDetailAudio({ isModal, doc, onClose }) {
   const audioUrl = doc.url ? doc.url : doc.attachment
-  console.log(doc)
   return (
     <div className={stylesCommon.Document}>
       <div className="row">
@@ -35,7 +32,7 @@ export default function DocumentDetailAudio({ isModal, doc }) {
         <div className={stylesCommon.CloseModal}>
           <i
             className="cursor-pointer bi bi-x-lg"
-            onClick={() => navigate(-1)}
+            onClick={() => onClose()}
           />
         </div>
       )}

@@ -1,6 +1,7 @@
 import { useDocument } from '@c2dh/react-miller'
-import { Suspense, useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import { Suspense, useCallback, useEffect } from 'react'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
+import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loader'
 import styles from './DocDetail.module.css'
@@ -12,16 +13,70 @@ import DocumentDetailVideo from './DocumentDetailVideo'
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
   const [doc] = useDocument(slug)
+  const navigate = useNavigate()
+
+  const onClose = useCallback(() => {
+    navigate(-1)
+  }, [navigate])
+
+  const passProps = {
+    isModal,
+    doc,
+    onClose,
+  }
+
   if (doc.type === 'image') {
-    return <DocumentDetailImage isModal={isModal} doc={doc} />
+    return <DocumentDetailImage {...passProps} />
   } else if (doc.type === 'video') {
-    return <DocumentDetailVideo isModal={isModal} doc={doc} />
+    return <DocumentDetailVideo {...passProps} />
   } else if (doc.type === 'audio') {
-    return <DocumentDetailAudio isModal={isModal} doc={doc} />
+    return <DocumentDetailAudio {...passProps} />
   } else if (doc.type === 'pdf') {
-    return <DocumentDetailPdf isModal={isModal} doc={doc} />
+    return <DocumentDetailPdf {...passProps} />
   }
   // TODO: Implement other document types ....
+}
+
+// TODO: Implement much much better
+function WrapWithNextPrev({ children }) {
+  const { slug } = useParams()
+  const location = useLocation()
+  const cyclesDocSlugs = location.state?.cyclesDocSlugs
+  if (!cyclesDocSlugs) {
+    return children
+  }
+  const backgroundLocation = location.state.backgroundLocation
+
+  const i = cyclesDocSlugs.indexOf(slug)
+  const prevIndex = i === 0 ? cyclesDocSlugs.length - 1 : i - 1
+  const nextIndex = i === cyclesDocSlugs.length - 1 ? 0 : i + 1
+
+  const prevSlug = cyclesDocSlugs[prevIndex]
+  const nextSlug = cyclesDocSlugs[nextIndex]
+
+  return (
+    <>
+      <div style={{ position: 'absolute', left: 5, top: '50%' }}>
+        <LangLink
+          replace
+          to={`/document/${prevSlug}`}
+          state={{ cyclesDocSlugs, backgroundLocation }}
+        >
+          {'<-'}
+        </LangLink>
+      </div>
+      {children}
+      <div style={{ position: 'absolute', right: 5, top: '50%' }}>
+        <LangLink
+          replace
+          to={`/document/${nextSlug}`}
+          state={{ cyclesDocSlugs, backgroundLocation }}
+        >
+          {'->'}
+        </LangLink>
+      </div>
+    </>
+  )
 }
 
 export default function DocDetail({ isModal = false }) {
@@ -36,7 +91,9 @@ export default function DocDetail({ isModal = false }) {
     return (
       <div className={styles.ModalDoc}>
         <Suspense fallback={<Loader />}>
-          <DisplayDoc isModal />
+          <WrapWithNextPrev>
+            <DisplayDoc isModal />
+          </WrapWithNextPrev>
         </Suspense>
       </div>
     )

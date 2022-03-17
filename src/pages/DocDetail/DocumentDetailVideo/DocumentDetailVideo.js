@@ -1,9 +1,7 @@
 import stylesCommon from '../DocDetail.module.css'
-import { useNavigate } from 'react-router-dom'
 // import { useMemo } from 'react'
 
-export default function DocumentDetailVideo({ isModal, doc }) {
-  const navigate = useNavigate()
+export default function DocumentDetailVideo({ isModal, doc, onClose }) {
   const videoUrl =
     doc.data.translated_urls && doc.data.translated_urls instanceof String
       ? doc.data.translated_urls
@@ -37,7 +35,7 @@ export default function DocumentDetailVideo({ isModal, doc }) {
         <div className={stylesCommon.CloseModal}>
           <i
             className="cursor-pointer bi bi-x-lg"
-            onClick={() => navigate(-1)}
+            onClick={() => onClose()}
           />
         </div>
       )}
