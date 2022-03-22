@@ -5,6 +5,7 @@
   --cadet-blue: #7A8988;
   --brick: #9E5646;
   --orange: #BC6D3F;
+  --orange-opacity: rgb(188, 109, 63, 0.4);
   --green: #798774;
   --light-grey: #dedede;
   --dark-grey: #383838;
@@ -40,4 +41,8 @@ body.block-scroll {
 .max-h-100 {
   max-height: 100%;
   min-height: 100%;
+}
+
+.text-cadet-blue {
+  color: var(--cadet-blue);
 }
