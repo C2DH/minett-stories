@@ -1,0 +1,27 @@
+.Cover {
+  height: calc(66% - var(--top-bar-height));
+  position: relative;
+}
+.CoverGreyScaledImage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: grayscale(1);
+}
+.CoverBlend {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  mix-blend-mode: overlay;
+}
+
+.Content {
+  background-color: white;
+  min-height: 34%;
+}

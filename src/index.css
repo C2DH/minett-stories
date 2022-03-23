@@ -40,8 +40,15 @@ body.block-scroll {
   left: 14px;
 }
 
+.flex-1 {
+  flex: 1 1;
+}
+
 .padding-top-bar {
   padding-top: var(--top-bar-height);
+}
+.margin-top-bar {
+  margin-top: var(--top-bar-height);
 }
 
 .max-h-100 {
