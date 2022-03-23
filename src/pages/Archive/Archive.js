@@ -96,8 +96,8 @@ export default function Archive() {
           />
         </OffcanvasBody>
       </Offcanvas>
-      <div className="container-fluid">
-        <div className="row p-5">
+      <div className="container-fluid padding-top-bar">
+        <div className="row p-5 pt-3">
           {docGroups &&
             docGroups.pages.map((docs, i) => (
               <Fragment key={i}>

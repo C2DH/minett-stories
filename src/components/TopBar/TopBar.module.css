@@ -1,5 +1,8 @@
 .TopBar {
-  height: 56px;
+  position: fixed;
+  top:0;
+  z-index: 99;
+  height: var(--top-bar-height);
   text-align: center;
   display: flex;
   align-items: center;
@@ -8,6 +11,7 @@
   background-color: var(--black);
   padding-left: 14px;
   padding-right: 14px;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.1));
 }
 
 .Backdrop {

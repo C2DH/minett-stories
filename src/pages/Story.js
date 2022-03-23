@@ -11,9 +11,9 @@ export default function Story() {
     <Layout>
       <div>STORY: {slug}</div>
       <div className="container-fluid" style={{ maxWidth: 800 }}>
-        {story.contents.modules.map((millerModule, i) => (
+        {/* {story.contents.modules.map((millerModule, i) => (
           <VisualModule key={i} millerModule={millerModule} />
-        ))}
+        ))} */}
       </div>
     </Layout>
   )
