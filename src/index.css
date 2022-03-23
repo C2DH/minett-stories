@@ -2,13 +2,14 @@
   /*** COLORS ***/
   --sienna: #b58b50;
   --black: #2e2e2e;
-  --cadet-blue: #7A8988;
-  --brick: #9E5646;
-  --orange: #BC6D3F;
+  --cadet-blue: #7a8988;
+  --brick: #9e5646;
+  --orange: #bc6d3f;
   --orange-opacity: rgb(188, 109, 63, 0.4);
   --green: #798774;
   --light-grey: #dedede;
   --dark-grey: #383838;
+  --blacky-border: #424242;
 }
 
 body,
@@ -30,7 +31,7 @@ body.block-scroll {
   overflow: hidden;
 }
 
-.right-topbar{
+.right-topbar {
   right: 14px;
 }
 
@@ -45,4 +46,40 @@ body.block-scroll {
 
 .text-cadet-blue {
   color: var(--cadet-blue);
+}
+
+.border-color-blacky {
+  border-color: var(--blacky-border) !important;
+}
+
+a.no-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+  TODO: This can be implement better or auto generated \w SASS but for now keep here
+*/
+.ps-6 {
+  padding-left: 3.75rem;
+}
+
+/* Story Type Style */
+.bg-story-map {
+  background-color: var(--green);
+}
+.bg-story-graphic-novel {
+  background-color: var(--sienna);
+}
+.bg-story-article {
+  background-color: var(--cadet-blue);
+}
+.bg-story-video {
+  background-color: var(--orange);
+}
+.bg-story-interactive-video {
+  background-color: var(--orange);
+}
+.bg-story-audio {
+  background-color: var(--brick);
 }

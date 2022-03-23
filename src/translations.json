@@ -20,10 +20,16 @@
       "grid_size": "Grid size",
       "sort_items": "Sort items",
       "search": "Search",
-      "filter_by_type": "Filter by type"
+      "filter_by_type": "Filter by type",
+      "story-video": "video",
+      "story-interactive-video": "video",
+      "story-audio": "audio",
+      "story-map": "interactive map",
+      "story-graphic-novel": "graphic novel",
+      "story-article": "article"
     }
   },
-  "en_US": {
+  "en_GB": {
     "translation": {
       "view_options": "View options",
       "intro": "Intro",
@@ -44,7 +50,13 @@
       "grid_size": "Grid size",
       "sort_items": "Sort items",
       "search": "Search",
-      "filter_by_type": "Filter by type"
+      "filter_by_type": "Filter by type",
+      "story-video": "video",
+      "story-interactive-video": "video",
+      "story-audio": "audio",
+      "story-map": "interactive map",
+      "story-graphic-novel": "graphic novel",
+      "story-article": "article"
     }
   },
   "de_DE": {
@@ -68,7 +80,13 @@
       "grid_size": "Grid size",
       "sort_items": "Sort items",
       "search": "Search",
-      "filter_by_type": "Filter by type"
+      "filter_by_type": "Filter by type",
+      "story-video": "video",
+      "story-interactive-video": "video",
+      "story-audio": "audio",
+      "story-map": "interactive map",
+      "story-graphic-novel": "graphic novel",
+      "story-article": "article"
     }
   }
 }

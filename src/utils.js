@@ -1,3 +1,4 @@
+import find from 'lodash/find'
 
 export function fromSecondsToProgressStr(time) {
   const totalSeconds = Math.round(time)
@@ -6,4 +7,9 @@ export function fromSecondsToProgressStr(time) {
   return `${minutes.toString().padStart(2, '0')}:${seconds
     .toString()
     .padStart(2, '0')}`
+}
+
+export function getStoryType(story) {
+  // NOTE: Naive implementation lol
+  return find(story.tags, (t) => t.category === 'keyword')?.name ?? null
 }

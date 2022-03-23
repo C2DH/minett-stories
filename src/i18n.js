@@ -3,11 +3,11 @@ import { initReactI18next } from 'react-i18next'
 import { matchPath } from 'react-router-dom'
 import resources from './translations.json'
 
-export const LANGS = ['en_US', 'fr_FR', 'de_DE']
+export const LANGS = ['en_GB', 'fr_FR', 'de_DE']
 
 export const LANGS_SHORT = LANGS.map(l => l.split('_')[0])
 
-export const DEFAULT_LANG = 'en_US'
+export const DEFAULT_LANG = 'en_GB'
 
 export const DEFAULT_LANG_SHORT = DEFAULT_LANG.split('_')[0]
 

@@ -1,10 +1,22 @@
+import { useStories } from '@c2dh/react-miller'
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import Layout from '../components/Layout'
+import ListStories from '../components/ListStories/ListStories'
 
 export default function Stories() {
   const { type } = useParams()
   const { pathname: basePath } = useResolvedPath('..')
   const navigate = useNavigate()
+
+  const [storiesList] = useStories({
+    params: {
+      limit: 1000,
+      filters: {
+        tags__slug__in: ['theme'],
+      },
+    },
+  })
+
   return (
     <Layout
       right={
@@ -21,8 +33,8 @@ export default function Stories() {
         </div>
       }
     >
-      <h1>Tell Da Story of ma life!</h1>
-      <h2>{type}</h2>
+      {type === 'list' && <ListStories stories={storiesList.results} />}
+      {type === 'voronoi' && <div>VORONOI HERE</div>}
     </Layout>
   )
 }
