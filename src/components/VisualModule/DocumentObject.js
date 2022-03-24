@@ -17,7 +17,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
               height: 'auto',
             }}
           />
-          <Caption caption={caption} />
+          <Caption year={doc.data.year} type={doc.type} caption={caption} />
         </DocLink>
       </div>
     )
@@ -32,8 +32,8 @@ export default function DocumentObject({ doc, caption, className, size }) {
           controls
           style={{ width: '100%', height: 'auto', objectFit: 'fill' }}
         />
-        <DocLink slugOrId={doc.document_id}>
-          <Caption caption={caption} />
+        <DocLink className='text-decoration-none' slugOrId={doc.document_id}>
+          <Caption year={doc.data.year} type={doc.type} caption={caption} />
         </DocLink>
       </div>
     )
@@ -45,7 +45,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
           <audio src={audioUrl} controls style={{ width: '100%' }} />
         )}
         <DocLink document={document}>
-          <Caption caption={caption} />
+          <Caption year={doc.data.year} type={doc.type} caption={caption} />
         </DocLink>
       </div>
     )

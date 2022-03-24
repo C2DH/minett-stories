@@ -1,5 +1,6 @@
 import { useDocument } from '@c2dh/react-miller'
 import { Suspense, useCallback, useEffect } from 'react'
+import { ArrowLeft, ArrowRight } from 'react-feather'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
@@ -59,20 +60,22 @@ function WrapWithNextPrev({ children }) {
       <div style={{ position: 'absolute', left: 5, top: '50%' }}>
         <LangLink
           replace
+          className={'btn-circle text-white'}
           to={`/document/${prevSlug}`}
           state={{ cyclesDocSlugs, backgroundLocation }}
         >
-          {'<-'}
+          <ArrowLeft />
         </LangLink>
       </div>
       {children}
       <div style={{ position: 'absolute', right: 5, top: '50%' }}>
         <LangLink
           replace
+          className={'btn-circle text-white'}
           to={`/document/${nextSlug}`}
           state={{ cyclesDocSlugs, backgroundLocation }}
         >
-          {'->'}
+          <ArrowRight />
         </LangLink>
       </div>
     </>

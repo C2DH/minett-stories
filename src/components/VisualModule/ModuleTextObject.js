@@ -4,7 +4,7 @@ import ModuleText from './ModuleText'
 
 export default function ModuleTextObject({ millerModule }) {
   return (
-    <div className="d-flex flex-column">
+    <div className="row d-flex flex-column">
       <ModuleText
         millerModule={millerModule}
         className={classNames('text-black offset-md-3 col-md-6 mt-5 mb-5',{

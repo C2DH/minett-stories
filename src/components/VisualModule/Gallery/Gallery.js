@@ -11,7 +11,7 @@ const GalleryItem = memo(({ document }) => {
       <img
         src={document.data.resolutions.preview.url}
         alt={document.data.title}
-        style={{ maxWidth: '100%' }}
+        // style={{ maxWidth: '100%' }}
         className="customCursor"
       />
     </DocLink>
@@ -20,10 +20,12 @@ const GalleryItem = memo(({ document }) => {
 
 export default function Gallery({ objects, caption }) {
   const settings = {
-    heightMode: 'auto',
-    slideWidth: 0.5,
+    slidesToShow: 2,
+    heightMode: 'max',
+    // height: 'max',
     cellSpacing: 15,
-    wrapAround: true,
+    // wrapAround: true,
+    initialSlideHeight: 300
   }
   return (
     <div className="my-4 row">
