@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
+import { Menu, X } from 'react-feather'
 import ChangeLangLink from '../ChangeLangLink'
 import c2dh from './assets/c2dh.svg'
 import unilu from './assets/unilu.svg'
@@ -8,7 +9,6 @@ import styles from './TopBar.module.css'
 import { useTranslation } from 'react-i18next'
 import { LANGS } from '../../i18n'
 import NavLangLink from '../NavLangLink'
-import classNames from 'classnames'
 
 function LinkTop({ label, to }) {
   return (
@@ -31,16 +31,11 @@ export default function TopBar({ right }) {
     <>
       <div className={styles.TopBar}>
         <div className="position-absolute left-topbar">
-          <i
-            onClick={() => {
-              setOpen(!open)
-            }}
-            style={{ fontSize: '2rem' }}
-            className={classNames('bi cursor-pointer', {
-              'bi-list': !open,
-              'bi-x-lg': open,
-            })}
-          />
+          {open ? (
+            <X style={{ zIndex: 10000 }} className="cursor-pointer" onClick={() => setOpen(false)} />
+          ) : (
+            <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
+          )}
         </div>
         <div>Minett Stories</div>
         {right && (
