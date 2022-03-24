@@ -1,4 +1,5 @@
 import { useParams } from 'react-router-dom'
+import { ArrowDown } from 'react-feather'
 import Layout from '../../components/Layout'
 import { useStoryWithChapters } from '@c2dh/react-miller'
 import styles from './Story.module.css'
@@ -30,10 +31,13 @@ export default function Story() {
             <div className="text-cadet-blue mt-3">
               Research by {story.authors.map((a) => a.fullname).join(', ')}
             </div>
-            <p className='mt-3'>
-              {story.data.abstract}
-            </p>
-            <div></div>
+            <p className="mt-3">{story.data.abstract}</p>
+            <div className="w-100 d-flex flex-column align-items-center cursor-pointer mb-2">
+              <div className={`text-color-story-${type}`}>
+                Go deeper (10 min.)
+              </div>
+              <ArrowDown color={`var(--color-story-${type})`} />
+            </div>
           </div>
         </div>
       </div>
