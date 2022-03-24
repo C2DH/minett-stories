@@ -122,3 +122,7 @@ a.no-link {
 .text-color-story-audio {
   color: var(--color-story-audio) !important;
 }
+
+.width-fit-content {
+  width: fit-content;
+}

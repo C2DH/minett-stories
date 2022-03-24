@@ -28,3 +28,18 @@
   background-color: white;
   min-height: 34%;
 }
+
+.LeftButtonStory {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  left: 25px;
+  background-color: var(--dark-grey);
+}
+
+.RightButtonStory {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  right: 0px;
+}

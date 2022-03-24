@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ArrowDown } from 'react-feather'
+import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
 import Layout from '../../components/Layout'
 import { useStoryWithChapters } from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
@@ -58,6 +58,12 @@ export default function Story() {
             ))}
           </div>
         )}
+        <div className={styles.LeftButtonStory}>
+          <ArrowLeft />
+        </div>
+        <div className={styles.RightButtonStory}>
+          <ArrowRight />
+        </div>
       </div>
     </Layout>
   )
