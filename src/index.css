@@ -11,6 +11,13 @@
   --dark-grey: #383838;
   --blacky-border: #424242;
   --top-bar-height: 56px;
+  /* MAP STORY 2 COLORS */
+  --color-story-map: var(--green);
+  --color-story-graphic-novel: var(--sienna);
+  --color-story-article: var(--cadet-blue);
+  --color-story-video: var(--orange);
+  --color-story-interactive-video: var(--orange);
+  --color-story-audio: var(--brick);
 }
 
 body,
@@ -77,21 +84,41 @@ a.no-link {
 }
 
 /* Story Type Style */
+/* BG */
 .bg-story-map {
-  background-color: var(--green);
+  background-color: var(--color-story-map) !important;
 }
 .bg-story-graphic-novel {
-  background-color: var(--sienna);
+  background-color: var(--color-story-graphic-novel) !important;
 }
 .bg-story-article {
-  background-color: var(--cadet-blue);
+  background-color: var(--color-story-article) !important;
 }
 .bg-story-video {
-  background-color: var(--orange);
+  background-color: var(--color-story-video) !important;
 }
 .bg-story-interactive-video {
-  background-color: var(--orange);
+  background-color: var(--color-story-interactive-video) !important;
 }
 .bg-story-audio {
-  background-color: var(--brick);
+  background-color: var(--color-story-audio) !important;
+}
+/* COLOR */
+.text-color-story-map {
+  color: var(--color-story-map) !important;
+}
+.text-color-story-graphic-novel {
+  color: var(--color-story-graphic-novel) !important;
+}
+.text-color-story-article {
+  color: var(--color-story-article) !important;
+}
+.text-color-story-video {
+  color: var(--color-story-video) !important;
+}
+.text-color-story-interactive-video {
+  color: var(--color-story-interactive-video) !important;
+}
+.text-color-story-audio {
+  color: var(--color-story-audio) !important;
 }
