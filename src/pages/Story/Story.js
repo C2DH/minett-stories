@@ -3,10 +3,10 @@ import { useParams } from 'react-router-dom'
 import { ArrowDown } from 'react-feather'
 import Layout from '../../components/Layout'
 import { useStoryWithChapters } from '@c2dh/react-miller'
-import styles from './Story.module.css'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
+import styles from './Story.module.css'
 
 export default function Story() {
   const { slug } = useParams()
@@ -51,14 +51,14 @@ export default function Story() {
             )}
           </div>
         </div>
+        {goDeeper && (
+          <div>
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
+        )}
       </div>
-      {goDeeper && (
-        <div>
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
-        </div>
-      )}
     </Layout>
   )
 }
