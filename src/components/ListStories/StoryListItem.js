@@ -5,6 +5,8 @@ import StoryPill from '../StoryPill'
 
 function StoryListItem({ story }) {
   const type = getStoryType(story)
+  const thumbUrl = story.covers[0]?.data?.resolutions?.thumbnail?.url
+  console.log('~', thumbUrl)
   return (
     <LangLink to={`/story/${story.slug}`} className="no-link">
       <div className="border border-color-blacky d-flex flex-column align-items-start py-4 ps-6">
