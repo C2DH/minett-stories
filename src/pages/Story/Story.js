@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ArrowDown } from 'react-feather'
 import Layout from '../../components/Layout'
@@ -5,13 +6,18 @@ import { useStoryWithChapters } from '@c2dh/react-miller'
 import styles from './Story.module.css'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
-// import VisualModule from '../../components/VisualModule'
+import VisualModule from '../../components/VisualModule'
 
 export default function Story() {
   const { slug } = useParams()
   const [story] = useStoryWithChapters(slug)
   const coverImage = story.covers?.[0]?.attachment
   const type = getStoryType(story)
+
+  // NOTE: lol this is a super naive approach but U now
+  const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
+
+  const [goDeeper, setGoDeeper] = useState(false)
 
   return (
     <Layout>
@@ -32,20 +38,27 @@ export default function Story() {
               Research by {story.authors.map((a) => a.fullname).join(', ')}
             </div>
             <p className="mt-3">{story.data.abstract}</p>
-            <div className="w-100 d-flex flex-column align-items-center cursor-pointer mb-2">
-              <div className={`text-color-story-${type}`}>
-                Go deeper (10 min.)
+            {!goDeeper && (
+              <div
+                onClick={() => setGoDeeper(true)}
+                className="w-100 d-flex flex-column align-items-center cursor-pointer mb-4"
+              >
+                <div className={`text-color-story-${type}`}>
+                  Go deeper (10 min.)
+                </div>
+                <ArrowDown color={`var(--color-story-${type})`} />
               </div>
-              <ArrowDown color={`var(--color-story-${type})`} />
-            </div>
+            )}
           </div>
         </div>
       </div>
-      {/* <div className="container-fluid" style={{ maxWidth: 800 }}>
-        {story.contents.modules.map((millerModule, i) => (
-          <VisualModule key={i} millerModule={millerModule} />
-        ))}
-      </div> */}
+      {goDeeper && (
+        <div>
+          {longScrollStory.contents.modules.map((millerModule, i) => (
+            <VisualModule key={i} millerModule={millerModule} />
+          ))}
+        </div>
+      )}
     </Layout>
   )
 }
