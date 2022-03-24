@@ -1,12 +1,14 @@
 import DocLink from '../DocLink'
 import Caption from './Caption'
 
-export default function DocumentObject({ doc, caption, className }) {
+export default function DocumentObject({ doc, caption, className, size }) {
   if (doc.type === 'image' || doc.type === 'pdf') {
     const imagePreviewUrl = doc.data.resolutions?.preview?.url
+    const classNameCols =
+      size === 'big' ? 'offset-md-1 col-md-10' : 'offset-md-3 col-md-6'
     return (
-      <div className={className}>
-        <DocLink slugOrId={doc.document_id}>
+      <div className={`${className} ${classNameCols}`}>
+        <DocLink className="no-link" slugOrId={doc.document_id}>
           <img
             alt={doc.data.title}
             src={imagePreviewUrl}
@@ -24,7 +26,7 @@ export default function DocumentObject({ doc, caption, className }) {
     // TODO: Handle subs
     // doc.data.subtitles
     return (
-      <div className={className}>
+      <div className={`${className} offset-md-1 col-md-10`}>
         <video
           src={videoUrl}
           controls
@@ -38,8 +40,10 @@ export default function DocumentObject({ doc, caption, className }) {
   } else if (doc.type === 'audio') {
     const audioUrl = doc.url ? doc.url : doc.attachment
     return (
-      <div className={className}>
-        {audioUrl && <audio src={audioUrl} controls style={{ width: '100%' }} />}
+      <div className={`${className} offset-md-1 col-md-10`}>
+        {audioUrl && (
+          <audio src={audioUrl} controls style={{ width: '100%' }} />
+        )}
         <DocLink document={document}>
           <Caption caption={caption} />
         </DocLink>

@@ -41,5 +41,6 @@
   top: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
-  right: 0px;
+  left: calc(100% - 25px);
+  background-color: var(--dark-grey);
 }

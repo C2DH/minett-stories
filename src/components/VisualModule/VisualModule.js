@@ -9,7 +9,12 @@ export default function VisualModule({ millerModule }) {
     case 'text_object':
       return <ModuleTextObject millerModule={millerModule} />
     case 'text':
-      return <ModuleText millerModule={millerModule} />
+      return (
+        <ModuleText
+          className={'text-black offset-md-3 col-md-6 mt-5 mb-5'}
+          millerModule={millerModule}
+        />
+      )
     case 'object':
       return <ModuleObject millerModule={millerModule} />
     case 'text_gallery':

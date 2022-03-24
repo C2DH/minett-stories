@@ -19,6 +19,8 @@ export default function Story() {
 
   const [goDeeper, setGoDeeper] = useState(false)
 
+  console.log(longScrollStory.contents.modules)
+
   return (
     <Layout>
       <div className="padding-top-bar" />
@@ -58,10 +60,10 @@ export default function Story() {
             ))}
           </div>
         )}
-        <div className={styles.LeftButtonStory}>
+        <div className={`${styles.LeftButtonStory} btn-circle`}>
           <ArrowLeft />
         </div>
-        <div className={styles.RightButtonStory}>
+        <div className={`${styles.RightButtonStory} btn-circle`}>
           <ArrowRight />
         </div>
       </div>

@@ -7,7 +7,7 @@ export default function ModuleTextObject({ millerModule }) {
     <div className="d-flex flex-column">
       <ModuleText
         millerModule={millerModule}
-        className={classNames({
+        className={classNames('text-black offset-md-3 col-md-6 mt-5 mb-5',{
           'order-1': millerModule.layout === 'object-text',
         })}
       />
