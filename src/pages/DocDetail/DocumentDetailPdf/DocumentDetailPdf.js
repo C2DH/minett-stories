@@ -2,7 +2,7 @@ import stylesCommon from '../DocDetail.module.css'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
-import { ArrowLeft, ArrowRight, Minimize2, ZoomIn, ZoomOut } from 'react-feather'
+import { ArrowLeft, ArrowRight, Minimize2, X, ZoomIn, ZoomOut } from 'react-feather'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
@@ -140,10 +140,7 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
       </div>
       {isModal && (
         <div className={stylesCommon.CloseModal}>
-          <i
-            className="cursor-pointer bi bi-x-lg"
-            onClick={() => onClose()}
-          />
+          <X className="cursor-pointer" onClick={() => onClose()} />
         </div>
       )}
     </div>

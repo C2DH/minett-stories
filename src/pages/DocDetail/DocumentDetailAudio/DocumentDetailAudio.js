@@ -1,3 +1,4 @@
+import { X } from 'react-feather'
 import stylesCommon from '../DocDetail.module.css'
 import styles from './DocumentDetailAudio.module.css'
 
@@ -30,10 +31,7 @@ export default function DocumentDetailAudio({ isModal, doc, onClose }) {
       </div>
       {isModal && (
         <div className={stylesCommon.CloseModal}>
-          <i
-            className="cursor-pointer bi bi-x-lg"
-            onClick={() => onClose()}
-          />
+          <X className="cursor-pointer" onClick={() => onClose()} />
         </div>
       )}
     </div>

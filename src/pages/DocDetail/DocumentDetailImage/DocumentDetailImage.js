@@ -2,6 +2,7 @@ import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
 import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
+import { X } from 'react-feather'
 
 function BlockInfo({ doc }) {
   return (
@@ -48,10 +49,7 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
       </div>
       {isModal && (
         <div className={stylesCommon.CloseModal}>
-          <i
-            className="cursor-pointer bi bi-x-lg"
-            onClick={() => onClose()}
-          />
+          <X className="cursor-pointer" onClick={() => onClose()} />
         </div>
       )}
     </div>
