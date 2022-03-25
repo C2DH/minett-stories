@@ -17,6 +17,9 @@
 
 .StoryBlockList:hover > div > div > .ThumbPreview {
   opacity: 1;
+}
+
+.StoryBlockList > div > div > .ThumbPreview {
   transition: opacity 0.5s ease-in;
 }
 
@@ -25,8 +28,11 @@
 }
 
 .StoryBlockList:hover > div > .StoryInfo {
-  transition: all ease 0.5s;
   transform: translateX(122px);
+}
+
+.StoryBlockList > div > .StoryInfo {
+  transition: all ease 0.5s;
 }
 
 .StoryBlockList {
