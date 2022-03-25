@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import Carousel from 'nuka-carousel'
-import { ArrowLeft, ArrowRight } from 'react-feather'
+import { ChevronLeft, ChevronRight } from 'react-feather'
 import DocLink from '../../DocLink'
 import Caption from '../Caption'
 import './Gallery.css'
@@ -33,20 +33,20 @@ export default function Gallery({ objects, caption }) {
         <Carousel
           {...settings}
           renderCenterLeftControls={({ previousSlide }) => (
-            <button
-              className="btn btn-icon-round btn-primary ml-2"
+            <div
+              className="btn-circle bg-dark cursor-pointer"
               onClick={previousSlide}
             >
-              <ArrowLeft />
-            </button>
+              <ChevronLeft size={15} />
+            </div>
           )}
           renderCenterRightControls={({ nextSlide }) => (
-            <button
-              className="btn btn-icon-round btn-primary mr-2"
+            <div
+              className="btn-circle bg-dark cursor-pointer"
               onClick={nextSlide}
             >
-              <ArrowRight />
-            </button>
+              <ChevronRight size={15} />
+            </div>
           )}
           renderBottomCenterControls={null}
         >

@@ -24,3 +24,11 @@
 .slider:hover .slider-control-centerright {
   opacity: 1;
 }
+
+.slider-control-centerleft {
+  left: -50px !important;
+}
+
+.slider-control-centerright{
+  right: -50px  !important;
+}
