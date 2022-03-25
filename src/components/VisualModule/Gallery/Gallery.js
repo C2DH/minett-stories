@@ -24,7 +24,7 @@ export default function Gallery({ objects, caption }) {
     heightMode: 'max',
     // height: 'max',
     cellSpacing: 15,
-    // wrapAround: true,
+    wrapAround: true,
     initialSlideHeight: 300
   }
   return (
