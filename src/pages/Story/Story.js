@@ -1,15 +1,25 @@
-import { useState } from 'react'
+import findIndex from 'lodash/findIndex'
+import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
 import Layout from '../../components/Layout'
-import { useStoryWithChapters } from '@c2dh/react-miller'
+import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
 import styles from './Story.module.css'
+import LangLink from '../../components/LangLink'
 
 export default function Story() {
   const { slug } = useParams()
+  const [storiesList] = useStories({
+    params: {
+      limit: 1000,
+      filters: {
+        tags__slug__in: ['theme'],
+      },
+    },
+  })
   const [story] = useStoryWithChapters(slug)
   const coverImage = story.covers?.[0]?.attachment
   const type = getStoryType(story)
@@ -19,7 +29,15 @@ export default function Story() {
 
   const [goDeeper, setGoDeeper] = useState(false)
 
-  console.log(longScrollStory.contents.modules)
+  const [prevSlug, nextSlug] = useMemo(() => {
+    const i = findIndex(storiesList.results, (s) => s.slug === slug)
+    const prevIndex = i > 0 ? i - 1 : storiesList.results.length - 1
+    const nextIndex = i < storiesList.results.length - 1 ? i + 1 : 0
+    return [
+      storiesList.results[prevIndex].slug,
+      storiesList.results[nextIndex].slug,
+    ]
+  }, [slug, storiesList.results])
 
   return (
     <Layout>
@@ -60,12 +78,20 @@ export default function Story() {
             ))}
           </div>
         )}
-        <div className={`${styles.LeftButtonStory} btn-circle`}>
+        <LangLink
+          onClick={() => setGoDeeper(false)}
+          to={`/story/${prevSlug}`}
+          className={`${styles.LeftButtonStory} btn-circle cursor-pointer no-link`}
+        >
           <ArrowLeft />
-        </div>
-        <div className={`${styles.RightButtonStory} btn-circle`}>
+        </LangLink>
+        <LangLink
+          onClick={() => setGoDeeper(false)}
+          to={`/story/${nextSlug}`}
+          className={`${styles.RightButtonStory} btn-circle cursor-pointer no-link`}
+        >
           <ArrowRight />
-        </div>
+        </LangLink>
       </div>
     </Layout>
   )
