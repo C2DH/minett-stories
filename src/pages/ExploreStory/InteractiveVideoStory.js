@@ -1,7 +1,7 @@
 import { useCallback, useMemo, useRef, useState, Fragment } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
-import { Pause, Play, SkipForward } from 'react-feather'
+import { Pause, Play, SkipForward, Volume1, VolumeX } from 'react-feather'
 import { fromProgressStrToSeconds, fromSecondsToProgressStr } from '../../utils'
 import MediaProgressLine from '../../components/MediaProgressLine'
 import InteractiveGrid from '../../components/InteractiveGrid'
@@ -33,6 +33,8 @@ export default function InteractiveVideoStory({ story }) {
   const [playing, setPlaying] = useState(false)
   const togglePlay = useCallback(() => setPlaying((p) => !p), [])
   const [duration, setDuration] = useState(0)
+  const [muted, setMulted] = useState(false)
+  const toggleMuted = useCallback(() => setMulted((m) => !m), [])
   const [progress, setProgress] = useState({
     played: 0,
     playedSeconds: 0,
@@ -72,6 +74,8 @@ export default function InteractiveVideoStory({ story }) {
         }
         video={
           <Player
+            volume={1}
+            muted={muted}
             className="video-player-cover"
             progressInterval={200}
             ref={playerRef}
@@ -88,9 +92,7 @@ export default function InteractiveVideoStory({ story }) {
         bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
       />
       <div className="w-100 d-flex bg-white" style={{ height: 64 }}>
-        <div
-          className="d-flex align-items-center justify-content-center mx-5"
-        >
+        <div className="d-flex align-items-center justify-content-center mx-5">
           {playing ? (
             <Pause
               className="cursor-pointer"
@@ -133,6 +135,23 @@ export default function InteractiveVideoStory({ story }) {
               {fromSecondsToProgressStr(duration)}
             </span>
           </div>
+        </div>
+        <div className="d-flex align-items-center justify-content-center mx-5">
+          {muted ? (
+            <VolumeX
+              className="cursor-pointer"
+              onClick={toggleMuted}
+              color="black"
+              fill="black"
+            />
+          ) : (
+            <Volume1
+              className="cursor-pointer"
+              onClick={toggleMuted}
+              color="black"
+              fill="black"
+            />
+          )}
         </div>
       </div>
     </div>
