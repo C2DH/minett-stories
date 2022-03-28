@@ -170,8 +170,9 @@ export default function InteractiveGrid({
 
       <DraggableCore handle=".handle" onDrag={handleDrag}>
         <div
-          className="handle"
+          className={'handle'}
           style={{
+            cursor: 'move',
             backgroundColor: 'white',
             position: 'absolute',
             borderRadius: '50%',

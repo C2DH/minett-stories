@@ -1,10 +1,18 @@
 import { useCallback, useMemo, useRef, useState, Fragment } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
-import { Pause, Play, SkipForward, Volume1, VolumeX } from 'react-feather'
+import {
+  ArrowLeft,
+  Pause,
+  Play,
+  SkipForward,
+  Volume1,
+  VolumeX,
+} from 'react-feather'
 import { fromProgressStrToSeconds, fromSecondsToProgressStr } from '../../utils'
 import MediaProgressLine from '../../components/MediaProgressLine'
 import InteractiveGrid from '../../components/InteractiveGrid'
+import LangLink from '../../components/LangLink'
 
 function objInTime(obj, seconds) {
   return (
@@ -87,6 +95,18 @@ export default function InteractiveVideoStory({ story }) {
       <InteractiveGrid
         topLeft={
           <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+            <LangLink
+              style={{
+                position: 'absolute',
+                top: 5,
+                left: 5,
+                backgroundColor: 'var(--dark-grey)',
+              }}
+              to={`/story/${story.slug}`}
+              className={'btn-circle cursor-pointer no-link'}
+            >
+              <ArrowLeft />
+            </LangLink>
             Subtitles Here
           </div>
         }
@@ -111,9 +131,7 @@ export default function InteractiveVideoStory({ story }) {
         bottomLeft={
           leftObj ? (
             <div className="w-100 h-100 d-flex align-items-end">
-              <div className="ms-4 mb-4">
-                {leftObj.document.data.title}
-              </div>
+              <div className="ms-4 mb-4">{leftObj.document.data.title}</div>
             </div>
           ) : null
         }
@@ -121,9 +139,7 @@ export default function InteractiveVideoStory({ story }) {
         bottomRight={
           rightObj ? (
             <div className="w-100 h-100 d-flex align-items-end">
-              <div className="ms-4 mb-4">
-                {rightObj.document.data.title}
-              </div>
+              <div className="ms-4 mb-4">{rightObj.document.data.title}</div>
             </div>
           ) : null
         }
