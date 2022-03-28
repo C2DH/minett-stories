@@ -2,6 +2,7 @@ import { useStoryWithChapters } from '@c2dh/react-miller'
 import { useParams } from 'react-router-dom'
 import { getStoryType } from '../../utils'
 import InteractiveVideoStory from './InteractiveVideoStory'
+import VideoStory from './VideoStory'
 
 export default function ExploreStory() {
   const { slug } = useParams()
@@ -10,13 +11,13 @@ export default function ExploreStory() {
 
   const passProps = { story }
 
-  if (type === 'interactive-video') {
-    return (
-      <InteractiveVideoStory {...passProps} />
-    )
+  switch (type) {
+    case 'interactive-video':
+      return <InteractiveVideoStory {...passProps} />
+    case 'video':
+      return <VideoStory {...passProps} />
+    default:
+      console.warn('Inalid story type', type)
+      return null
   }
-
-  console.warn('Inalid story type', type)
-
-  return null
 }
