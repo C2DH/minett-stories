@@ -18,7 +18,9 @@ const DEFAULT_HANDLE_RADIUS_PX = 40
 export default function InteractiveGrid({
   video,
   bottomLeftImageSource,
+  bottomLeft,
   bottomRightImageSource,
+  bottomRight,
   videoContainerStyle,
   topLeft,
   intialPosition = DEFAULT_INITIAL_POSITION,
@@ -92,6 +94,19 @@ export default function InteractiveGrid({
             backgroundRepeat: 'no-repeat',
           }}
         />
+        {bottomLeft && (
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            {bottomLeft}
+          </div>
+        )}
       </div>
 
       <div
@@ -138,6 +153,19 @@ export default function InteractiveGrid({
             backgroundRepeat: 'no-repeat',
           }}
         />
+        {bottomLeft && (
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            {bottomRight}
+          </div>
+        )}
       </div>
 
       <DraggableCore handle=".handle" onDrag={handleDrag}>

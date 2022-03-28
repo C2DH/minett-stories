@@ -56,7 +56,7 @@ export default function InteractiveVideoStory({ story }) {
     return false
   }, [chapterIndex, videoChapters.length])
   const handleOnPlayEnd = useCallback(() => {
-    const hasNext =  goToNextChapter()
+    const hasNext = goToNextChapter()
     if (!hasNext) {
       setPlaying(false)
     }
@@ -80,6 +80,7 @@ export default function InteractiveVideoStory({ story }) {
       ) ?? null
     )
   }, [progress.playedSeconds, relatedObjs])
+  console.log(leftObj)
 
   return (
     <div className="w-100 h-100 d-flex flex-column">
@@ -107,7 +108,25 @@ export default function InteractiveVideoStory({ story }) {
           />
         }
         bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
+        bottomLeft={
+          leftObj ? (
+            <div className="w-100 h-100 d-flex align-items-end">
+              <div className="ms-4 mb-4">
+                {leftObj.document.data.title}
+              </div>
+            </div>
+          ) : null
+        }
         bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
+        bottomRight={
+          rightObj ? (
+            <div className="w-100 h-100 d-flex align-items-end">
+              <div className="ms-4 mb-4">
+                {rightObj.document.data.title}
+              </div>
+            </div>
+          ) : null
+        }
       />
       <div className="w-100 d-flex bg-white" style={{ height: 64 }}>
         <div className="d-flex align-items-center justify-content-center mx-5">
