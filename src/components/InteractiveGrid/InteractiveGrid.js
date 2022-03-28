@@ -153,7 +153,7 @@ export default function InteractiveGrid({
             backgroundRepeat: 'no-repeat',
           }}
         />
-        {bottomLeft && (
+        {bottomRight && (
           <div
             style={{
               position: 'absolute',

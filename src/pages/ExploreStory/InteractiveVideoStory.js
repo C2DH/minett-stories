@@ -13,6 +13,7 @@ import { fromProgressStrToSeconds, fromSecondsToProgressStr } from '../../utils'
 import MediaProgressLine from '../../components/MediaProgressLine'
 import InteractiveGrid from '../../components/InteractiveGrid'
 import LangLink from '../../components/LangLink'
+import DocLink from '../../components/DocLink'
 
 function objInTime(obj, seconds) {
   return (
@@ -88,7 +89,6 @@ export default function InteractiveVideoStory({ story }) {
       ) ?? null
     )
   }, [progress.playedSeconds, relatedObjs])
-  console.log(leftObj)
 
   return (
     <div className="w-100 h-100 d-flex flex-column">
@@ -131,7 +131,13 @@ export default function InteractiveVideoStory({ story }) {
         bottomLeft={
           leftObj ? (
             <div className="w-100 h-100 d-flex align-items-end">
-              <div className="ms-4 mb-4">{leftObj.document.data.title}</div>
+              <DocLink
+                onClick={() => setPlaying(false)}
+                slugOrId={leftObj.document.slug}
+                className="ms-4 mb-4 no-link"
+              >
+                {leftObj.document.data.title}
+              </DocLink>
             </div>
           ) : null
         }
@@ -139,7 +145,13 @@ export default function InteractiveVideoStory({ story }) {
         bottomRight={
           rightObj ? (
             <div className="w-100 h-100 d-flex align-items-end">
-              <div className="ms-4 mb-4">{rightObj.document.data.title}</div>
+              <DocLink
+                slugOrId={rightObj.document.slug}
+                onClick={() => setPlaying(false)}
+                className="ms-4 mb-4 no-link"
+              >
+                {rightObj.document.data.title}
+              </DocLink>
             </div>
           ) : null
         }
