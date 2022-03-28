@@ -7,7 +7,6 @@ import styles from './ListStories.module.css'
 function StoryListItem({ story }) {
   const type = getStoryType(story)
   const thumbUrl = story.covers[0]?.data?.resolutions?.thumbnail?.url
-  console.log('~', thumbUrl)
   return (
     <LangLink to={`/story/${story.slug}`} className="no-link">
       <div
