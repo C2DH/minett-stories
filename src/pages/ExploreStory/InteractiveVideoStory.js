@@ -39,12 +39,30 @@ export default function InteractiveVideoStory({ story }) {
     played: 0,
     playedSeconds: 0,
   })
-  function onPlayerReady() {
+  const onPlayerReady = useCallback(() => {
     setDuration(playerRef.current.getDuration())
-  }
+  }, [])
   const handleSeek = useCallback((index, progress) => {
+    setChapterIndex(index)
     playerRef.current.seekTo(progress, 'fraction')
   }, [])
+  const goToNextChapter = useCallback(() => {
+    if (chapterIndex < videoChapters.length - 1) {
+      setProgress({ played: 0, playedSeconds: 0 })
+      playerRef.current.seekTo(0, 'fraction')
+      setChapterIndex(chapterIndex + 1)
+      return true
+    }
+    return false
+  }, [chapterIndex, videoChapters.length])
+  const handleOnPlayEnd = useCallback(() => {
+    const hasNext =  goToNextChapter()
+    if (!hasNext) {
+      setPlaying(false)
+    }
+  }, [goToNextChapter])
+
+  // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
   const leftObj = useMemo(() => {
     return (
@@ -62,7 +80,6 @@ export default function InteractiveVideoStory({ story }) {
       ) ?? null
     )
   }, [progress.playedSeconds, relatedObjs])
-  console.log(leftObj, progress.playedSeconds)
 
   return (
     <div className="w-100 h-100 d-flex flex-column">
@@ -74,6 +91,7 @@ export default function InteractiveVideoStory({ story }) {
         }
         video={
           <Player
+            onEnded={handleOnPlayEnd}
             volume={1}
             muted={muted}
             className="video-player-cover"
@@ -108,7 +126,12 @@ export default function InteractiveVideoStory({ story }) {
               fill="black"
             />
           )}
-          <SkipForward className="ms-2" color="black" fill="black" />
+          <SkipForward
+            onClick={goToNextChapter}
+            className="ms-2 cursor-pointer"
+            color="black"
+            fill="black"
+          />
         </div>
         <div style={{ flex: 1 }} className="d-flex flex-column">
           <div className="w-100 d-flex" style={{ height: 8 }}>
@@ -133,6 +156,9 @@ export default function InteractiveVideoStory({ story }) {
               {fromSecondsToProgressStr(progress.playedSeconds)}
               {'/'}
               {fromSecondsToProgressStr(duration)}
+            </span>
+            <span className="text-cadet-blue ms-3">
+              {selectedChapter.data.title}
             </span>
           </div>
         </div>
