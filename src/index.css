@@ -136,3 +136,7 @@ a.no-link {
   align-items: center;
   justify-content: center;
 }
+
+.video-player-cover video {
+  object-fit: cover;
+}

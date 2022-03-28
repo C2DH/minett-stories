@@ -84,10 +84,10 @@ export default function InteractiveGrid({
             minWidth: '70vw',
             height: '100%',
             backgroundPosition: 'top right',
+            backgroundColor: 'var(--brick)',
             backgroundImage: bottomLeftImageSource
               ? `url(${bottomLeftImageSource})`
               : undefined,
-            backgroundColor: bottomLeftImageSource ? undefined : 'var(--brick)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
@@ -130,10 +130,10 @@ export default function InteractiveGrid({
             maxWidth: '100%',
             height: '100%',
             backgroundPosition: 'top left',
+            backgroundColor: 'var(--green)',
             backgroundImage: bottomRightImageSource
               ? `url(${bottomRightImageSource})`
               : undefined,
-            backgroundColor: bottomRightImageSource ? undefined : 'var(--green)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
