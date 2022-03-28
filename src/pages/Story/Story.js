@@ -48,6 +48,12 @@ export default function Story() {
           style={{ backgroundImage: `url(${coverImage})` }}
         />
         <div className={`${styles.CoverBlend} bg-story-${type}`} />
+        <LangLink
+          to={`/story/${slug}/explore`}
+          className={`${styles.ConverExplore}`}
+        >
+          Watch
+        </LangLink>
       </div>
       <div className={styles.Content}>
         <div className="row pt-4 text-black">
