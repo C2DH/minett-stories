@@ -110,8 +110,8 @@ export default function InteractiveVideoStory({ story }) {
               <LangLink
                 style={{
                   position: 'absolute',
-                  top: 5,
-                  left: 5,
+                  top: 20,
+                  left: 20,
                   backgroundColor: 'var(--dark-grey)',
                 }}
                 to={`/story/${story.slug}`}

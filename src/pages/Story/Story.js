@@ -21,7 +21,9 @@ export default function Story() {
     },
   })
   const [story] = useStoryWithChapters(slug)
-  const coverImage = story.covers?.[0]?.attachment
+  const coverImage =
+    story.covers?.[0]?.data?.resolutions?.preview?.url ??
+    story.covers?.[0]?.attachment
   const type = getStoryType(story)
 
   // NOTE: lol this is a super naive approach but U now
