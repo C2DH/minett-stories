@@ -21,12 +21,13 @@ export default function Stories() {
   return (
     <Layout
       right={
-        <div className='d-flex'>
+        <div className="d-flex">
           <div className="d-inline-block me-2 top-switch-stories">Mix view</div>
           <FormGroup className={'ms-0 '} switch={true}>
             <Input
               id="switch"
-              className='switch-input'
+              className="switch-input cursor-pointer"
+              value={type === 'voronoi' ? false : true}
               onChange={() => {
                 navigate(
                   `${basePath}/stories/${
@@ -34,7 +35,6 @@ export default function Stories() {
                   }`
                 )
               }}
-              // checked={type === 'voronoi'}
               type="switch"
             />
 
