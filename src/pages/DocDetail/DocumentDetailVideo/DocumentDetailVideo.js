@@ -23,7 +23,7 @@ export default function DocumentDetailVideo({ isModal, doc, onClose }) {
           <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
           <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
           <div>
-            <video controls style={{ objectFit: 'cover'}}>
+            <video controls style={{ objectFit: 'cover', width: '100%'}}>
               <source  src={videoUrl} />
             </video>
           </div>

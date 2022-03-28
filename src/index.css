@@ -45,6 +45,7 @@ body.block-scroll {
 
 .right-topbar {
   right: 14px;
+  width: max-content;
 }
 
 .left-topbar {
@@ -143,4 +144,31 @@ a.no-link {
 
 .video-player-cover video {
   object-fit: cover;
+}
+
+.switch-input{
+  width: 40px !important;
+  height: 18px !important;
+}
+
+.top-switch-stories {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.form-switch .form-check-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked {
+  background-color: white;
+  border: none;
 }
