@@ -23,10 +23,10 @@ export default function Stories() {
   return (
     <Layout
       right={
-        <div className="d-flex">
+        <div className="d-flex align-items-center">
           <div className="d-inline-block me-2 top-switch-stories">Mix view</div>
           {/* NOTE: avoid switch for now see https://github.com/reactstrap/reactstrap/issues/2415 */}
-          <FormGroup className={'ms-0 form-switch'}>
+          <FormGroup className={'ms-0 form-switch mt-4'}>
             <Input
               id="switch"
               className="switch-input cursor-pointer"
