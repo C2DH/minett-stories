@@ -2,6 +2,7 @@ import findIndex from 'lodash/findIndex'
 import { useMemo, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import Layout from '../../components/Layout'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
@@ -9,6 +10,36 @@ import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
+
+function ExpolorLink({ slug, type }) {
+  const { t } = useTranslation()
+  if (type === 'article') {
+    return null
+  }
+  let label
+  switch (type) {
+    case 'video':
+    case 'interactive-video':
+      label = t('watch')
+      break
+    case 'audio':
+      label = t('listen')
+      break
+    case 'graphic-novel':
+      label = t('start')
+      break
+    default:
+      label = t('explore')
+  }
+  return (
+    <LangLink
+      to={`/story/${slug}/explore`}
+      className={`${styles.ConverExplore}`}
+    >
+      {label}
+    </LangLink>
+  )
+}
 
 export default function Story() {
   const { slug } = useParams()
@@ -50,12 +81,7 @@ export default function Story() {
           style={{ backgroundImage: `url(${coverImage})` }}
         />
         <div className={`${styles.CoverBlend} bg-story-${type}`} />
-        <LangLink
-          to={`/story/${slug}/explore`}
-          className={`${styles.ConverExplore}`}
-        >
-          Watch
-        </LangLink>
+        <ExpolorLink slug={slug} type={type} />
       </div>
       <div className={styles.Content}>
         <div className="row pt-4 text-black">

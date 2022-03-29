@@ -26,7 +26,11 @@
       "story-audio": "audio",
       "story-map": "interactive map",
       "story-graphic-novel": "graphic novel",
-      "story-article": "article"
+      "story-article": "article",
+      "explore": "explore",
+      "watch": "watch",
+      "listen": "listen",
+      "start": "start"
     }
   },
   "en_GB": {
@@ -56,7 +60,11 @@
       "story-audio": "audio",
       "story-map": "interactive map",
       "story-graphic-novel": "graphic novel",
-      "story-article": "article"
+      "story-article": "article",
+      "explore": "explore",
+      "watch": "watch",
+      "listen": "listen",
+      "start": "start"
     }
   },
   "de_DE": {
@@ -86,7 +94,11 @@
       "story-audio": "audio",
       "story-map": "interactive map",
       "story-graphic-novel": "graphic novel",
-      "story-article": "article"
+      "story-article": "article",
+      "explore": "explore",
+      "watch": "watch",
+      "listen": "listen",
+      "start": "start"
     }
   }
 }
