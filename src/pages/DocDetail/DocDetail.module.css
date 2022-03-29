@@ -10,13 +10,11 @@
 }
 
 .Document {
-  margin-left: 56px;
-  margin-right: 56px;
+  padding-left: 56px;
+  padding-right: 56px;
   position: relative;
   height: 100%;
   background-color: var(--black);
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .DocumentModal{
