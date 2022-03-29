@@ -25,7 +25,8 @@ export default function Stories() {
       right={
         <div className="d-flex">
           <div className="d-inline-block me-2 top-switch-stories">Mix view</div>
-          <FormGroup switch className={'ms-0'} >
+          {/* NOTE: avoid switch for now see https://github.com/reactstrap/reactstrap/issues/2415 */}
+          <FormGroup className={'ms-0 form-switch'}>
             <Input
               id="switch"
               className="switch-input cursor-pointer"
