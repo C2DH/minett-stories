@@ -1,21 +1,13 @@
-import { useCallback, useMemo, useRef, useState, Fragment } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
-import {
-  ArrowDown,
-  ArrowLeft,
-  Pause,
-  Play,
-  SkipForward,
-  Volume1,
-  VolumeX,
-} from 'react-feather'
-import { fromProgressStrToSeconds, fromSecondsToProgressStr } from '../../utils'
-import MediaProgressLine from '../../components/MediaProgressLine'
+import { fromProgressStrToSeconds } from '../../utils'
 import InteractiveGrid from '../../components/InteractiveGrid'
 import LangLink from '../../components/LangLink'
 import DocLink from '../../components/DocLink'
 import VisualModule from '../../components/VisualModule'
+import ChaptersProgressBar from '../../components/ChaptersProgressBar'
+import { ArrowLeft } from 'react-feather'
 
 function objInTime(obj, seconds) {
   return (
@@ -168,92 +160,22 @@ export default function InteractiveVideoStory({ story }) {
             ) : null
           }
         />
-        <div className="w-100 d-flex bg-white" style={{ height: 64 }}>
-          <div className="d-flex align-items-center justify-content-center mx-5">
-            {playing ? (
-              <Pause
-                className="cursor-pointer"
-                onClick={togglePlay}
-                color="black"
-                fill="black"
-              />
-            ) : (
-              <Play
-                className="cursor-pointer"
-                onClick={togglePlay}
-                color="black"
-                fill="black"
-              />
-            )}
-            <SkipForward
-              onClick={goToNextChapter}
-              className="ms-2 cursor-pointer"
-              color="black"
-              fill="black"
-            />
-          </div>
-          <div style={{ flex: 1 }} className="d-flex flex-column">
-            <div className="w-100 d-flex" style={{ height: 8 }}>
-              {videoChapters.map((chapter, i) => (
-                <Fragment key={chapter.id}>
-                  {i !== 0 && (
-                    <div className="bg-white h-100" style={{ width: 20 }} />
-                  )}
-                  <MediaProgressLine
-                    index={i}
-                    onSeek={handleSeek}
-                    played={i === chapterIndex ? progress.played : 0}
-                  />
-                </Fragment>
-              ))}
-            </div>
-            <div
-              className="w-100 d-flex align-items-center text-cadet-blue position-relative"
-              style={{ flex: 1 }}
-            >
-              <span className="text-cadet-blue">
-                {fromSecondsToProgressStr(progress.playedSeconds)}
-                {'/'}
-                {fromSecondsToProgressStr(duration)}
-              </span>
-              <span className="text-cadet-blue ms-3">
-                {selectedChapter.data.title}
-              </span>
-              {!goDeeper && (
-                <div
-                  onClick={onGoDeeper}
-                  style={{ position: 'absolute', left: 0 }}
-                  className="w-100 d-flex justify-content-center cursor-pointer"
-                >
-                  <div className={'text-color-story-interactive-video'}>
-                    Go deeper (10 min.)
-                    <ArrowDown
-                      className="ms-2"
-                      color={'var(--color-story-interactive-video)'}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="d-flex align-items-center justify-content-center mx-5">
-            {muted ? (
-              <VolumeX
-                className="cursor-pointer"
-                onClick={toggleMuted}
-                color="black"
-                fill="black"
-              />
-            ) : (
-              <Volume1
-                className="cursor-pointer"
-                onClick={toggleMuted}
-                color="black"
-                fill="black"
-              />
-            )}
-          </div>
-        </div>
+        <ChaptersProgressBar
+          storyType='interactive-video'
+          played={progress.played}
+          playedSeconds={progress.playedSeconds}
+          playing={playing}
+          onSeek={handleSeek}
+          togglePlay={togglePlay}
+          duration={duration}
+          chapters={videoChapters}
+          index={chapterIndex}
+          goToNextChapter={goToNextChapter}
+          muted={muted}
+          toggleMuted={toggleMuted}
+          goDeeper={goDeeper}
+          onGoDeeper={onGoDeeper}
+        />
       </div>
       {goDeeper && (
         <div className='bg-white'>

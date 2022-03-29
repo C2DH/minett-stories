@@ -1,6 +1,6 @@
 import { memo, useRef } from 'react'
 
-function MediaProgressLine({ index, played, onSeek }) {
+function MediaProgressLine({ index, played, onSeek, storyType }) {
   const containerRef = useRef()
 
   function handleClick(e) {
@@ -17,12 +17,12 @@ function MediaProgressLine({ index, played, onSeek }) {
       ref={containerRef}
       onClick={handleClick}
       className="w-100 h-100 d-flex cursor-pointer"
-      style={{ backgroundColor: 'var(--orange-opacity)' }}
+      style={{ backgroundColor: `var(--opacity-color-story-${storyType})` }}
     >
       <div
         style={{
           width: `${(played * 100).toFixed(4)}%`,
-          backgroundColor: 'var(--orange)',
+          backgroundColor: `var(--color-story-${storyType})`,
         }}
       />
     </div>
