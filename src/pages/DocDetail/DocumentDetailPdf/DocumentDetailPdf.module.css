@@ -32,18 +32,76 @@
   pointer-events: none !important;
 }
 
-.PdfControls {
-  padding-top: 15px;
+.PdfControlsModal {
+  position: absolute;
+  bottom: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.PdfControls > input {
+.PdfControls {
+  padding-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: absolute;
+  bottom: 10px;
+}
+
+/* .PdfControls > input {
   background: #d8d8d8;
   border: none;
   border-radius: 5px;
   width: 50px;
   text-align: center;
+} */
+
+.numPages {
+  background-color: var(--black);
+  color: white;
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  height: 48px;
+  border-radius: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.numPagesInput {
+  background-color: var(--black);
+  color: white;
+  font-family: 'PP Neue Montreal';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 56px;
+  line-height: 24px;
+  height: 48px;
+  border-radius: 40px;
+  text-align: center;
+  border: none;
+}
+
+.divisoryControl {
+  height: 58px;
+  width: 1px;
+  background-color: white;
+}
+
+.btnReset{
+  border-radius: 40px;
+  padding-left: 24px;
+  padding-right: 24px;
 }

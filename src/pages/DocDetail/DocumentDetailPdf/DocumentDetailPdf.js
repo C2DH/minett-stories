@@ -2,7 +2,13 @@ import stylesCommon from '../DocDetail.module.css'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
-import { ArrowLeft, ArrowRight, Minimize2, X, ZoomIn, ZoomOut } from 'react-feather'
+import {
+  ArrowLeft,
+  ArrowRight,
+  X,
+  ZoomIn,
+  ZoomOut,
+} from 'react-feather'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
@@ -88,51 +94,59 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                   </Document>
                 )}
               </div>
-              <div className={styles.PdfControls}>
+              <div
+                className={
+                  isModal ? styles.PdfControlsModal : styles.PdfControls
+                }
+              >
                 <button
                   onClick={() => setPageNumber((p) => p - 1)}
                   disabled={pageNumber <= 1}
-                  className="btn btn-link btn-icon-round mr-2"
+                  className="btn btn-link btn-circle bg-light-gray me-2"
                 >
-                  <ArrowLeft color="white"></ArrowLeft>
+                  <ArrowLeft color="black"></ArrowLeft>
                 </button>
                 <input
-                  className="page-input mr-2"
-                  type="number"
+                  className={`${styles.numPagesInput} me-2`}
+                  // type="number"
                   onChange={handlePageChange}
                   value={pageNumber}
                   min="1"
                   max={numPages}
-                  step="1"
+                  // step="1"
                 />
-                {' of '}
-                {numPages}
+                <span className="ms-1 text-white me-2">{' of '}</span>
+                <div className={`${styles.numPages} me-2`}>{numPages}</div>
                 <button
                   onClick={() => setPageNumber((p) => p + 1)}
                   disabled={pageNumber >= numPages}
-                  className="btn btn-link btn-icon-round ml-2"
+                  className="btn btn-link btn-circle bg-light-gray me-2"
                 >
-                  <ArrowRight color="white"></ArrowRight>
+                  <ArrowRight color="black"></ArrowRight>
                 </button>
+                <div className={`${styles.divisoryControl} ms-3`}>
 
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={zoomInScale}
-                >
-                  <ZoomIn color="white"></ZoomIn>
-                </button>
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={zoomOutScale}
-                >
-                  <ZoomOut color="white"></ZoomOut>
-                </button>
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={resetScaleZoom}
-                >
-                  <Minimize2 color="white"></Minimize2>
-                </button>
+                </div>
+                <div className='ms-3 d-flex'>
+                  <button
+                    className="btn btn-circle bg-light-gray ms-2"
+                    onClick={zoomInScale}
+                  >
+                    <ZoomIn color="black"></ZoomIn>
+                  </button>
+                  <button
+                    className={`btn ${styles.btnReset} bg-light-gray ms-2`}
+                    onClick={resetScaleZoom}
+                  >
+                    reset
+                  </button>
+                  <button
+                    className="btn btn-circle bg-light-gray ms-2"
+                    onClick={zoomOutScale}
+                  >
+                    <ZoomOut color="black"></ZoomOut>
+                  </button>
+                </div>
               </div>
             </div>
           </div>

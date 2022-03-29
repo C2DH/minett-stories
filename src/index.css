@@ -168,3 +168,15 @@ a.no-link {
   background-color: white;
   border: none;
 }
+
+.bg-light-gray {
+  background-color: var(--light-grey);
+}
+
+.text-black {
+  color: var(--black);
+}
+
+.bg-dark-gray {
+  background-color: var(--dark-grey);
+}
