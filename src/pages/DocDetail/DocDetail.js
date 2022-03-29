@@ -104,7 +104,7 @@ export default function DocDetail({ isModal = false }) {
 
   return (
     <Layout>
-      <div className='h-100 padding-top-bar'>
+      <div className="h-100 padding-top-bar">
         <DisplayDoc />
       </div>
     </Layout>

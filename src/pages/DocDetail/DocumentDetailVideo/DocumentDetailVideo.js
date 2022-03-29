@@ -16,7 +16,7 @@ export default function DocumentDetailVideo({ isModal, doc, onClose }) {
 //       : false
 //   }, [videoUrl])
   return (
-    <div className={stylesCommon.Document}>
+    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
       <div className="row">
         <div className="col-md-12">
           <div className={stylesCommon.TypeDocument}>{doc.type}</div>

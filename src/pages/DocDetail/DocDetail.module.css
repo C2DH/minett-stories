@@ -14,6 +14,16 @@
   margin-right: 56px;
   position: relative;
   height: 100%;
+  background-color: var(--black);
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.DocumentModal{
+  margin-left: 56px;
+  margin-right: 56px;
+  position: relative;
+  height: 100%;
   background-color: var(--dark-grey);
   padding-left: 16px;
   padding-right: 16px;
