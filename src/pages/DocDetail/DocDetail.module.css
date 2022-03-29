@@ -17,7 +17,7 @@
   background-color: var(--black);
 }
 
-.DocumentModal{
+.DocumentModal {
   margin-left: 56px;
   margin-right: 56px;
   position: relative;
@@ -73,4 +73,24 @@
   position: absolute;
   top: 24px;
   right: 10px;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .Document {
+    padding-left: 24px;
+    padding-right: 24px;
+    position: relative;
+    height: 100%;
+    background-color: var(--black);
+  }
+
+  .DocumentModal {
+    margin-left: 24px;
+    margin-right: 24px;
+    position: relative;
+    height: 100%;
+    background-color: var(--dark-grey);
+    padding-left: 16px;
+    padding-right: 16px;
+  }
 }
