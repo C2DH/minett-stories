@@ -10,6 +10,7 @@ import styles from './Archive.module.css'
 import Filters from './Filters'
 import classNames from 'classnames'
 import DocLink from '../../components/DocLink'
+import { Filter, X } from 'react-feather'
 
 function useFilterRedirect() {
   const location = useLocation()
@@ -76,9 +77,20 @@ export default function Archive() {
   return (
     <Layout
       right={
-        <span onClick={() => setShowFilters(!showFilters)}>
-          {showFilters ? t('close_options') : t('view_options')}
-        </span>
+        <>
+          <span
+            className="d-none d-md-block"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            {showFilters ? t('close_options') : t('view_options')}
+          </span>
+          <span
+            className="d-block d-md-none"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            {showFilters ? <X color='white' /> : <Filter fill='white' color='white' />}
+          </span>
+        </>
       }
     >
       <Offcanvas
@@ -97,7 +109,7 @@ export default function Archive() {
         </OffcanvasBody>
       </Offcanvas>
       <div className="container-fluid padding-top-bar">
-        <div className="row p-5 pt-3">
+        <div className={'row p-md-5 pt-3'}>
           {docGroups &&
             docGroups.pages.map((docs, i) => (
               <Fragment key={i}>
@@ -105,9 +117,9 @@ export default function Archive() {
                   docs.results.map((doc) => (
                     <div
                       className={classNames('p-0', {
-                        'col-md-2': filters.grid === 'S',
-                        'col-md-3': filters.grid === 'M',
-                        'col-md-6': filters.grid === 'L',
+                        'col-md-2 col-4': filters.grid === 'S',
+                        'col-md-3 col-6': filters.grid === 'M',
+                        'col-md-6 col-12': filters.grid === 'L',
                       })}
                       key={doc.id}
                     >

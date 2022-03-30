@@ -179,4 +179,11 @@
     color: white;
     text-decoration: none;
   }
+
+  .Offcanvas {
+    background-color: var(--dark-grey);
+    top: 56px;
+    width: 90%;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.1);
+  }
 }
