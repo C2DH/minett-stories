@@ -24,7 +24,7 @@ export default function Stories() {
     <Layout
       right={
         <div className="d-flex align-items-center">
-          <div className="d-inline-block me-2 top-switch-stories">Mix view</div>
+          <div className="d-none d-md-inline-block me-2 top-switch-stories">Mix view</div>
           {/* NOTE: avoid switch for now see https://github.com/reactstrap/reactstrap/issues/2415 */}
           <FormGroup className={'ms-0 form-switch mt-4'}>
             <Input
@@ -41,7 +41,7 @@ export default function Stories() {
               type="switch"
             />
 
-            <Label for="switch" className="ms-2 text-white top-switch-stories">
+            <Label for="switch" className="ms-2 text-white top-switch-stories d-none d-md-inline-block">
               List View
             </Label>
           </FormGroup>
