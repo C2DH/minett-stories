@@ -14,6 +14,9 @@ export default function Stories() {
       filters: {
         tags__slug__in: ['theme'],
       },
+      exclude : {
+        tags__slug__in: ['intro'],
+      }
     },
   })
 
