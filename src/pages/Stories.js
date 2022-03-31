@@ -3,6 +3,7 @@ import { useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { FormGroup, Input, Label } from 'reactstrap'
 import Layout from '../components/Layout'
 import ListStories from '../components/ListStories/ListStories'
+import IntroVoronoi from '../components/IntroVoronoi'
 
 export default function Stories() {
   const { type } = useParams()
@@ -52,7 +53,7 @@ export default function Stories() {
       }
     >
       {type === 'list' && <ListStories stories={storiesList.results} />}
-      {type === 'voronoi' && <div>VORONOI HERE</div>}
+      {type === 'voronoi' && <div className="h-100 d-flex flex-column"><IntroVoronoi stories={storiesList.results}/></div>}
     </Layout>
   )
 }
