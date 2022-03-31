@@ -23,6 +23,7 @@ import Archive from './pages/Archive'
 import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
 import TestInteractiveVideo from './pages/TestInteractiveVideo'
+import ExploreStory from './pages/ExploreStory'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -108,6 +109,7 @@ function LangRoutes() {
             />
             <Route path="stories/:type" element={<Stories />} />
             <Route path="story/:slug" element={<Story />} />
+            <Route path="story/:slug/explore" element={<ExploreStory />} />
             <Route path="document/:slug" element={<DocDetail />} />
             <Route path="archive" element={<Archive />} />
             <Route path="archive/filter" element={<Archive />} />

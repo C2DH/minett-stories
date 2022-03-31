@@ -5,7 +5,7 @@ import styles from './DocumentDetailAudio.module.css'
 export default function DocumentDetailAudio({ isModal, doc, onClose }) {
   const audioUrl = doc.url ? doc.url : doc.attachment
   return (
-    <div className={stylesCommon.Document}>
+    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
       <div className="row">
         <div className="col-md-12">
           <div className={stylesCommon.TypeDocument}>{doc.type}</div>

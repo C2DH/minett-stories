@@ -36,7 +36,7 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
     imageUrl = highResolutionImage
   }
   return (
-    <div className={stylesCommon.Document}>
+    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
       <div className="row max-h-100">
         <div className="col-md-4">
           <BlockInfo doc={doc} />

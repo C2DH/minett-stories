@@ -16,14 +16,14 @@ export default function DocumentDetailVideo({ isModal, doc, onClose }) {
 //       : false
 //   }, [videoUrl])
   return (
-    <div className={stylesCommon.Document}>
+    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
       <div className="row">
         <div className="col-md-12">
           <div className={stylesCommon.TypeDocument}>{doc.type}</div>
           <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
           <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
           <div>
-            <video controls style={{ objectFit: 'cover'}}>
+            <video controls style={{ objectFit: 'cover', width: '100%'}}>
               <source  src={videoUrl} />
             </video>
           </div>

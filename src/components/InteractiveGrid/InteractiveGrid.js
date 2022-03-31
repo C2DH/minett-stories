@@ -18,7 +18,9 @@ const DEFAULT_HANDLE_RADIUS_PX = 40
 export default function InteractiveGrid({
   video,
   bottomLeftImageSource,
+  bottomLeft,
   bottomRightImageSource,
+  bottomRight,
   videoContainerStyle,
   topLeft,
   intialPosition = DEFAULT_INITIAL_POSITION,
@@ -84,14 +86,27 @@ export default function InteractiveGrid({
             minWidth: '70vw',
             height: '100%',
             backgroundPosition: 'top right',
+            backgroundColor: 'var(--brick)',
             backgroundImage: bottomLeftImageSource
               ? `url(${bottomLeftImageSource})`
               : undefined,
-            backgroundColor: bottomLeftImageSource ? undefined : 'var(--brick)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
         />
+        {bottomLeft && (
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            {bottomLeft}
+          </div>
+        )}
       </div>
 
       <div
@@ -130,20 +145,34 @@ export default function InteractiveGrid({
             maxWidth: '100%',
             height: '100%',
             backgroundPosition: 'top left',
+            backgroundColor: 'var(--green)',
             backgroundImage: bottomRightImageSource
               ? `url(${bottomRightImageSource})`
               : undefined,
-            backgroundColor: bottomRightImageSource ? undefined : 'var(--green)',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
         />
+        {bottomRight && (
+          <div
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          >
+            {bottomRight}
+          </div>
+        )}
       </div>
 
       <DraggableCore handle=".handle" onDrag={handleDrag}>
         <div
-          className="handle"
+          className={'handle'}
           style={{
+            cursor: 'move',
             backgroundColor: 'white',
             position: 'absolute',
             borderRadius: '50%',

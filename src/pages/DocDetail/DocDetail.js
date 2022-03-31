@@ -60,7 +60,7 @@ function WrapWithNextPrev({ children }) {
       <div style={{ position: 'absolute', left: 5, top: '50%' }}>
         <LangLink
           replace
-          className={'btn-circle text-white'}
+          className={'btn-circle text-white bg-dark-gray'}
           to={`/document/${prevSlug}`}
           state={{ cyclesDocSlugs, backgroundLocation }}
         >
@@ -71,7 +71,7 @@ function WrapWithNextPrev({ children }) {
       <div style={{ position: 'absolute', right: 5, top: '50%' }}>
         <LangLink
           replace
-          className={'btn-circle text-white'}
+          className={'btn-circle text-white bg-dark-gray'}
           to={`/document/${nextSlug}`}
           state={{ cyclesDocSlugs, backgroundLocation }}
         >
@@ -104,7 +104,7 @@ export default function DocDetail({ isModal = false }) {
 
   return (
     <Layout>
-      <div className='h-100 padding-top-bar'>
+      <div className="h-100 padding-top-bar">
         <DisplayDoc />
       </div>
     </Layout>

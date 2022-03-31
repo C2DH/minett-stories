@@ -44,3 +44,23 @@
   left: calc(100% - 25px);
   background-color: var(--dark-grey);
 }
+
+.ConverExplore {
+  position: relative;
+  background-color: white;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 50%;
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  width: 150px;
+  height: 150px;
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+}
+.ConverExplore:hover {
+  color: var(--black);
+}
