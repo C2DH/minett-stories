@@ -6,7 +6,8 @@ import IntroVoronoi from '../components/IntroVoronoi'
 
 
 const controlPoints = [
-  [[0, 100], [100, 100], [100, 50]],
+  [[50, 100], [100, 100], [100, 50]],
+  [[20, 100], [100, 100], [100, 30]],
   [[0, 100], [100, 100], [100, 0]],
 ]
 
@@ -15,7 +16,7 @@ export default function StoriesIntro() {
 
   const [step, setStep] = useState(1)
   const nextStep = useCallback(() => {
-    if(step < 3){setStep(step + 1)}
+    if(step < controlPoints.length + 1){setStep(step + 1)}
   }, [step])
 
   const [introStory] = useStoryWithChapters('intro')
