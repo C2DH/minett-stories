@@ -7,7 +7,7 @@ import './Gallery.css'
 
 const GalleryItem = memo(({ document }) => {
   return (
-    <DocLink className="d-flex flex-column" document={document}>
+    <DocLink className="d-flex flex-column" slugOrId={document.document_id}>
       <img
         src={document.data.resolutions.preview.url}
         alt={document.data.title}
