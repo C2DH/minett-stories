@@ -26,6 +26,7 @@
 }
 
 .BigLink {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 60px;
@@ -35,6 +36,7 @@
 }
 
 .BigLinkAction {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 60px;
@@ -120,6 +122,7 @@
 }
 
 .MediumLink {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
@@ -137,6 +140,15 @@
   mix-blend-mode: lighten;
   opacity: 0.5;
   margin-left: 18px;
+}
+
+.MinettTitle {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 37px;
+  mix-blend-mode: normal;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {

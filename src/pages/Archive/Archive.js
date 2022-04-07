@@ -79,7 +79,7 @@ export default function Archive() {
       right={
         <>
           <span
-            className="d-none d-md-block"
+            className={`${styles.ViewOptions} d-none d-md-block`}
             onClick={() => setShowFilters(!showFilters)}
           >
             {showFilters ? t('close_options') : t('view_options')}
