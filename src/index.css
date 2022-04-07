@@ -182,7 +182,7 @@ a.no-link {
 }
 
 .text-black {
-  color: var(--black);
+  color: var(--black) !important;
 }
 
 .bg-dark-gray {

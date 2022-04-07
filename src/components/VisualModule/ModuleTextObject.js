@@ -5,7 +5,12 @@ import ModuleText from './ModuleText'
 export default function ModuleTextObject({ millerModule }) {
   return (
     <div className="row">
-      <div className="offset-md-1 mt-5 col-md-2">
+      <div
+        className={classNames('mt-5',{
+          'order-0 offset-md-1 col-md-2': millerModule.layout === 'object-text',
+          'order-1 col-md-2': millerModule.layout === 'text-object',
+        })}
+      >
         {millerModule.object.document && (
           <DocumentObject
             doc={millerModule.object.document}
@@ -13,19 +18,19 @@ export default function ModuleTextObject({ millerModule }) {
               millerModule.object.caption ||
               millerModule.object.document.data.title
             }
-            className={classNames({
-              'order-0': millerModule.layout === 'object-text',
-            })}
           />
         )}
       </div>
-      <div className='col-md-6'>
-      <ModuleText
-        millerModule={millerModule}
-        className={classNames('text-black mt-5 mb-5', {
-          'order-1': millerModule.layout === 'object-text',
+      <div
+        className={classNames({
+          'order-1 col-md-6': millerModule.layout === 'object-text',
+          'order-0 offset-md-3 col-md-6': millerModule.layout === 'text-object',
         })}
-      />
+      >
+        <ModuleText
+          millerModule={millerModule}
+          className={classNames('text-black mt-5 mb-5')}
+        />
       </div>
     </div>
   )
