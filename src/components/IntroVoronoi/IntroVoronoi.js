@@ -7,44 +7,43 @@ import random from 'lodash/random'
 import styles from './IntroVoronoi.module.css'
 import classNames from 'classnames'
 import booleanIntesects from '@turf/boolean-intersects'
-import { polygon }  from '@turf/helpers'
+import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
 
 const xline = line()
-      .curve(curveBasis)
-      .x((d) => d[0])
-      .y((d) => d[1])
+  .curve(curveBasis)
+  .x((d) => d[0])
+  .y((d) => d[1])
 
 export default function IntroVoronoi({ stories, controlPoints = [], step }) {
   const [cells, setCells] = useState([])
   const { ref, height, width } = useComponentSize()
+  const [refPoints, setRefPoints] = useState()
 
-  const points = useMemo(() => {
-    if (!stories) {
-      return []
-    }
-    let points
+  useEffect(() => {
     const existinPointsStr = window.sessionStorage.getItem('voronoiIntroPoints')
     if (!existinPointsStr) {
       //generate distribution points based on a fixed grid
-      const refPoints = generateReferencepPoints(stories.length)
+      const localPoints = generateReferencepPoints(stories.length)
       window.sessionStorage.setItem(
         'voronoiIntroPoints',
-        JSON.stringify(refPoints)
+        JSON.stringify(localPoints)
       )
-      points = refPoints
+      setRefPoints(localPoints)
     } else {
-      points = JSON.parse(existinPointsStr)
+      setRefPoints(JSON.parse(existinPointsStr))
     }
-    return repojectPoints(points, width, height)
-  }, [height, stories, width])
+  }, [stories.length])
+
+  const points = useMemo(() => {
+    return refPoints ? repojectPoints(refPoints, width, height) : []
+  }, [height, refPoints, width])
 
   useEffect(() => {
     const delaunay = Delaunay.from(points)
     const voronoi = delaunay.voronoi([0, 0, width, height])
 
     let polyCells = Array.from(voronoi.cellPolygons())
-    
 
     const polys = polyCells.map((cell) => cell)
 
@@ -54,33 +53,37 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
 
   const controlAreas = useMemo(() => {
     const areas = controlPoints.map((areaPoints) => {
-      const projected = areaPoints.map(point => [(point[0] * width) / 100, (point[1] * height) / 100])
+      const projected = areaPoints.map((point) => [
+        (point[0] * width) / 100,
+        (point[1] * height) / 100,
+      ])
       const internalAreaPoints = [...projected, projected[0]]
       return polygon([internalAreaPoints])
     })
 
     return areas
-
   }, [controlPoints, height, width])
 
-
-  const getAreasStep = useCallback((path) => {
-    console.log("x", path)
-    const p = Array.from(path)
-    if(p.length <3){
+  const getAreasStep = useCallback(
+    (path) => {
+      console.log('x', path)
+      const p = Array.from(path)
+      if (p.length < 3) {
         return controlAreas.length
-    }
-    const pathPoly = polygon([[...p, p[0]]])
-    for(let i=0; i < controlAreas.length; i++){
+      }
+      const pathPoly = polygon([[...p, p[0]]])
+      for (let i = 0; i < controlAreas.length; i++) {
         const a = controlAreas[i]
-        if (booleanIntesects(a, centroid(pathPoly))){
-            return i+1
+        if (booleanIntesects(a, centroid(pathPoly))) {
+          return i + 1
         }
-    }
-    return controlAreas.length + 1
+      }
+      return controlAreas.length + 1
 
-    return random(1, controlPoints.length + 1)
-  }, [controlPoints.length, controlAreas])
+      return random(1, controlPoints.length + 1)
+    },
+    [controlPoints.length, controlAreas]
+  )
 
   const cellsClassification = useMemo(() => {
     //should return step for each point
