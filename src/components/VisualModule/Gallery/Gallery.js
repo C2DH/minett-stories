@@ -59,7 +59,7 @@ export default function Gallery({ objects, caption }) {
   }
   return (
     <div className="my-4 row">
-      <div className="offset-md-1 col-md-10">
+      <div className="offset-md-1 col-md-10 position-relative">
         {/* <Carousel
           className="slick-test"
           slidesToShow={2}
