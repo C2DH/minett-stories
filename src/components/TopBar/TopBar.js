@@ -37,7 +37,7 @@ export default function TopBar({ right }) {
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
         </div>
-        <div>Minett Stories</div>
+        <div className={styles.MinettTitle}>Minett Stories</div>
         {right && (
           <div className="cursor-pointer position-absolute right-topbar">
             {right}

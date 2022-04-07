@@ -139,6 +139,15 @@
   margin-left: 18px;
 }
 
+.MinettTitle {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 37px;
+  mix-blend-mode: normal;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .OffcanvasBody {
     display: flex;
