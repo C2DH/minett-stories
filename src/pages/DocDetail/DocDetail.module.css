@@ -28,6 +28,7 @@
 }
 
 .TypeDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -40,16 +41,17 @@
 }
 
 .TitleDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 38px;
-  text-transform: capitalize;
   color: white;
   margin-bottom: 16px;
 }
 
 .YearDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
@@ -60,7 +62,7 @@
 }
 
 .DescriptionDocument {
-  font-family: Sentient Variable;
+  font-family: var(--font-sentient-regular);
   font-style: normal;
   font-weight: normal;
   font-size: 16px;

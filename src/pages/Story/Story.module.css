@@ -46,13 +46,17 @@
 }
 
 .ConverExplore {
+  font-family: var(--font-abc-maxi-sharp);
   position: relative;
   background-color: white;
-  font-weight: bold;
   text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
   border-radius: 50%;
   display: flex;
-  text-transform: uppercase;
   align-items: center;
   justify-content: center;
   color: var(--black);

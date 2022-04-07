@@ -5,13 +5,20 @@ import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia
 import { X } from 'react-feather'
 
 function BlockInfo({ doc }) {
+  console.log(doc)
   return (
     <>
       <div className={stylesCommon.TypeDocument}>{doc.type}</div>
-      <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
+      <h2 className={stylesCommon.TitleDocument}>{doc.data.title || doc.title}</h2>
       <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
       <div className={stylesCommon.DescriptionDocument}>
         {doc.data.description}
+      </div>
+      <div className={stylesCommon.RelatedStory}>
+
+      </div>
+      <div className={stylesCommon.Creator}>
+
       </div>
     </>
   )

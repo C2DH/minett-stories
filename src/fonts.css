@@ -21,3 +21,11 @@
   font-display: swap;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'ABC Maxi Round';
+  src: url('style/fonts/ABCMaxiRoundVariable.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}

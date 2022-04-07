@@ -36,6 +36,7 @@ html,
   text-rendering: optimizeLegibility;
   background-color: var(--black);
   color: white;
+  font-family: var(--font-pp-neue-montreal);
 }
 
 .cursor-pointer {
