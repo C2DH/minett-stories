@@ -220,4 +220,6 @@ a.no-link {
   line-height: 17px;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+  padding-top: 2px;
+  padding-bottom: 2px;
 }
