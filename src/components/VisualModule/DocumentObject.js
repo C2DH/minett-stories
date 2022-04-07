@@ -26,6 +26,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
     )
   } else if (doc.type === 'video') {
     const videoUrl = doc.url ? doc.url : doc.data.translated_urls 
+    console.log(videoUrl)
     // TODO: Handle subs
     // doc.data.subtitles
     return (

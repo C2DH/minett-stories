@@ -214,6 +214,10 @@ a.no-link {
   line-height: 18px;
 }
 
+.year-type-caption{
+  float: left;
+}
+
 .text-story-pill {
   font-family: var(--font-pp-neue-montreal);
   font-size: 14px;
