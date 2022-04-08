@@ -83,7 +83,7 @@ export default function Home() {
           s
         </span>
       </h1>
-      <LangLink to="/stories">S T A R T</LangLink>
+      <LangLink className="HomeStart" to="/stories">S T A R T</LangLink>
     </div>
   )
 }
