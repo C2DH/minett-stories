@@ -1,11 +1,15 @@
 import { X } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import stylesCommon from '../DocDetail.module.css'
 import styles from './DocumentDetailAudio.module.css'
 
 export default function DocumentDetailAudio({ isModal, doc, onClose }) {
   const audioUrl = doc.url ? doc.url : doc.attachment
+  const { t } = useTranslation()
   return (
-    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
+    <div
+      className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
+    >
       <div className="row">
         <div className="col-md-12">
           <div className={stylesCommon.TypeDocument}>{doc.type}</div>
@@ -19,14 +23,24 @@ export default function DocumentDetailAudio({ isModal, doc, onClose }) {
           <div className={stylesCommon.DescriptionDocument}>
             {doc.data.description}
           </div>
-          <div className={styles.creator}>
-            CREATOR <br />
-            {doc.data.creator}
-          </div>
-          <div className={styles.provenance}>
-            PROVENANCE <br />
-            {doc.data.provenance}
-          </div>
+          {doc.data.creator && (
+            <div className={stylesCommon.Creator}>
+              <div className="text-uppercase">{t('crator')} </div>
+              <div>{doc.data.creator}</div>
+            </div>
+          )}
+          {doc.data.creator && (
+            <div className={stylesCommon.Creator}>
+              <div className="text-uppercase">{t('provenance')} </div>
+              <div>{doc.data.creator}</div>
+            </div>
+          )}
+          {doc.data.copyright && (
+            <div className={stylesCommon.Copyright}>
+              <div className="text-uppercase">{t('copyright')} </div>
+              <div>{doc.data.copyright}</div>
+            </div>
+          )}
         </div>
       </div>
       {isModal && (

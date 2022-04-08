@@ -2,18 +2,14 @@ import stylesCommon from '../DocDetail.module.css'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
-import {
-  ArrowLeft,
-  ArrowRight,
-  X,
-  ZoomIn,
-  ZoomOut,
-} from 'react-feather'
+import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
 
 function BlockInfo({ doc }) {
+  const { t } = useTranslation()
   return (
     <>
       <div className={stylesCommon.TypeDocument}>{doc.type}</div>
@@ -22,6 +18,24 @@ function BlockInfo({ doc }) {
       <div className={stylesCommon.DescriptionDocument}>
         {doc.data.description}
       </div>
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('crator')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('provenance')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.copyright && (
+        <div className={stylesCommon.Copyright}>
+          <div className="text-uppercase">{t('copyright')} </div>
+          <div>{doc.data.copyright}</div>
+        </div>
+      )}
     </>
   )
 }
@@ -67,7 +81,9 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
   console.log(containerHeight)
 
   return (
-    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
+    <div
+      className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
+    >
       <div className="row max-h-100">
         <div className="col-md-4">
           <BlockInfo doc={doc} />
@@ -124,10 +140,8 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                 >
                   <ArrowRight color="black"></ArrowRight>
                 </button>
-                <div className={`${styles.divisoryControl} ms-3`}>
-
-                </div>
-                <div className='ms-3 d-flex'>
+                <div className={`${styles.divisoryControl} ms-3`}></div>
+                <div className="ms-3 d-flex">
                   <button
                     className="btn btn-circle bg-light-gray ms-2"
                     onClick={zoomInScale}
