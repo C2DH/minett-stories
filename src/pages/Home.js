@@ -2,8 +2,10 @@ import LangLink from '../components/LangLink'
 
 export default function Home() {
   return (
-    <div>
-      <h1 className="HomeMinettText text-center mt-4">
+    <div
+      className="Home"
+    >
+      <h1 className="HomeMinettText text-center">
         <span
           className="char TextABCMaxiSharpRegular"
           style={{ '--span-index': 0 }}
@@ -83,7 +85,9 @@ export default function Home() {
           s
         </span>
       </h1>
-      <LangLink className="HomeStart" to="/stories">S T A R T</LangLink>
+      <LangLink className="HomeStart" to="/stories">
+        S T A R T
+      </LangLink>
     </div>
   )
 }
