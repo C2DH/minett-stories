@@ -30,7 +30,10 @@
       "explore": "explore",
       "watch": "watch",
       "listen": "listen",
-      "start": "start"
+      "start": "start",
+      "creator": "creator",
+      "provenance": "provenance",
+      "copyright": "copyright"
     }
   },
   "en_GB": {
@@ -64,7 +67,10 @@
       "explore": "explore",
       "watch": "watch",
       "listen": "listen",
-      "start": "start"
+      "start": "start",
+      "creator": "creator",
+      "provenance": "provenance",
+      "copyright": "copyright"
     }
   },
   "de_DE": {
@@ -98,7 +104,10 @@
       "explore": "explore",
       "watch": "watch",
       "listen": "listen",
-      "start": "start"
+      "start": "start",
+      "creator": "creator",
+      "provenance": "provenance",
+      "copyright": "copyright"
     }
   }
 }
