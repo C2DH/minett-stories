@@ -20,7 +20,7 @@ function BlockInfo({ doc }) {
       </div>
       {doc.data.creator && (
         <div className={stylesCommon.Creator}>
-          <div className="text-uppercase">{t('crator')} </div>
+          <div className="text-uppercase">{t('creator')} </div>
           <div>{doc.data.creator}</div>
         </div>
       )}
