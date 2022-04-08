@@ -144,10 +144,11 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                 <div className="ms-3 d-flex">
                   <button
                     className="btn btn-circle bg-light-gray ms-2"
-                    onClick={zoomInScale}
+                    onClick={zoomOutScale}
                   >
-                    <ZoomIn color="black"></ZoomIn>
+                    <ZoomOut color="black"></ZoomOut>
                   </button>
+
                   <button
                     className={`btn ${styles.btnReset} bg-light-gray ms-2`}
                     onClick={resetScaleZoom}
@@ -156,9 +157,9 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                   </button>
                   <button
                     className="btn btn-circle bg-light-gray ms-2"
-                    onClick={zoomOutScale}
+                    onClick={zoomInScale}
                   >
-                    <ZoomOut color="black"></ZoomOut>
+                    <ZoomIn color="black"></ZoomIn>
                   </button>
                 </div>
               </div>
