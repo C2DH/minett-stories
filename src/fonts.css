@@ -45,3 +45,15 @@
   font-display: swap;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'ABC Maxi Round Variable';
+  src: url('style/fonts/ABCMaxiRoundVariable.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Sharp Variable';
+  src: url('style/fonts/ABCMaxiSharpVariable.woff') format('woff');
+  font-display: swap;
+}

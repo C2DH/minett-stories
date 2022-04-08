@@ -41,7 +41,7 @@ export default function TopBar({ right }) {
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
         </div>
-        <div>
+        <div className='TopBarMinettText'>
           <span className='TextABCMaxiSharpRegular'>M</span>
           <span className='TextABCMaxiSharpLight'>i</span>
           <span className='TextABCMaxiSharpLight'>n</span>
