@@ -89,7 +89,7 @@ export default function Story() {
             <StoryPill type={type} />
             <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>{story.data.title}</h1>
             <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
-              Research by {story.authors.map((a) => a.fullname).join(', ')}
+              {story.authors.map((a) => a.fullname).join(', ')}
             </div>
             <p className={`${styles.AbstractText} mt-3`}>{story.data.abstract}</p>
             {!goDeeper && (

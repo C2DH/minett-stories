@@ -33,7 +33,7 @@ function StoryListItem({ story }) {
             <StoryPill type={type} />
             <h1 className="p-0 m-0 mt-2">{story.data.title}</h1>
             <div className="text-cadet-blue mt-2 mt-md-0">
-              Research by {story.authors.map((a) => a.fullname).join(', ')}
+              {story.authors.map((a) => a.fullname).join(', ')}
             </div>
           </div>
         </div>
