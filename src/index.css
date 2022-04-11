@@ -214,6 +214,15 @@ a.no-link {
   line-height: 18px;
 }
 
+blockquote {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--cadet-blue);
+}
+
 .year-type-caption {
   float: left;
 }
