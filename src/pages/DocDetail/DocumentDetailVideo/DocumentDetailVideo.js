@@ -5,9 +5,11 @@ import stylesCommon from '../DocDetail.module.css'
 
 export default function DocumentDetailVideo({ isModal, doc, onClose }) {
   const videoUrl =
-    doc.data.translated_urls && doc.data.translated_urls instanceof String
-      ? doc.data.translated_urls
+    doc.data.streamingUrl
+      ? doc.data.streamingUrl
       : doc.url
+
+  console.log(videoUrl,  doc.data.streamingUrl)
 
   const { t } = useTranslation()
 
