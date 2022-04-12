@@ -23,7 +23,7 @@ function LinkTop({ label, to }) {
   )
 }
 
-export default function TopBar({ right }) {
+export default function TopBar({ right, linkUrlLogo = '/' }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
@@ -41,21 +41,25 @@ export default function TopBar({ right }) {
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
         </div>
-        <div className='TopBarMinettText'>
-          <span className='TextABCMaxiSharpRegular'>M</span>
-          <span className='TextABCMaxiSharpLight'>i</span>
-          <span className='TextABCMaxiSharpLight'>n</span>
-          <span className='TextABCMaxiRoundLight'>e</span>
-          <span className='TextABCMaxiRoundRegular'>t</span>
-          <span className='TextABCMaxiSharpLight'>t</span> 
-          <span className="TextABCMaxiRoundRegular ms-2">S</span>
-          <span className='TextABCMaxiSharpLight'>t</span>
-          <span className='TextABCMaxiSharpRegular'>o</span>
-          <span className='TextABCMaxiRoundLight'>r</span>
-          <span className='TextABCMaxiSharpRegular'>i</span>
-          <span className='TextABCMaxiRoundLight'>e</span>
-          <span className='TextABCMaxiRoundLight'>s</span>
-        </div>
+        <LangLink to={linkUrlLogo} className='TopBarMinettText'>
+          <div
+            className="cursor-pointer"
+          >
+            <span className="TextABCMaxiSharpRegular">M</span>
+            <span className="TextABCMaxiSharpLight">i</span>
+            <span className="TextABCMaxiSharpLight">n</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundRegular">t</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiRoundRegular ms-2">S</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiSharpRegular">o</span>
+            <span className="TextABCMaxiRoundLight">r</span>
+            <span className="TextABCMaxiSharpRegular">i</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundLight">s</span>
+          </div>
+        </LangLink>
         {right && (
           <div className="cursor-pointer position-absolute right-topbar">
             {right}

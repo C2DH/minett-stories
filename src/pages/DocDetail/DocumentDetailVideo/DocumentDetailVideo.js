@@ -1,25 +1,12 @@
 import { X } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import stylesCommon from '../DocDetail.module.css'
-// import { useMemo } from 'react'
 
 export default function DocumentDetailVideo({ isModal, doc, onClose }) {
-  const videoUrl =
-    doc.data.streamingUrl
-      ? doc.data.streamingUrl
-      : doc.url
-
-  console.log(videoUrl,  doc.data.streamingUrl)
+  const videoUrl = doc.data.streamingUrl ? doc.data.streamingUrl : doc.url
 
   const { t } = useTranslation()
 
-  //   const yt = useMemo(() => {
-  //     return videoUrl.match(
-  //       /^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w-]+\?v=|embed\/|v\/)?)([\w-]+)(\S+)?$/
-  //     )
-  //       ? true
-  //       : false
-  //   }, [videoUrl])
   return (
     <div
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}

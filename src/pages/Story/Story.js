@@ -73,7 +73,7 @@ export default function Story() {
   }, [slug, storiesList.results])
 
   return (
-    <Layout>
+    <Layout linkUrlLogo={'/stories/list'}>
       <div className="padding-top-bar" />
       <div className={`${styles.Cover}`}>
         <div
