@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from 'react'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
 import { useComponentSize } from 'react-use-size'
-import { line, curveBasis, curveBumpX, curveNatural } from 'd3-shape'
+import { line, curveBasisClosed, curveBumpX, curveNatural } from 'd3-shape'
 import { Delaunay } from 'd3-delaunay'
 import random from 'lodash/random'
 import styles from './IntroVoronoi.module.css'
@@ -9,16 +9,92 @@ import classNames from 'classnames'
 import booleanIntesects from '@turf/boolean-intersects'
 import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
+import clipper from 'js-clipper'
+
+
+const cornerRadius = 0.5
+const cleanCornerRadius = 12
+const isCornerRadiusAbsolute = false
+const cellStrokeWidth = 3
 
 const xline = line()
-  .curve(curveBasis)
+  .curve(curveBasisClosed)
   .x((d) => d[0])
   .y((d) => d[1])
 
-export default function IntroVoronoi({ stories, controlPoints = [], step }) {
+function cleanPoly(path) {
+  return clipper.JS.Clean(path, cleanCornerRadius)
+}
+
+function cleanPoints(points) {
+  return cleanPoly(
+    points.map((d) => {
+      return { X: d[0], Y: d[1] }
+    })
+  ).map((d) => [d.X, d.Y])
+}
+
+
+function resample(points) {
+  let i = -1;
+  let n = points.length;
+  let p0 = points[n - 1];
+  let x0 = p0[0];
+  let y0 = p0[1];
+  let p1, x1, y1;
+  let points2 = [];
+
+  while (++i < n) {
+    p1 = points[i];
+      x1 = p1[0];
+      y1 = p1[1];
+    
+      let finalRadius = 0;
+    
+      if (isCornerRadiusAbsolute) {
+          let distance = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2);
+          let distFromPoint = cornerRadius / distance;
+          finalRadius = distFromPoint >= 0.5 ? 0.5 : distFromPoint;
+      }
+      else {
+        finalRadius = cornerRadius;
+      }
+      
+      points2.push(
+          [x0 + (x1 - x0) * finalRadius,
+           y0 + (y1 - y0) * finalRadius],
+          [x0 + (x1 - x0) * (1 - finalRadius),
+           y0 + (y1 - y0) * (1 - finalRadius)],
+          p1
+      );
+    
+      p0 = p1;
+      x0 = x1;
+      y0 = y1;
+  }
+  return points2;
+}
+
+
+function getOpacity(cellStep, step, progress){
+
+  // console.log("c", cellStep, step, progress)
+  if(step >= cellStep){
+    return 1
+  }
+
+  if(cellStep === step +1){
+    return progress
+  }
+
+  return 0
+}
+
+export default function IntroVoronoi({ stories, controlPoints = [], step, progress }) {
   const [cells, setCells] = useState([])
   const { ref, height, width } = useComponentSize()
   const [refPoints, setRefPoints] = useState()
+
 
   useEffect(() => {
     const existinPointsStr = window.sessionStorage.getItem('voronoiIntroPoints')
@@ -44,8 +120,7 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
     const voronoi = delaunay.voronoi([0, 0, width, height])
 
     let polyCells = Array.from(voronoi.cellPolygons())
-
-    const polys = polyCells.map((cell) => cell)
+    const polys = polyCells.map((cell) => resample(cleanPoints(cell)))
 
     // const polys = polyCells.map((cell, i) => voronoi.renderCell(i));
     setCells(polys)
@@ -66,7 +141,6 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
 
   const getAreasStep = useCallback(
     (path) => {
-      console.log('x', path)
       const p = Array.from(path)
       if (p.length < 3) {
         return controlAreas.length
@@ -75,10 +149,10 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
       for (let i = 0; i < controlAreas.length; i++) {
         const a = controlAreas[i]
         if (booleanIntesects(a, centroid(pathPoly))) {
-          return i + 1
+          return i
         }
       }
-      return controlAreas.length + 1
+      return controlAreas.length
 
       return random(1, controlPoints.length + 1)
     },
@@ -101,9 +175,9 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
           style={{ position: 'absolute', zIndex: 0, background: '#000' }}
           width={width}
           height={height}
-          onDrag={(e) => {
-            console.log(e)
-          }}
+          // onDrag={(e) => {
+          //   console.log(e)
+          // }}
         >
           <defs>
             {stories.map((story, i) => {
@@ -131,14 +205,14 @@ export default function IntroVoronoi({ stories, controlPoints = [], step }) {
               <path
                 key={i}
                 d={xline(cell)}
-                // fill={`red`}
+                fill={`red`}
                 stroke={'#000'}
-                style={{ strokeWidth: 1 }}
-                fill={`url(#pic-${i})`}
-                className={classNames(styles.invisible, {
-                  [styles.visible]:
-                    !controlPoints.length || cellsClassification[i] <= step,
-                })}
+                style={{ strokeWidth: cellStrokeWidth, opacity:getOpacity(cellsClassification[i], step, progress) }}
+                // fill={`url(#pic-${i})`}
+                // className={classNames(styles.invisible, {
+                //   [styles.visible]:
+                //     !controlPoints.length || cellsClassification[i] <= step + 1,
+                // })}
               ></path>
             )
           })}

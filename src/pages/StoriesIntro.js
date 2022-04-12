@@ -1,23 +1,73 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import LangLink from '../components/LangLink'
 import Layout from '../components/Layout'
 import IntroVoronoi from '../components/IntroVoronoi'
-
+import { useComponentSize } from 'react-use-size'
 
 const controlPoints = [
-  [[50, 100], [100, 100], [100, 50]],
-  [[20, 100], [100, 100], [100, 30]],
-  [[0, 100], [100, 100], [100, 0]],
+  [
+    [50, 100],
+    [100, 100],
+    [100, 50],
+  ],
+  [
+    [20, 100],
+    [100, 100],
+    [100, 30],
+  ],
+  [
+    [0, 100],
+    [100, 100],
+    [100, 0],
+  ],
 ]
 
+const sampleTexts = [
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
+  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
+]
+
+function ScrollControl({texts = [], onStepChange, onProgress, numSteps=3}) {
+  const { ref, height, width } = useComponentSize()
+  const step = useRef(0)
+
+
+  return (
+    <div
+      ref={ref}
+      className="flex-1"
+      style={{ overflowY: 'auto' }}
+      onScroll={(e) => {
+        // console.log(e.target.scrollTop, height)
+        
+        const currentStepFractional = e.target.scrollTop / height
+        const currentStep = parseInt(currentStepFractional)
+        const fraction = currentStepFractional - currentStep
+        
+        onProgress(fraction)
+        if(currentStep !== step.current){
+          onStepChange(currentStep)
+          step.current = currentStep
+        }
+      }}
+    >
+      <div style={{ height: height * (numSteps + 1) }}>{texts.map((text, i) => {
+        return <div key={i} className="d-flex flex-column justify-content-center" style={{color: 'white', height}}>
+          <div style={{width: '50%', marginLeft:'25%'}}>
+            {text}
+          </div>
+        </div>
+      })}</div>
+    </div>
+  )
+}
 
 export default function StoriesIntro() {
-
-  const [step, setStep] = useState(1)
-  const nextStep = useCallback(() => {
-    if(step < controlPoints.length + 1){setStep(step + 1)}
-  }, [step])
+  const [step, setStep] = useState(0)
+  const [progress, setProgress] = useState(0)
+  
 
   const [introStory] = useStoryWithChapters('intro')
   const [storiesList] = useStories({
@@ -31,14 +81,35 @@ export default function StoriesIntro() {
       },
     },
   })
-  
+
   return (
     <Layout>
       <div className="padding-top-bar h-100">
         <div className="h-100  d-flex flex-column">
           <LangLink to="/stories/voronoi">Skip</LangLink>
-          <button className="btn btn-primary" onClick={nextStep} disabled={!storiesList?.results.length}>next step</button>
-          <IntroVoronoi stories={storiesList.results} controlPoints={controlPoints} step={step}/>
+          <div className="flex-1 d-flex flex-column position-relative">
+            <div
+              style={{ zIndex: 1 }}
+              className="h-100 w-100 d-flex flex-column position-absolute"
+            >
+              <IntroVoronoi
+                stories={storiesList.results}
+                controlPoints={controlPoints}
+                step={step}
+                progress={progress}
+              />
+            </div>
+            <div
+              style={{ zIndex: 2 }}
+              className="h-100 w-100 position-absolute d-flex flex-column"
+            >
+              <ScrollControl
+                texts={sampleTexts}
+                onStepChange={setStep}
+                onProgress={setProgress}
+              ></ScrollControl>
+            </div>
+          </div>
         </div>
       </div>
     </Layout>
