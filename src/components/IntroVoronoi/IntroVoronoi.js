@@ -207,7 +207,7 @@ export default function IntroVoronoi({ stories, controlPoints = [], step, progre
                 d={xline(cell)}
                 fill={`red`}
                 stroke={'#000'}
-                style={{ strokeWidth: cellStrokeWidth, opacity:getOpacity(cellsClassification[i], step, progress) }}
+                style={{ strokeWidth: cellStrokeWidth, opacity:controlPoints.length ? getOpacity(cellsClassification[i], step, progress) : 1 }}
                 // fill={`url(#pic-${i})`}
                 // className={classNames(styles.invisible, {
                 //   [styles.visible]:

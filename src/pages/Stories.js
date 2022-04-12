@@ -53,7 +53,7 @@ export default function Stories() {
       }
     >
       {type === 'list' && <ListStories stories={storiesList.results} />}
-      {type === 'voronoi' && <div className="h-100 d-flex flex-column"><IntroVoronoi stories={storiesList.results}/></div>}
+      {type === 'voronoi' && <div className="h-100 d-flex flex-column padding-top-bar"><IntroVoronoi stories={storiesList.results}/></div>}
     </Layout>
   )
 }
