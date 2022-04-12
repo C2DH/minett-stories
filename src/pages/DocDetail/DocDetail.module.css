@@ -28,6 +28,7 @@
 }
 
 .TypeDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 14px;
@@ -40,27 +41,27 @@
 }
 
 .TitleDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 38px;
-  text-transform: capitalize;
   color: white;
   margin-bottom: 16px;
 }
 
 .YearDocument {
+  font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: normal;
   font-size: 32px;
   line-height: 38px;
-  text-transform: capitalize;
   color: var(--cadet-blue);
   margin-bottom: 16px;
 }
 
 .DescriptionDocument {
-  font-family: Sentient Variable;
+  font-family: var(--font-sentient-regular);
   font-style: normal;
   font-weight: normal;
   font-size: 16px;
@@ -73,6 +74,15 @@
   position: absolute;
   top: 24px;
   right: 10px;
+}
+
+.Creator, .Provenance, .Copyright {
+  font-family: var(font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-top: 16px;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {

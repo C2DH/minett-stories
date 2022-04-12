@@ -22,7 +22,6 @@ import Stories from './pages/Stories'
 import Archive from './pages/Archive'
 import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
-import TestInteractiveVideo from './pages/TestInteractiveVideo'
 import ExploreStory from './pages/ExploreStory'
 
 // NOTE: This sync lang when changed from push state navigation
@@ -99,17 +98,16 @@ function LangRoutes() {
                 </Suspense>
               }
             />
+            <Route path="stories/:type" element={<Stories />} />
+            <Route path="story/:slug" element={<Story />} />
             <Route
-              path="test-interactive-video"
+              path="story/:slug/explore"
               element={
                 <Suspense fallback={<Loader />}>
-                  <TestInteractiveVideo />
+                  <ExploreStory />
                 </Suspense>
               }
             />
-            <Route path="stories/:type" element={<Stories />} />
-            <Route path="story/:slug" element={<Story />} />
-            <Route path="story/:slug/explore" element={<ExploreStory />} />
             <Route path="document/:slug" element={<DocDetail />} />
             <Route path="archive" element={<Archive />} />
             <Route path="archive/filter" element={<Archive />} />
@@ -160,12 +158,6 @@ function CheckClientSideScreenDimensions() {
 
 function App({ client, apiUrl }) {
   const { i18n } = useTranslation()
-
-  // const location = useLocation()
-  // const state = location.state
-  // console.log('O.o', state)
-  // const l =  state?.backgroundLocation ?? location
-  // console.log('--->',l, state)
   return (
     <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
       {ENABLE_SCREEN_SIZE_REDIRECT && (

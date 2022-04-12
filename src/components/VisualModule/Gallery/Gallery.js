@@ -1,5 +1,6 @@
 import { memo } from 'react'
-import Carousel from 'nuka-carousel'
+import Carousel from 'react-multi-carousel'
+import 'react-multi-carousel/lib/styles.css'
 import { ChevronLeft, ChevronRight } from 'react-feather'
 import DocLink from '../../DocLink'
 import Caption from '../Caption'
@@ -7,31 +8,65 @@ import './Gallery.css'
 
 const GalleryItem = memo(({ document }) => {
   return (
-    <DocLink className="d-flex flex-column" document={document}>
+    <DocLink
+      className="d-flex flex-column me-3"
+      slugOrId={document.document_id}
+    >
       <img
         src={document.data.resolutions.preview.url}
         alt={document.data.title}
-        // style={{ maxWidth: '100%' }}
         className="customCursor"
       />
     </DocLink>
   )
 })
 
+const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
+  return (
+    <div className="custom-button-group">
+      <div
+        className="prev-button btn-circle bg-dark cursor-pointer"
+        onClick={() => previous()}
+      >
+        <ChevronLeft size={15} />
+      </div>
+      <div className="next-button btn-circle bg-dark cursor-pointer" onClick={() => next()}>
+        <ChevronRight size={15} />
+      </div>
+    </div>
+  )
+}
+
 export default function Gallery({ objects, caption }) {
-  const settings = {
-    slidesToShow: 2,
-    heightMode: 'max',
-    // height: 'max',
-    cellSpacing: 15,
-    wrapAround: true,
-    initialSlideHeight: 300
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 2,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
   }
   return (
     <div className="my-4 row">
-      <div className='offset-md-1 col-md-10'>
-        <Carousel
-          {...settings}
+      <div className="offset-md-1 col-md-10 position-relative">
+        {/* <Carousel
+          className="slick-test"
+          slidesToShow={2}
+          wrapAround
+          slideWidth={'50%'}
+          cellSpacing={20}
+          // {...settings}
           renderCenterLeftControls={({ previousSlide }) => (
             <div
               className="btn-circle bg-dark cursor-pointer"
@@ -49,6 +84,25 @@ export default function Gallery({ objects, caption }) {
             </div>
           )}
           renderBottomCenterControls={null}
+        >
+          {objects.map(
+            (o) =>
+              o.document.data.resolutions && (
+                <GalleryItem key={o.document.id} document={o.document} />
+              )
+          )}
+        </Carousel> */}
+        <Carousel
+          renderButtonGroupOutside={true}
+          customButtonGroup={<CustomButtonGroup />}
+          swipeable={false}
+          arrows={false}
+          autoPlay={false}
+          draggable={false}
+          shouldResetAutoplay={false}
+          infinite={true}
+          showDots={false}
+          responsive={responsive}
         >
           {objects.map(
             (o) =>

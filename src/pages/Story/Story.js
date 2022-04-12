@@ -87,17 +87,23 @@ export default function Story() {
         <div className="row pt-4 text-black">
           <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
             <StoryPill type={type} />
-            <h1 className="m-0 p-0 mt-3">{story.data.title}</h1>
-            <div className="text-cadet-blue mt-3">
-              Research by {story.authors.map((a) => a.fullname).join(', ')}
+            <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+              {story.data.title}
+            </h1>
+            <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+              {story.authors.map((a) => a.fullname).join(', ')}
             </div>
-            <p className="mt-3">{story.data.abstract}</p>
-            {!goDeeper && (
+            <p className={`${styles.AbstractText} mt-3`}>
+              {story.data.abstract}
+            </p>
+            {(!goDeeper && type !== 'article') && (
               <div
                 onClick={() => setGoDeeper(true)}
                 className="w-100 d-flex flex-column align-items-center cursor-pointer mb-4"
               >
-                <div className={`text-color-story-${type}`}>
+                <div
+                  className={`${styles.GoDeeperText} text-color-story-${type}`}
+                >
                   Go deeper (10 min.)
                 </div>
                 <ArrowDown color={`var(--color-story-${type})`} />
@@ -105,9 +111,9 @@ export default function Story() {
             )}
           </div>
         </div>
-        {goDeeper && (
+        {(goDeeper || type === 'article') && (
           <div>
-            {longScrollStory.contents.modules.map((millerModule, i) => (
+            {longScrollStory && longScrollStory.contents.modules.map((millerModule, i) => (
               <VisualModule key={i} millerModule={millerModule} />
             ))}
           </div>

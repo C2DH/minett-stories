@@ -4,8 +4,11 @@ import Caption from './Caption'
 export default function DocumentObject({ doc, caption, className, size }) {
   if (doc.type === 'image' || doc.type === 'pdf') {
     const imagePreviewUrl = doc.data.resolutions?.preview?.url
-    const classNameCols =
-      size === 'big' ? 'offset-md-1 col-md-10' : 'offset-md-3 col-md-6'
+    const classNameCols = size
+      ? size === 'big'
+        ? 'offset-md-1 col-md-10'
+        : 'offset-md-3 col-md-6'
+      : ''
     return (
       <div className={`${className} ${classNameCols}`}>
         <DocLink className="no-link" slugOrId={doc.document_id}>
@@ -22,7 +25,8 @@ export default function DocumentObject({ doc, caption, className, size }) {
       </div>
     )
   } else if (doc.type === 'video') {
-    const videoUrl = doc.url ? doc.url : doc.data.translated_urls
+    const videoUrl = doc.url ? doc.url : doc.data.translated_urls 
+    console.log(videoUrl)
     // TODO: Handle subs
     // doc.data.subtitles
     return (
@@ -32,7 +36,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
           controls
           style={{ width: '100%', height: 'auto', objectFit: 'fill' }}
         />
-        <DocLink className='text-decoration-none' slugOrId={doc.document_id}>
+        <DocLink className="text-decoration-none" slugOrId={doc.document_id}>
           <Caption year={doc.data.year} type={doc.type} caption={caption} />
         </DocLink>
       </div>

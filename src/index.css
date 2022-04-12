@@ -12,6 +12,10 @@
   --dark-grey: #383838;
   --blacky-border: #424242;
   --top-bar-height: 56px;
+  --font-sentient-regular: 'Sentient-Regular';
+  --font-pp-neue-montreal: 'PP Neue Montreal';
+  --font-abc-maxi-sharp: 'ABC Maxi Sharp';
+  --font-abc-maxi-round: 'ABC Maxi Round';
   /* MAP STORY 2 COLORS */
   --color-story-map: var(--green);
   --color-story-graphic-novel: var(--sienna);
@@ -33,6 +37,7 @@ html,
   text-rendering: optimizeLegibility;
   background-color: var(--black);
   color: white;
+  font-family: var(--font-pp-neue-montreal);
 }
 
 .cursor-pointer {
@@ -146,7 +151,7 @@ a.no-link {
   object-fit: cover;
 }
 
-.switch-input{
+.switch-input {
   width: 40px !important;
   height: 18px !important;
 }
@@ -178,9 +183,162 @@ a.no-link {
 }
 
 .text-black {
-  color: var(--black);
+  color: var(--black) !important;
 }
 
 .bg-dark-gray {
   background-color: var(--dark-grey);
+}
+
+.text-object-story {
+  font-family: var(--font-sentient-regular);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.text-object-story > h2 {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.text-caption-story {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+blockquote {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--cadet-blue);
+}
+
+.year-type-caption {
+  float: left;
+}
+
+.text-story-pill {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.TextABCMaxiRoundVariable {
+  font-family: 'ABC Maxi Round Variable';
+}
+
+.TextABCMaxiSharpVariable {
+  font-family: 'ABC Maxi Sharp Variable';
+}
+
+.TextABCMaxiSharpRegular {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.TextABCMaxiSharpLight {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 200;
+}
+
+.TextABCMaxiRoundLight {
+  font-family: var(--font-abc-maxi-round);
+  font-style: normal;
+  font-weight: 200;
+}
+
+.TextABCMaxiRoundRegular {
+  font-family: var(--font-abc-maxi-round);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.TopBarMinettText {
+  font-size: 28px;
+  line-height: 37px;
+  mix-blend-mode: normal;
+  color: white;
+  text-decoration: none;
+}
+
+.TopBarMinettText:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.HomeMinettText {
+  font-family: var(--font-abc-maxi-sharp);
+  font-weight: 200;
+  font-size: 210px;
+  line-height: 276px;
+  font-variation-settings: 'wght' 200;
+}
+
+.HomeMinettText .char {
+  --delay: calc((var(--span-index) + 1) * 400ms);
+  animation: breathe 3500ms infinite both;
+  animation-delay: var(--delay);
+}
+
+.HomeMinettText:hover span {
+  animation-play-state: paused;
+}
+
+@keyframes breathe {
+  0% {
+    font-variation-settings: 'wght' 200;
+    font-size: 10vw;
+  }
+  60% {
+    font-variation-settings: 'wght' 400;
+    font-size: 11vw;
+  }
+
+  100% {
+    font-variation-settings: 'wght' 200;
+    font-size: 10vw;
+  }
+}
+
+.HomeStart {
+  font-family: var(--font-abc-maxi-round);
+  position: relative;
+  background-color: white;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  width: 150px;
+  height: 150px;
+  top: calc(0%);
+  left: calc(50% - 75px);
+}
+
+.Home {
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
 }

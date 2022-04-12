@@ -3,16 +3,39 @@ import stylesCommon from '../DocDetail.module.css'
 import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 import { X } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 
 function BlockInfo({ doc }) {
+  const { t } = useTranslation()
   return (
     <>
       <div className={stylesCommon.TypeDocument}>{doc.type}</div>
-      <h2 className={stylesCommon.TitleDocument}>{doc.data.title}</h2>
+      <h2 className={stylesCommon.TitleDocument}>
+        {doc.data.title || doc.title}
+      </h2>
       <div className={stylesCommon.YearDocument}>{doc.data.year}</div>
       <div className={stylesCommon.DescriptionDocument}>
         {doc.data.description}
       </div>
+      <div className={stylesCommon.RelatedStory}></div>
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('creator')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('provenance')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.copyright && (
+        <div className={stylesCommon.Copyright}>
+          <div className="text-uppercase">{t('copyright')} </div>
+          <div>{doc.data.copyright}</div>
+        </div>
+      )}
     </>
   )
 }
@@ -36,7 +59,9 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
     imageUrl = highResolutionImage
   }
   return (
-    <div className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}>
+    <div
+      className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
+    >
       <div className="row max-h-100">
         <div className="col-md-4">
           <BlockInfo doc={doc} />

@@ -10,10 +10,12 @@ export default function VisualModule({ millerModule }) {
       return <ModuleTextObject millerModule={millerModule} />
     case 'text':
       return (
-        <ModuleText
-          className={'text-black offset-md-3 col-md-6 mt-5 mb-5'}
-          millerModule={millerModule}
-        />
+        <div className='row'>
+          <ModuleText
+            className={'text-black offset-md-3 col-md-6 mt-5 mb-5'}
+            millerModule={millerModule}
+          />
+        </div>
       )
     case 'object':
       return <ModuleObject millerModule={millerModule} />

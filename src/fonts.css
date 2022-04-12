@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Sentient-Regular';
+  src: url('style/fonts/Sentient-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('style/fonts/PPNeueMontreal-Medium.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Sharp';
+  src: url('style/fonts/ABCMaxiSharp-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Round';
+  src: url('style/fonts/ABCMaxiRound-Regular.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Sharp';
+  src: url('style/fonts/ABCMaxiSharp-Light.woff') format('woff');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Round';
+  src: url('style/fonts/ABCMaxiRound-Light.woff') format('woff');
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Round Variable';
+  src: url('style/fonts/ABCMaxiRoundVariable.woff') format('woff');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'ABC Maxi Sharp Variable';
+  src: url('style/fonts/ABCMaxiSharpVariable.woff') format('woff');
+  font-display: swap;
+}

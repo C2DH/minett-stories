@@ -23,7 +23,7 @@ function LinkTop({ label, to }) {
   )
 }
 
-export default function TopBar({ right }) {
+export default function TopBar({ right, linkUrlLogo = '/stories' }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
@@ -32,12 +32,34 @@ export default function TopBar({ right }) {
       <div className={styles.TopBar}>
         <div className="position-absolute left-topbar">
           {open ? (
-            <X style={{ zIndex: 10000 }} className="cursor-pointer" onClick={() => setOpen(false)} />
+            <X
+              style={{ zIndex: 10000 }}
+              className="cursor-pointer"
+              onClick={() => setOpen(false)}
+            />
           ) : (
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
         </div>
-        <div>Minett Stories</div>
+        <LangLink to={linkUrlLogo} className='TopBarMinettText'>
+          <div
+            className="cursor-pointer"
+          >
+            <span className="TextABCMaxiSharpRegular">M</span>
+            <span className="TextABCMaxiSharpLight">i</span>
+            <span className="TextABCMaxiSharpLight">n</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundRegular">t</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiRoundRegular ms-2">S</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiSharpRegular">o</span>
+            <span className="TextABCMaxiRoundLight">r</span>
+            <span className="TextABCMaxiSharpRegular">i</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundLight">s</span>
+          </div>
+        </LangLink>
         {right && (
           <div className="cursor-pointer position-absolute right-topbar">
             {right}

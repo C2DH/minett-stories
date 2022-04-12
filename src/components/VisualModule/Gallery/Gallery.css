@@ -1,34 +1,33 @@
-.slider-slide {
-  display: inline-flex !important;
+.react-multi-carousel-track{
   align-items: center;
-  opacity: 0.25;
-  transition: opacity var(--transition), transform 0.4s linear 0s !important;
 }
 
-.slide-current {
-  opacity: 1;
+.react-multiple-carousel__arrow--left {
+  left: -50px;
+  z-index: 1000;
 }
 
-.slider .slider-control-centerright {
-  opacity: 0;
-  transition: opacity var(--transition);
+.react-multiple-carousel__arrow--right {
+  right: -50px;
+  z-index: 1000;
 }
 
-.slider .slider-control-centerleft,
-.slider .slider-control-centerright {
-  opacity: 0;
-  transition: opacity var(--transition);
+.react-multi-carousel-item{
+  z-index: 2;
 }
 
-.slider:hover .slider-control-centerleft,
-.slider:hover .slider-control-centerright {
-  opacity: 1;
+.prev-button {
+  position: absolute;
+  left: -50px;
+  top: 50%;
 }
 
-.slider-control-centerleft {
-  left: -50px !important;
+.next-button {
+  position: absolute;
+  right: -50px;
+  top: 50%;
 }
 
-.slider-control-centerright{
-  right: -50px  !important;
-}
+/* .react-multi-carousel-list{
+  overflow: ;
+} */

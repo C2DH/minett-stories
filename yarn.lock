@@ -1069,10 +1069,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@c2dh/react-miller@^1.0.0-beta.4":
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.4.tgz#f8190d8806650c9d5b190a7804caa6f55191fa5f"
-  integrity sha512-+zxagmLSae29deONlN1cXJh3Tm/KPCsAOMynPD1kt3aiQXFjaGsKxsW+4xVOm06iUR4R5iS066NQkZSzzss7cQ==
+"@c2dh/react-miller@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.5.tgz#6b23fa473c9028a75ac27e1cc144195a97804242"
+  integrity sha512-7Vnasnmc3oBN05nXVq1YHZVNNVXvhjnF7IuvrJ/WP4APdL4lP3DR7nxcKwAL0haBNk8irxQWAV21o2pFnYa4wA==
   dependencies:
     "@babel/runtime" "^7.17.2"
     axios "^0.26.0"
@@ -6670,11 +6670,6 @@ nth-check@^2.0.1:
   dependencies:
     boolbase "^1.0.0"
 
-nuka-carousel@^5.0.7:
-  version "5.0.7"
-  resolved "https://registry.yarnpkg.com/nuka-carousel/-/nuka-carousel-5.0.7.tgz#b3e993bc30c8ea4b7df93a3d21a2e397e20a9242"
-  integrity sha512-iifexQhS1szxednBFKN4YcXVHS6mnNbkfNc0DpGHq/Fu4eXzORnUpKB2CkoLZv5KZYvBLY6A0HAD7enfl4sKPQ==
-
 nwsapi@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/nwsapi/-/nwsapi-2.2.0.tgz#204879a9e3d068ff2a55139c2c772780681a38b7"
@@ -7825,6 +7820,11 @@ react-markdown@^8.0.0:
     unified "^10.0.0"
     unist-util-visit "^4.0.0"
     vfile "^5.0.0"
+
+react-multi-carousel@^2.8.0:
+  version "2.8.0"
+  resolved "https://registry.yarnpkg.com/react-multi-carousel/-/react-multi-carousel-2.8.0.tgz#94a74245989b74211c9fcfa02c71009a3da3f487"
+  integrity sha512-xuxQVGGiH8yWDDWgt9Z9+C+zzoACuBT740cV+6To52DYCwLlQGJIntDFLOCqMsO85Ist1x+630HA8lazb/a/tA==
 
 react-pdf@^5.7.1:
   version "5.7.1"

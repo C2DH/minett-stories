@@ -160,7 +160,6 @@ export default function ZoomAndPanMedia({ src, isModal }) {
     }
   }, [handleWheel])
 
-
   return (
     <>
       <div className={styles.ZoomAndPanMedia}>
@@ -215,9 +214,9 @@ export default function ZoomAndPanMedia({ src, isModal }) {
         <div className="d-flex flex-row">
           <div
             className={`${styles.ZoomButton} cursor-pointer btn-zoom mb-2`}
-            onClick={() => handleZoom(0.1)}
+            onClick={() => handleZoom(-0.1)}
           >
-            <ZoomIn></ZoomIn>
+            <ZoomOut></ZoomOut>
           </div>
           <div
             className={`${styles.ZoomResetButton} cursor-pointer btn-zoom mb-2 ms-3`}
@@ -227,9 +226,9 @@ export default function ZoomAndPanMedia({ src, isModal }) {
           </div>
           <div
             className={`${styles.ZoomButton} cursor-pointer btn-zoom mb-2 ms-3`}
-            onClick={() => handleZoom(-0.1)}
+            onClick={() => handleZoom(0.1)}
           >
-            <ZoomOut></ZoomOut>
+            <ZoomIn></ZoomIn>
           </div>
         </div>
       </div>

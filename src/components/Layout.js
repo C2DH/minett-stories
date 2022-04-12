@@ -1,9 +1,9 @@
 import TopBar from './TopBar'
 
-export default function Layout({ children, right }) {
+export default function Layout({ children, right, linkUrlLogo }) {
   return (
     <>
-      <TopBar right={right} />
+      <TopBar linkUrlLogo={linkUrlLogo} right={right} />
       {children}
     </>
   )

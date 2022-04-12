@@ -30,7 +30,8 @@ export default function InteractiveVideoStory({ story }) {
   const [chapterIndex, setChapterIndex] = useState(0)
 
   const selectedChapter = videoChapters[chapterIndex]
-  const videUrl = selectedChapter.contents.modules[0].object.document.url
+  const selectedDoc = selectedChapter.contents.modules[0].object.document
+  const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
 
   // Playere related hooks
   const playerRef = useRef()
