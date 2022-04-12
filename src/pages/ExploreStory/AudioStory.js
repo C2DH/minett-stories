@@ -5,7 +5,7 @@ import ChaptersProgressBar from '../../components/ChaptersProgressBar'
 import LangLink from '../../components/LangLink'
 import { ArrowLeft } from 'react-feather'
 
-export default function VideoStory({ story }) {
+export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
   const videoChapters = useMemo(
     () => story.data.chapters.slice(0, -1),
@@ -15,8 +15,11 @@ export default function VideoStory({ story }) {
   const [chapterIndex, setChapterIndex] = useState(0)
 
   const selectedChapter = videoChapters[chapterIndex]
-  const selectedDoc = selectedChapter.contents.modules[0].object.document
-  const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  const selectedDoc = selectedChapter.contents.modules[0].document
+  const audioUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  const backgroundDocImage =
+    selectedChapter.contents.modules[0]?.background?.object?.document
+      ?.attachment ?? null
 
   // Playere related hooks
   const playerRef = useRef()
@@ -77,24 +80,32 @@ export default function VideoStory({ story }) {
           >
             <ArrowLeft />
           </LangLink>
+          {backgroundDocImage && (
+            <img
+              alt='Background'
+              className="h-100 w-100"
+              style={{ objectFit: 'cover' }}
+              src={backgroundDocImage}
+            />
+          )}
           <Player
             onEnded={handleOnPlayEnd}
             volume={1}
             muted={muted}
-            className="video-player-cover"
             progressInterval={200}
             ref={playerRef}
             onReady={onPlayerReady}
-            width="100%"
-            height="100%"
-            url={videUrl}
+            width={0}
+            height={0}
+            url={audioUrl}
             playing={playing}
             onProgress={setProgress}
             playsinline
+            config={{ file: { forceAudio: true } }}
           />
         </div>
         <ChaptersProgressBar
-          storyType="video"
+          storyType="audio"
           played={progress.played}
           playedSeconds={progress.playedSeconds}
           playing={playing}

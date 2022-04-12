@@ -1069,10 +1069,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@c2dh/react-miller@^1.0.0-beta.4":
-  version "1.0.0-beta.4"
-  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.4.tgz#f8190d8806650c9d5b190a7804caa6f55191fa5f"
-  integrity sha512-+zxagmLSae29deONlN1cXJh3Tm/KPCsAOMynPD1kt3aiQXFjaGsKxsW+4xVOm06iUR4R5iS066NQkZSzzss7cQ==
+"@c2dh/react-miller@^1.0.0-beta.5":
+  version "1.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.5.tgz#6b23fa473c9028a75ac27e1cc144195a97804242"
+  integrity sha512-7Vnasnmc3oBN05nXVq1YHZVNNVXvhjnF7IuvrJ/WP4APdL4lP3DR7nxcKwAL0haBNk8irxQWAV21o2pFnYa4wA==
   dependencies:
     "@babel/runtime" "^7.17.2"
     axios "^0.26.0"
