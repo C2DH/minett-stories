@@ -35,15 +35,6 @@ function BlockInfo({ doc }) {
 }
 
 export default function DocumentDetailPdfMobile({ isModal, doc, onClose }) {
-  let pdfUrl = doc.attachment
-  if (process.env.NODE_ENV !== 'production') {
-    const baseUrlRegex = /http(s)?:\/\/([^/]+)/
-    const baseUrl = 'http://localhost:3000'
-    pdfUrl = pdfUrl.replace(baseUrlRegex, baseUrl)
-  }
-
-  console.log(doc)
-
   return (
     <div
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}

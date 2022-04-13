@@ -50,6 +50,7 @@ function DisplayDoc({ isModal = false }) {
 // TODO: Implement much much better
 function WrapWithNextPrev({ children }) {
   const { slug } = useParams()
+  const isMobile = useIsMobile()
   const location = useLocation()
   const cyclesDocSlugs = location.state?.cyclesDocSlugs
   if (!cyclesDocSlugs) {
@@ -66,7 +67,7 @@ function WrapWithNextPrev({ children }) {
 
   return (
     <>
-      <div style={{ position: 'absolute', left: 5, top: '50%' }}>
+      <div className={styles.LeftArrow}>
         <LangLink
           replace
           className={'btn-circle text-white bg-dark-gray'}
@@ -77,7 +78,7 @@ function WrapWithNextPrev({ children }) {
         </LangLink>
       </div>
       {children}
-      <div style={{ position: 'absolute', right: 5, top: '50%' }}>
+      <div className={styles.RightArrow}>
         <LangLink
           replace
           className={'btn-circle text-white bg-dark-gray'}
@@ -99,9 +100,7 @@ export default function DocDetail({ isModal = false }) {
     }
   }, [isModal])
 
-  const isMobile = useIsMobile()
-
-  if (isModal && !isMobile) {
+  if (isModal) {
     return (
       <div className={styles.ModalDoc}>
         <Suspense fallback={<Loader />}>
@@ -113,27 +112,11 @@ export default function DocDetail({ isModal = false }) {
     )
   }
 
-  if (isModal && isMobile) {
-    return (
-      <div className={styles.ModalDoc}>
-        <Suspense fallback={<Loader />}>
-          <DisplayDoc isModal />
-        </Suspense>
-      </div>
-    )
-  }
-
   return (
     <Layout>
-      {!isMobile ? (
-        <div className="h-100 padding-top-bar pb-4">
-          <DisplayDoc />
-        </div>
-      ) : (
-        <div className="h-100 padding-top-bar pb-4">
-          <DisplayDoc />
-        </div>
-      )}
+      <div className="h-100 padding-top-bar pb-4">
+        <DisplayDoc />
+      </div>
     </Layout>
   )
 }

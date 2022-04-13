@@ -87,6 +87,18 @@
   margin-top: 16px;
 }
 
+.LeftArrow {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+}
+
+.RightArrow {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .Document {
     padding-left: 24px;
@@ -129,4 +141,30 @@
     margin-bottom: 24px;
   }
 
+  .LeftArrow {
+    position: fixed;
+    width: 50%;
+    left: 0px;
+    top: unset;
+    bottom: 0px;
+    background-color: white;
+    z-index: 20;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+  }
+
+  .RightArrow {
+    position: fixed;
+    width: 50%;
+    left: 50%;
+    top: unset;
+    bottom: 0px;
+    background-color: white;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+  }
 }
