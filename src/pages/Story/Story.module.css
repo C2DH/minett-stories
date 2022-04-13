@@ -110,6 +110,7 @@
     padding-bottom: 5px;
     display: flex;
     justify-content: center;
+    background-color: var(--black);
   }
 
   .RightButtonStory {
@@ -124,6 +125,7 @@
     justify-content: center;
     padding-top: 5px;
     padding-bottom: 5px;
+    background-color: var(--black);
   }
 
   .Content {
