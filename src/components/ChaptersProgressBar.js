@@ -30,7 +30,7 @@ export default function ChaptersProgressBar({
   const selectedChapter = chapters[index]
   return (
     <div className="w-100 d-flex bg-white" style={{ height: 64 }}>
-      <div className="d-flex align-items-center justify-content-center mx-5">
+      <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
         {playing ? (
           <Pause
             className="cursor-pointer"
@@ -78,7 +78,7 @@ export default function ChaptersProgressBar({
             {'/'}
             {fromSecondsToProgressStr(duration)}
           </span>
-          <span className="text-cadet-blue ms-3">
+          <span className="text-cadet-blue ms-3 d-none d-md-block">
             {selectedChapter.data.title}
           </span>
           {!goDeeper && (
@@ -88,9 +88,9 @@ export default function ChaptersProgressBar({
               className="w-100 d-flex justify-content-center cursor-pointer"
             >
               <div className={`text-color-story-${storyType}`}>
-                Go deeper (10 min.)
+                <span className='d-none d-md-block'>Go deeper (10 min.)</span>
                 <ArrowDown
-                  className="ms-2"
+                  className="ms-0 ms-md-2"
                   color={`var(--color-story-${storyType})`}
                 />
               </div>
@@ -98,7 +98,7 @@ export default function ChaptersProgressBar({
           )}
         </div>
       </div>
-      <div className="d-flex align-items-center justify-content-center mx-5">
+      <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
         {actions}
         {muted ? (
           <VolumeX
