@@ -157,6 +157,7 @@
     padding-left: 16px;
     padding-top: 8px;
     flex-direction: column;
+    justify-content: space-between;
   }
 
   .BigLink {
