@@ -4,6 +4,8 @@ import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 import { X } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import { useIsMobile } from '../../../hooks/mobile'
+import classNames from 'classnames'
 
 function BlockInfo({ doc }) {
   const { t } = useTranslation()
@@ -43,6 +45,7 @@ function BlockInfo({ doc }) {
 export default function DocumentDetailImage({ isModal, doc, onClose }) {
   const lowResolutionImage = doc.data.resolutions?.preview?.url
   const highResolutionImage = doc.attachment
+  const isMobile = useIsMobile()
 
   // Preload the high resolution image only if we have
   // a fallback low resolution image
@@ -63,12 +66,24 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
     >
       <div className="row max-h-100">
-        <div className="col-md-4">
+        <div
+          className={classNames('col-md-4', {
+            'order-1': isMobile,
+          })}
+        >
           <BlockInfo doc={doc} />
         </div>
-        <div className="col-md-8">
+        <div
+          className={classNames('col-md-8', {
+            'order-0': isMobile,
+          })}
+        >
           <div className={styles.BlockImage}>
-            <ZoomAndPanMedia isModal={isModal} src={imageUrl} />
+            {!isMobile ? (
+              <ZoomAndPanMedia isModal={isModal} src={imageUrl} />
+            ) : (
+              <img src={imageUrl} alt={doc.title} className="img-fluid mt-5" />
+            )}
           </div>
         </div>
       </div>
