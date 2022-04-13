@@ -10,7 +10,7 @@ function StoryListItem({ story }) {
   return (
     <LangLink to={`/story/${story.slug}`} className="no-link">
       <div
-        className={`${styles.StoryBlockList} ps-3 ps-md-6 border-top border-bottom border-right border-color-blacky d-flex flex-column align-items-start py-4`}
+        className={`${styles.StoryBlockList} ps-3 ps-md-5 border-top border-bottom border-right border-color-blacky d-flex flex-column align-items-start py-4`}
       >
         <div className="d-flex align-items-center">
           <div>
