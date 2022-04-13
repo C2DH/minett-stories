@@ -83,10 +83,10 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
     >
       <div className="row max-h-100">
-        <div className="col-md-4">
+        <div className="col-md-4 order-1 order-md-0">
           <BlockInfo doc={doc} />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8 order-0 order-md-1">
           <div className={styles.InfoPdfContainer}>
             <div className={styles.PdfContainer}>
               <div

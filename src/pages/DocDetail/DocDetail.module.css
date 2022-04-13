@@ -21,7 +21,7 @@
   margin-left: 56px;
   margin-right: 56px;
   position: relative;
-  height: 100%;
+  min-height: 100%;
   background-color: var(--dark-grey);
   padding-left: 16px;
   padding-right: 16px;
@@ -138,7 +138,7 @@
     font-size: 16px;
     line-height: 24px;
     color: white;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
   .LeftArrow {
@@ -147,7 +147,7 @@
     left: 0px;
     top: unset;
     bottom: 0px;
-    background-color: white;
+    background-color: var(--black);
     z-index: 20;
     display: flex;
     padding-top: 5px;
@@ -161,10 +161,16 @@
     left: 50%;
     top: unset;
     bottom: 0px;
-    background-color: white;
+    background-color: var(--black);
     display: flex;
     padding-top: 5px;
     padding-bottom: 5px;
     justify-content: center;
+  }
+
+  .CloseModal {
+    position: absolute;
+    top: 16px;
+    right: 10px;
   }
 }
