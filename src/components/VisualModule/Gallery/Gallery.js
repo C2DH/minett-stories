@@ -9,7 +9,7 @@ import './Gallery.css'
 const GalleryItem = memo(({ document }) => {
   return (
     <DocLink
-      className="d-flex flex-column me-3"
+      className="d-flex flex-column me-0 me-md-3"
       slugOrId={document.document_id}
     >
       <img
@@ -60,38 +60,6 @@ export default function Gallery({ objects, caption }) {
   return (
     <div className="my-4 row">
       <div className="offset-md-1 col-md-10 position-relative">
-        {/* <Carousel
-          className="slick-test"
-          slidesToShow={2}
-          wrapAround
-          slideWidth={'50%'}
-          cellSpacing={20}
-          // {...settings}
-          renderCenterLeftControls={({ previousSlide }) => (
-            <div
-              className="btn-circle bg-dark cursor-pointer"
-              onClick={previousSlide}
-            >
-              <ChevronLeft size={15} />
-            </div>
-          )}
-          renderCenterRightControls={({ nextSlide }) => (
-            <div
-              className="btn-circle bg-dark cursor-pointer"
-              onClick={nextSlide}
-            >
-              <ChevronRight size={15} />
-            </div>
-          )}
-          renderBottomCenterControls={null}
-        >
-          {objects.map(
-            (o) =>
-              o.document.data.resolutions && (
-                <GalleryItem key={o.document.id} document={o.document} />
-              )
-          )}
-        </Carousel> */}
         <Carousel
           renderButtonGroupOutside={true}
           customButtonGroup={<CustomButtonGroup />}

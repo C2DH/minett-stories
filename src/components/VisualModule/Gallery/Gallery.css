@@ -1,4 +1,4 @@
-.react-multi-carousel-track{
+.react-multi-carousel-track {
   align-items: center;
 }
 
@@ -12,7 +12,7 @@
   z-index: 1000;
 }
 
-.react-multi-carousel-item{
+.react-multi-carousel-item {
   z-index: 2;
 }
 
@@ -26,6 +26,20 @@
   position: absolute;
   right: -50px;
   top: 50%;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .prev-button {
+    position: absolute;
+    left: 0px;
+    top: 50%;
+  }
+
+  .next-button {
+    position: absolute;
+    right: 0px;
+    top: 50%;
+  }
 }
 
 /* .react-multi-carousel-list{

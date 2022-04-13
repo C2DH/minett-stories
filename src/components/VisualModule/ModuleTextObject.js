@@ -6,7 +6,7 @@ export default function ModuleTextObject({ millerModule }) {
   return (
     <div className="row">
       <div
-        className={classNames('mt-5',{
+        className={classNames('mt-2',{
           'order-0 offset-md-1 col-md-2': millerModule.layout === 'object-text',
           'order-1 col-md-2': millerModule.layout === 'text-object',
         })}
@@ -29,7 +29,7 @@ export default function ModuleTextObject({ millerModule }) {
       >
         <ModuleText
           millerModule={millerModule}
-          className={classNames('text-black mt-5 mb-5')}
+          className={classNames('text-black mt-2 mb-2')}
         />
       </div>
     </div>

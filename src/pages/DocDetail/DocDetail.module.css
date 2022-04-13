@@ -173,4 +173,8 @@
     top: 16px;
     right: 10px;
   }
+
+  .TypeDocument {
+    padding-top: 0px;
+  }
 }
