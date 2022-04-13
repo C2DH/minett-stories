@@ -23,6 +23,7 @@ import Archive from './pages/Archive'
 import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
 import ExploreStory from './pages/ExploreStory'
+import ErrorBoundary from './ErrorBoundary'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -159,19 +160,21 @@ function CheckClientSideScreenDimensions() {
 function App({ client, apiUrl }) {
   const { i18n } = useTranslation()
   return (
-    <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
-      {ENABLE_SCREEN_SIZE_REDIRECT && (
+    <ErrorBoundary>
+      <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
+        {ENABLE_SCREEN_SIZE_REDIRECT && (
+          <Routes>
+            <Route path="/*" element={<CheckClientSideScreenDimensions />} />
+          </Routes>
+        )}
         <Routes>
-          <Route path="/*" element={<CheckClientSideScreenDimensions />} />
+          {/* MOBILE */}
+          <Route path="/m/*" element={<LangRoutes />} />
+          {/* DESKTOP */}
+          <Route path="/*" element={<LangRoutes />} />
         </Routes>
-      )}
-      <Routes>
-        {/* MOBILE */}
-        <Route path="/m/*" element={<LangRoutes />} />
-        {/* DESKTOP */}
-        <Route path="/*" element={<LangRoutes />} />
-      </Routes>
-    </Miller>
+      </Miller>
+    </ErrorBoundary>
   )
 }
 

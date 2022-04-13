@@ -5,21 +5,16 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loader'
-import { useIsMobile } from '../../hooks/mobile'
 import styles from './DocDetail.module.css'
 import DocumentDetailAudio from './DocumentDetailAudio'
 import DocumentDetailImage from './DocumentDetailImage'
 import DocumentDetailPdf from './DocumentDetailPdf'
-import DocumentDetailPdfMobile from './DocumentDetailPdfMobile'
 import DocumentDetailVideo from './DocumentDetailVideo'
 
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
   const [doc] = useDocument(slug)
   const navigate = useNavigate()
-  const isMobile = useIsMobile()
-
-  console.log(isMobile, 'isMobile')
 
   const onClose = useCallback(() => {
     navigate(-1)
@@ -38,11 +33,7 @@ function DisplayDoc({ isModal = false }) {
   } else if (doc.type === 'audio') {
     return <DocumentDetailAudio {...passProps} />
   } else if (doc.type === 'pdf') {
-    if (!isMobile) {
-      return <DocumentDetailPdf {...passProps} />
-    } else {
-      return <DocumentDetailPdfMobile {...passProps} />
-    }
+    return <DocumentDetailPdf {...passProps} />
   }
   // TODO: Implement other document types ....
 }
@@ -50,7 +41,6 @@ function DisplayDoc({ isModal = false }) {
 // TODO: Implement much much better
 function WrapWithNextPrev({ children }) {
   const { slug } = useParams()
-  const isMobile = useIsMobile()
   const location = useLocation()
   const cyclesDocSlugs = location.state?.cyclesDocSlugs
   if (!cyclesDocSlugs) {

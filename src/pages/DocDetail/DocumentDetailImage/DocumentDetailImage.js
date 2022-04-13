@@ -4,8 +4,6 @@ import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 import { X } from 'react-feather'
 import { useTranslation } from 'react-i18next'
-import { useIsMobile } from '../../../hooks/mobile'
-import classNames from 'classnames'
 
 function BlockInfo({ doc }) {
   const { t } = useTranslation()

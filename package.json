@@ -2,7 +2,7 @@
   "name": "minett-stories",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://timestrata.be",
+  "proxy": "https://minett-stories.lu",
   "dependencies": {
     "@c2dh/react-miller": "^1.0.0-beta.5",
     "@testing-library/jest-dom": "^5.14.1",

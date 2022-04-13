@@ -10,7 +10,6 @@ import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
-import { useIsMobile } from '../../hooks/mobile'
 
 function ExpolorLink({ slug, type }) {
   const { t } = useTranslation()
@@ -72,8 +71,6 @@ export default function Story() {
       storiesList.results[nextIndex].slug,
     ]
   }, [slug, storiesList.results])
-
-  const isMobile = useIsMobile()
 
   return (
     <Layout>
