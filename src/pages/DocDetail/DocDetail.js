@@ -5,16 +5,21 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loader'
+import { useIsMobile } from '../../hooks/mobile'
 import styles from './DocDetail.module.css'
 import DocumentDetailAudio from './DocumentDetailAudio'
 import DocumentDetailImage from './DocumentDetailImage'
 import DocumentDetailPdf from './DocumentDetailPdf'
+import DocumentDetailPdfMobile from './DocumentDetailPdfMobile'
 import DocumentDetailVideo from './DocumentDetailVideo'
 
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
   const [doc] = useDocument(slug)
   const navigate = useNavigate()
+  const isMobile = useIsMobile()
+
+  console.log(isMobile, 'isMobile')
 
   const onClose = useCallback(() => {
     navigate(-1)
@@ -33,7 +38,11 @@ function DisplayDoc({ isModal = false }) {
   } else if (doc.type === 'audio') {
     return <DocumentDetailAudio {...passProps} />
   } else if (doc.type === 'pdf') {
-    return <DocumentDetailPdf {...passProps} />
+    if (!isMobile) {
+      return <DocumentDetailPdf {...passProps} />
+    } else {
+      return <DocumentDetailPdfMobile {...passProps} />
+    }
   }
   // TODO: Implement other document types ....
 }
@@ -90,7 +99,9 @@ export default function DocDetail({ isModal = false }) {
     }
   }, [isModal])
 
-  if (isModal) {
+  const isMobile = useIsMobile()
+
+  if (isModal && !isMobile) {
     return (
       <div className={styles.ModalDoc}>
         <Suspense fallback={<Loader />}>
@@ -102,11 +113,27 @@ export default function DocDetail({ isModal = false }) {
     )
   }
 
+  if (isModal && isMobile) {
+    return (
+      <div className={styles.ModalDoc}>
+        <Suspense fallback={<Loader />}>
+          <DisplayDoc isModal />
+        </Suspense>
+      </div>
+    )
+  }
+
   return (
     <Layout>
-      <div className="h-100 padding-top-bar pb-4">
-        <DisplayDoc />
-      </div>
+      {!isMobile ? (
+        <div className="h-100 padding-top-bar pb-4">
+          <DisplayDoc />
+        </div>
+      ) : (
+        <div className="h-100 padding-top-bar pb-4">
+          <DisplayDoc />
+        </div>
+      )}
     </Layout>
   )
 }

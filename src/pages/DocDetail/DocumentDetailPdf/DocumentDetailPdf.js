@@ -78,8 +78,6 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
     }
   }
 
-  console.log(containerHeight)
-
   return (
     <div
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
