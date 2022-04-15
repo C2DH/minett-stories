@@ -337,6 +337,10 @@ blockquote {
   left: calc(50% - 75px);
 }
 
+.HomeStart:hover {
+  color: var(--black);
+}
+
 .Home {
   background-size: cover;
   width: 100%;
