@@ -1,8 +1,8 @@
-import classNames from 'classnames'
-import { Fragment, useCallback, useMemo, useRef, useState } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight, SkipForward } from 'react-feather'
+import { useCallback, useMemo, useRef, useState } from 'react'
+import { ArrowLeft } from 'react-feather'
 import LangLink from '../../../components/LangLink'
 import VisualModule from '../../../components/VisualModule'
+import BlockControlsNovel from './BlockControlsNovel'
 import styles from './GraphicNovelStory.module.css'
 
 function GraphicNoveModuleGallery({ millerModule }) {
@@ -79,8 +79,6 @@ export default function GraphicNovelStory({ story }) {
 
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
 
-  console.log(story.data.chapters)
-
   let selectedClass = ''
   if (animation === 'enter-next') {
     selectedClass = styles.flyRight
@@ -150,115 +148,18 @@ export default function GraphicNovelStory({ story }) {
             )}
           </div>
         </div>
-        <div className={`${styles.BlockControls} bg-white d-flex w-100`}>
-          <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
-            <SkipForward
-              className="cursor-pointer"
-              onClick={() => {
-                const element = containerRef.current
-                if (element) {
-                  const { width } = element.getBoundingClientRect()
-                  element.scroll({
-                    left: element.scrollLeft + width / 2,
-                    behavior: 'smooth',
-                  })
-                  console.log({ element })
-                }
-              }}
-              color="black"
-              fill="black"
-            />
-          </div>
-          <div style={{ flex: 1 }} className="d-flex flex-column">
-            <div className="w-100 d-flex" style={{ height: 8 }}>
-              {story.data.chapters.slice(0, -1).map((chapter, i) => (
-                <Fragment key={chapter.id}>
-                  {i !== 0 && (
-                    <div className="bg-white h-100" style={{ width: 20 }} />
-                  )}
-                  <div
-                    onClick={() => setChapterIndex(i)}
-                    className="w-100 h-100 d-flex cursor-pointer"
-                    style={{
-                      backgroundColor: `var(--opacity-color-story-graphic-novel)`,
-                    }}
-                  >
-                    <div
-                      style={{
-                        width:
-                          chapter.id === selectedChapter.id
-                            ? `${(1 * 100).toFixed(4)}%`
-                            : 0,
-                        backgroundColor: `var(--color-story-graphic-novel)`,
-                      }}
-                    />
-                  </div>
-                </Fragment>
-              ))}
-            </div>
-            <div
-              className="w-100 d-flex align-items-center text-cadet-blue position-relative"
-              style={{ flex: 1 }}
-            >
-              <span className="text-cadet-blue ms-3 d-none d-md-block">
-                {selectedChapter.data.title}
-              </span>
-              {!goDeeper && (
-                <div
-                  onClick={onGoDeeper}
-                  style={{ position: 'absolute', left: 0 }}
-                  className="w-100 d-flex justify-content-center cursor-pointer"
-                >
-                  <div
-                    className={`text-color-story-graphic-novel d-flex flex-column align-items-center`}
-                  >
-                    <span className="d-none d-md-block">
-                      Go deeper (10 min.)
-                    </span>
-                    <ArrowDown
-                      className="ms-0"
-                      color={`var(--color-story-graphic-novel)`}
-                    />
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
-            <div
-              className={classNames(
-                'btn-circle text-white bg-dark-gray cursor-pointer me-2',
-                {
-                  ControlDisabled: chapterIndex <= 0,
-                }
-              )}
-              onClick={() => {
-                if (!animation && chapterIndex > 0) {
-                  setChapterIndex((i) => i - 1)
-                  setAnimation('enter-prev')
-                }
-              }}
-            >
-              <ArrowLeft />
-            </div>
-            <div
-              className={classNames(
-                'btn-circle text-white bg-dark-gray cursor-pointer',
-                {
-                  ControlDisabled: chapterIndex >= novelChapters.length - 1,
-                }
-              )}
-              onClick={() => {
-                if (!animation && chapterIndex < novelChapters.length - 1) {
-                  setChapterIndex((i) => i + 1)
-                  setAnimation('enter-next')
-                }
-              }}
-            >
-              <ArrowRight />
-            </div>
-          </div>
-        </div>
+        <BlockControlsNovel
+          containerRef={containerRef}
+          story={story}
+          selectedChapter={selectedChapter}
+          setAnimation={setAnimation}
+          animation={animation}
+          novelChapters={novelChapters}
+          chapterIndex={chapterIndex}
+          goDeeper={goDeeper}
+          onGoDeeper={onGoDeeper}
+          setChapterIndex={setChapterIndex}
+        />
       </div>
       {goDeeper && (
         <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
