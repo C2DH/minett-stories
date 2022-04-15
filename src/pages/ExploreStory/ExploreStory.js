@@ -4,6 +4,7 @@ import { getStoryType } from '../../utils'
 import AudioStory from './AudioStory'
 import GraphicNovelStory from './GraphicNovelStory'
 import InteractiveVideoStory from './InteractiveVideoStory'
+import MapStory from './MapStory'
 import VideoStory from './VideoStory'
 
 export default function ExploreStory() {
@@ -22,6 +23,8 @@ export default function ExploreStory() {
       return <AudioStory {...passProps} />
     case 'graphic-novel':
       return <GraphicNovelStory {...passProps} />
+    case 'map':
+      return <MapStory {...passProps} />
     default:
       console.warn('Inalid story type', type)
       return null
