@@ -1,26 +1,61 @@
 import { useMemo, useRef, useState } from 'react'
 import styles from './GraphicNovelStory.module.css'
 
-function GraphicNovelChapter({ chapter }) {
-  const objs = chapter.contents.modules[0].objects
+function GraphicNoveModuleGallery({ millerModule }) {
   return (
     <div className="h-100 d-flex align-items-center">
-      {objs.map((o) => (
+      {millerModule.objects.map((obj) => (
         <img
-          style={{ height: '100%' }}
-          src={o.document.attachment}
-          key={o.id}
-          alt="X"
+          className="h-100"
+          // src={obj.document.data.resolutions.preview.url}
+          src={obj.document.attachment}
+          key={obj.id}
+          alt={obj.document.data.title}
         />
       ))}
     </div>
   )
 }
 
+function GraphicNoveModuleText({ millerModule }) {
+  return (
+    <div className="h-100 border mx-4">
+      <div className='h-100 bg-danger' style={{ width: 600 }}>
+        HELLO TEXT!
+      </div>
+    </div>
+  )
+}
+
+function GraphicNovelModule({ millerModule }) {
+  switch (millerModule.module) {
+    case 'text':
+      return <GraphicNoveModuleText millerModule={millerModule} />
+    case 'gallery':
+      return <GraphicNoveModuleGallery millerModule={millerModule} />
+    default:
+      console.warn(
+        'Missing Component for Miller Module Graphic Novel',
+        millerModule.module
+      )
+      return null
+  }
+}
+
+function GraphicNovelChapter({ chapter }) {
+  return (
+    <>
+      {chapter.contents.modules.map((millerModule, i) => (
+        <GraphicNovelModule millerModule={millerModule} key={i} />
+      ))}
+    </>
+  )
+}
+
 export default function GraphicNovelStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
   const novelChapters = useMemo(
-    () => story.data.chapters.slice(0, -1).concat(story.data.chapters.slice(0, -1).map(c => ({ ...c, id: c.id + 100 }))),
+    () => story.data.chapters.slice(0, -1),
     [story.data.chapters]
   )
   const [animation, setAnimation] = useState(null)
@@ -58,30 +93,36 @@ export default function GraphicNovelStory({ story }) {
     <div className="w-100 h-100 d-flex flex-column">
       <div className="flex-1" style={{ overflow: 'hidden' }}>
         <div className="h-100 w-100">
-          {(!animation || !animation.startsWith('end-')) && <div
-            key={selectedChapter.id}
-            ref={containerRef}
-            className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${selectedClass}`}
-            style={{ overflowY: 'auto' }}
-            onTransitionEnd={() => {
-              setAnimation(a => a ? 'end-' + a.split('-')[1] : null)
-            }}
-          >
-            <GraphicNovelChapter chapter={selectedChapter} />
-          </div>}
+          {(!animation || !animation.startsWith('end-')) && (
+            <div
+              key={selectedChapter.id}
+              ref={containerRef}
+              className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${selectedClass}`}
+              style={{ overflowY: 'auto' }}
+              onTransitionEnd={() => {
+                setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
+              }}
+            >
+              <GraphicNovelChapter chapter={selectedChapter} />
+            </div>
+          )}
 
-          {enteringChapter && <div
-            key={enteringChapter.id}
-            className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
-            style={{ overflowY: 'auto' }}
-            onTransitionEnd={() => setAnimation(null)}
-          >
-            <GraphicNovelChapter chapter={enteringChapter} />
-          </div>}
+          {enteringChapter && (
+            <div
+              key={enteringChapter.id}
+              className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
+              style={{ overflowY: 'auto' }}
+              onTransitionEnd={() => setAnimation(null)}
+            >
+              <GraphicNovelChapter chapter={enteringChapter} />
+            </div>
+          )}
         </div>
       </div>
-      <div style={{ height: 50 }} className="bg-secondary">
-         <div>{JSON.stringify({ chapterIndex, selectedClass, enterClass, animation })}</div>
+      <div
+        style={{ height: 50 }}
+        className="bg-secondary d-flex align-items-center justify-content-center"
+      >
         <button
           onClick={() => {
             const element = containerRef.current
@@ -101,7 +142,7 @@ export default function GraphicNovelStory({ story }) {
           disabled={chapterIndex <= 0}
           onClick={() => {
             if (!animation) {
-              setChapterIndex(i => i - 1)
+              setChapterIndex((i) => i - 1)
               setAnimation('enter-prev')
             }
           }}
@@ -112,7 +153,7 @@ export default function GraphicNovelStory({ story }) {
           disabled={chapterIndex >= novelChapters.length - 1}
           onClick={() => {
             if (!animation) {
-              setChapterIndex(i => i + 1)
+              setChapterIndex((i) => i + 1)
               setAnimation('enter-next')
             }
           }}
