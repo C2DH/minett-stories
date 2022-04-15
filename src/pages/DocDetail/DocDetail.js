@@ -92,7 +92,7 @@ export default function DocDetail({ isModal = false }) {
 
   if (isModal) {
     return (
-      <div className={styles.ModalDoc}>
+      <div className={`${styles.ModalDoc} h-100`}>
         <Suspense fallback={<Loader />}>
           <WrapWithNextPrev>
             <DisplayDoc isModal />
