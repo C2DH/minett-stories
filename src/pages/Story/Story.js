@@ -96,7 +96,7 @@ export default function Story() {
             <p className={`${styles.AbstractText} mt-3`}>
               {story.data.abstract}
             </p>
-            {(!goDeeper && type !== 'article') && (
+            {!goDeeper && type !== 'article' && (
               <div
                 onClick={() => setGoDeeper(true)}
                 className="w-100 d-flex flex-column align-items-center cursor-pointer mb-4"
@@ -113,25 +113,30 @@ export default function Story() {
         </div>
         {(goDeeper || type === 'article') && (
           <div>
-            {longScrollStory && longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            {longScrollStory &&
+              longScrollStory.contents.modules.map((millerModule, i) => (
+                <VisualModule key={i} millerModule={millerModule} />
+              ))}
           </div>
         )}
-        <LangLink
-          onClick={() => setGoDeeper(false)}
-          to={`/story/${prevSlug}`}
-          className={`${styles.LeftButtonStory} btn-circle cursor-pointer no-link`}
-        >
-          <ArrowLeft />
-        </LangLink>
-        <LangLink
-          onClick={() => setGoDeeper(false)}
-          to={`/story/${nextSlug}`}
-          className={`${styles.RightButtonStory} btn-circle cursor-pointer no-link`}
-        >
-          <ArrowRight />
-        </LangLink>
+        <div className={`${styles.LeftButtonStory}`}>
+          <LangLink
+            onClick={() => setGoDeeper(false)}
+            to={`/story/${prevSlug}`}
+            className={`btn-circle cursor-pointer no-link`}
+          >
+            <ArrowLeft />
+          </LangLink>
+        </div>
+        <div className={`${styles.RightButtonStory}`}>
+          <LangLink
+            onClick={() => setGoDeeper(false)}
+            to={`/story/${nextSlug}`}
+            className={`btn-circle cursor-pointer no-link`}
+          >
+            <ArrowRight />
+          </LangLink>
+        </div>
       </div>
     </Layout>
   )

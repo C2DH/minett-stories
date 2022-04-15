@@ -41,10 +41,8 @@ export default function TopBar({ right, linkUrlLogo = '/stories' }) {
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
         </div>
-        <LangLink to={linkUrlLogo} className='TopBarMinettText'>
-          <div
-            className="cursor-pointer"
-          >
+        <LangLink to={linkUrlLogo} className="TopBarMinettText">
+          <div className="cursor-pointer">
             <span className="TextABCMaxiSharpRegular">M</span>
             <span className="TextABCMaxiSharpLight">i</span>
             <span className="TextABCMaxiSharpLight">n</span>
@@ -73,10 +71,12 @@ export default function TopBar({ right, linkUrlLogo = '/stories' }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <LinkTop to="/" label={t('intro')} />
-          <LinkTop to="/stories" label={t('stories')} />
-          <LinkTop to="/archive" label={t('archive')} />
-          <LinkTop to="/about" label={t('about')} />
+          <div className='d-flex flex-column'>
+            <LinkTop to="/" label={t('intro')} />
+            <LinkTop to="/stories" label={t('stories')} />
+            <LinkTop to="/archive" label={t('archive')} />
+            <LinkTop to="/about" label={t('about')} />
+          </div>
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
               {LANGS.map((lang) => (

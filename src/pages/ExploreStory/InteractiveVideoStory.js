@@ -162,7 +162,7 @@ export default function InteractiveVideoStory({ story }) {
           }
         />
         <ChaptersProgressBar
-          storyType='interactive-video'
+          storyType="interactive-video"
           played={progress.played}
           playedSeconds={progress.playedSeconds}
           playing={playing}
@@ -179,7 +179,7 @@ export default function InteractiveVideoStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className='bg-white'>
+        <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
           {longScrollStory.contents.modules.map((millerModule, i) => (
             <VisualModule key={i} millerModule={millerModule} />
           ))}

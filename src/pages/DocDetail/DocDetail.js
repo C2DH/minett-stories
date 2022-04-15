@@ -5,21 +5,16 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loader'
-import { useIsMobile } from '../../hooks/mobile'
 import styles from './DocDetail.module.css'
 import DocumentDetailAudio from './DocumentDetailAudio'
 import DocumentDetailImage from './DocumentDetailImage'
 import DocumentDetailPdf from './DocumentDetailPdf'
-import DocumentDetailPdfMobile from './DocumentDetailPdfMobile'
 import DocumentDetailVideo from './DocumentDetailVideo'
 
 function DisplayDoc({ isModal = false }) {
   const { slug } = useParams()
   const [doc] = useDocument(slug)
   const navigate = useNavigate()
-  const isMobile = useIsMobile()
-
-  console.log(isMobile, 'isMobile')
 
   const onClose = useCallback(() => {
     navigate(-1)
@@ -38,11 +33,7 @@ function DisplayDoc({ isModal = false }) {
   } else if (doc.type === 'audio') {
     return <DocumentDetailAudio {...passProps} />
   } else if (doc.type === 'pdf') {
-    if (!isMobile) {
-      return <DocumentDetailPdf {...passProps} />
-    } else {
-      return <DocumentDetailPdfMobile {...passProps} />
-    }
+    return <DocumentDetailPdf {...passProps} />
   }
   // TODO: Implement other document types ....
 }
@@ -66,7 +57,7 @@ function WrapWithNextPrev({ children }) {
 
   return (
     <>
-      <div style={{ position: 'absolute', left: 5, top: '50%' }}>
+      <div className={styles.LeftArrow}>
         <LangLink
           replace
           className={'btn-circle text-white bg-dark-gray'}
@@ -77,7 +68,7 @@ function WrapWithNextPrev({ children }) {
         </LangLink>
       </div>
       {children}
-      <div style={{ position: 'absolute', right: 5, top: '50%' }}>
+      <div className={styles.RightArrow}>
         <LangLink
           replace
           className={'btn-circle text-white bg-dark-gray'}
@@ -99,11 +90,9 @@ export default function DocDetail({ isModal = false }) {
     }
   }, [isModal])
 
-  const isMobile = useIsMobile()
-
-  if (isModal && !isMobile) {
+  if (isModal) {
     return (
-      <div className={styles.ModalDoc}>
+      <div className={`${styles.ModalDoc} h-100`}>
         <Suspense fallback={<Loader />}>
           <WrapWithNextPrev>
             <DisplayDoc isModal />
@@ -113,27 +102,11 @@ export default function DocDetail({ isModal = false }) {
     )
   }
 
-  if (isModal && isMobile) {
-    return (
-      <div className={styles.ModalDoc}>
-        <Suspense fallback={<Loader />}>
-          <DisplayDoc isModal />
-        </Suspense>
-      </div>
-    )
-  }
-
   return (
     <Layout>
-      {!isMobile ? (
-        <div className="h-100 padding-top-bar pb-4">
-          <DisplayDoc />
-        </div>
-      ) : (
-        <div className="h-100 padding-top-bar pb-4">
-          <DisplayDoc />
-        </div>
-      )}
+      <div className="h-100 padding-top-bar pb-4">
+        <DisplayDoc />
+      </div>
     </Layout>
   )
 }

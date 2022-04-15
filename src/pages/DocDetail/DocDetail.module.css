@@ -14,6 +14,7 @@
   padding-right: 56px;
   position: relative;
   height: 100%;
+  min-height: 100%;
   background-color: var(--black);
 }
 
@@ -21,7 +22,8 @@
   margin-left: 56px;
   margin-right: 56px;
   position: relative;
-  height: 100%;
+  height: calc(100% - 50px);
+  /* padding-bottom: 100px; */
   background-color: var(--dark-grey);
   padding-left: 16px;
   padding-right: 16px;
@@ -87,6 +89,18 @@
   margin-top: 16px;
 }
 
+.LeftArrow {
+  position: absolute;
+  left: 5px;
+  top: 50%;
+}
+
+.RightArrow {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .Document {
     padding-left: 24px;
@@ -126,7 +140,43 @@
     font-size: 16px;
     line-height: 24px;
     color: white;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
   }
 
+  .LeftArrow {
+    position: fixed;
+    width: 50%;
+    left: 0px;
+    top: unset;
+    bottom: 0px;
+    background-color: var(--black);
+    z-index: 20;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+  }
+
+  .RightArrow {
+    position: fixed;
+    width: 50%;
+    left: 50%;
+    top: unset;
+    bottom: 0px;
+    background-color: var(--black);
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: center;
+  }
+
+  .CloseModal {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+  }
+
+  .TypeDocument {
+    padding-top: 0px;
+  }
 }

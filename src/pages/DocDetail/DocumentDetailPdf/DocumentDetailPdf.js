@@ -83,10 +83,10 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
     >
       <div className="row max-h-100">
-        <div className="col-md-4">
+        <div className="col-md-4 order-1 order-md-0">
           <BlockInfo doc={doc} />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8 order-0 order-md-1">
           <div className={styles.InfoPdfContainer}>
             <div className={styles.PdfContainer}>
               <div
@@ -113,33 +113,35 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                   isModal ? styles.PdfControlsModal : styles.PdfControls
                 }
               >
-                <button
-                  onClick={() => setPageNumber((p) => p - 1)}
-                  disabled={pageNumber <= 1}
-                  className="btn btn-link btn-circle bg-light-gray me-2"
-                >
-                  <ArrowLeft color="black"></ArrowLeft>
-                </button>
-                <input
-                  className={`${styles.numPagesInput} me-2`}
-                  // type="number"
-                  onChange={handlePageChange}
-                  value={pageNumber}
-                  min="1"
-                  max={numPages}
-                  // step="1"
-                />
-                <span className="ms-1 text-white me-2">{' of '}</span>
-                <div className={`${styles.numPages} me-2`}>{numPages}</div>
-                <button
-                  onClick={() => setPageNumber((p) => p + 1)}
-                  disabled={pageNumber >= numPages}
-                  className="btn btn-link btn-circle bg-light-gray me-2"
-                >
-                  <ArrowRight color="black"></ArrowRight>
-                </button>
-                <div className={`${styles.divisoryControl} ms-3`}></div>
-                <div className="ms-3 d-flex">
+                <div className='d-flex align-items-center'>
+                  <button
+                    onClick={() => setPageNumber((p) => p - 1)}
+                    disabled={pageNumber <= 1}
+                    className="btn btn-link btn-circle bg-light-gray me-2"
+                  >
+                    <ArrowLeft color="black"></ArrowLeft>
+                  </button>
+                  <input
+                    className={`${styles.numPagesInput} me-2`}
+                    // type="number"
+                    onChange={handlePageChange}
+                    value={pageNumber}
+                    min="1"
+                    max={numPages}
+                    // step="1"
+                  />
+                  <span className="ms-1 text-white me-2">{' of '}</span>
+                  <div className={`${styles.numPages} me-2`}>{numPages}</div>
+                  <button
+                    onClick={() => setPageNumber((p) => p + 1)}
+                    disabled={pageNumber >= numPages}
+                    className="btn btn-link btn-circle bg-light-gray me-2"
+                  >
+                    <ArrowRight color="black"></ArrowRight>
+                  </button>
+                </div>
+                <div className={`${styles.divisoryControl} d-none d-md-block ms-3`}></div>
+                <div className="ms-0 ms-md-3 d-flex">
                   <button
                     className="btn btn-circle bg-light-gray ms-2"
                     onClick={zoomOutScale}

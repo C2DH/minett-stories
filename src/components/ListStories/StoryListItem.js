@@ -1,6 +1,4 @@
-import classNames from 'classnames'
 import { memo } from 'react'
-import { useIsMobile } from '../../hooks/mobile'
 import { getStoryType } from '../../utils'
 import LangLink from '../LangLink'
 import StoryPill from '../StoryPill'
@@ -9,14 +7,10 @@ import styles from './ListStories.module.css'
 function StoryListItem({ story }) {
   const type = getStoryType(story)
   const thumbUrl = story.covers[0]?.data?.resolutions?.thumbnail?.url
-  const isMobile = useIsMobile()
   return (
     <LangLink to={`/story/${story.slug}`} className="no-link">
       <div
-        className={classNames(`${styles.StoryBlockList} border-top border-bottom border-right border-color-blacky d-flex flex-column align-items-start py-4`, {
-          'ps-6': !isMobile,
-          'ps-3': isMobile
-        })}
+        className={`${styles.StoryBlockList} ps-3 ps-md-5 border-top border-bottom border-right border-color-blacky d-flex flex-column align-items-start py-4`}
       >
         <div className="d-flex align-items-center">
           <div>

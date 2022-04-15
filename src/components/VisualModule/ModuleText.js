@@ -3,7 +3,7 @@ import classNames from 'classnames'
 
 export default function ModuleText({ millerModule, className }) {
   return (
-    <ReactMarkdown className={classNames('my-2 text-object-story', className)} skipHtml={true}>
+    <ReactMarkdown className={classNames('text-object-story', className)} skipHtml={true}>
       {millerModule.text.content}
     </ReactMarkdown>
   )
