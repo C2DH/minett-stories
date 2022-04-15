@@ -10,7 +10,7 @@
   z-index: 10;
   position: absolute;
   display: flex;
-  top: 0;
+  top: -100px;
   left: 0;
   right: 0;
   bottom: 0;
@@ -70,9 +70,9 @@
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  text-align: right;
+  text-align: center;
   text-transform: uppercase;
-  margin-right: 35vh;
+  margin-bottom: 64px;
 }
 
 .HomeStart {
@@ -116,4 +116,12 @@
   mix-blend-mode: multiply;
   background-color: var(--brick);
   z-index: 0;
+}
+
+.LogoCredits {
+  position: absolute;
+  z-index: 1;
+  bottom: 32px;
+  left: 60px;
+  mix-blend-mode: lighten;
 }

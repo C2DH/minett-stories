@@ -4,6 +4,8 @@ import LangLink from '../../../components/LangLink'
 import { LANGS } from '../../../i18n'
 import styles from './Intro.module.css'
 import bgHome from '../../../assets/bg-home.png'
+import unilu from '../../../assets/unilu.png'
+import c2dh from '../../../assets/c2dh.png'
 
 export default function Intro() {
   const { i18n } = useTranslation()
@@ -112,6 +114,10 @@ export default function Intro() {
         <LangLink className={styles.HomeStart} to="/stories">
           S T A R T
         </LangLink>
+      </div>
+      <div className={styles.LogoCredits}>
+        <img src={c2dh} alt="C2dh" />
+        <img src={unilu} alt="Unilu"  className='ms-2'/>
       </div>
     </div>
   )
