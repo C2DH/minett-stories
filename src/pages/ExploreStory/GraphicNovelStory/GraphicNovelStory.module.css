@@ -9,3 +9,9 @@
 .novel.flyLeft {
   transform: translateX(-100%);
 }
+
+.BlockControls{
+  height: 64px;
+  padding-left: 64px;
+  padding-right: 64px;
+}

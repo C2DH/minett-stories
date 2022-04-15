@@ -87,7 +87,7 @@ export default function ChaptersProgressBar({
               style={{ position: 'absolute', left: 0 }}
               className="w-100 d-flex justify-content-center cursor-pointer"
             >
-              <div className={`text-color-story-${storyType}`}>
+              <div className={`text-color-story-${storyType} d-flex align-items-center flex-column`}>
                 <span className='d-none d-md-block'>Go deeper (10 min.)</span>
                 <ArrowDown
                   className="ms-0 ms-md-2"
