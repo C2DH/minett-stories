@@ -78,6 +78,8 @@ export default function GraphicNovelStory({ story }) {
 
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
 
+  console.log(story.data.chapters)
+
   let selectedClass = ''
   if (animation === 'enter-next') {
     selectedClass = styles.flyRight
@@ -101,6 +103,8 @@ export default function GraphicNovelStory({ story }) {
       window.scrollTo({ top: 200 })
     }, 150)
   }, [])
+
+  console.log(selectedChapter)
 
   return (
     <div className="w-100 h-100 d-flex flex-column">
@@ -165,29 +169,32 @@ export default function GraphicNovelStory({ story }) {
         </div>
         <div style={{ flex: 1 }} className="d-flex flex-column">
           <div className="w-100 d-flex" style={{ height: 8 }}>
-            {/* {story.chapters.map((chapter, i) => (
+            {story.data.chapters.slice(0, -1).map((chapter, i) => (
               <Fragment key={chapter.id}>
                 {i !== 0 && (
                   <div className="bg-white h-100" style={{ width: 20 }} />
                 )}
-                <MediaProgressLine
-                  storyType={storyType}
-                  index={i}
-                  onSeek={onSeek}
-                  played={i === index ? played : 0}
-                />
+                <div
+                  onClick={() => setChapterIndex(i)}
+                  className="w-100 h-100 d-flex cursor-pointer"
+                  style={{
+                    backgroundColor: `var(--opacity-color-story-graphic-novel)`,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: chapter.id === selectedChapter.id ? `${(1 * 100).toFixed(4)}%` : 0,
+                      backgroundColor: `var(--color-story-graphic-novel)`,
+                    }}
+                  />
+                </div>
               </Fragment>
-            ))} */}
+            ))}
           </div>
           <div
             className="w-100 d-flex align-items-center text-cadet-blue position-relative"
             style={{ flex: 1 }}
           >
-            <span className="text-cadet-blue">
-              {/* {fromSecondsToProgressStr(playedSeconds)}
-              {'/'}
-              {fromSecondsToProgressStr(duration)} */}
-            </span>
             <span className="text-cadet-blue ms-3 d-none d-md-block">
               {selectedChapter.data.title}
             </span>
@@ -197,7 +204,9 @@ export default function GraphicNovelStory({ story }) {
                 style={{ position: 'absolute', left: 0 }}
                 className="w-100 d-flex justify-content-center cursor-pointer"
               >
-                <div className={`text-color-story-graphic-novel d-flex flex-column align-items-center`}>
+                <div
+                  className={`text-color-story-graphic-novel d-flex flex-column align-items-center`}
+                >
                   <span className="d-none d-md-block">Go deeper (10 min.)</span>
                   <ArrowDown
                     className="ms-0"
@@ -213,7 +222,7 @@ export default function GraphicNovelStory({ story }) {
             className={'btn-circle text-white bg-dark-gray cursor-pointer me-2'}
             disabled={chapterIndex <= 0}
             onClick={() => {
-              if (!animation) {
+              if (!animation && chapterIndex > 0) {
                 setChapterIndex((i) => i - 1)
                 setAnimation('enter-prev')
               }
@@ -225,7 +234,7 @@ export default function GraphicNovelStory({ story }) {
             className={'btn-circle text-white bg-dark-gray cursor-pointer'}
             disabled={chapterIndex >= novelChapters.length - 1}
             onClick={() => {
-              if (!animation) {
+              if (!animation && chapterIndex < novelChapters.length - 1) {
                 setChapterIndex((i) => i + 1)
                 setAnimation('enter-next')
               }
