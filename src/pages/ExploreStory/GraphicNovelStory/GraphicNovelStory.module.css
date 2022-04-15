@@ -1,0 +1,11 @@
+.novel {
+  transition: all 1.5s ease-in;
+}
+
+.novel.flyRight {
+  transform: translateX(100%);
+}
+
+.novel.flyLeft {
+  transform: translateX(-100%);
+}

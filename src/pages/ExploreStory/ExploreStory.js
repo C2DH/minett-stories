@@ -2,6 +2,7 @@ import { useStoryWithChapters } from '@c2dh/react-miller'
 import { useParams } from 'react-router-dom'
 import { getStoryType } from '../../utils'
 import AudioStory from './AudioStory'
+import GraphicNovelStory from './GraphicNovelStory'
 import InteractiveVideoStory from './InteractiveVideoStory'
 import VideoStory from './VideoStory'
 
@@ -19,6 +20,8 @@ export default function ExploreStory() {
       return <VideoStory {...passProps} />
     case 'audio':
       return <AudioStory {...passProps} />
+    case 'graphic-novel':
+      return <GraphicNovelStory {...passProps} />
     default:
       console.warn('Inalid story type', type)
       return null
