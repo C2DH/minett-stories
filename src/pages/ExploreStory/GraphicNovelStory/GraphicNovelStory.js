@@ -1,4 +1,8 @@
-import { useMemo, useRef, useState } from 'react'
+import { useCallback, useMemo, useRef, useState } from 'react'
+import { ArrowLeft } from 'react-feather'
+import LangLink from '../../../components/LangLink'
+import VisualModule from '../../../components/VisualModule'
+import BlockControlsNovel from './BlockControlsNovel'
 import styles from './GraphicNovelStory.module.css'
 
 function GraphicNoveModuleGallery({ millerModule }) {
@@ -20,7 +24,7 @@ function GraphicNoveModuleGallery({ millerModule }) {
 function GraphicNoveModuleText({ millerModule }) {
   return (
     <div className="h-100 border mx-4">
-      <div className='h-100 bg-danger' style={{ width: 600 }}>
+      <div className="h-100 bg-danger" style={{ width: 600 }}>
         HELLO TEXT!
       </div>
     </div>
@@ -73,6 +77,8 @@ export default function GraphicNovelStory({ story }) {
   const selectedChapter = novelChapters[selectedChapterIndex]
   const enteringChapter = animation ? novelChapters[chapterIndex] : null
 
+  const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
+
   let selectedClass = ''
   if (animation === 'enter-next') {
     selectedClass = styles.flyRight
@@ -89,78 +95,79 @@ export default function GraphicNovelStory({ story }) {
 
   const containerRef = useRef()
 
-  return (
-    <div className="w-100 h-100 d-flex flex-column">
-      <div className="flex-1" style={{ overflow: 'hidden' }}>
-        <div className="h-100 w-100">
-          {(!animation || !animation.startsWith('end-')) && (
-            <div
-              key={selectedChapter.id}
-              ref={containerRef}
-              className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${selectedClass}`}
-              style={{ overflowY: 'auto' }}
-              onTransitionEnd={() => {
-                setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
-              }}
-            >
-              <GraphicNovelChapter chapter={selectedChapter} />
-            </div>
-          )}
+  const [goDeeper, setGoDeeper] = useState(false)
+  const onGoDeeper = useCallback(() => {
+    setGoDeeper(true)
+    setTimeout(() => {
+      window.scrollTo({ top: 200 })
+    }, 150)
+  }, [])
 
-          {enteringChapter && (
-            <div
-              key={enteringChapter.id}
-              className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
-              style={{ overflowY: 'auto' }}
-              onTransitionEnd={() => setAnimation(null)}
-            >
-              <GraphicNovelChapter chapter={enteringChapter} />
-            </div>
-          )}
+  console.log(selectedChapter)
+
+  return (
+    <>
+      <div className="w-100 h-100 d-flex flex-column">
+        <LangLink
+          style={{
+            position: 'absolute',
+            top: 20,
+            left: 20,
+            backgroundColor: 'var(--dark-grey)',
+          }}
+          to={`/story/${story.slug}`}
+          className={'btn-circle cursor-pointer no-link'}
+        >
+          <ArrowLeft />
+        </LangLink>
+        <div className="flex-1" style={{ overflow: 'hidden' }}>
+          <div className="h-100 w-100">
+            {(!animation || !animation.startsWith('end-')) && (
+              <div
+                key={selectedChapter.id}
+                ref={containerRef}
+                className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${selectedClass}`}
+                style={{ overflowY: 'auto' }}
+                onTransitionEnd={() => {
+                  setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
+                }}
+              >
+                <GraphicNovelChapter chapter={selectedChapter} />
+              </div>
+            )}
+
+            {enteringChapter && (
+              <div
+                key={enteringChapter.id}
+                className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
+                style={{ overflowY: 'auto' }}
+                onTransitionEnd={() => setAnimation(null)}
+              >
+                <GraphicNovelChapter chapter={enteringChapter} />
+              </div>
+            )}
+          </div>
         </div>
+        <BlockControlsNovel
+          containerRef={containerRef}
+          story={story}
+          selectedChapter={selectedChapter}
+          setAnimation={setAnimation}
+          animation={animation}
+          novelChapters={novelChapters}
+          chapterIndex={chapterIndex}
+          goDeeper={goDeeper}
+          onGoDeeper={onGoDeeper}
+          setChapterIndex={setChapterIndex}
+        />
       </div>
-      <div
-        style={{ height: 50 }}
-        className="bg-secondary d-flex align-items-center justify-content-center"
-      >
-        <button
-          onClick={() => {
-            const element = containerRef.current
-            if (element) {
-              const { width } = element.getBoundingClientRect()
-              element.scroll({
-                left: element.scrollLeft + width / 2,
-                behavior: 'smooth',
-              })
-              console.log({ element })
-            }
-          }}
-        >
-          {'~>'}
-        </button>
-        <button
-          disabled={chapterIndex <= 0}
-          onClick={() => {
-            if (!animation) {
-              setChapterIndex((i) => i - 1)
-              setAnimation('enter-prev')
-            }
-          }}
-        >
-          {'<<'}
-        </button>
-        <button
-          disabled={chapterIndex >= novelChapters.length - 1}
-          onClick={() => {
-            if (!animation) {
-              setChapterIndex((i) => i + 1)
-              setAnimation('enter-next')
-            }
-          }}
-        >
-          {'>>'}
-        </button>
-      </div>
-    </div>
+      {goDeeper && (
+        <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
+          {longScrollStory.contents.modules.map((millerModule, i) => (
+            <VisualModule key={i} millerModule={millerModule} />
+          ))}
+        </div>
+      )}
+    </>
   )
 }

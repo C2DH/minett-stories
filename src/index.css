@@ -1,6 +1,7 @@
 :root {
   /*** COLORS ***/
   --sienna: #b58b50;
+  --sienna-opacity: rgb(181,139,80, 0.4);
   --black: #2e2e2e;
   --cadet-blue: #7a8988;
   --brick: #9e5646;
@@ -26,6 +27,7 @@
   --opacity-color-story-interactive-video: var(--orange-opacity);
   --color-story-audio: var(--brick);
   --opacity-color-story-audio: var(--brick-opacity);
+  --opacity-color-story-graphic-novel: var(--sienna-opacity);
 }
 
 body,
@@ -298,6 +300,11 @@ blockquote {
 
 .HomeMinettText:hover span {
   animation-play-state: paused;
+}
+
+.ControlDisabled{
+  pointer-events: none;
+  opacity: 0.4;
 }
 
 @keyframes breathe {
