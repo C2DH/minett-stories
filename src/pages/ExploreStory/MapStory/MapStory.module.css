@@ -1,6 +1,6 @@
 .marker {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   color: #fff;
   background: white;
   border: 5px solid var(--orange);
@@ -9,7 +9,13 @@
 }
 
 .marker.selected {
-  background: red;
+  width: 55px;
+  height: 55px;
+  color: #fff;
+  background: white;
+  border: 10px solid var(--orange);
+  border-radius: 50%;
+  box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.1);
 }
 
 .clusterMarker {
@@ -23,6 +29,7 @@
 
 .BlockInfo {
   padding: 24px;
+  overflow: auto;
 }
 
 .TextContent {
@@ -36,4 +43,47 @@
   font-size: 32px;
   line-height: 38px;
   font-family: var(--font-pp-neue-montreal);
+}
+
+.Year {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+  font-family: var(--font-pp-neue-montreal);
+  color: var(--cadet-blue);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.Description {
+  font-size: 16px;
+  line-height: 24px;
+  font-family: var(--font-sentient-regular);
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.ButtonDocument {
+  border-radius: 40px;
+  background-color: var(--cadet-blue);
+  width: max-content;
+  margin-top: 20px;
+  padding: 8px 24px;
+}
+
+.TitlePopup {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 24px;
+  color: var(--dark-grey);
+}
+
+.YearPopup {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--cadet-blue);
+  font-family: var(--font-pp-neue-montreal);
+  margin-top: 16px;
 }

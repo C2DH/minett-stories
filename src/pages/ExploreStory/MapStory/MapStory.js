@@ -19,22 +19,37 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => (
 function SideDocRelated({ docId }) {
   const [mainDoc] = useDocument(docId)
 
-  console.log(mainDoc.documents,'main')
+  const imageUrl =
+    mainDoc.data.resolutions?.thumbnail.url ??
+    mainDoc.snapshot ??
+    mainDoc.attachment
 
   return (
     <>
       {mainDoc.documents.map((doc) => (
-        <div key={doc.id}>{doc.data.title}</div>
+        <div className="border-bottom mt-2 pb-2">
+          <h4 className={styles.Title}>{doc.data.title}</h4>
+          <img src={imageUrl} alt={doc.data.title} />
+          <div className={styles.Year}>{doc.data.year}</div>
+          <div className={styles.Description}>{doc.data.description}</div>
+          <LangLink className="no-link" to={`/document/${doc.id}`}>
+            <div className="d-flex justify-content-end">
+              <div className={styles.ButtonDocument}>TAKE ME THERE</div>
+            </div>
+          </LangLink>
+        </div>
       ))}
     </>
   )
 }
 
 function SideDoc({ doc, onClose }) {
-  console.log(doc)
+  const imageUrl =
+    doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
+  console.log(imageUrl)
   return (
     <div>
-      <div className='d-flex justify-content-end'>
+      <div className="d-flex justify-content-end">
         <div
           style={{ backgroundColor: 'var(--dark-grey)' }}
           className="btn-circle cursor-pointer"
@@ -44,8 +59,14 @@ function SideDoc({ doc, onClose }) {
         </div>
       </div>
       <h4 className={styles.Title}>{doc.data.title}</h4>
-      <img src={doc.attachmet} alt="Da Doc" />
-      <div>{doc.document_id}</div>
+      <img src={imageUrl} alt={doc.data.title} />
+      <div className={styles.Year}>{doc.data.year}</div>
+      <div className={styles.Description}>{doc.data.description}</div>
+      <LangLink className="no-link" to={`/document/${doc.document_id}`}>
+        <div className="d-flex justify-content-end cursor-pointer">
+          <div className={styles.ButtonDocument}>TAKE ME THERE</div>
+        </div>
+      </LangLink>
       <Suspense
         fallback={
           <div className="text-center py-2">
@@ -170,16 +191,19 @@ export default function MapStory({ story }) {
             </Cluster>
             {hoverDoc && (
               <Popup
+                maxWidth="310"
                 longitude={+hoverDoc.data.coordinates.geometry.coordinates[1]}
                 latitude={+hoverDoc.data.coordinates.geometry.coordinates[0]}
                 closeButton={false}
                 closeOnClick={false}
                 anchor="right"
                 offset={{
-                  right: [-10, 0],
+                  right: [selectedDoc && selectedDoc.id === hoverDoc.id ? -30 : -10, 0],
                 }}
               >
-                <div className="text-black">{hoverDoc.data.title}</div>
+                <img src={hoverDoc.attachmet} alt={hoverDoc.data.title} />
+                <div className={styles.TitlePopup}>{hoverDoc.data.title}</div>
+                <div className={styles.YearPopup}>{hoverDoc.data.year}</div>
               </Popup>
             )}
           </MapGL>
