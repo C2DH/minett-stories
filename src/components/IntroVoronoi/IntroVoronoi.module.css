@@ -1,12 +1,10 @@
-.voronoiPath{
-    /* animation: displace 1s  both;     */
+/* .voronoiPath{
     transition: transform 1400ms ease-in;
 }
 .voronoiPath:hover{
-    /* animation: displace 1s  both;     */
     transform-origin: 50% 50%;
     transform: scale(1.1);
- 
+
 }
 
 @keyframes displace {
@@ -18,5 +16,5 @@
     }
     100% {
         transform: scale(1.1);
-    }    
-}
+    }
+} */

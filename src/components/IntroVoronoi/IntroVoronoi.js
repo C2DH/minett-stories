@@ -271,7 +271,7 @@ export default function IntroVoronoi({
                   controlPoints={controlPoints}
                   step={step}
                   progress={progress}
-                  onMouseEnter={() => setHoverIndex(i)}
+                  // onMouseEnter={() => setHoverIndex(i)}
                 ></VoronoiPath>
               )
             })}
