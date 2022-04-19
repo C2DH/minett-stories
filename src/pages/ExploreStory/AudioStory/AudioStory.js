@@ -1,9 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
-import VisualModule from '../../components/VisualModule'
-import ChaptersProgressBar from '../../components/ChaptersProgressBar'
-import LangLink from '../../components/LangLink'
-import { ArrowLeft } from 'react-feather'
+import VisualModule from '../../../components/VisualModule'
+import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
+import LangLink from '../../../components/LangLink'
+import { ArrowLeft, MoreVertical } from 'react-feather'
+import styles from './AudioStory.module.css'
+import spotify from './assets/spotify.png'
+import googlePodcast from './assets/google-podcast.png'
+import applePodcast from './assets/apple-podcast.png'
 
 export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -63,10 +67,15 @@ export default function AudioStory({ story }) {
     }, 150)
   }, [])
 
+  const [showPodcast, setShowPodcast] = useState(false)
+
   return (
     <>
       <div className="w-100 h-100 d-flex flex-column">
-        <div className="flex-1" style={{ overflow: 'hidden' }}>
+        <div
+          className="flex-1 position-relative"
+          style={{ overflow: 'hidden' }}
+        >
           <LangLink
             style={{
               zIndex: 20,
@@ -82,7 +91,7 @@ export default function AudioStory({ story }) {
           </LangLink>
           {backgroundDocImage && (
             <img
-              alt='Background'
+              alt="Background"
               className="h-100 w-100"
               style={{ objectFit: 'cover' }}
               src={backgroundDocImage}
@@ -103,6 +112,25 @@ export default function AudioStory({ story }) {
             playsinline
             config={{ file: { forceAudio: true } }}
           />
+          {showPodcast && (
+            <div className={styles.showPodcast}>
+              <div className={styles.TitlePopupPodcast}>
+                Listen To the podcast on your favourite podcast player:{' '}
+              </div>
+              <div className="text-center mt-4">
+                <img width={198} src={googlePodcast} alt="Google Podcast" />
+              </div>
+              <div className="text-center mt-4">
+                <img width={103} src={spotify} alt="Spotify Podcast" />
+              </div>
+              <div className="text-center mt-4">
+                <img width={108} src={applePodcast} alt="Apple Podcast" />
+              </div>
+              <div className='d-flex justify-content-center mt-4'>
+                <div className={styles.DownloadFile}>Download File</div>
+              </div>
+            </div>
+          )}
         </div>
         <ChaptersProgressBar
           storyType="audio"
@@ -119,6 +147,14 @@ export default function AudioStory({ story }) {
           toggleMuted={toggleMuted}
           goDeeper={goDeeper}
           onGoDeeper={onGoDeeper}
+          actions={
+            <div className="me-2 cursor-pointer">
+              <MoreVertical
+                onClick={() => setShowPodcast(!showPodcast)}
+                color="var(--orange)"
+              />
+            </div>
+          }
         />
       </div>
       {goDeeper && (
