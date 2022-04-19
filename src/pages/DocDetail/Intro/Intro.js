@@ -8,7 +8,7 @@ import unilu from '../../../assets/unilu.png'
 import c2dh from '../../../assets/c2dh.png'
 
 export default function Intro() {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   return (
     <div className={styles.Home} style={{ backgroundImage: `url(${bgHome}` }}>
       <div className={styles.CoverBackground}></div>
@@ -109,10 +109,10 @@ export default function Intro() {
           </span>
         </h1>
         <h3 className={styles.subtitle}>
-          Remixing Industrial Pasts in the Digital Age
+          {t('remixing_industrial')}
         </h3>
         <LangLink className={styles.HomeStart} to="/stories">
-          S T A R T
+          {t('start')}
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
