@@ -5,6 +5,7 @@ import LangLink from '../../../components/LangLink'
 import VisualModule from '../../../components/VisualModule'
 import BlockControlsNovel from './BlockControlsNovel'
 import styles from './GraphicNovelStory.module.css'
+import imageModalTip from './GraphicNovelTip.svg'
 
 function GraphicNoveModuleGallery({ millerModule }) {
   return (
@@ -137,7 +138,11 @@ export default function GraphicNovelStory({ story }) {
 
   return (
     <>
-      <AutoTipModal />
+      <AutoTipModal
+        type="graphicNovel"
+        text={'Scroll horizontally to read the graphic novel or use the arrows'}
+        imageSource={imageModalTip}
+      />
       <div className="w-100 h-100 d-flex flex-column">
         <LangLink
           style={{

@@ -1,13 +1,15 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
-import { fromProgressStrToSeconds } from '../../utils'
-import InteractiveGrid from '../../components/InteractiveGrid'
-import LangLink from '../../components/LangLink'
-import DocLink from '../../components/DocLink'
-import VisualModule from '../../components/VisualModule'
-import ChaptersProgressBar from '../../components/ChaptersProgressBar'
+import { fromProgressStrToSeconds } from '../../../utils'
+import InteractiveGrid from '../../../components/InteractiveGrid'
+import LangLink from '../../../components/LangLink'
+import DocLink from '../../../components/DocLink'
+import VisualModule from '../../../components/VisualModule'
+import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import { ArrowLeft } from 'react-feather'
+import imageModalTip from './VideoTip.svg'
+import AutoTipModal from '../../../components/AutoTipModal'
 
 function objInTime(obj, seconds) {
   return (
@@ -96,6 +98,11 @@ export default function InteractiveVideoStory({ story }) {
 
   return (
     <>
+      <AutoTipModal
+        type="interactiveVideo"
+        text={'Move the white circle to interact with the interactive documentary.'}
+        imageSource={imageModalTip}
+      />
       <div className="w-100 h-100 d-flex flex-column">
         <InteractiveGrid
           topLeft={
