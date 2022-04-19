@@ -1,16 +1,15 @@
-import { useState, useMemo, useEffect, useCallback } from 'react'
-import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
-import { useComponentSize } from 'react-use-size'
-import { line, curveBasisClosed, curveBumpX, curveNatural } from 'd3-shape'
-import { Delaunay } from 'd3-delaunay'
-import random from 'lodash/random'
-import styles from './IntroVoronoi.module.css'
-import classNames from 'classnames'
 import booleanIntesects from '@turf/boolean-intersects'
-import { polygon } from '@turf/helpers'
 import centroid from '@turf/centroid'
+import { polygon } from '@turf/helpers'
+import { Delaunay } from 'd3-delaunay'
+import { curveBasisClosed, line } from 'd3-shape'
 import clipper from 'js-clipper'
-
+import random from 'lodash/random'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useComponentSize } from 'react-use-size'
+import { getStoryType } from '../../utils'
+import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
+import styles from './IntroVoronoi.module.css'
 
 const cornerRadius = 0.5
 const cleanCornerRadius = 12
@@ -34,67 +33,97 @@ function cleanPoints(points) {
   ).map((d) => [d.X, d.Y])
 }
 
-
 function resample(points) {
-  let i = -1;
-  let n = points.length;
-  let p0 = points[n - 1];
-  let x0 = p0[0];
-  let y0 = p0[1];
-  let p1, x1, y1;
-  let points2 = [];
+  let i = -1
+  let n = points.length
+  let p0 = points[n - 1]
+  let x0 = p0[0]
+  let y0 = p0[1]
+  let p1, x1, y1
+  let points2 = []
 
   while (++i < n) {
-    p1 = points[i];
-      x1 = p1[0];
-      y1 = p1[1];
-    
-      let finalRadius = 0;
-    
-      if (isCornerRadiusAbsolute) {
-          let distance = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2);
-          let distFromPoint = cornerRadius / distance;
-          finalRadius = distFromPoint >= 0.5 ? 0.5 : distFromPoint;
-      }
-      else {
-        finalRadius = cornerRadius;
-      }
-      
-      points2.push(
-          [x0 + (x1 - x0) * finalRadius,
-           y0 + (y1 - y0) * finalRadius],
-          [x0 + (x1 - x0) * (1 - finalRadius),
-           y0 + (y1 - y0) * (1 - finalRadius)],
-          p1
-      );
-    
-      p0 = p1;
-      x0 = x1;
-      y0 = y1;
+    p1 = points[i]
+    x1 = p1[0]
+    y1 = p1[1]
+
+    let finalRadius = 0
+
+    if (isCornerRadiusAbsolute) {
+      let distance = Math.sqrt((x1 - x0) ** 2 + (y1 - y0) ** 2)
+      let distFromPoint = cornerRadius / distance
+      finalRadius = distFromPoint >= 0.5 ? 0.5 : distFromPoint
+    } else {
+      finalRadius = cornerRadius
+    }
+
+    points2.push(
+      [x0 + (x1 - x0) * finalRadius, y0 + (y1 - y0) * finalRadius],
+      [x0 + (x1 - x0) * (1 - finalRadius), y0 + (y1 - y0) * (1 - finalRadius)],
+      p1
+    )
+
+    p0 = p1
+    x0 = x1
+    y0 = y1
   }
-  return points2;
+  return points2
 }
 
-
-function getOpacity(cellStep, step, progress){
-
+function getOpacity(cellStep, step, progress) {
   // console.log("c", cellStep, step, progress)
-  if(step >= cellStep){
+  if (step >= cellStep) {
     return 1
   }
 
-  if(cellStep === step +1){
+  if (cellStep === step + 1) {
     return progress
   }
 
   return 0
 }
 
-export default function IntroVoronoi({ stories, controlPoints = [], step, progress }) {
+function VoronoiPath({
+  index,
+  controlPoints,
+  cells,
+  cellsClassification,
+  step,
+  progress,
+  onMouseEnter,
+}) {
+  useEffect(() => {
+    console.log('mount', index)
+  }, [])
+  return (
+    <path
+      key={index}
+      d={xline(cells[index])}
+      // onMouseLeave={() => setindex(null)}
+      // fill={`red`}
+      stroke={'#000'}
+      style={{
+        strokeWidth: cellStrokeWidth,
+        opacity: controlPoints.length
+          ? getOpacity(cellsClassification[index], step, progress)
+          : 1,
+      }}
+      fill={`url(#pic-${index})`}
+      className={styles.voronoiPath}
+      onMouseEnter={onMouseEnter}
+    ></path>
+  )
+}
+
+export default function IntroVoronoi({
+  stories,
+  controlPoints = [],
+  step,
+  progress,
+}) {
   const [cells, setCells] = useState([])
   const { ref, height, width } = useComponentSize()
   const [refPoints, setRefPoints] = useState()
-
 
   useEffect(() => {
     const existinPointsStr = window.sessionStorage.getItem('voronoiIntroPoints')
@@ -114,6 +143,8 @@ export default function IntroVoronoi({ stories, controlPoints = [], step, progre
   const points = useMemo(() => {
     return refPoints ? repojectPoints(refPoints, width, height) : []
   }, [height, refPoints, width])
+
+  const [hoverIndex, setHoverIndex] = useState(null)
 
   useEffect(() => {
     const delaunay = Delaunay.from(points)
@@ -153,8 +184,6 @@ export default function IntroVoronoi({ stories, controlPoints = [], step, progre
         }
       }
       return controlAreas.length
-
-      return random(1, controlPoints.length + 1)
     },
     [controlPoints.length, controlAreas]
   )
@@ -181,7 +210,7 @@ export default function IntroVoronoi({ stories, controlPoints = [], step, progre
         >
           <defs>
             {stories.map((story, i) => {
-              const cover = story.covers[0]
+              const cover = story.covers[0].data.resolutions.preview.url
               return (
                 <pattern
                   key={i}
@@ -191,39 +220,62 @@ export default function IntroVoronoi({ stories, controlPoints = [], step, progre
                   height="100%"
                 >
                   <image
-                    href={cover.attachment}
-                    width="80%"
-                    height="80%"
+                    href={cover}
+                    width="100%"
+                    height="100%"
+                    x="-50%"
+                    y="-50%"
                     preserveAspectRatio="xMidYMid slice"
+                    style={{ filter: 'grayscale(1)' }}
                   />
+                  <rect
+                    width="100%"
+                    height="100%"
+                    fill={`var(--color-story-${getStoryType(story)})`}
+                    style={{
+                      mixBlendMode: 'overlay',
+                    }}
+                  ></rect>
                 </pattern>
               )
             })}
           </defs>
-          {cells.map((cell, i) => {
-            return (
-              <path
-                key={i}
-                d={xline(cell)}
-                fill={`red`}
-                stroke={'#000'}
-                style={{ strokeWidth: cellStrokeWidth, opacity:controlPoints.length ? getOpacity(cellsClassification[i], step, progress) : 1 }}
-                // fill={`url(#pic-${i})`}
-                // className={classNames(styles.invisible, {
-                //   [styles.visible]:
-                //     !controlPoints.length || cellsClassification[i] <= step + 1,
-                // })}
-              ></path>
-            )
-          })}
-          {/* {points.map((p, i) => (
-            <circle
-                key={i}
-                cx={p[0]}
-                cy={p[1]}
-                r={10}
-            ></circle>
-            ))} */}
+          <g>
+            {cells.concat([null]).map((cell, i) => {
+              if (cell === null) {
+                if (hoverIndex !== null) {
+                  return (
+                    <VoronoiPath
+                      key={hoverIndex}
+                      index={hoverIndex}
+                      cells={cells}
+                      cellsClassification={cellsClassification}
+                      controlPoints={controlPoints}
+                      step={step}
+                      progress={progress}
+                    ></VoronoiPath>
+                  )
+                } else {
+                  return null
+                }
+              }
+              if (hoverIndex === i) {
+                return null
+              }
+              return (
+                <VoronoiPath
+                  key={i}
+                  index={i}
+                  cells={cells}
+                  cellsClassification={cellsClassification}
+                  controlPoints={controlPoints}
+                  step={step}
+                  progress={progress}
+                  onMouseEnter={() => setHoverIndex(i)}
+                ></VoronoiPath>
+              )
+            })}
+          </g>
         </svg>
       )}
     </div>
