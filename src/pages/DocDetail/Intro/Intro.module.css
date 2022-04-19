@@ -140,9 +140,9 @@
   animation-delay: var(--delay);
 }
 
-.HomeMinettText:hover span {
+/* .HomeMinettText:hover span {
   animation-play-state: paused;
-}
+} */
 
 @keyframes breathe {
   0% {
