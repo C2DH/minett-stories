@@ -46,7 +46,7 @@ function SideDocRelated({ docId }) {
 function SideDoc({ doc, onClose }) {
   const imageUrl =
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
-  console.log(imageUrl)
+  console.log('DD', doc)
   return (
     <div>
       <div className="d-flex justify-content-end">
@@ -102,7 +102,7 @@ export default function MapStory({ story }) {
         // FIXME: THIS IS AN HACK 2 TEST RELATED STUFF!!!
         .map((obj) => ({
           ...obj,
-          document: { ...obj.document, document_id: 99 },
+          document: { ...obj.document, attachment: '/media/image/snapshots/ch14-33-Portraet-Batty-Weber-72-0-260-0.jpg', document_id: 99 },
         }))
     )
   }, [millerModule])
@@ -191,7 +191,7 @@ export default function MapStory({ story }) {
             </Cluster>
             {hoverDoc && (
               <Popup
-                maxWidth="310"
+                // maxWidth="310"
                 longitude={+hoverDoc.data.coordinates.geometry.coordinates[1]}
                 latitude={+hoverDoc.data.coordinates.geometry.coordinates[0]}
                 closeButton={false}
@@ -201,7 +201,7 @@ export default function MapStory({ story }) {
                   right: [selectedDoc && selectedDoc.id === hoverDoc.id ? -30 : -10, 0],
                 }}
               >
-                <img src={hoverDoc.attachmet} alt={hoverDoc.data.title} />
+                <img className='img-fluid' src={hoverDoc.attachment} alt={hoverDoc.data.title} />
                 <div className={styles.TitlePopup}>{hoverDoc.data.title}</div>
                 <div className={styles.YearPopup}>{hoverDoc.data.year}</div>
               </Popup>

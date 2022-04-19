@@ -164,7 +164,7 @@
   .BlockLanguages {
     display: flex;
     position: absolute;
-    right: px;
+    right: 10px;
     top: 9px;
     z-index: 11;
   }
