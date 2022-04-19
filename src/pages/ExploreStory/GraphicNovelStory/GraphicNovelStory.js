@@ -11,7 +11,6 @@ function GraphicNoveModuleGallery({ millerModule }) {
       {millerModule.objects.map((obj) => (
         <img
           className="h-100"
-          // src={obj.document.data.resolutions.preview.url}
           src={obj.document.attachment}
           key={obj.id}
           alt={obj.document.data.title}
@@ -22,11 +21,39 @@ function GraphicNoveModuleGallery({ millerModule }) {
 }
 
 function GraphicNoveModuleText({ millerModule }) {
+  console.log(millerModule)
   return (
-    <div className="h-100 border mx-4">
-      <div className="h-100 bg-danger" style={{ width: 600 }}>
-        HELLO TEXT!
+    <div className="h-100 mx-4">
+      <div
+        className="h-100 d-flex align-items-center justify-content-center text-font-abc"
+        style={{
+          background: millerModule.background.color,
+          width: 530,
+          borderRadius: 100,
+          color: millerModule.text.color,
+        }}
+      >
+        {millerModule.text.content}
       </div>
+    </div>
+  )
+}
+
+function GraphicNoveModuleImage({ millerModule }) {
+  const size =
+    millerModule.size === 'small'
+      ? '50vh'
+      : millerModule.size === 'medium'
+      ? '70vh'
+      : 'calc(100vh - 112px)'
+  return (
+    <div className="mx-4">
+      <img
+        src={millerModule.document.attachment}
+        style={{ height: size }}
+        className={styles.imgNovel}
+        alt={millerModule.title}
+      />
     </div>
   )
 }
@@ -35,6 +62,8 @@ function GraphicNovelModule({ millerModule }) {
   switch (millerModule.module) {
     case 'text':
       return <GraphicNoveModuleText millerModule={millerModule} />
+    case 'object':
+      return <GraphicNoveModuleImage millerModule={millerModule} />
     case 'gallery':
       return <GraphicNoveModuleGallery millerModule={millerModule} />
     default:

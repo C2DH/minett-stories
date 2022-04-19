@@ -307,6 +307,11 @@ blockquote {
   opacity: 0.4;
 }
 
+.text-font-abc{
+  font-family: 'ABC Maxi Round Variable';
+  font-weight: 400;
+}
+
 @keyframes breathe {
   0% {
     font-variation-settings: 'wght' 200;
