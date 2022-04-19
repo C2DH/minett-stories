@@ -127,12 +127,15 @@ export default function MapStory({ story }) {
   return (
     <>
       <div className="h-100 w-100 d-flex flex-column">
-        <div className="flex-1 d-flex" style={{ overflow: 'hidden' }}>
-          <div className={`${styles.BlockInfo} h-100`}>
+        <div
+          className="flex-1 d-flex flex-column flex-md-row"
+          style={{ overflow: 'hidden' }}
+        >
+          <div>
             {selectedDoc ? (
               <SideDoc doc={selectedDoc} onClose={handleSideDocClose} />
             ) : (
-              <div>
+              <div className={`${styles.BlockInfo}`}>
                 <LangLink
                   style={{
                     backgroundColor: 'var(--dark-grey)',
