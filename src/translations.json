@@ -33,7 +33,9 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file"
     }
   },
   "en_GB": {
@@ -70,7 +72,9 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file"
     }
   },
   "de_DE": {
@@ -107,7 +111,9 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file"
     }
   }
 }
