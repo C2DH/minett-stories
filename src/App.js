@@ -11,7 +11,6 @@ import { useTranslation } from 'react-i18next'
 import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
 import About from './pages/About'
-import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
 import NavigationWrapper from './components/NavigationWrapper'
@@ -24,6 +23,7 @@ import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
 import ExploreStory from './pages/ExploreStory'
 import ErrorBoundary from './ErrorBoundary'
+import Intro from './pages/DocDetail/Intro'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -78,7 +78,7 @@ function LangRoutes() {
             index
             element={
               <Suspense fallback={<Loader />}>
-                <Home />
+                <Intro />
               </Suspense>
             }
           />
@@ -87,7 +87,7 @@ function LangRoutes() {
               index
               element={
                 <Suspense fallback={<Loader />}>
-                  <Home />
+                  <Intro />
                 </Suspense>
               }
             />

@@ -4,6 +4,7 @@ import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
 import { X } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import classNames from 'classnames'
 
 function BlockInfo({ doc }) {
   const { t } = useTranslation()
@@ -62,7 +63,12 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
     <div
       className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
     >
-      <div className="row max-h-100">
+      <div
+        className={classNames('row', {
+          'max-h-100': !isModal,
+          'h-100': isModal
+        })}
+      >
         <div className={'order-1 order-md-0 col-md-4'}>
           <BlockInfo doc={doc} />
         </div>

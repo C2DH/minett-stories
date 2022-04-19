@@ -108,8 +108,10 @@
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
-  .InfoPdfContainer {
-    height: 100%;
+  /* .InfoPdfContainer {
+    height: 6%;
+    padding-top: 40px;
+    max-height: 60%;
   }
 
   .PdfContainer {
@@ -119,16 +121,21 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
+  } */
+
+  .InfoPdfContainer {
+    height: 60vh;
+    max-height: 60vh;
   }
 
   .PdfControlsModal {
     position: relative;
-    bottom: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
     flex-shrink: 0;
+    margin-top: 30px;
   }
 
   .PdfControls {
