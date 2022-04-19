@@ -1,6 +1,6 @@
 import { useDocument } from '@c2dh/react-miller'
 import classNames from 'classnames'
-import MapGL, { Marker } from '@urbica/react-map-gl'
+import MapGL, { Marker, Popup } from '@urbica/react-map-gl'
 import Cluster from '@urbica/react-map-gl-cluster'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import { Suspense, useCallback, useMemo, useState } from 'react'
@@ -73,6 +73,8 @@ export default function MapStory({ story }) {
   const [selectedDoc, setSelectedDoc] = useState(null)
   const handleSideDocClose = useCallback(() => setSelectedDoc(null), [])
 
+  const [hoverDoc, setHoverDoc] = useState(null)
+
   return (
     <div className="h-100 w-100 d-flex flex-column">
       <div className="flex-1 d-flex" style={{ overflow: 'hidden' }}>
@@ -114,6 +116,12 @@ export default function MapStory({ story }) {
                   }
                 >
                   <div
+                    onMouseEnter={() => setHoverDoc(obj.document)}
+                    onMouseLeave={() =>
+                      setHoverDoc((hDoc) =>
+                        hDoc?.id === obj.document.id ? null : hDoc
+                      )
+                    }
                     className={classNames(styles.marker, {
                       [styles.selected]: isSelected,
                     })}
@@ -122,6 +130,20 @@ export default function MapStory({ story }) {
               )
             })}
           </Cluster>
+          {hoverDoc && (
+            <Popup
+              longitude={+hoverDoc.data.coordinates.geometry.coordinates[1]}
+              latitude={+hoverDoc.data.coordinates.geometry.coordinates[0]}
+              closeButton={false}
+              closeOnClick={false}
+              anchor="right"
+              offset={{
+                right: [-10, 0],
+              }}
+            >
+              <div className='text-black'>{hoverDoc.data.title}</div>
+            </Popup>
+          )}
         </MapGL>
       </div>
       <div className="bg-white text-black" style={{ height: 50 }}>
