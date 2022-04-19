@@ -22,7 +22,7 @@ export default function BlockControlsNovel({
 }) {
   return (
     <div className={`${styles.BlockControls} bg-white d-flex w-100`}>
-      <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
+      <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5 col-2">
         <SkipForward
           className="cursor-pointer"
           onClick={() => {
@@ -40,7 +40,7 @@ export default function BlockControlsNovel({
           fill="black"
         />
       </div>
-      <div style={{ flex: 1 }} className="d-flex flex-column">
+      <div style={{ flex: 1 }} className="d-flex flex-column col-8">
         <div className="w-100 d-flex" style={{ height: 8 }}>
           {story.data.chapters.slice(0, -1).map((chapter, i) => (
             <Fragment key={chapter.id}>
@@ -68,7 +68,7 @@ export default function BlockControlsNovel({
           ))}
         </div>
         <div
-          className="w-100 d-flex align-items-center text-cadet-blue position-relative"
+          className="w-100 d-flex align-items-center text-cadet-blue position-relative col-2"
           style={{ flex: 1 }}
         >
           <span className="text-cadet-blue ms-3 d-none d-md-block">

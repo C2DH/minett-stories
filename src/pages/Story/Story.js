@@ -8,7 +8,7 @@ import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
-import backgroundStoryLink from '../../assets/background-voronoi.svg'
+import backgroundStoryLink from '../../assets/ellipse-story.svg'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
 
