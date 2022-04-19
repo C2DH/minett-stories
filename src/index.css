@@ -97,6 +97,9 @@ a.no-link {
 
 /* Story Type Style */
 /* BG */
+.bg-site-black {
+  background-color: var(--black);
+}
 .bg-story-map {
   background-color: var(--color-story-map) !important;
 }
@@ -346,6 +349,6 @@ blockquote {
     font-size: 16px;
     line-height: 28px;
   }
-  
+
 
 }
