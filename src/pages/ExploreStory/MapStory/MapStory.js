@@ -1,22 +1,15 @@
 import { useDocument } from '@c2dh/react-miller'
+import classNames from 'classnames'
 import MapGL, { Marker } from '@urbica/react-map-gl'
 import Cluster from '@urbica/react-map-gl-cluster'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { Suspense, useMemo, useState } from 'react'
+import { Suspense, useCallback, useMemo, useState } from 'react'
 import { Spinner } from 'reactstrap'
-
-const style = {
-  width: '20px',
-  height: '20px',
-  color: '#fff',
-  background: '#1978c8',
-  borderRadius: '20px',
-  textAlign: 'center',
-}
+import styles from './MapStory.module.css'
 
 const ClusterMarker = ({ longitude, latitude, pointCount }) => (
   <Marker longitude={longitude} latitude={latitude}>
-    <div style={{ ...style, background: '#f28a25' }}>{pointCount}</div>
+    <div className={styles.clusterMarker}>{pointCount}</div>
   </Marker>
 )
 
@@ -32,12 +25,13 @@ function SideDocRelated({ docId }) {
   )
 }
 
-function SideDoc({ doc }) {
+function SideDoc({ doc, onClose }) {
   return (
     <div>
       <h4>{doc.data.title}</h4>
       <img src={doc.attachmet} alt="Da Doc" />
       <div>{doc.document_id}</div>
+      <button onClick={onClose}>C L O S E</button>
       <Suspense
         fallback={
           <div className="text-center py-2">
@@ -77,14 +71,14 @@ export default function MapStory({ story }) {
   }, [millerModule])
 
   const [selectedDoc, setSelectedDoc] = useState(null)
-  console.log('Map objects', mapObjects)
+  const handleSideDocClose = useCallback(() => setSelectedDoc(null), [])
 
   return (
     <div className="h-100 w-100 d-flex flex-column">
       <div className="flex-1 d-flex" style={{ overflow: 'hidden' }}>
         <div className="h-100" style={{ width: 400 }}>
           {selectedDoc ? (
-            <SideDoc doc={selectedDoc} />
+            <SideDoc doc={selectedDoc} onClose={handleSideDocClose} />
           ) : (
             <div>{millerModule.text.content}</div>
           )}
@@ -105,20 +99,28 @@ export default function MapStory({ story }) {
             nodeSize={64}
             component={ClusterMarker}
           >
-            {mapObjects.map((obj) => (
-              <Marker
-                onClick={() => setSelectedDoc(obj.document)}
-                key={obj.id}
-                longitude={
-                  +obj.document.data.coordinates.geometry.coordinates[1]
-                }
-                latitude={
-                  +obj.document.data.coordinates.geometry.coordinates[0]
-                }
-              >
-                <div style={style} />
-              </Marker>
-            ))}
+            {mapObjects.map((obj) => {
+              const isSelected = obj.document.id === selectedDoc?.id
+              const key = String(obj.id) + (isSelected ? ':s' : '')
+              return (
+                <Marker
+                  onClick={() => setSelectedDoc(obj.document)}
+                  key={key}
+                  longitude={
+                    +obj.document.data.coordinates.geometry.coordinates[1]
+                  }
+                  latitude={
+                    +obj.document.data.coordinates.geometry.coordinates[0]
+                  }
+                >
+                  <div
+                    className={classNames(styles.marker, {
+                      [styles.selected]: isSelected,
+                    })}
+                  />
+                </Marker>
+              )
+            })}
           </Cluster>
         </MapGL>
       </div>

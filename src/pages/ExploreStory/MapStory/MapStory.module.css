@@ -1,0 +1,21 @@
+.marker {
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background: blue;
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.marker.selected {
+  background: red;
+}
+
+.clusterMarker {
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  color: white;
+  background: #f28a25;
+  border-radius: 20px;
+}
