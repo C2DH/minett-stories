@@ -1,8 +1,22 @@
-.invisible {
-    transition: opacity 400ms ease-in-out;
-    opacity: 0;
+.voronoiPath{
+    /* animation: displace 1s  both;     */
+    transition: transform 1400ms ease-in;
+}
+.voronoiPath:hover{
+    /* animation: displace 1s  both;     */
+    transform-origin: 50% 50%;
+    transform: scale(1.1);
+ 
 }
 
-.visible {
-    opacity: 1;
+@keyframes displace {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1.1);
+    }    
 }
