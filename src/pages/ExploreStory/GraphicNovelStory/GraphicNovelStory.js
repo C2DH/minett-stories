@@ -42,16 +42,16 @@ function GraphicNoveModuleText({ millerModule }) {
 function GraphicNoveModuleImage({ millerModule }) {
   const size =
     millerModule.size === 'small'
-      ? '50vh'
+      ? '50%'
       : millerModule.size === 'medium'
-      ? '70vh'
-      : 'calc(100vh - 112px)'
+      ? '80%'
+      : '100%'
   return (
-    <div className="mx-4">
+    <div className="mx-4 h-100 d-flex align-items-center">
       <img
         src={millerModule.document.attachment}
         style={{ height: size }}
-        className={styles.imgNovel}
+        className={`${styles.imgNovel}`}
         alt={millerModule.title}
       />
     </div>
