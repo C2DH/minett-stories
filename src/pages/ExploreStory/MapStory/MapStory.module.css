@@ -30,6 +30,8 @@
 .BlockInfo {
   padding: 24px;
   overflow: auto;
+  height: 100%;
+  width: 400px;
 }
 
 .TextContent {
@@ -87,3 +89,17 @@
   font-family: var(--font-pp-neue-montreal);
   margin-top: 16px;
 }
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .BlockInfo {
+    padding: 24px;
+    overflow: auto;
+    height: max-content;
+    width: 100%;
+  }
+
+  .SideDoc{
+    width: 90%;
+  }
+}
+

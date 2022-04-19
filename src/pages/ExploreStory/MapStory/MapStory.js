@@ -46,9 +46,8 @@ function SideDocRelated({ docId }) {
 function SideDoc({ doc, onClose }) {
   const imageUrl =
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
-  console.log('DD', doc)
   return (
-    <div>
+    <div className={styles.SideDoc}>
       <div className="d-flex justify-content-end">
         <div
           style={{ backgroundColor: 'var(--dark-grey)' }}
@@ -102,7 +101,12 @@ export default function MapStory({ story }) {
         // FIXME: THIS IS AN HACK 2 TEST RELATED STUFF!!!
         .map((obj) => ({
           ...obj,
-          document: { ...obj.document, attachment: '/media/image/snapshots/ch14-33-Portraet-Batty-Weber-72-0-260-0.jpg', document_id: 99 },
+          document: {
+            ...obj.document,
+            attachment:
+              '/media/image/snapshots/ch14-33-Portraet-Batty-Weber-72-0-260-0.jpg',
+            document_id: 99,
+          },
         }))
     )
   }, [millerModule])
@@ -124,7 +128,7 @@ export default function MapStory({ story }) {
     <>
       <div className="h-100 w-100 d-flex flex-column">
         <div className="flex-1 d-flex" style={{ overflow: 'hidden' }}>
-          <div className={`${styles.BlockInfo} h-100`} style={{ width: 400 }}>
+          <div className={`${styles.BlockInfo} h-100`}>
             {selectedDoc ? (
               <SideDoc doc={selectedDoc} onClose={handleSideDocClose} />
             ) : (
@@ -198,10 +202,17 @@ export default function MapStory({ story }) {
                 closeOnClick={false}
                 anchor="right"
                 offset={{
-                  right: [selectedDoc && selectedDoc.id === hoverDoc.id ? -30 : -10, 0],
+                  right: [
+                    selectedDoc && selectedDoc.id === hoverDoc.id ? -30 : -10,
+                    0,
+                  ],
                 }}
               >
-                <img className='img-fluid' src={hoverDoc.attachment} alt={hoverDoc.data.title} />
+                <img
+                  className="img-fluid"
+                  src={hoverDoc.attachment}
+                  alt={hoverDoc.data.title}
+                />
                 <div className={styles.TitlePopup}>{hoverDoc.data.title}</div>
                 <div className={styles.YearPopup}>{hoverDoc.data.year}</div>
               </Popup>
