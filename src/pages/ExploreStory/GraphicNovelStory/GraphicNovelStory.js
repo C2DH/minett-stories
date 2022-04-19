@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
+import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
 import VisualModule from '../../../components/VisualModule'
 import BlockControlsNovel from './BlockControlsNovel'
@@ -136,6 +137,7 @@ export default function GraphicNovelStory({ story }) {
 
   return (
     <>
+      <AutoTipModal />
       <div className="w-100 h-100 d-flex flex-column">
         <LangLink
           style={{
