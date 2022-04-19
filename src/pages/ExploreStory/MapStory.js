@@ -1,7 +1,9 @@
+import { useDocument } from '@c2dh/react-miller'
 import MapGL, { Marker } from '@urbica/react-map-gl'
 import Cluster from '@urbica/react-map-gl-cluster'
 import 'mapbox-gl/dist/mapbox-gl.css'
-import { useMemo, useState } from 'react'
+import { Suspense, useMemo, useState } from 'react'
+import { Spinner } from 'reactstrap'
 
 const style = {
   width: '20px',
@@ -18,11 +20,33 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => (
   </Marker>
 )
 
+function SideDocRelated({ docId }) {
+  const [mainDoc] = useDocument(docId)
+
+  return (
+    <>
+      {mainDoc.documents.map((doc) => (
+        <div key={doc.id}>{doc.data.title}</div>
+      ))}
+    </>
+  )
+}
+
 function SideDoc({ doc }) {
   return (
     <div>
       <h4>{doc.data.title}</h4>
       <img src={doc.attachmet} alt="Da Doc" />
+      <div>{doc.document_id}</div>
+      <Suspense
+        fallback={
+          <div className="text-center py-2">
+            <Spinner color="white" />
+          </div>
+        }
+      >
+        <SideDocRelated docId={doc.document_id} />
+      </Suspense>
     </div>
   )
 }
@@ -39,12 +63,21 @@ export default function MapStory({ story }) {
   // NOTE: Ya as other modules this paths sucks...
   // But i am litle less scare cause we handle runtime erros
   const mapObjects = useMemo(() => {
-    return millerModule.map.objects.filter(
-      (o) => o.document.data.coordinates.geometry.coordinates.length === 2
+    return (
+      millerModule.map.objects
+        .filter(
+          (o) => o.document.data.coordinates.geometry.coordinates.length === 2
+        )
+        // FIXME: THIS IS AN HACK 2 TEST RELATED STUFF!!!
+        .map((obj) => ({
+          ...obj,
+          document: { ...obj.document, document_id: 99 },
+        }))
     )
   }, [millerModule])
 
   const [selectedDoc, setSelectedDoc] = useState(null)
+  console.log('Map objects', mapObjects)
 
   return (
     <div className="h-100 w-100 d-flex flex-column">
