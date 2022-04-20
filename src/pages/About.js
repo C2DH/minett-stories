@@ -7,7 +7,7 @@ export default function About() {
 
   return (
     <Layout>
-      <div className="container-fluid">
+      <div className="container-fluid padding-top-bar">
         <h1>{story.data.title}</h1>
         <ReactMarkdown linkTarget="_blank">{story.data.abstract}</ReactMarkdown>
       </div>

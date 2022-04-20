@@ -1,13 +1,33 @@
 :root {
   /*** COLORS ***/
   --sienna: #b58b50;
+  --sienna-opacity: rgb(181,139,80, 0.4);
   --black: #2e2e2e;
-  --cadet-blue: #7A8988;
-  --brick: #9E5646;
-  --orange: #BC6D3F;
+  --cadet-blue: #7a8988;
+  --brick: #9e5646;
+  --brick-opacity: rgb(158, 86, 70, 0.4);
+  --orange: #bc6d3f;
+  --orange-opacity: rgb(188, 109, 63, 0.4);
   --green: #798774;
   --light-grey: #dedede;
   --dark-grey: #383838;
+  --blacky-border: #424242;
+  --top-bar-height: 56px;
+  --font-sentient-regular: 'Sentient-Regular';
+  --font-pp-neue-montreal: 'PP Neue Montreal';
+  --font-abc-maxi-sharp: 'ABC Maxi Sharp';
+  --font-abc-maxi-round: 'ABC Maxi Round';
+  /* MAP STORY 2 COLORS */
+  --color-story-map: var(--green);
+  --color-story-graphic-novel: var(--sienna);
+  --color-story-article: var(--cadet-blue);
+  --color-story-video: var(--orange);
+  --opacity-color-story-video: var(--orange-opacity);
+  --color-story-interactive-video: var(--orange);
+  --opacity-color-story-interactive-video: var(--orange-opacity);
+  --color-story-audio: var(--brick);
+  --opacity-color-story-audio: var(--brick-opacity);
+  --opacity-color-story-graphic-novel: var(--sienna-opacity);
 }
 
 body,
@@ -19,6 +39,7 @@ html,
   text-rendering: optimizeLegibility;
   background-color: var(--black);
   color: white;
+  font-family: var(--font-pp-neue-montreal);
 }
 
 .cursor-pointer {
@@ -29,15 +50,271 @@ body.block-scroll {
   overflow: hidden;
 }
 
-.right-topbar{
+.right-topbar {
   right: 14px;
+  width: max-content;
 }
 
 .left-topbar {
   left: 14px;
 }
 
+.flex-1 {
+  flex: 1 1;
+}
+
+.padding-top-bar {
+  padding-top: var(--top-bar-height);
+}
+.margin-top-bar {
+  margin-top: var(--top-bar-height);
+}
+
 .max-h-100 {
   max-height: 100%;
   min-height: 100%;
+}
+
+.text-cadet-blue {
+  color: var(--cadet-blue);
+}
+
+.border-color-blacky {
+  border-color: var(--blacky-border) !important;
+}
+
+a.no-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*
+  TODO: This can be implement better or auto generated \w SASS but for now keep here
+*/
+.ps-6 {
+  padding-left: 3.75rem;
+}
+
+/* Story Type Style */
+/* BG */
+.bg-site-black {
+  background-color: var(--black);
+}
+.bg-story-map {
+  background-color: var(--color-story-map) !important;
+}
+.bg-story-graphic-novel {
+  background-color: var(--color-story-graphic-novel) !important;
+}
+.bg-story-article {
+  background-color: var(--color-story-article) !important;
+}
+.bg-story-video {
+  background-color: var(--color-story-video) !important;
+}
+.bg-story-interactive-video {
+  background-color: var(--color-story-interactive-video) !important;
+}
+.bg-story-audio {
+  background-color: var(--color-story-audio) !important;
+}
+/* COLOR */
+.text-color-story-map {
+  color: var(--color-story-map) !important;
+}
+.text-color-story-graphic-novel {
+  color: var(--color-story-graphic-novel) !important;
+}
+.text-color-story-article {
+  color: var(--color-story-article) !important;
+}
+.text-color-story-video {
+  color: var(--color-story-video) !important;
+}
+.text-color-story-interactive-video {
+  color: var(--color-story-interactive-video) !important;
+}
+.text-color-story-audio {
+  color: var(--color-story-audio) !important;
+}
+
+.width-fit-content {
+  width: fit-content;
+}
+
+.btn-circle {
+  width: 40px;
+  height: 40px;
+  padding: 6px 0px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-player-cover video {
+  object-fit: cover;
+}
+
+.switch-input {
+  width: 40px !important;
+  height: 18px !important;
+}
+
+.top-switch-stories {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.form-switch .form-check-input {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+.form-switch .form-check-input:focus {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+
+.form-switch .form-check-input:checked {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='black'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked {
+  background-color: white;
+  border: none;
+}
+
+.bg-light-gray {
+  background-color: var(--light-grey);
+}
+
+.text-black {
+  color: var(--black) !important;
+}
+
+.bg-dark-gray {
+  background-color: var(--dark-grey);
+}
+
+.text-object-story {
+  font-family: var(--font-sentient-regular);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 32px;
+}
+
+.text-object-story > h2 {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 38px;
+}
+
+.text-caption-story {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+blockquote {
+  font-family: var(--font-pp-neue-montreal);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: var(--cadet-blue);
+}
+
+.year-type-caption {
+  float: left;
+}
+
+.text-story-pill {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 14px;
+  line-height: 17px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.TextABCMaxiRoundVariable {
+  font-family: 'ABC Maxi Round Variable';
+}
+
+.TextABCMaxiSharpVariable {
+  font-family: 'ABC Maxi Sharp Variable';
+}
+
+.TextABCMaxiSharpRegular {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.TextABCMaxiSharpLight {
+  font-family: var(--font-abc-maxi-sharp);
+  font-style: normal;
+  font-weight: 200;
+}
+
+.TextABCMaxiRoundLight {
+  font-family: var(--font-abc-maxi-round);
+  font-style: normal;
+  font-weight: 200;
+}
+
+.TextABCMaxiRoundRegular {
+  font-family: var(--font-abc-maxi-round);
+  font-style: normal;
+  font-weight: 400;
+}
+
+.TopBarMinettText {
+  font-size: 28px;
+  line-height: 37px;
+  mix-blend-mode: normal;
+  color: white;
+  text-decoration: none;
+}
+
+.TopBarMinettText:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.ControlDisabled{
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.text-font-abc{
+  font-family: 'ABC Maxi Round Variable';
+  font-weight: 400;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .TopBarMinettText {
+    font-size: 24px;
+    line-height: 31px;
+    mix-blend-mode: normal;
+    color: white;
+    text-decoration: none;
+  }
+
+  .text-object-story {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  blockquote {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+
 }

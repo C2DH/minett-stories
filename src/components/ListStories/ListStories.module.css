@@ -1,0 +1,40 @@
+.ThumbPreview {
+  border-radius: 20px;
+  height: fit-content;
+  width: 92px;
+  position: absolute;
+  margin-left: 48px;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  /* visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, width 0.5s all; */
+  display: flex;
+  align-items: center;
+}
+
+
+.StoryBlockList:hover > div > div > .ThumbPreview {
+  opacity: 1;
+}
+
+.StoryBlockList > div > div > .ThumbPreview {
+  transition: opacity 0.5s ease-in;
+}
+
+.StoryInfo {
+    transform: translateX(0px);
+}
+
+.StoryBlockList:hover > div > .StoryInfo {
+  transform: translateX(122px);
+}
+
+.StoryBlockList > div > .StoryInfo {
+  transition: all ease 0.5s;
+}
+
+.StoryBlockList {
+    position: relative;
+}

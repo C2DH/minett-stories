@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
+import { Menu, X } from 'react-feather'
 import ChangeLangLink from '../ChangeLangLink'
 import c2dh from './assets/c2dh.svg'
 import unilu from './assets/unilu.svg'
@@ -8,7 +9,6 @@ import styles from './TopBar.module.css'
 import { useTranslation } from 'react-i18next'
 import { LANGS } from '../../i18n'
 import NavLangLink from '../NavLangLink'
-import classNames from 'classnames'
 
 function LinkTop({ label, to }) {
   return (
@@ -23,7 +23,7 @@ function LinkTop({ label, to }) {
   )
 }
 
-export default function TopBar({ right }) {
+export default function TopBar({ right, linkUrlLogo = '/stories' }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
@@ -31,18 +31,33 @@ export default function TopBar({ right }) {
     <>
       <div className={styles.TopBar}>
         <div className="position-absolute left-topbar">
-          <i
-            onClick={() => {
-              setOpen(!open)
-            }}
-            style={{ fontSize: '2rem' }}
-            className={classNames('bi cursor-pointer', {
-              'bi-list': !open,
-              'bi-x-lg': open,
-            })}
-          />
+          {open ? (
+            <X
+              style={{ zIndex: 10000 }}
+              className="cursor-pointer"
+              onClick={() => setOpen(false)}
+            />
+          ) : (
+            <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
+          )}
         </div>
-        <div>Minett Stories</div>
+        <LangLink to={linkUrlLogo} className="TopBarMinettText">
+          <div className="cursor-pointer">
+            <span className="TextABCMaxiSharpRegular">M</span>
+            <span className="TextABCMaxiSharpLight">i</span>
+            <span className="TextABCMaxiSharpLight">n</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundRegular">t</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiRoundRegular ms-2">S</span>
+            <span className="TextABCMaxiSharpLight">t</span>
+            <span className="TextABCMaxiSharpRegular">o</span>
+            <span className="TextABCMaxiRoundLight">r</span>
+            <span className="TextABCMaxiSharpRegular">i</span>
+            <span className="TextABCMaxiRoundLight">e</span>
+            <span className="TextABCMaxiRoundLight">s</span>
+          </div>
+        </LangLink>
         {right && (
           <div className="cursor-pointer position-absolute right-topbar">
             {right}
@@ -56,10 +71,12 @@ export default function TopBar({ right }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <LinkTop to="/" label={t('intro')} />
-          <LinkTop to="/stories" label={t('stories')} />
-          <LinkTop to="/archive" label={t('archive')} />
-          <LinkTop to="/about" label={t('about')} />
+          <div className='d-flex flex-column'>
+            <LinkTop to="/" label={t('intro')} />
+            <LinkTop to="/stories" label={t('stories')} />
+            <LinkTop to="/archive" label={t('archive')} />
+            <LinkTop to="/about" label={t('about')} />
+          </div>
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
               {LANGS.map((lang) => (

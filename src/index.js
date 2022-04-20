@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-icons/font/bootstrap-icons.css'
+import './fonts.css'
 import './index.css'
 import React from 'react'
 import ReactDOM from 'react-dom'
@@ -9,6 +9,13 @@ import { createI18n } from './i18n'
 import { I18nextProvider } from 'react-i18next'
 import reportWebVitals from './reportWebVitals'
 import App from './App'
+
+// add information on version on startup
+console.info('%cMinett Stories', 'font-weight: bold',
+  process.env.REACT_APP_GIT_TAG || '(latest)',
+  process.env.REACT_APP_GIT_BRANCH,
+  `\nhttps://github.com/C2DH/minett-stories/commit/${process.env.REACT_APP_GIT_REVISION}`
+)
 
 const queryClient = new QueryClient({
   defaultOptions: {

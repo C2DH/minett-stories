@@ -1,0 +1,157 @@
+.Cover {
+  height: calc(66% - var(--top-bar-height));
+  width: calc(100% - 96px);
+  margin: auto;
+  position: relative;
+}
+.CoverGreyScaledImage {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  filter: grayscale(1);
+}
+.CoverBlend {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  mix-blend-mode: overlay;
+}
+
+.Content {
+  margin: 0 48px;
+  background-color: white;
+  min-height: 34%;
+}
+
+.LeftButtonStory {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  left: 25px;
+}
+
+.LeftButtonStory > a, .RightButtonStory > a {
+  background-color: var(--dark-grey);
+}
+
+.RightButtonStory {
+  top: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  left: calc(100% - 25px);
+}
+
+.ConverExplore {
+  font-family: var(--font-abc-maxi-sharp);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black);
+  width: 155px;
+  height: 170px;
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+}
+
+.ConverExplore:hover {
+  color: var(--black);
+}
+
+.TitleStory {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.ResearchText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AbstractText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--black);
+}
+
+.GoDeeperText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -0.01em;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .LeftButtonStory {
+    top: unset;
+    bottom: 0px;
+    width: 50%;
+    position: fixed;
+    left: 0px;
+    transform: none;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--black);
+  }
+
+  .RightButtonStory {
+    top: unset;
+    bottom: 0px;
+    width: 50%;
+    left: 50%;
+    position: fixed;
+    right: 0px;
+    transform: none;
+    display: flex;
+    justify-content: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: var(--black);
+  }
+
+  .Content {
+    margin: 0px;
+    padding-bottom: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: white;
+    min-height: 34%;
+  }
+
+  .Cover {
+    height: calc(66% - var(--top-bar-height));
+    width: 100%;
+    margin: auto;
+    position: relative;
+  }
+
+  .TitleStory {
+    font-size: 24px;
+    line-height: 29px;
+  }
+
+  .AbstractText {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}

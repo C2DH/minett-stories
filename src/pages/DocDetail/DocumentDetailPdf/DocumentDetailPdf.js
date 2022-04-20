@@ -1,14 +1,15 @@
 import stylesCommon from '../DocDetail.module.css'
-import { useNavigate } from 'react-router-dom'
 import { Document, Page, pdfjs } from 'react-pdf'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
-import { ArrowLeft, ArrowRight, Minimize2, ZoomIn, ZoomOut } from 'react-feather'
-pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`
+import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from 'react-feather'
+import { useTranslation } from 'react-i18next'
+pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
 
 function BlockInfo({ doc }) {
+  const { t } = useTranslation()
   return (
     <>
       <div className={stylesCommon.TypeDocument}>{doc.type}</div>
@@ -17,12 +18,29 @@ function BlockInfo({ doc }) {
       <div className={stylesCommon.DescriptionDocument}>
         {doc.data.description}
       </div>
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('creator')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.creator && (
+        <div className={stylesCommon.Creator}>
+          <div className="text-uppercase">{t('provenance')} </div>
+          <div>{doc.data.creator}</div>
+        </div>
+      )}
+      {doc.data.copyright && (
+        <div className={stylesCommon.Copyright}>
+          <div className="text-uppercase">{t('copyright')} </div>
+          <div>{doc.data.copyright}</div>
+        </div>
+      )}
     </>
   )
 }
 
-export default function DocumentDetailPdf({ isModal, doc }) {
-  const navigate = useNavigate()
+export default function DocumentDetailPdf({ isModal, doc, onClose }) {
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
   const [scale, setScale] = useState(1)
@@ -45,7 +63,7 @@ export default function DocumentDetailPdf({ isModal, doc }) {
   let pdfUrl = doc.attachment
   if (process.env.NODE_ENV !== 'production') {
     const baseUrlRegex = /http(s)?:\/\/([^/]+)/
-    const baseUrl = `${window.location.protocol}//${window.location.host}`
+    const baseUrl = 'http://localhost:3000'
     pdfUrl = pdfUrl.replace(baseUrlRegex, baseUrl)
   }
 
@@ -60,15 +78,15 @@ export default function DocumentDetailPdf({ isModal, doc }) {
     }
   }
 
-  console.log(containerHeight)
-
   return (
-    <div className={stylesCommon.Document}>
+    <div
+      className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
+    >
       <div className="row max-h-100">
-        <div className="col-md-4">
+        <div className="col-md-4 order-1 order-md-0">
           <BlockInfo doc={doc} />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-8 order-0 order-md-1">
           <div className={styles.InfoPdfContainer}>
             <div className={styles.PdfContainer}>
               <div
@@ -90,51 +108,60 @@ export default function DocumentDetailPdf({ isModal, doc }) {
                   </Document>
                 )}
               </div>
-              <div className={styles.PdfControls}>
-                <button
-                  onClick={() => setPageNumber((p) => p - 1)}
-                  disabled={pageNumber <= 1}
-                  className="btn btn-link btn-icon-round mr-2"
-                >
-                  <ArrowLeft color="white"></ArrowLeft>
-                </button>
-                <input
-                  className="page-input mr-2"
-                  type="number"
-                  onChange={handlePageChange}
-                  value={pageNumber}
-                  min="1"
-                  max={numPages}
-                  step="1"
-                />
-                {' of '}
-                {numPages}
-                <button
-                  onClick={() => setPageNumber((p) => p + 1)}
-                  disabled={pageNumber >= numPages}
-                  className="btn btn-link btn-icon-round ml-2"
-                >
-                  <ArrowRight color="white"></ArrowRight>
-                </button>
+              <div
+                className={
+                  isModal ? styles.PdfControlsModal : styles.PdfControls
+                }
+              >
+                <div className='d-flex align-items-center'>
+                  <button
+                    onClick={() => setPageNumber((p) => p - 1)}
+                    disabled={pageNumber <= 1}
+                    className="btn btn-link btn-circle bg-light-gray me-2"
+                  >
+                    <ArrowLeft color="black"></ArrowLeft>
+                  </button>
+                  <input
+                    className={`${styles.numPagesInput} me-2`}
+                    // type="number"
+                    onChange={handlePageChange}
+                    value={pageNumber}
+                    min="1"
+                    max={numPages}
+                    // step="1"
+                  />
+                  <span className="ms-1 text-white me-2">{' of '}</span>
+                  <div className={`${styles.numPages} me-2`}>{numPages}</div>
+                  <button
+                    onClick={() => setPageNumber((p) => p + 1)}
+                    disabled={pageNumber >= numPages}
+                    className="btn btn-link btn-circle bg-light-gray me-2"
+                  >
+                    <ArrowRight color="black"></ArrowRight>
+                  </button>
+                </div>
+                <div className={`${styles.divisoryControl} d-none d-md-block ms-3`}></div>
+                <div className="ms-0 ms-md-3 d-flex">
+                  <button
+                    className="btn btn-circle bg-light-gray ms-2"
+                    onClick={zoomOutScale}
+                  >
+                    <ZoomOut color="black"></ZoomOut>
+                  </button>
 
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={zoomInScale}
-                >
-                  <ZoomIn color="white"></ZoomIn>
-                </button>
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={zoomOutScale}
-                >
-                  <ZoomOut color="white"></ZoomOut>
-                </button>
-                <button
-                  className="btn btn-link btn-icon-round ml-2"
-                  onClick={resetScaleZoom}
-                >
-                  <Minimize2 color="white"></Minimize2>
-                </button>
+                  <button
+                    className={`btn ${styles.btnReset} bg-light-gray ms-2`}
+                    onClick={resetScaleZoom}
+                  >
+                    reset
+                  </button>
+                  <button
+                    className="btn btn-circle bg-light-gray ms-2"
+                    onClick={zoomInScale}
+                  >
+                    <ZoomIn color="black"></ZoomIn>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -142,10 +169,7 @@ export default function DocumentDetailPdf({ isModal, doc }) {
       </div>
       {isModal && (
         <div className={stylesCommon.CloseModal}>
-          <i
-            className="cursor-pointer bi bi-x-lg"
-            onClick={() => navigate(-1)}
-          />
+          <X className="cursor-pointer" onClick={() => onClose()} />
         </div>
       )}
     </div>

@@ -1,8 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ZoomIn, ZoomOut } from 'react-feather'
 import ReactHammer from 'react-hammerjs'
-import Hammer from 'hammerjs'
 import styles from './ZoomAndPanMedia.module.css'
+
+// NOTE: Avoid break my SSR for this s****y number lol
+// https://github.com/hammerjs/hammer.js/blob/master/src/inputjs/input-consts.js
+const HAMMER_DIRECTION_ALL = 30
 
 const PINCH_TIMEOUT = 300
 
@@ -157,7 +160,6 @@ export default function ZoomAndPanMedia({ src, isModal }) {
     }
   }, [handleWheel])
 
-
   return (
     <>
       <div className={styles.ZoomAndPanMedia}>
@@ -167,7 +169,7 @@ export default function ZoomAndPanMedia({ src, isModal }) {
               recognizers: {
                 pan: {
                   enable: true,
-                  direction: Hammer.DIRECTION_ALL,
+                  direction: HAMMER_DIRECTION_ALL,
                 },
                 pinch: {
                   enable: true,
@@ -212,9 +214,9 @@ export default function ZoomAndPanMedia({ src, isModal }) {
         <div className="d-flex flex-row">
           <div
             className={`${styles.ZoomButton} cursor-pointer btn-zoom mb-2`}
-            onClick={() => handleZoom(0.1)}
+            onClick={() => handleZoom(-0.1)}
           >
-            <ZoomIn></ZoomIn>
+            <ZoomOut></ZoomOut>
           </div>
           <div
             className={`${styles.ZoomResetButton} cursor-pointer btn-zoom mb-2 ms-3`}
@@ -224,9 +226,9 @@ export default function ZoomAndPanMedia({ src, isModal }) {
           </div>
           <div
             className={`${styles.ZoomButton} cursor-pointer btn-zoom mb-2 ms-3`}
-            onClick={() => handleZoom(-0.1)}
+            onClick={() => handleZoom(0.1)}
           >
-            <ZoomOut></ZoomOut>
+            <ZoomIn></ZoomIn>
           </div>
         </div>
       </div>

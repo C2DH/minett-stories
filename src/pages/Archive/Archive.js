@@ -1,14 +1,16 @@
 import Layout from '../../components/Layout'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
 import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
-import { Fragment, useEffect, useRef, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import DocItem from '../../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
-import Filters from './Filters'
+import Filters, { MAX_YEAR, MIN_YEAR } from './Filters'
 import classNames from 'classnames'
+import DocLink from '../../components/DocLink'
+import { Filter, X } from 'react-feather'
 
 function useFilterRedirect() {
   const location = useLocation()
@@ -35,7 +37,9 @@ export default function Archive() {
     types: searchParams.getAll('types') ?? [],
     q: searchParams.get('q') ?? '',
     orderby: searchParams.get('orderby') ?? 'data__date',
-    noDates: (searchParams.get('noDates') ?? 'yes') === 'yes',
+    noDates: (searchParams.get('noDates') ?? 'true') === 'true',
+    fromYear: Number(searchParams.get('fromYear') ?? MIN_YEAR),
+    toYear: Number(searchParams.get('toYear') ?? MAX_YEAR),
   }
   const [docsFacets] = useDocumentsFacets({
     params: {
@@ -49,6 +53,7 @@ export default function Archive() {
     suspense: !filtersOn,
     keepPreviousData: true,
     params: {
+      overlaps: `${filters.fromYear}-01-01,${filters.toYear}-12-31`,
       // TODO: How to filter noDates???
       limit: 50,
       orderby: filters.orderby,
@@ -60,12 +65,35 @@ export default function Archive() {
     },
   })
 
+  const cyclesDocSlugs = useMemo(() => {
+    if (!docGroups) {
+      return []
+    }
+    return docGroups.pages.reduce((all, docs) => {
+      docs.results.forEach((doc) => {
+        all.push(doc.slug)
+      })
+      return all
+    }, [])
+  }, [docGroups])
+
   return (
     <Layout
       right={
-        <span onClick={() => setShowFilters(!showFilters)}>
-          {showFilters ? t('close_options') : t('view_options')}
-        </span>
+        <>
+          <span
+            className={`${styles.ViewOptions} d-none d-md-block`}
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            {showFilters ? t('close_options') : t('view_options')}
+          </span>
+          <span
+            className="d-block d-md-none"
+            onClick={() => setShowFilters(!showFilters)}
+          >
+            {showFilters ? <X color='white' /> : <Filter fill='white' color='white' />}
+          </span>
+        </>
       }
     >
       <Offcanvas
@@ -83,8 +111,8 @@ export default function Archive() {
           />
         </OffcanvasBody>
       </Offcanvas>
-      <div className="container-fluid">
-        <div className="row p-5">
+      <div className="container-fluid padding-top-bar">
+        <div className={'row p-md-5 pt-3'}>
           {docGroups &&
             docGroups.pages.map((docs, i) => (
               <Fragment key={i}>
@@ -92,13 +120,19 @@ export default function Archive() {
                   docs.results.map((doc) => (
                     <div
                       className={classNames('p-0', {
-                        'col-md-2': filters.grid === 'S',
-                        'col-md-3': filters.grid === 'M',
-                        'col-md-6': filters.grid === 'L',
+                        'col-md-2 col-4': filters.grid === 'S',
+                        'col-md-3 col-6': filters.grid === 'M',
+                        'col-md-6 col-12': filters.grid === 'L',
                       })}
                       key={doc.id}
                     >
-                      <DocItem grid={filters.grid} doc={doc} />
+                      <DocLink
+                        slugOrId={doc.slug}
+                        className="text-decoration-none"
+                        state={{ cyclesDocSlugs }}
+                      >
+                        <DocItem grid={filters.grid} doc={doc} />
+                      </DocLink>
                     </div>
                   ))}
               </Fragment>
