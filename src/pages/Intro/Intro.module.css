@@ -78,20 +78,20 @@
 .HomeStart {
   font-family: var(--font-abc-maxi-round);
   position: relative;
-  background-color: white;
+  background-repeat: no-repeat;
+  background-size: contain;
   text-decoration: none;
   text-transform: uppercase;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 26px;
-  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--black);
-  width: 150px;
-  height: 150px;
+  width: 155px;
+  height: 170px;
   top: calc(0%);
   left: calc(50% - 75px);
 }
@@ -136,7 +136,7 @@
 
 .Char {
   --delay: calc((var(--span-index) + 1) * 400ms);
-  animation: breathe 3500ms infinite both;
+  animation: breathe 3000ms infinite both;
   animation-delay: var(--delay);
 }
 
