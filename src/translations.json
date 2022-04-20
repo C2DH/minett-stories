@@ -34,7 +34,10 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
     }
   },
   "en_GB": {
@@ -72,7 +75,10 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
     }
   },
   "de_DE": {
@@ -110,7 +116,10 @@
       "start": "start",
       "creator": "creator",
       "provenance": "provenance",
-      "copyright": "copyright"
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
+      "download-file": "Download file",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
     }
   }
 }

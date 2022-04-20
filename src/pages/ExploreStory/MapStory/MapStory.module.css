@@ -90,6 +90,12 @@
   margin-top: 16px;
 }
 
+.SideDoc {
+  height: 100%;
+  padding: 24px;
+  overflow: auto;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockInfo {
     padding: 24px;
@@ -100,6 +106,7 @@
 
   .SideDoc{
     width: 90%;
+    height: calc(100% - 98px);
   }
 }
 

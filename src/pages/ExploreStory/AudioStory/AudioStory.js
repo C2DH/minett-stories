@@ -8,6 +8,7 @@ import styles from './AudioStory.module.css'
 import spotify from './assets/spotify.png'
 import googlePodcast from './assets/google-podcast.png'
 import applePodcast from './assets/apple-podcast.png'
+import { useTranslation } from 'react-i18next'
 
 export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -15,6 +16,7 @@ export default function AudioStory({ story }) {
     () => story.data.chapters.slice(0, -1),
     [story.data.chapters]
   )
+  const { t } = useTranslation()
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
   const [chapterIndex, setChapterIndex] = useState(0)
 
@@ -115,7 +117,7 @@ export default function AudioStory({ story }) {
           {showPodcast && (
             <div className={styles.showPodcast}>
               <div className={styles.TitlePopupPodcast}>
-                Listen To the podcast on your favourite podcast player:{' '}
+                {t('listen-to-podcast')}{' '}
               </div>
               <div className="text-center mt-4">
                 <img width={198} src={googlePodcast} alt="Google Podcast" />
@@ -127,7 +129,7 @@ export default function AudioStory({ story }) {
                 <img width={108} src={applePodcast} alt="Apple Podcast" />
               </div>
               <div className='d-flex justify-content-center mt-4'>
-                <div className={styles.DownloadFile}>Download File</div>
+                <div className={styles.DownloadFile}>{t('download-file')}</div>
               </div>
             </div>
           )}

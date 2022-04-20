@@ -27,9 +27,11 @@ function SideDocRelated({ docId }) {
   return (
     <>
       {mainDoc.documents.map((doc) => (
-        <div className="border-bottom mt-2 pb-2">
+        <div className="border-bottom mt-2 pb-3 pt-3">
           <h4 className={styles.Title}>{doc.data.title}</h4>
-          <img src={imageUrl} alt={doc.data.title} />
+          <div className="w-100">
+            <img className="w-100" src={imageUrl} alt={doc.data.title} />
+          </div>
           <div className={styles.Year}>{doc.data.year}</div>
           <div className={styles.Description}>{doc.data.description}</div>
           <LangLink className="no-link" to={`/document/${doc.id}`}>
@@ -57,15 +59,19 @@ function SideDoc({ doc, onClose }) {
           <X color="white" />
         </div>
       </div>
-      <h4 className={styles.Title}>{doc.data.title}</h4>
-      <img src={imageUrl} alt={doc.data.title} />
-      <div className={styles.Year}>{doc.data.year}</div>
-      <div className={styles.Description}>{doc.data.description}</div>
-      <LangLink className="no-link" to={`/document/${doc.document_id}`}>
-        <div className="d-flex justify-content-end cursor-pointer">
-          <div className={styles.ButtonDocument}>TAKE ME THERE</div>
+      <div className='border-bottom pb-3 pt-3'>
+        <h4 className={styles.Title}>{doc.data.title}</h4>
+        <div className="w-100">
+          <img className="w-100" src={imageUrl} alt={doc.data.title} />
         </div>
-      </LangLink>
+        <div className={styles.Year}>{doc.data.year}</div>
+        <div className={styles.Description}>{doc.data.description}</div>
+        <LangLink className="no-link" to={`/document/${doc.document_id}`}>
+          <div className="d-flex justify-content-end cursor-pointer">
+            <div className={styles.ButtonDocument}>TAKE ME THERE</div>
+          </div>
+        </LangLink>
+      </div>
       <Suspense
         fallback={
           <div className="text-center py-2">
@@ -127,12 +133,15 @@ export default function MapStory({ story }) {
   return (
     <>
       <div className="h-100 w-100 d-flex flex-column">
-        <div className="flex-1 d-flex" style={{ overflow: 'hidden' }}>
-          <div className={`${styles.BlockInfo} h-100`}>
+        <div
+          className="flex-1 d-flex flex-column flex-md-row"
+          style={{ overflow: 'hidden' }}
+        >
+          <div>
             {selectedDoc ? (
               <SideDoc doc={selectedDoc} onClose={handleSideDocClose} />
             ) : (
-              <div>
+              <div className={`${styles.BlockInfo}`}>
                 <LangLink
                   style={{
                     backgroundColor: 'var(--dark-grey)',

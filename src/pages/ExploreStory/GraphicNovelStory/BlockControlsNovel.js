@@ -71,6 +71,7 @@ export default function BlockControlsNovel({
           className="w-100 d-flex align-items-center text-cadet-blue position-relative col-2"
           style={{ flex: 1 }}
         >
+          <span className="text-cadet-blue"></span>
           <span className="text-cadet-blue ms-3 d-none d-md-block">
             {selectedChapter.data.title}
           </span>

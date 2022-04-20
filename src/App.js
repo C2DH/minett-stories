@@ -23,7 +23,7 @@ import Story from './pages/Story'
 import DocDetail from './pages/DocDetail/DocDetail'
 import ExploreStory from './pages/ExploreStory'
 import ErrorBoundary from './ErrorBoundary'
-import Intro from './pages/DocDetail/Intro'
+import Intro from './pages/Intro'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)

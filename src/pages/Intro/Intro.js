@@ -1,14 +1,15 @@
 import { useTranslation } from 'react-i18next'
-import ChangeLangLink from '../../../components/ChangeLangLink'
-import LangLink from '../../../components/LangLink'
-import { LANGS } from '../../../i18n'
+import { LANGS } from '../../i18n'
 import styles from './Intro.module.css'
-import bgHome from '../../../assets/bg-home.png'
-import unilu from '../../../assets/unilu.png'
-import c2dh from '../../../assets/c2dh.png'
+import bgHome from '../../assets/bg-home.png'
+import backgroundStoryLink from '../../assets/ellipse-story.svg'
+import unilu from '../../assets/unilu.png'
+import c2dh from '../../assets/c2dh.png'
+import ChangeLangLink from '../../components/ChangeLangLink'
+import LangLink from '../../components/LangLink'
 
 export default function Intro() {
-  const { i18n } = useTranslation()
+  const { i18n, t } = useTranslation()
   return (
     <div className={styles.Home} style={{ backgroundImage: `url(${bgHome}` }}>
       <div className={styles.CoverBackground}></div>
@@ -60,7 +61,7 @@ export default function Intro() {
             t
           </span>
           <span
-            className={`${styles.Char} TextABCMaxiSharpVariable}`}
+            className={`${styles.Char} TextABCMaxiSharpVariable`}
             style={{ '--span-index': 5 }}
           >
             t
@@ -108,16 +109,18 @@ export default function Intro() {
             s
           </span>
         </h1>
-        <h3 className={styles.subtitle}>
-          Remixing Industrial Pasts in the Digital Age
-        </h3>
-        <LangLink className={styles.HomeStart} to="/stories">
-          S T A R T
+        <h3 className={styles.subtitle}>{t('remixing_industrial')}</h3>
+        <LangLink
+          style={{ backgroundImage: `url(${backgroundStoryLink})` }}
+          className={styles.HomeStart}
+          to="/stories"
+        >
+          {t('start')}
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
         <img src={c2dh} alt="C2dh" />
-        <img src={unilu} alt="Unilu"  className='ms-2'/>
+        <img src={unilu} alt="Unilu" className="ms-2" />
       </div>
     </div>
   )
