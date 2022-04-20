@@ -7,7 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
-import Filters from './Filters'
+import Filters, { MAX_YEAR, MIN_YEAR } from './Filters'
 import classNames from 'classnames'
 import DocLink from '../../components/DocLink'
 import { Filter, X } from 'react-feather'
@@ -37,7 +37,9 @@ export default function Archive() {
     types: searchParams.getAll('types') ?? [],
     q: searchParams.get('q') ?? '',
     orderby: searchParams.get('orderby') ?? 'data__date',
-    noDates: (searchParams.get('noDates') ?? 'yes') === 'yes',
+    noDates: (searchParams.get('noDates') ?? 'true') === 'true',
+    fromYear: Number(searchParams.get('fromYear') ?? MIN_YEAR),
+    toYear: Number(searchParams.get('toYear') ?? MAX_YEAR),
   }
   const [docsFacets] = useDocumentsFacets({
     params: {
@@ -51,6 +53,7 @@ export default function Archive() {
     suspense: !filtersOn,
     keepPreviousData: true,
     params: {
+      overlaps: `${filters.fromYear}-01-01,${filters.toYear}-12-31`,
       // TODO: How to filter noDates???
       limit: 50,
       orderby: filters.orderby,
