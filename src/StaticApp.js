@@ -8,7 +8,7 @@ export default function StaticApp({ queryClient, i18n, url }) {
   return (
     <StaticRouter location={url}>
       <I18nextProvider i18n={i18n}>
-        <App client={queryClient} apiUrl={'https://timestrata.be/api'} />
+        <App client={queryClient} apiUrl={'https://minett-stories.lu/api'} />
       </I18nextProvider>
     </StaticRouter>
   )

@@ -48,10 +48,9 @@
     "clientEntry": "./src/index.js",
     "skeletonComponent": "./src/Skeleton.js",
     "serverComponent": "./src/StaticApp.js",
-    "proxy": "https://timestrata.be",
+    "proxy": "https://minett-stories.lu",
     "urls": [
       "/",
-      "/m",
       "/404"
     ]
   },
@@ -74,6 +73,6 @@
     ]
   },
   "devDependencies": {
-    "snext": "^0.10.0"
+    "snext": "^0.10.1"
   }
 }
