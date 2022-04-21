@@ -1,0 +1,28 @@
+.Skip {
+  position: absolute;
+  top: 95%;
+  right: 20px;
+  color: white;
+  z-index: 3;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: var(--font-pp-neue-montreal);
+  text-transform: uppercase;
+}
+
+.Skip:hover {
+  color: white;
+}
+
+.ScrollDown {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  position: absolute;
+  top: 90%;
+  left: calc(50% - 51px);
+  color: white;
+  font-family: var(--font-pp-neue-montreal);
+  z-index: 3;
+}

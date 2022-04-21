@@ -15,7 +15,6 @@ import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
 import NavigationWrapper from './components/NavigationWrapper'
 import Loader from './components/Loader'
-import StoriesIntro from './pages/StoriesIntro'
 import { ENABLE_SCREEN_SIZE_REDIRECT } from './consts'
 import Stories from './pages/Stories'
 import Archive from './pages/Archive'
@@ -24,6 +23,7 @@ import DocDetail from './pages/DocDetail/DocDetail'
 import ExploreStory from './pages/ExploreStory'
 import ErrorBoundary from './ErrorBoundary'
 import Intro from './pages/Intro'
+import StoriesIntro from './pages/StoriesIntro'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)

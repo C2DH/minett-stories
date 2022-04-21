@@ -1,9 +1,10 @@
-import { useState, useCallback, useRef } from 'react'
+import { useState, useRef } from 'react'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
-import LangLink from '../components/LangLink'
-import Layout from '../components/Layout'
-import IntroVoronoi from '../components/IntroVoronoi'
+import LangLink from '../../components/LangLink'
+import Layout from '../../components/Layout'
+import IntroVoronoi from '../../components/IntroVoronoi'
 import { useComponentSize } from 'react-use-size'
+import styles from './StoriesIntro.module.css'
 
 const controlPoints = [
   [
@@ -86,7 +87,8 @@ export default function StoriesIntro() {
     <Layout>
       <div className="padding-top-bar h-100">
         <div className="h-100  d-flex flex-column">
-          <LangLink to="/stories/voronoi">Skip</LangLink>
+          <LangLink className={`${styles.Skip}`} to="/stories/voronoi">Skip Intro</LangLink>
+          {/* <div className={styles.ScrollDown}>Scroll Down</div> */}
           <div className="flex-1 d-flex flex-column position-relative">
             <div
               style={{ zIndex: 1 }}
