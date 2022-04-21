@@ -1,5 +1,6 @@
 .novel {
   transition: all 1.5s ease-in;
+  padding-left: 100px;
 }
 
 .novel.flyRight {
