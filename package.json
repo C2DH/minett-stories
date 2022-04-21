@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "https://minett-stories.lu",
   "dependencies": {
-    "@c2dh/react-miller": "^1.0.0-beta.8",
+    "@c2dh/react-miller": "^1.0.0-beta.9",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -49,9 +49,10 @@
     "skeletonComponent": "./src/Skeleton.js",
     "serverComponent": "./src/StaticApp.js",
     "proxy": "https://minett-stories.lu",
-    "crawlConcurrency": 1,
+    "crawlConcurrency": 4,
     "urls": [
-      "/en/archive"
+      "/",
+      "/404"
     ]
   },
   "eslintConfig": {

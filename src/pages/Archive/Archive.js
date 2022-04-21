@@ -83,16 +83,19 @@ export default function Archive() {
     }, [])
   }, [docGroups])
 
-  // const getFlatDocs = useGetFlatDocuments()
-  // const pathPrefix = useLangPathPrefix()
-  // useCrawl(async () => {
-  //   const flatDocs = await getFlatDocs({
-  //     limit: 1000,
-  //     exclude: { type: 'entity' },
-  //   })
-  //   return flatDocs.map((doc) => `${pathPrefix}/document/${doc.slug}`)
-  // })
-  // useCrawl(`${pathPrefix}/archive/filter`)
+  const getFlatDocs = useGetFlatDocuments()
+  const pathPrefix = useLangPathPrefix()
+  useCrawl(async () => {
+    if (filtersOn) {
+      return []
+    }
+    const flatDocs = await getFlatDocs({
+      limit: 623,
+      exclude: { type: 'entity' },
+    })
+    return flatDocs.map((doc) => `${pathPrefix}/document/${doc.slug}`)
+  })
+  useCrawl(`${pathPrefix}/archive/filter`)
 
   return (
     <Layout

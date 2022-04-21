@@ -1017,10 +1017,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c2dh/react-miller@^1.0.0-beta.8":
-  version "1.0.0-beta.8"
-  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.8.tgz#ec9385fbee7b52bb01fd6dc6c88881b5afef0fdb"
-  integrity sha512-kZXWz/9dqJsjGtb3DQjwHQhA8w/P4y4voElE8r/rGVeRxyRUcpUaokVL16uiMd1Mf+XO0AxuRO8o3kngGwQ8HQ==
+"@c2dh/react-miller@^1.0.0-beta.9":
+  version "1.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.9.tgz#a8f1158363f9328b4698535102dfe0aebd938488"
+  integrity sha512-ssVqMksoE0RXcTi0C8LjSroLjN7RnjAFpTNWve9QmBFX8gY5Qyy19PPvOEv45phLheZgYHJiutn4VaPONQybxg==
   dependencies:
     "@babel/runtime" "^7.17.2"
     axios "^0.26.0"
