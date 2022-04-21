@@ -25,9 +25,9 @@ const controlPoints = [
 ]
 
 const sampleTexts = [
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
-  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
+  'Minett is a region in the South of Luxembourg strongly influenced by its industrial past.',
+  'The website investigates the multiple and sometimes contested identities of the region and of the people who lived and worked there.',
+  'The website investigates the multiple and sometimes contested identities of the region and of the people who lived and worked there.'
 ]
 
 function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
