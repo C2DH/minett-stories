@@ -25,15 +25,14 @@ const controlPoints = [
 ]
 
 const sampleTexts = [
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque",
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus pulvinar neque nisi, ut facilisis magna pretium a. Praesent iaculis nisl purus, id sagittis ipsum vestibulum eget. Suspendisse pulvinar, urna ac pulvinar vulputate, purus magna auctor tortor, nec interdum arcu sem sed neque',
 ]
 
-function ScrollControl({texts = [], onStepChange, onProgress, numSteps=3}) {
+function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
   const { ref, height, width } = useComponentSize()
   const step = useRef(0)
-
 
   return (
     <div
@@ -42,25 +41,31 @@ function ScrollControl({texts = [], onStepChange, onProgress, numSteps=3}) {
       style={{ overflowY: 'auto' }}
       onScroll={(e) => {
         // console.log(e.target.scrollTop, height)
-        
+
         const currentStepFractional = e.target.scrollTop / height
         const currentStep = parseInt(currentStepFractional)
         const fraction = currentStepFractional - currentStep
-        
+
         onProgress(fraction)
-        if(currentStep !== step.current){
+        if (currentStep !== step.current) {
           onStepChange(currentStep)
           step.current = currentStep
         }
       }}
     >
-      <div style={{ height: height * (numSteps + 1) }}>{texts.map((text, i) => {
-        return <div key={i} className="d-flex flex-column justify-content-center" style={{color: 'white', height}}>
-          <div style={{width: '50%', marginLeft:'25%'}}>
-            {text}
-          </div>
-        </div>
-      })}</div>
+      <div style={{ height: height * (numSteps + 1) }}>
+        {texts.map((text, i) => {
+          return (
+            <div
+              key={i}
+              className={`${styles.TextIntro}`}
+              style={{ height }}
+            >
+              <div style={{ width: '50%'}}>{text}</div>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
@@ -68,7 +73,6 @@ function ScrollControl({texts = [], onStepChange, onProgress, numSteps=3}) {
 export default function StoriesIntro() {
   const [step, setStep] = useState(0)
   const [progress, setProgress] = useState(0)
-  
 
   const [introStory] = useStoryWithChapters('intro')
   const [storiesList] = useStories({
@@ -87,7 +91,9 @@ export default function StoriesIntro() {
     <Layout>
       <div className="padding-top-bar h-100">
         <div className="h-100  d-flex flex-column">
-          <LangLink className={`${styles.Skip}`} to="/stories/voronoi">Skip Intro</LangLink>
+          <LangLink className={`${styles.Skip}`} to="/stories/voronoi">
+            Skip Intro
+          </LangLink>
           {/* <div className={styles.ScrollDown}>Scroll Down</div> */}
           <div className="flex-1 d-flex flex-column position-relative">
             <div
