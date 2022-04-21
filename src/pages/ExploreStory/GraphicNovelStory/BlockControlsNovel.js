@@ -4,6 +4,7 @@ import {
   ArrowDown,
   ChevronLeft,
   ChevronRight,
+  SkipBack,
   SkipForward,
 } from 'react-feather'
 import styles from './GraphicNovelStory.module.css'
@@ -23,21 +24,29 @@ export default function BlockControlsNovel({
   return (
     <div className={`${styles.BlockControls} bg-white d-flex w-100`}>
       <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5 col-2">
-        <SkipForward
+        <SkipBack
           className="cursor-pointer"
           onClick={() => {
-            const element = containerRef.current
-            if (element) {
-              const { width } = element.getBoundingClientRect()
-              element.scroll({
-                left: element.scrollLeft + width / 2,
-                behavior: 'smooth',
-              })
-              console.log({ element })
+            if (!animation && chapterIndex > 0) {
+              setChapterIndex((i) => i - 1)
+              setAnimation('enter-prev')
             }
           }}
           color="black"
           fill="black"
+          opacity={chapterIndex > 0 ? 1 : 0.4}
+        />
+        <SkipForward
+          className="cursor-pointer ms-3"
+          onClick={() => {
+            if (!animation && chapterIndex < novelChapters.length - 1) {
+              setChapterIndex((i) => i + 1)
+              setAnimation('enter-next')
+            }
+          }}
+          color="black"
+          fill="black"
+          opacity={chapterIndex !== novelChapters.length - 1 ? 1 : 0.4}
         />
       </div>
       <div style={{ flex: 1 }} className="d-flex flex-column col-8">
@@ -97,15 +106,26 @@ export default function BlockControlsNovel({
       <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
         <div
           className={classNames(
-            'btn-circle text-white bg-dark-gray cursor-pointer me-2',
-            {
-              ControlDisabled: chapterIndex <= 0,
-            }
+            'btn-circle text-white bg-dark-gray cursor-pointer me-2'
+            // {
+            //   ControlDisabled: chapterIndex <= 0,
+            // }
           )}
+          // onClick={() => {
+          //   if (!animation && chapterIndex > 0) {
+          //     setChapterIndex((i) => i - 1)
+          //     setAnimation('enter-prev')
+          //   }
+          // }}
           onClick={() => {
-            if (!animation && chapterIndex > 0) {
-              setChapterIndex((i) => i - 1)
-              setAnimation('enter-prev')
+            const element = containerRef.current
+            if (element) {
+              const { width } = element.getBoundingClientRect()
+              element.scroll({
+                left: element.scrollLeft - width / 2,
+                behavior: 'smooth',
+              })
+              // console.log({ element })
             }
           }}
         >
@@ -113,15 +133,26 @@ export default function BlockControlsNovel({
         </div>
         <div
           className={classNames(
-            'btn-circle text-white bg-dark-gray cursor-pointer',
-            {
-              ControlDisabled: chapterIndex >= novelChapters.length - 1,
-            }
+            'btn-circle text-white bg-dark-gray cursor-pointer'
+            // {
+            //   ControlDisabled: chapterIndex >= novelChapters.length - 1,
+            // }
           )}
+          // onClick={() => {
+          //   if (!animation && chapterIndex < novelChapters.length - 1) {
+          //     setChapterIndex((i) => i + 1)
+          //     setAnimation('enter-next')
+          //   }
+          // }}
           onClick={() => {
-            if (!animation && chapterIndex < novelChapters.length - 1) {
-              setChapterIndex((i) => i + 1)
-              setAnimation('enter-next')
+            const element = containerRef.current
+            if (element) {
+              const { width } = element.getBoundingClientRect()
+              element.scroll({
+                left: element.scrollLeft + width / 2,
+                behavior: 'smooth',
+              })
+              // console.log({ element })
             }
           }}
         >

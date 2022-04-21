@@ -112,16 +112,16 @@ export default function GraphicNovelStory({ story }) {
 
   let selectedClass = ''
   if (animation === 'enter-next') {
-    selectedClass = styles.flyRight
-  } else if (animation === 'enter-prev') {
     selectedClass = styles.flyLeft
+  } else if (animation === 'enter-prev') {
+    selectedClass = styles.flyRight
   }
 
   let enterClass = ''
   if (animation === 'enter-next') {
-    enterClass = styles.flyLeft
-  } else if (animation === 'enter-prev') {
     enterClass = styles.flyRight
+  } else if (animation === 'enter-prev') {
+    enterClass = styles.flyLeft
   }
 
   const containerRef = useRef()
