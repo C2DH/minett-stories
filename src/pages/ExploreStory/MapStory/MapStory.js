@@ -134,8 +134,7 @@ export default function MapStory({ story }) {
     <>
       <div className="h-100 w-100 d-flex flex-column">
         <div
-          className="flex-1 d-flex flex-column flex-md-row"
-          style={{ overflow: 'hidden' }}
+          className={`${styles.ContainerMapAndSideDoc} flex-1 d-flex flex-column flex-md-row`}
         >
           <div>
             {selectedDoc ? (
