@@ -23,7 +23,7 @@ export default function BlockControlsNovel({
 }) {
   return (
     <div className={`${styles.BlockControls} bg-white d-flex w-100`}>
-      <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5 col-2">
+      <div className="d-flex align-items-center justify-content-start mx-2 mx-md-5 col-2 col-md-1">
         <SkipBack
           className="cursor-pointer"
           onClick={() => {
