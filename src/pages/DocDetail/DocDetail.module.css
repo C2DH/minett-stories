@@ -7,6 +7,7 @@
   left: 0;
   right: 0;
   overflow: scroll;
+  height: 100%;
 }
 
 .Document {
@@ -113,10 +114,13 @@
     margin-left: 0px;
     margin-right: 0px;
     position: relative;
-    height: 100%;
+    padding-bottom: 100px;
+    min-height: 100%;
+    height: unset;
     background-color: var(--dark-grey);
     padding-left: 16px;
     padding-right: 16px;
+    overflow: auto;
   }
 
   .TitleDocument {
@@ -176,6 +180,6 @@
   }
 
   .TypeDocument {
-    padding-top: 0px;
+    padding-top: 16px;
   }
 }

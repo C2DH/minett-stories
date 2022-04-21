@@ -69,6 +69,7 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
 
   function onDocumentLoadSuccess({ numPages }) {
     setNumPages(numPages)
+    setPageNumber(1)
   }
 
   function handlePageChange(e) {
@@ -77,6 +78,7 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
       setPageNumber(+pageNumber)
     }
   }
+
 
   return (
     <div
