@@ -1017,10 +1017,10 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c2dh/react-miller@^1.0.0-beta.6":
-  version "1.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.7.tgz#07033681592b1c02f4dd14350b35f954651a8413"
-  integrity sha512-LAe8IHyNJV6gfZbjjAwDQJKVEQUR+IwYcGJbqOsWFC0iwSyaH4U3RK3qzE+rcB2ndnz54GDJuV1AADNq5t4bsA==
+"@c2dh/react-miller@^1.0.0-beta.8":
+  version "1.0.0-beta.8"
+  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.8.tgz#ec9385fbee7b52bb01fd6dc6c88881b5afef0fdb"
+  integrity sha512-kZXWz/9dqJsjGtb3DQjwHQhA8w/P4y4voElE8r/rGVeRxyRUcpUaokVL16uiMd1Mf+XO0AxuRO8o3kngGwQ8HQ==
   dependencies:
     "@babel/runtime" "^7.17.2"
     axios "^0.26.0"
@@ -4703,10 +4703,10 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-snext@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/snext/-/snext-0.10.1.tgz#1e493d066233edcb596cee4ee2c452a6049d1a37"
-  integrity sha512-M5LEJsrJ44NhOzHVbTQInuz0eFsllv+YRTUTIkU0zKnCdmSzShCUCzqCcwcPAjO40w1wLcueweU2/9zHiiqZ4g==
+snext@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/snext/-/snext-0.11.0.tgz#424f07a21fd4c583b0ccc9a574d886a206a09a54"
+  integrity sha512-/IkhQBk5E8A/2M/jdjp8vZQ53HNS1fwYlX5IKwMZ2ItaD2iVaVbN/iUrJ/OLR78MBhL/ltiUrAXGuK9DB7BRgg==
   dependencies:
     "@snext/build-tools" "^0.3.2"
     "@snext/crawl" "^0.0.2"

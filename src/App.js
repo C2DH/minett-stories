@@ -157,11 +157,17 @@ function CheckClientSideScreenDimensions() {
   return null
 }
 
-function App({ client, apiUrl }) {
+function App({ client, apiUrl, requestsCache }) {
   const { i18n } = useTranslation()
   return (
     <ErrorBoundary>
-      <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
+      <Miller
+        requestsCache={requestsCache}
+        client={client}
+        apiUrl={apiUrl}
+        langs={LANGS}
+        lang={i18n.language}
+      >
         {ENABLE_SCREEN_SIZE_REDIRECT && (
           <Routes>
             <Route path="/*" element={<CheckClientSideScreenDimensions />} />
