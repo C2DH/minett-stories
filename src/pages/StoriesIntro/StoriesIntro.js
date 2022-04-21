@@ -61,7 +61,7 @@ function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
               className={`${styles.TextIntro}`}
               style={{ height }}
             >
-              <div style={{ width: '50%'}}>{text}</div>
+              <div>{text}</div>
             </div>
           )
         })}
