@@ -1,11 +1,11 @@
 import booleanIntesects from '@turf/boolean-intersects'
 import centroid from '@turf/centroid'
 import { polygon } from '@turf/helpers'
+import classNames from 'classnames'
 import { Delaunay } from 'd3-delaunay'
 import { curveBasisClosed, line } from 'd3-shape'
 import clipper from 'js-clipper'
-import random from 'lodash/random'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
@@ -91,27 +91,34 @@ function VoronoiPath({
   step,
   progress,
   onMouseEnter,
+  onMouseLeave,
+  onClick,
+  withHoverEffect,
+  hovered,
+  notHovered,
+  className,
 }) {
-  useEffect(() => {
-    console.log('mount', index)
-  }, [])
   return (
     <path
       key={index}
       d={xline(cells[index])}
-      // onMouseLeave={() => setindex(null)}
-      // fill={`red`}
-      stroke={'#000'}
+      stroke={'var(--black)'}
       style={{
         strokeWidth: cellStrokeWidth,
         opacity: controlPoints.length
           ? getOpacity(cellsClassification[index], step, progress)
           : 1,
       }}
-      fill={`url(#pic-${index})`}
-      className={styles.voronoiPath}
+      fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
+      className={classNames(styles.voronoiPath, className, {
+        [styles.voronoiPathWithHoverEffect]: withHoverEffect,
+        [styles.vornoiPathHovered]: hovered,
+        [styles.vornoiPathNotHovered]: notHovered,
+      })}
       onMouseEnter={onMouseEnter}
-    ></path>
+      onMouseLeave={onMouseLeave}
+      onClick={onClick}
+    />
   )
 }
 
@@ -120,6 +127,9 @@ export default function IntroVoronoi({
   controlPoints = [],
   step,
   progress,
+  withHoverEffect,
+  onStoryHover,
+  onStoryClick,
 }) {
   const [cells, setCells] = useState([])
   const { ref, height, width } = useComponentSize()
@@ -185,7 +195,7 @@ export default function IntroVoronoi({
       }
       return controlAreas.length
     },
-    [controlPoints.length, controlAreas]
+    [controlAreas]
   )
 
   const cellsClassification = useMemo(() => {
@@ -197,11 +207,20 @@ export default function IntroVoronoi({
     return cells.map((c) => getAreasStep(c))
   }, [cells, getAreasStep])
 
+  function handleHoverIndexChange(index) {
+    setHoverIndex(index)
+    if (typeof onStoryHover === 'function') {
+      const deStory = index === null ? null : stories[index]
+      onStoryHover(deStory)
+    }
+  }
+
   return (
-    <div className="bg-info flex-1" ref={ref}>
+    <div className="flex-1" ref={ref}>
       {stories && stories.length > 0 && (
         <svg
-          style={{ position: 'absolute', zIndex: 0, background: '#000' }}
+          className="bg-site-black"
+          style={{ position: 'absolute', zIndex: 0 }}
           width={width}
           height={height}
           // onDrag={(e) => {
@@ -212,56 +231,79 @@ export default function IntroVoronoi({
             {stories.map((story, i) => {
               const cover = story.covers[0].data.resolutions.preview.url
               return (
-                <pattern
-                  key={i}
-                  id={`pic-${i}`}
-                  // patternUnits="userSpaceOnUse"
-                  width="100%"
-                  height="100%"
-                >
-                  <image
-                    href={cover}
+                <Fragment key={i}>
+                  <pattern
+                    id={`pic-${i}`}
+                    // patternUnits="userSpaceOnUse"
                     width="100%"
                     height="100%"
-                    x="-50%"
-                    y="-50%"
-                    preserveAspectRatio="xMidYMid slice"
-                    style={{ filter: 'grayscale(1)' }}
-                  />
-                  <rect
+                  >
+                    <image
+                      href={cover}
+                      width="100%"
+                      height="100%"
+                      x="-50%"
+                      y="-50%"
+                      preserveAspectRatio="xMidYMid slice"
+                      style={{ filter: 'grayscale(1)' }}
+                    />
+                    <rect
+                      width="100%"
+                      height="100%"
+                      fill={`var(--color-story-${getStoryType(story)})`}
+                      style={{
+                        mixBlendMode: 'overlay',
+                      }}
+                    />
+                  </pattern>
+                  <pattern
+                    id={`clean-pic-${i}`}
+                    // patternUnits="userSpaceOnUse"
                     width="100%"
                     height="100%"
-                    fill={`var(--color-story-${getStoryType(story)})`}
-                    style={{
-                      mixBlendMode: 'overlay',
-                    }}
-                  ></rect>
-                </pattern>
+                  >
+                    <image
+                      href={cover}
+                      width="100%"
+                      height="100%"
+                      x="-50%"
+                      y="-50%"
+                      preserveAspectRatio="xMidYMid slice"
+                    />
+                  </pattern>
+                </Fragment>
               )
             })}
           </defs>
           <g>
-            {cells.concat([null]).map((cell, i) => {
-              if (cell === null) {
-                if (hoverIndex !== null) {
-                  return (
-                    <VoronoiPath
-                      key={hoverIndex}
-                      index={hoverIndex}
-                      cells={cells}
-                      cellsClassification={cellsClassification}
-                      controlPoints={controlPoints}
-                      step={step}
-                      progress={progress}
-                    ></VoronoiPath>
-                  )
-                } else {
-                  return null
-                }
-              }
-              if (hoverIndex === i) {
-                return null
-              }
+            {cells.map((cell, i) => {
+              // cells.concat([null])
+              // if (cell === null) {
+              //   if (hoverIndex !== null) {
+              //     return (
+              //       <VoronoiPath
+              //         key={hoverIndex}
+              //         index={hoverIndex}
+              //         cells={cells}
+              //         cellsClassification={cellsClassification}
+              //         controlPoints={controlPoints}
+              //         step={step}
+              //         progress={progress}
+              //       ></VoronoiPath>
+              //     )
+              //   } else {
+              //     return null
+              //   }
+              // }
+              // if (hoverIndex === i) {
+              //   return null
+              // }
+              const hoverProps = withHoverEffect
+                ? {
+                    notHovered: hoverIndex !== i && hoverIndex !== null,
+                    hovered: hoverIndex === i,
+                  }
+                : {}
               return (
                 <VoronoiPath
                   key={i}
@@ -271,8 +313,18 @@ export default function IntroVoronoi({
                   controlPoints={controlPoints}
                   step={step}
                   progress={progress}
-                  // onMouseEnter={() => setHoverIndex(i)}
-                ></VoronoiPath>
+                  {...hoverProps}
+                  withHoverEffect={withHoverEffect}
+                  onMouseEnter={() => handleHoverIndexChange(i)}
+                  onMouseLeave={() => {
+                    handleHoverIndexChange(hoverIndex === i ? null : hoverIndex)
+                  }}
+                  onClick={
+                    typeof onStoryClick === 'function'
+                      ? () => onStoryClick(stories[i])
+                      : undefined
+                  }
+                />
               )
             })}
           </g>

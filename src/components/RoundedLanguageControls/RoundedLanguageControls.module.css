@@ -1,0 +1,49 @@
+.BlockLanguages {
+  display: flex;
+}
+
+.ChangeLangLink {
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  margin-right: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  border: 1px solid white;
+  text-transform: uppercase;
+}
+
+.ChangeLangLink:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.ChangeLangLinkActive {
+  background-color: white;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark-grey);
+  text-decoration: none;
+  margin-right: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  text-transform: uppercase;
+}
+
+.ChangeLangLinkActive:hover {
+  text-decoration: none;
+  color: var(--dark-grey);
+}

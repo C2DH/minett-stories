@@ -93,7 +93,12 @@
 .SideDoc {
   height: 100%;
   padding: 24px;
+  width: 400px;
   overflow: auto;
+}
+
+.ContainerMapAndSideDoc {
+  overflow: hidden;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
@@ -104,9 +109,12 @@
     width: 100%;
   }
 
-  .SideDoc{
-    width: 90%;
-    height: calc(100% - 98px);
+  .SideDoc {
+    width: 80%;
+    overflow: auto;
+  }
+
+  .ContainerMapAndSideDoc {
+    overflow: auto;
   }
 }
-

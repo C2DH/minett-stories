@@ -1,20 +1,12 @@
 import { useDocument } from '@c2dh/react-miller'
-import classNames from 'classnames'
-import MapGL, { Marker, Popup } from '@urbica/react-map-gl'
-import Cluster from '@urbica/react-map-gl-cluster'
-import 'mapbox-gl/dist/mapbox-gl.css'
-import { Suspense, useCallback, useMemo, useState } from 'react'
+import { lazy, Suspense, useCallback, useMemo, useState } from 'react'
 import { Spinner } from 'reactstrap'
 import styles from './MapStory.module.css'
 import LangLink from '../../../components/LangLink'
 import { ArrowDown, ArrowLeft, X } from 'react-feather'
 import VisualModule from '../../../components/VisualModule'
 
-const ClusterMarker = ({ longitude, latitude, pointCount }) => (
-  <Marker longitude={longitude} latitude={latitude}>
-    <div className={styles.clusterMarker}>{pointCount}</div>
-  </Marker>
-)
+const MapWrapper = lazy(() => import('./MapWrapper'))
 
 function SideDocRelated({ docId }) {
   const [mainDoc] = useDocument(docId)
@@ -59,7 +51,7 @@ function SideDoc({ doc, onClose }) {
           <X color="white" />
         </div>
       </div>
-      <div className='border-bottom pb-3 pt-3'>
+      <div className="border-bottom pb-3 pt-3">
         <h4 className={styles.Title}>{doc.data.title}</h4>
         <div className="w-100">
           <img className="w-100" src={imageUrl} alt={doc.data.title} />
@@ -86,12 +78,6 @@ function SideDoc({ doc, onClose }) {
 }
 
 export default function MapStory({ story }) {
-  const [viewport, setViewport] = useState({
-    longitude: 6.087,
-    latitude: 49.667,
-    zoom: 8,
-  })
-  console.log('>', story)
   const millerModule = story.data.chapters[0].contents.modules[0]
 
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
@@ -120,8 +106,6 @@ export default function MapStory({ story }) {
   const [selectedDoc, setSelectedDoc] = useState(null)
   const handleSideDocClose = useCallback(() => setSelectedDoc(null), [])
 
-  const [hoverDoc, setHoverDoc] = useState(null)
-
   const [goDeeper, setGoDeeper] = useState(false)
   const onGoDeeper = useCallback(() => {
     setGoDeeper(true)
@@ -134,8 +118,7 @@ export default function MapStory({ story }) {
     <>
       <div className="h-100 w-100 d-flex flex-column">
         <div
-          className="flex-1 d-flex flex-column flex-md-row"
-          style={{ overflow: 'hidden' }}
+          className={`${styles.ContainerMapAndSideDoc} flex-1 d-flex flex-column flex-md-row`}
         >
           <div>
             {selectedDoc ? (
@@ -157,76 +140,19 @@ export default function MapStory({ story }) {
               </div>
             )}
           </div>
-          <MapGL
-            {...viewport}
-            onViewportChange={setViewport}
-            style={{ width: '100%', height: '100%' }}
-            maxZoom={16}
-            minZoom={7.5}
-            accessToken={process.env.REACT_APP_MAPBOX_TOKEN}
-            mapStyle="mapbox://styles/175post/ck2abmbmf04391cn623ruh659"
+          <Suspense
+            fallback={
+              <div className="text-center w-100 pt-4">
+                <Spinner />
+              </div>
+            }
           >
-            <Cluster
-              maxZoom={11}
-              radius={40}
-              extent={512}
-              nodeSize={64}
-              component={ClusterMarker}
-            >
-              {mapObjects.map((obj) => {
-                const isSelected = obj.document.id === selectedDoc?.id
-                const key = String(obj.id) + (isSelected ? ':s' : '')
-                return (
-                  <Marker
-                    onClick={() => setSelectedDoc(obj.document)}
-                    key={key}
-                    longitude={
-                      +obj.document.data.coordinates.geometry.coordinates[1]
-                    }
-                    latitude={
-                      +obj.document.data.coordinates.geometry.coordinates[0]
-                    }
-                  >
-                    <div
-                      onMouseEnter={() => setHoverDoc(obj.document)}
-                      onMouseLeave={() =>
-                        setHoverDoc((hDoc) =>
-                          hDoc?.id === obj.document.id ? null : hDoc
-                        )
-                      }
-                      className={classNames(styles.marker, {
-                        [styles.selected]: isSelected,
-                      })}
-                    />
-                  </Marker>
-                )
-              })}
-            </Cluster>
-            {hoverDoc && (
-              <Popup
-                // maxWidth="310"
-                longitude={+hoverDoc.data.coordinates.geometry.coordinates[1]}
-                latitude={+hoverDoc.data.coordinates.geometry.coordinates[0]}
-                closeButton={false}
-                closeOnClick={false}
-                anchor="right"
-                offset={{
-                  right: [
-                    selectedDoc && selectedDoc.id === hoverDoc.id ? -30 : -10,
-                    0,
-                  ],
-                }}
-              >
-                <img
-                  className="img-fluid"
-                  src={hoverDoc.attachment}
-                  alt={hoverDoc.data.title}
-                />
-                <div className={styles.TitlePopup}>{hoverDoc.data.title}</div>
-                <div className={styles.YearPopup}>{hoverDoc.data.year}</div>
-              </Popup>
-            )}
-          </MapGL>
+            <MapWrapper
+              mapObjects={mapObjects}
+              selectedDoc={selectedDoc}
+              setSelectedDoc={setSelectedDoc}
+            />
+          </Suspense>
         </div>
         <div
           className="bg-white text-black d-flex align-items-center"

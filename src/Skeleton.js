@@ -4,6 +4,7 @@ export default function Skeleton({ appHtml, entrypoints, initialData }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#2e2e2e" />
         <link rel="shortcut icon" href="/favicon.ico" />
         {entrypoints.main
           .filter((e) => e.endsWith('.css'))

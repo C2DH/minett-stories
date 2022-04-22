@@ -1,5 +1,4 @@
 .BlockLanguages {
-  display: flex;
   position: absolute;
   right: 60px;
   top: 24px;
@@ -16,52 +15,6 @@
   bottom: 0;
   justify-content: center;
   flex-direction: column;
-}
-
-.ChangeLangLink {
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-  margin-right: 18px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  border: 1px solid white;
-  text-transform: uppercase;
-}
-
-.ChangeLangLink:hover {
-  text-decoration: none;
-  color: white;
-}
-
-.ChangeLangLinkActive {
-  background-color: white;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--dark-grey);
-  text-decoration: none;
-  margin-right: 18px;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  text-transform: uppercase;
-}
-
-.ChangeLangLinkActive:hover {
-  text-decoration: none;
-  color: var(--dark-grey);
 }
 
 .subtitle {
@@ -162,7 +115,6 @@
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockLanguages {
-    display: flex;
     position: absolute;
     right: 10px;
     top: 9px;
