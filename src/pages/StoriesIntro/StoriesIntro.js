@@ -1,5 +1,5 @@
 import { useState, useRef, useMemo, useEffect } from 'react'
-import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
+import { ArrowDown } from 'react-feather'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import LangLink from '../../components/LangLink'
 import IntroVoronoi from '../../components/IntroVoronoi'

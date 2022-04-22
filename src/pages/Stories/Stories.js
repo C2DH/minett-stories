@@ -9,34 +9,54 @@ import classNames from 'classnames'
 import { useState } from 'react'
 import StoryPill from '../../components/StoryPill'
 import { getStoryType } from '../../utils'
+import { useIsMobileScreen } from '../../hooks/screen'
+import LangLink from '../../components/LangLink'
 
 function StoriesVoronoi({ stories }) {
-  const [story, setStory] = useState(null)
+  const [selectedStory, setSelectedStory] = useState(null)
   const { pathname: basePath } = useResolvedPath('..')
   const navigate = useNavigate()
+
+  const isMobileScreen = useIsMobileScreen()
+
   return (
-    <div
-      className={`h-100 d-flex flex-column padding-top-bar ${styles.Voronoi}`}
-    >
-      <IntroVoronoi
-        withHoverEffect
-        stories={stories}
-        onStoryHover={setStory}
-        onStoryClick={() => navigate(`${basePath}/story/${story.slug}`)}
-      />
-      <div
-        className={classNames(styles.VoronoiHoveredStory, {
-          [styles.VoronoiHoveredStoryActive]: story !== null,
-        })}
-      >
-        {story && (
-          <>
-            <StoryPill type={getStoryType(story)} />
-            <h1 className='mt-3'>{story.data.title}</h1>
-          </>
-        )}
+    <>
+      <div className={classNames(`d-flex flex-column ${styles.Voronoi}`)}>
+        <IntroVoronoi
+          stories={stories}
+          withHoverEffect={!isMobileScreen}
+          onStoryHover={isMobileScreen ? undefined : setSelectedStory}
+          onStoryClick={(story) => {
+            if (isMobileScreen) {
+              setSelectedStory(story)
+            } else {
+              navigate(`${basePath}/story/${story.slug}`)
+            }
+          }}
+        />
+        <div
+          className={classNames(styles.VoronoiSelectedStory, {
+            [styles.VoronoiSelectedStoryActive]: selectedStory !== null,
+          })}
+        >
+          {selectedStory && (
+            <>
+              <StoryPill type={getStoryType(selectedStory)} />
+              <h1 className="mt-3">{selectedStory.data.title}</h1>
+              <LangLink
+                className="btn text-white rounded-pill btn-dark w-100"
+                to={`/story/${selectedStory.slug}`}
+              >
+                Open
+              </LangLink>
+            </>
+          )}
+        </div>
       </div>
-    </div>
+      {selectedStory && isMobileScreen && (
+        <div className={styles.VoronoiMobileBottomPadder} />
+      )}
+    </>
   )
 }
 
@@ -56,8 +76,6 @@ export default function Stories() {
       },
     },
   })
-
-  console.log(type === 'voronoi' ? false : true, type)
 
   return (
     <Layout

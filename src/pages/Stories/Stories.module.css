@@ -2,11 +2,12 @@
   padding-left: 60px;
   padding-right: 60px;
   padding-bottom: 60px;
+  height: 100%;
   padding-top: calc(29px + var(--top-bar-height));
   position: relative;
 }
 
-.VoronoiHoveredStory {
+.VoronoiSelectedStory {
   transition: opacity 0.4s ease-in;
   position: absolute;
   left: 0;
@@ -23,6 +24,49 @@
   opacity: 0;
 }
 
-.VoronoiHoveredStoryActive {
+.VoronoiSelectedStoryActive {
   opacity: 1;
+}
+
+.VoronoiSelectedStory a {
+  display: none;
+}
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .Voronoi {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-top: calc(0px + var(--top-bar-height));
+    position: relative;
+    height: 200%;
+  }
+
+  .VoronoiSelectedStory {
+    transition: transform 0.3s ease-in-out;
+    position: fixed;
+    transform: translateY(100%);
+    pointer-events: initial;
+    top: unset;
+    bottom: 0;
+    z-index: 999999;
+    background-color: var(--black);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    align-items: flex-start;
+    opacity: 1;
+  }
+
+  .VoronoiSelectedStory a {
+    display: block;
+  }
+
+  .VoronoiSelectedStoryActive {
+    transform: translateY(0);
+  }
+  .VoronoiMobileBottomPadder {
+    height: 30%;
+  }
 }
