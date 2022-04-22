@@ -1,10 +1,14 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useMemo, useEffect } from 'react'
+import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import LangLink from '../../components/LangLink'
-import Layout from '../../components/Layout'
 import IntroVoronoi from '../../components/IntroVoronoi'
 import { useComponentSize } from 'react-use-size'
 import styles from './StoriesIntro.module.css'
+import { useNavigate } from 'react-router-dom'
+import { useLangPathPrefix } from '../../hooks/langs'
+import { useTranslation } from 'react-i18next'
+import RoundedLanguageControls from '../../components/RoundedLanguageControls'
 
 const controlPoints = [
   [
@@ -24,15 +28,23 @@ const controlPoints = [
   ],
 ]
 
-const sampleTexts = [
-  'Minett is a region in the South of Luxembourg strongly influenced by its industrial past.',
-  'The website investigates the multiple and sometimes contested identities of the region and of the people who lived and worked there.',
-  'The website investigates the multiple and sometimes contested identities of the region and of the people who lived and worked there.'
-]
-
-function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
+function ScrollControl({
+  texts = [],
+  step,
+  progress,
+  onStepChange,
+  onProgress,
+  numSteps = 3,
+}) {
   const { ref, height, width } = useComponentSize()
-  const step = useRef(0)
+  const stepRef = useRef(0)
+
+  function getOpacity(iterStep) {
+    if (step >= iterStep) {
+      return 1 - progress * 2
+    }
+    return progress
+  }
 
   return (
     <div
@@ -47,9 +59,9 @@ function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
         const fraction = currentStepFractional - currentStep
 
         onProgress(fraction)
-        if (currentStep !== step.current) {
+        if (currentStep !== stepRef.current) {
           onStepChange(currentStep)
-          step.current = currentStep
+          stepRef.current = currentStep
         }
       }}
     >
@@ -59,7 +71,7 @@ function ScrollControl({ texts = [], onStepChange, onProgress, numSteps = 3 }) {
             <div
               key={i}
               className={`${styles.TextIntro}`}
-              style={{ height }}
+              style={{ height, opacity: getOpacity(i) }}
             >
               <div>{text}</div>
             </div>
@@ -75,6 +87,15 @@ export default function StoriesIntro() {
   const [progress, setProgress] = useState(0)
 
   const [introStory] = useStoryWithChapters('intro')
+  const scrollTexts = useMemo(
+    () =>
+      introStory.data.chapters[0].contents.modules
+        .filter((m) => m.module === 'text')
+        .slice(0, 3)
+        .map((m) => m.text.content),
+    [introStory.data.chapters]
+  )
+
   const [storiesList] = useStories({
     params: {
       limit: 1000,
@@ -87,39 +108,55 @@ export default function StoriesIntro() {
     },
   })
 
+  const { i18n, t } = useTranslation()
+
+  const navigate = useNavigate()
+  const pathPrefix = useLangPathPrefix()
+  useEffect(() => {
+    if (step === 3) {
+      navigate(`${pathPrefix}/stories/voronoi`)
+    }
+  }, [navigate, pathPrefix, step])
+
   return (
-    <Layout>
-      <div className="padding-top-bar h-100">
-        <div className="h-100  d-flex flex-column">
-          <LangLink className={`${styles.Skip}`} to="/stories/voronoi">
-            Skip Intro
-          </LangLink>
-          {/* <div className={styles.ScrollDown}>Scroll Down</div> */}
-          <div className="flex-1 d-flex flex-column position-relative">
-            <div
-              style={{ zIndex: 1 }}
-              className="h-100 w-100 d-flex flex-column position-absolute"
-            >
-              <IntroVoronoi
-                stories={storiesList.results}
-                controlPoints={controlPoints}
-                step={step}
-                progress={progress}
-              />
-            </div>
-            <div
-              style={{ zIndex: 2 }}
-              className="h-100 w-100 position-absolute d-flex flex-column"
-            >
-              <ScrollControl
-                texts={sampleTexts}
-                onStepChange={setStep}
-                onProgress={setProgress}
-              ></ScrollControl>
-            </div>
+    <div className="h-100">
+      <RoundedLanguageControls className={styles.BlockLanguages} />
+      <div className="h-100 d-flex flex-column">
+        <LangLink className={`${styles.Skip}`} to="/stories/voronoi">
+          Skip Intro
+        </LangLink>
+        <div className="flex-1 d-flex flex-column position-relative">
+          <div
+            style={{ zIndex: 1, top: 60, left: 60, right: 60, bottom: 60 }}
+            className="d-flex flex-column position-absolute"
+          >
+            <IntroVoronoi
+              stories={storiesList.results}
+              controlPoints={controlPoints}
+              step={step}
+              progress={progress}
+            />
+          </div>
+          <div
+            style={{ zIndex: 2 }}
+            className="h-100 w-100 position-absolute d-flex flex-column"
+          >
+            <ScrollControl
+              step={step}
+              progress={progress}
+              texts={scrollTexts}
+              onStepChange={setStep}
+              onProgress={setProgress}
+            ></ScrollControl>
           </div>
         </div>
       </div>
-    </Layout>
+      <div className={styles.ScrollDown}>
+        <div className='mb-2'>Scroll down</div>
+        <div className='btn-circle text-white bg-dark-gray'>
+          <ArrowDown />
+        </div>
+      </div>
+    </div>
   )
 }

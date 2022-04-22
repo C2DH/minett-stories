@@ -1,7 +1,7 @@
 .Skip {
   position: absolute;
-  top: 95%;
-  right: 20px;
+  bottom: 32px;
+  right: 55px;
   color: white;
   z-index: 3;
   font-weight: 400;
@@ -11,20 +11,15 @@
   text-transform: uppercase;
 }
 
-.Skip:hover {
-  color: white;
+.BlockLanguages {
+  position: absolute;
+  right: 60px;
+  top: 15px;
+  z-index: 13;
 }
 
-.ScrollDown {
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  position: absolute;
-  top: 90%;
-  left: calc(50% - 51px);
+.Skip:hover {
   color: white;
-  font-family: var(--font-pp-neue-montreal);
-  z-index: 3;
 }
 
 .TextIntro {
@@ -35,6 +30,22 @@
   line-height: 48px;
   width: 50%;
   font-family: var(--font-pp-neue-montreal);
+}
+
+.ScrollDown {
+  left: 0;
+  right: 0;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  font-family: var(--font-pp-neue-montreal);
+  line-height: 24px;
+  font-weight: 400;
+  font-size: 20px;
+  bottom: 43px;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {

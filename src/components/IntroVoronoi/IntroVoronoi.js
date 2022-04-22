@@ -4,7 +4,6 @@ import { polygon } from '@turf/helpers'
 import { Delaunay } from 'd3-delaunay'
 import { curveBasisClosed, line } from 'd3-shape'
 import clipper from 'js-clipper'
-import random from 'lodash/random'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
@@ -92,16 +91,13 @@ function VoronoiPath({
   progress,
   onMouseEnter,
 }) {
-  useEffect(() => {
-    console.log('mount', index)
-  }, [])
   return (
     <path
       key={index}
       d={xline(cells[index])}
       // onMouseLeave={() => setindex(null)}
       // fill={`red`}
-      stroke={'#000'}
+      stroke={'var(--black)'}
       style={{
         strokeWidth: cellStrokeWidth,
         opacity: controlPoints.length
@@ -185,7 +181,7 @@ export default function IntroVoronoi({
       }
       return controlAreas.length
     },
-    [controlPoints.length, controlAreas]
+    [controlAreas]
   )
 
   const cellsClassification = useMemo(() => {
@@ -198,10 +194,11 @@ export default function IntroVoronoi({
   }, [cells, getAreasStep])
 
   return (
-    <div className="bg-info flex-1" ref={ref}>
+    <div className="flex-1" ref={ref}>
       {stories && stories.length > 0 && (
         <svg
-          style={{ position: 'absolute', zIndex: 0, background: '#000' }}
+          className='bg-site-black'
+          style={{ position: 'absolute', zIndex: 0 }}
           width={width}
           height={height}
           // onDrag={(e) => {
