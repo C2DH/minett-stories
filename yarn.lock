@@ -4703,10 +4703,10 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-snext@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/snext/-/snext-0.11.0.tgz#424f07a21fd4c583b0ccc9a574d886a206a09a54"
-  integrity sha512-/IkhQBk5E8A/2M/jdjp8vZQ53HNS1fwYlX5IKwMZ2ItaD2iVaVbN/iUrJ/OLR78MBhL/ltiUrAXGuK9DB7BRgg==
+snext@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/snext/-/snext-0.12.0.tgz#26a2ec1246f0260e5749ef2958ec99e285845e56"
+  integrity sha512-0TYRebjlx2hYeYjinRoOBtryiX6W0UTSPdCZqWaX8evCUWaaI5ye5ST1MM8nG8Ux3RXbH1qL4JRGiK+dSWKliA==
   dependencies:
     "@snext/build-tools" "^0.3.2"
     "@snext/crawl" "^0.0.2"
