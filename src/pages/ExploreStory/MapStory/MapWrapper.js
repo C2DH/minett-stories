@@ -29,7 +29,7 @@ export default function MapWrapper({ mapObjects, selectedDoc, setSelectedDoc }) 
       mapStyle="mapbox://styles/175post/ck2abmbmf04391cn623ruh659"
     >
       <Cluster
-        maxZoom={11}
+        maxZoom={0}
         radius={40}
         extent={512}
         nodeSize={64}
