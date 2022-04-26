@@ -26,6 +26,8 @@ export default function InteractiveGrid({
   intialPosition = DEFAULT_INITIAL_POSITION,
   positionBounds = DEFAULT_POSITION_BOUNDS,
   handleRadiusPx = DEFAULT_HANDLE_RADIUS_PX,
+  disableDrag = false,
+  position: controlledPosition,
 }) {
   const containerRef = useRef()
 
@@ -43,7 +45,8 @@ export default function InteractiveGrid({
     setPosition({ left, top })
   }
 
-  const [position, setPosition] = useState(intialPosition)
+  const [localPosition, setPosition] = useState(intialPosition)
+  const position = controlledPosition ?? localPosition
 
   return (
     <div
@@ -56,7 +59,7 @@ export default function InteractiveGrid({
         style={{
           zIndex: 1,
           position: 'absolute',
-          left: '30%',
+          left: topLeft ? '30%' : 0,
           right: 0,
           top: 0,
           bottom: '20%',
@@ -109,7 +112,7 @@ export default function InteractiveGrid({
         )}
       </div>
 
-      <div
+      {topLeft && <div
         style={{
           backgroundColor: 'var(--black)',
           zIndex: 3,
@@ -121,7 +124,7 @@ export default function InteractiveGrid({
         }}
       >
         {topLeft}
-      </div>
+      </div>}
 
       <div
         style={{
@@ -168,7 +171,7 @@ export default function InteractiveGrid({
         )}
       </div>
 
-      <DraggableCore handle=".handle" onDrag={handleDrag}>
+      {!disableDrag && <DraggableCore handle=".handle" onDrag={handleDrag}>
         <div
           className={'handle'}
           style={{
@@ -184,7 +187,7 @@ export default function InteractiveGrid({
             height: handleRadiusPx,
           }}
         />
-      </DraggableCore>
+      </DraggableCore>}
     </div>
   )
 }

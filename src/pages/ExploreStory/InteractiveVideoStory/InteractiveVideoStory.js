@@ -10,6 +10,7 @@ import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import { ArrowLeft } from 'react-feather'
 import imageModalTip from './VideoTip.svg'
 import AutoTipModal from '../../../components/AutoTipModal'
+import { useIsMobileScreen } from '../../../hooks/screen'
 
 function objInTime(obj, seconds) {
   return (
@@ -96,78 +97,93 @@ export default function InteractiveVideoStory({ story }) {
     }, 150)
   }, [])
 
+  // NOTE: Wait first render to decide between mobile / desktop
+  const isMobileScreen = useIsMobileScreen(null)
+
   return (
     <>
       <AutoTipModal
         type="interactiveVideo"
-        text={'Move the white circle to interact with the interactive documentary.'}
+        text={
+          'Move the white circle to interact with the interactive documentary.'
+        }
         imageSource={imageModalTip}
       />
       <div className="w-100 h-100 d-flex flex-column">
-        <InteractiveGrid
-          topLeft={
-            <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-              <LangLink
-                style={{
-                  position: 'absolute',
-                  top: 20,
-                  left: 20,
-                  backgroundColor: 'var(--dark-grey)',
-                }}
-                to={`/story/${story.slug}`}
-                className={'btn-circle cursor-pointer no-link'}
-              >
-                <ArrowLeft />
-              </LangLink>
-              Subtitles Here
-            </div>
-          }
-          video={
-            <Player
-              onEnded={handleOnPlayEnd}
-              volume={1}
-              muted={muted}
-              className="video-player-cover"
-              progressInterval={200}
-              ref={playerRef}
-              onReady={onPlayerReady}
-              width="100%"
-              height="100%"
-              url={videUrl}
-              playing={playing}
-              onProgress={setProgress}
-              playsinline
-            />
-          }
-          bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
-          bottomLeft={
-            leftObj ? (
-              <div className="w-100 h-100 d-flex align-items-end">
-                <DocLink
-                  onClick={() => setPlaying(false)}
-                  slugOrId={leftObj.document.slug}
-                  className="ms-4 mb-4 no-link"
-                >
-                  {leftObj.document.data.title}
-                </DocLink>
-              </div>
-            ) : null
-          }
-          bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
-          bottomRight={
-            rightObj ? (
-              <div className="w-100 h-100 d-flex align-items-end">
-                <DocLink
-                  slugOrId={rightObj.document.slug}
-                  onClick={() => setPlaying(false)}
-                  className="ms-4 mb-4 no-link"
-                >
-                  {rightObj.document.data.title}
-                </DocLink>
-              </div>
-            ) : null
-          }
-        />
+        <LangLink
+          style={{
+            position: 'absolute',
+            zIndex: 99,
+            top: 20,
+            left: 20,
+            backgroundColor: 'var(--dark-grey)',
+          }}
+          to={`/story/${story.slug}`}
+          className={'btn-circle cursor-pointer no-link'}
+        >
+          <ArrowLeft />
+        </LangLink>
+        {isMobileScreen === null ? (
+          // NOTE: Placeholder for avoid too layout shift when SSR
+          <div className="h-100 w-100" />
+        ) : (
+          <InteractiveGrid
+            position={isMobileScreen ? { top: 50, left: 50 } : null}
+            topLeft={
+              !isMobileScreen && (
+                <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                  Subtitles Here
+                </div>
+              )
+            }
+            disableDrag={isMobileScreen}
+            video={
+              <Player
+                onEnded={handleOnPlayEnd}
+                volume={1}
+                muted={muted}
+                className="video-player-cover"
+                progressInterval={200}
+                ref={playerRef}
+                onReady={onPlayerReady}
+                width="100%"
+                height="100%"
+                url={videUrl}
+                playing={playing}
+                onProgress={setProgress}
+                playsinline
+              />
+            }
+            bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
+            bottomLeft={
+              leftObj ? (
+                <div className="w-100 h-100 d-flex align-items-end">
+                  <DocLink
+                    onClick={() => setPlaying(false)}
+                    slugOrId={leftObj.document.slug}
+                    className="ms-4 mb-4 no-link"
+                  >
+                    {leftObj.document.data.title}
+                  </DocLink>
+                </div>
+              ) : null
+            }
+            bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
+            bottomRight={
+              rightObj ? (
+                <div className="w-100 h-100 d-flex align-items-end">
+                  <DocLink
+                    slugOrId={rightObj.document.slug}
+                    onClick={() => setPlaying(false)}
+                    className="ms-4 mb-4 no-link"
+                  >
+                    {rightObj.document.data.title}
+                  </DocLink>
+                </div>
+              ) : null
+            }
+          />
+        )}
         <ChaptersProgressBar
           storyType="interactive-video"
           played={progress.played}
