@@ -40,7 +40,9 @@
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
       "take_me_there": "Take me there",
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
-      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
+      "skipIntro": "Skip Intro",
+      "scrollDown": "Scroll Down"
     }
   },
   "en_GB": {
@@ -84,7 +86,9 @@
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
       "take_me_there": "Take me there",
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
-      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
+      "skipIntro": "Skip Intro",
+      "scrollDown": "Scroll Down"
     }
   },
   "de_DE": {
@@ -128,7 +132,9 @@
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
       "take_me_there": "Take me there",
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
-      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
+      "skipIntro": "Skip Intro",
+      "scrollDown": "Scroll Down"
     }
   }
 }
