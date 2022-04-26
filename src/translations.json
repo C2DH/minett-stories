@@ -37,7 +37,8 @@
       "copyright": "copyright",
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
-      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Take me there"
     }
   },
   "en_GB": {
@@ -78,7 +79,8 @@
       "copyright": "copyright",
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
-      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Take me there"
     }
   },
   "de_DE": {
@@ -119,7 +121,8 @@
       "copyright": "copyright",
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
-      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Take me there"
     }
   }
 }
