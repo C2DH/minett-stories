@@ -1104,7 +1104,7 @@
   resolved "https://registry.yarnpkg.com/@mapbox/whoots-js/-/whoots-js-3.1.0.tgz#497c67a1cef50d1a2459ba60f315e448d2ad87fe"
   integrity sha512-Es6WcD0nO5l+2BOQS4uLfNPYQaNDfbot3X1XUoloz+x0mPDS3eeORZJl06HXjwBG1fOGwCRnzK88LMdxKRrd6Q==
 
-"@pmmmwh/react-refresh-webpack-plugin@^0.5.4":
+"@pmmmwh/react-refresh-webpack-plugin@^0.5.5":
   version "0.5.5"
   resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.5.5.tgz#e77aac783bd079f548daa0a7f080ab5b5a9741ca"
   integrity sha512-RbG7h6TuP6nFFYKJwbcToA1rjC1FyPg25NR2noAZ0vKI+la01KTSRPkuVPE+U88jXv7javx2JHglUcL1MHcshQ==
@@ -1124,14 +1124,14 @@
   resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
   integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
 
-"@snext/build-tools@^0.3.2":
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/@snext/build-tools/-/build-tools-0.3.2.tgz#b84d81787de8edaaf819579eec7c5725319d0b15"
-  integrity sha512-8/FbmrOcAhjF1AxM0PXpaXzH6glNBDRWUbRzXCLhosQi6kUZyxqPJUsI0DYbQHNDIgd2naSL8hAHGh6g1TNeeA==
+"@snext/build-tools@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@snext/build-tools/-/build-tools-0.4.0.tgz#9e3b250aaf74fff8402470861e50f215681bf46b"
+  integrity sha512-491cO6NlqN19qDnUJXdhihbca4W6qtQX0Upab+eDxoAvuKJ86NaT6u/gRzIRYV8/Vom1lCyQ34VafGdehZasuQ==
   dependencies:
     "@babel/core" "^7.16.12"
     "@babel/preset-react" "^7.16.7"
-    "@pmmmwh/react-refresh-webpack-plugin" "^0.5.4"
+    "@pmmmwh/react-refresh-webpack-plugin" "^0.5.5"
     "@svgr/webpack" "^6.2.0"
     babel-loader "^8.2.3"
     babel-preset-react-app "^10.0.1"
@@ -1140,7 +1140,7 @@
     express "^4.17.2"
     file-loader "^6.2.0"
     mini-css-extract-plugin "^2.5.3"
-    react-refresh "^0.11.0"
+    react-refresh "^0.12.0"
     sass-loader "^12.5.0"
     style-loader "^3.3.1"
     webpack "^5.69.0"
@@ -4388,10 +4388,10 @@ react-query@^3.34.15:
     broadcast-channel "^3.4.1"
     match-sorter "^6.0.2"
 
-react-refresh@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.11.0.tgz#77198b944733f0f1f1a90e791de4541f9f074046"
-  integrity sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==
+react-refresh@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-refresh/-/react-refresh-0.12.0.tgz#28ac0a2c30ef2bb3433d5fd0621e69a6d774c3a4"
+  integrity sha512-suLIhrU2IHKL5JEKR/fAwJv7bbeq4kJ+pJopf77jHwuR+HmJS/HbrPIGsTBUVfw7tXPOmYv7UJ7PCaN49e8x4A==
 
 react-router-dom@^6.2.2:
   version "6.3.0"
@@ -4703,12 +4703,12 @@ setprototypeof@1.2.0:
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.2.0.tgz#66c9a24a73f9fc28cbe66b09fed3d33dcaf1b424"
   integrity sha512-E5LDX7Wrp85Kil5bhZv46j8jOeboKq5JMmYM3gVGdGH8xFpPWXUMsNrlODCrkoxMEeNi/XZIwuRvY4XNwYMJpw==
 
-snext@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/snext/-/snext-0.12.0.tgz#26a2ec1246f0260e5749ef2958ec99e285845e56"
-  integrity sha512-0TYRebjlx2hYeYjinRoOBtryiX6W0UTSPdCZqWaX8evCUWaaI5ye5ST1MM8nG8Ux3RXbH1qL4JRGiK+dSWKliA==
+snext@^0.13.0:
+  version "0.13.0"
+  resolved "https://registry.yarnpkg.com/snext/-/snext-0.13.0.tgz#d448770fad06535b0ff08925590508004a05c33c"
+  integrity sha512-X3CVG+3njp7kv8QeYbWLmKLQqj1ktXKKxAngfgOI+B/XRiju3nhxJArIrBsdAgABufltCkunay1Y8/HcDse+1Q==
   dependencies:
-    "@snext/build-tools" "^0.3.2"
+    "@snext/build-tools" "^0.4.0"
     "@snext/crawl" "^0.0.2"
     "@snext/env" "^0.1.0"
     chalk "^5.0.0"

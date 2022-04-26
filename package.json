@@ -76,6 +76,6 @@
     ]
   },
   "devDependencies": {
-    "snext": "^0.12.0"
+    "snext": "^0.13.0"
   }
 }
