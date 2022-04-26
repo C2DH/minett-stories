@@ -1,12 +1,4 @@
-import {
-  Routes,
-  Route,
-  useParams,
-  Outlet,
-  matchPath,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom'
+import { Routes, Route, useParams, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
@@ -15,7 +7,6 @@ import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
 import NavigationWrapper from './components/NavigationWrapper'
 import Loader from './components/Loader'
-import { ENABLE_SCREEN_SIZE_REDIRECT } from './consts'
 import Stories from './pages/Stories'
 import Archive from './pages/Archive'
 import Story from './pages/Story'
@@ -132,7 +123,12 @@ function App({ client, apiUrl }) {
   const { i18n } = useTranslation()
   return (
     <ErrorBoundary>
-      <Miller client={client} apiUrl={apiUrl} langs={LANGS} lang={i18n.language}>
+      <Miller
+        client={client}
+        apiUrl={apiUrl}
+        langs={LANGS}
+        lang={i18n.language}
+      >
         <Routes>
           <Route path="/*" element={<LangRoutes />} />
         </Routes>
