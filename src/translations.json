@@ -38,7 +38,9 @@
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
-      "take_me_there": "Take me there"
+      "take_me_there": "Take me there",
+      "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
     }
   },
   "en_GB": {
@@ -80,7 +82,9 @@
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
-      "take_me_there": "Take me there"
+      "take_me_there": "Take me there",
+      "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
     }
   },
   "de_DE": {
@@ -122,7 +126,9 @@
       "listen-to-podcast": "Listen To the podcast on your favourite podcast player:",
       "download-file": "Download file",
       "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
-      "take_me_there": "Take me there"
+      "take_me_there": "Take me there",
+      "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
     }
   }
 }

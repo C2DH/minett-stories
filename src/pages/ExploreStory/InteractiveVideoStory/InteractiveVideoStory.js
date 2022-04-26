@@ -11,6 +11,7 @@ import { ArrowLeft } from 'react-feather'
 import imageModalTip from './VideoTip.svg'
 import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
+import { useTranslation } from 'react-i18next'
 
 function objInTime(obj, seconds) {
   return (
@@ -100,12 +101,14 @@ export default function InteractiveVideoStory({ story }) {
   // NOTE: Wait first render to decide between mobile / desktop
   const isMobileScreen = useIsMobileScreen(null)
 
+  const { t } = useTranslation()
+
   return (
     <>
       <AutoTipModal
         type="interactiveVideo"
         text={
-          'Move the white circle to interact with the interactive documentary.'
+          t('interactiveVideoTip')
         }
         imageSource={imageModalTip}
       />

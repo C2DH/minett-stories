@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
 import VisualModule from '../../../components/VisualModule'
@@ -196,11 +197,13 @@ export default function GraphicNovelStory({ story }) {
     }, 150)
   }, [])
 
+  const { t } = useTranslation()
+
   return (
     <>
       <AutoTipModal
         type="graphicNovel"
-        text={'Scroll horizontally to read the graphic novel or use the arrows'}
+        text={t('graphicNovelTip')}
         imageSource={imageModalTip}
       />
       <div className="w-100 h-100 d-flex flex-column">
