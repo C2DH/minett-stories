@@ -5,6 +5,7 @@ import styles from './MapStory.module.css'
 import LangLink from '../../../components/LangLink'
 import { ArrowDown, ArrowLeft, X } from 'react-feather'
 import VisualModule from '../../../components/VisualModule'
+import { useTranslation } from 'react-i18next'
 
 const MapWrapper = lazy(() => import('./MapWrapper'))
 
@@ -26,11 +27,6 @@ function SideDocRelated({ docId }) {
           </div>
           <div className={styles.Year}>{doc.data.year}</div>
           <div className={styles.Description}>{doc.data.description}</div>
-          <LangLink className="no-link" to={`/document/${doc.id}`}>
-            <div className="d-flex justify-content-end">
-              <div className={styles.ButtonDocument}>TAKE ME THERE</div>
-            </div>
-          </LangLink>
         </div>
       ))}
     </>
@@ -40,6 +36,15 @@ function SideDocRelated({ docId }) {
 function SideDoc({ doc, onClose }) {
   const imageUrl =
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
+  const { t } = useTranslation()
+  
+
+  const coordinates = useMemo(() => {
+    return doc.data.coordinates.geometry.coordinates ?? []
+  }, [doc])
+
+  console.log(coordinates, 'coordinates')
+
   return (
     <div className={styles.SideDoc}>
       <div className="d-flex justify-content-end">
@@ -58,11 +63,16 @@ function SideDoc({ doc, onClose }) {
         </div>
         <div className={styles.Year}>{doc.data.year}</div>
         <div className={styles.Description}>{doc.data.description}</div>
-        <LangLink className="no-link" to={`/document/${doc.document_id}`}>
+        <a
+          className="no-link"
+          target={'_blank'}
+          rel="noreferrer"
+          href={`https://www.google.com/maps/dir/?api=1&destination=${coordinates.toString()}`}
+        >
           <div className="d-flex justify-content-end cursor-pointer">
-            <div className={styles.ButtonDocument}>TAKE ME THERE</div>
+            <div className={styles.ButtonDocument}>{t('take_me_there')}</div>
           </div>
-        </LangLink>
+        </a>
       </div>
       <Suspense
         fallback={

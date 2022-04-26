@@ -9,6 +9,7 @@ import spotify from './assets/spotify.png'
 import googlePodcast from './assets/google-podcast.png'
 import applePodcast from './assets/apple-podcast.png'
 import { useTranslation } from 'react-i18next'
+import { useNavigationType } from 'react-router-dom'
 
 export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -29,7 +30,9 @@ export default function AudioStory({ story }) {
 
   // Playere related hooks
   const playerRef = useRef()
-  const [playing, setPlaying] = useState(false)
+  // NOTE: Not 100% correct but Y know ... When coming from push state auto play stuff
+  const navigationType = useNavigationType()
+  const [playing, setPlaying] = useState(navigationType === 'PUSH')
   const togglePlay = useCallback(() => setPlaying((p) => !p), [])
   const [duration, setDuration] = useState(0)
   const [muted, setMulted] = useState(false)

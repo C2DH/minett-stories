@@ -36,7 +36,7 @@ function ScrollControl({
   onProgress,
   numSteps = 3,
 }) {
-  const { ref, height, width } = useComponentSize()
+  const { ref, height } = useComponentSize()
   const stepRef = useRef(0)
 
   function getOpacity(iterStep) {
@@ -108,7 +108,7 @@ export default function StoriesIntro() {
     },
   })
 
-  const { i18n, t } = useTranslation()
+  const { t } = useTranslation()
 
   const navigate = useNavigate()
   const pathPrefix = useLangPathPrefix()
@@ -123,7 +123,7 @@ export default function StoriesIntro() {
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className="h-100 d-flex flex-column">
         <LangLink className={`${styles.Skip}`} to="/stories/voronoi">
-          Skip Intro
+          {t('skipIntro')}
         </LangLink>
         <div className="flex-1 d-flex flex-column position-relative">
           <div
@@ -152,7 +152,7 @@ export default function StoriesIntro() {
         </div>
       </div>
       <div className={styles.ScrollDown}>
-        <div className='mb-2'>Scroll down</div>
+        <div className='mb-2'>{t('scrollDown')}</div>
         <div className='btn-circle text-white bg-dark-gray'>
           <ArrowDown />
         </div>

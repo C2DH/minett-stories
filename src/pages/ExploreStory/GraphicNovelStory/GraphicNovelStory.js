@@ -1,5 +1,7 @@
+import classNames from 'classnames'
 import { useCallback, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
 import VisualModule from '../../../components/VisualModule'
@@ -22,8 +24,37 @@ function GraphicNoveModuleGallery({ millerModule }) {
   )
 }
 
+function GraphicNoveModuleTextObject({ millerModule }) {
+  return (
+    <div
+      style={{
+        background: millerModule.background.color,
+        borderRadius: 100,
+        color: millerModule.text.color,
+      }}
+      className={classNames('h-100 d-flex mx-4', {
+        'flex-row-reverse': millerModule.layout === 'text-object',
+      })}
+    >
+      <div className="h-100 p-3">
+        <img
+          style={{ height: '100%', borderRadius: 100 }}
+          src={millerModule.object.document.attachment}
+          key={millerModule.id}
+          alt={millerModule.object.document.data.title}
+        />
+      </div>
+      <div
+        style={{ minWidth: 400 }}
+        className="p-3 text-font-abc d-flex align-items-center justify-content-center"
+      >
+        {millerModule.text.content}
+      </div>
+    </div>
+  )
+}
+
 function GraphicNoveModuleText({ millerModule }) {
-  console.log(millerModule)
   return (
     <div className="h-100 mx-4">
       <div
@@ -48,6 +79,29 @@ function GraphicNoveModuleImage({ millerModule }) {
       : millerModule.size === 'medium'
       ? '80%'
       : '100%'
+
+  const caption = millerModule.caption
+
+  if (caption !== '') {
+    return (
+      <div
+        className="mx-4 h-100 d-flex flex-column p-3"
+        style={{
+          background: millerModule.background.color,
+          borderRadius: 100,
+        }}
+      >
+        <img
+          src={millerModule.document.attachment}
+          style={{ height: '85%' }}
+          className={`${styles.imgNovel}`}
+          alt={millerModule.title}
+        />
+        <div className="text-font-abc pt-3 text-center">{caption}</div>
+      </div>
+    )
+  }
+
   return (
     <div className="mx-4 h-100 d-flex align-items-center">
       <img
@@ -61,6 +115,7 @@ function GraphicNoveModuleImage({ millerModule }) {
 }
 
 function GraphicNovelModule({ millerModule }) {
+  console.log(millerModule)
   switch (millerModule.module) {
     case 'text':
       return <GraphicNoveModuleText millerModule={millerModule} />
@@ -68,6 +123,8 @@ function GraphicNovelModule({ millerModule }) {
       return <GraphicNoveModuleImage millerModule={millerModule} />
     case 'gallery':
       return <GraphicNoveModuleGallery millerModule={millerModule} />
+    case 'text_object':
+      return <GraphicNoveModuleTextObject millerModule={millerModule} />
     default:
       console.warn(
         'Missing Component for Miller Module Graphic Novel',
@@ -134,13 +191,13 @@ export default function GraphicNovelStory({ story }) {
     }, 150)
   }, [])
 
-  console.log(selectedChapter)
+  const { t } = useTranslation()
 
   return (
     <>
       <AutoTipModal
         type="graphicNovel"
-        text={'Scroll horizontally to read the graphic novel or use the arrows'}
+        text={t('graphicNovelTip')}
         imageSource={imageModalTip}
       />
       <div className="w-100 h-100 d-flex flex-column">

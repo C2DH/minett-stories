@@ -1,12 +1,4 @@
-import {
-  Routes,
-  Route,
-  useParams,
-  Outlet,
-  matchPath,
-  useNavigate,
-  useLocation,
-} from 'react-router-dom'
+import { Routes, Route, useParams, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
@@ -15,7 +7,6 @@ import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
 import NavigationWrapper from './components/NavigationWrapper'
 import Loader from './components/Loader'
-import { ENABLE_SCREEN_SIZE_REDIRECT } from './consts'
 import Stories from './pages/Stories'
 import Archive from './pages/Archive'
 import Story from './pages/Story'
@@ -128,35 +119,6 @@ function LangRoutes() {
   )
 }
 
-function CheckClientSideScreenDimensions() {
-  const navigate = useNavigate()
-  useEffect(() => {
-    const media = window.matchMedia('(max-width: 768px)')
-    function handleChange() {
-      const isScreenMobile = media.matches
-      const isMobile = matchPath('/m/*', window.location.pathname)
-      if (isScreenMobile && !isMobile) {
-        // You are on a mobile screen but site is rendered as desktop
-        const confirmed = window.confirm('Use mobile version?')
-        if (confirmed) {
-          navigate('/m')
-        }
-      } else if (!isScreenMobile && isMobile) {
-        // You are on a desktop scren but site is rendered as mobile
-        const confirmed = window.confirm('Use desktop version?')
-        if (confirmed) {
-          navigate('/')
-        }
-      }
-    }
-    handleChange()
-    media.addEventListener('change', handleChange)
-    return () => media.removeEventListener('change', handleChange)
-  }, [navigate])
-
-  return null
-}
-
 function App({ client, apiUrl, requestsCache }) {
   const { i18n } = useTranslation()
   return (
@@ -168,15 +130,7 @@ function App({ client, apiUrl, requestsCache }) {
         langs={LANGS}
         lang={i18n.language}
       >
-        {ENABLE_SCREEN_SIZE_REDIRECT && (
-          <Routes>
-            <Route path="/*" element={<CheckClientSideScreenDimensions />} />
-          </Routes>
-        )}
         <Routes>
-          {/* MOBILE */}
-          <Route path="/m/*" element={<LangRoutes />} />
-          {/* DESKTOP */}
           <Route path="/*" element={<LangRoutes />} />
         </Routes>
       </Miller>

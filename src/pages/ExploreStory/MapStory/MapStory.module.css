@@ -71,6 +71,7 @@
   width: max-content;
   margin-top: 20px;
   padding: 8px 24px;
+  text-transform: uppercase;
 }
 
 .TitlePopup {
