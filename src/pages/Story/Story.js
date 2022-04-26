@@ -51,6 +51,9 @@ export default function Story() {
       filters: {
         tags__slug__in: ['theme'],
       },
+      exclude: {
+        tags__slug__in: ['intro'],
+      },
     },
   })
   const [story] = useStoryWithChapters(slug)
