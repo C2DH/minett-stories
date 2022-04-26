@@ -5,7 +5,7 @@ import resources from './translations.json'
 
 export const LANGS = ['en_GB', 'fr_FR', 'de_DE']
 
-export const LANGS_SHORT = LANGS.map(l => l.split('_')[0])
+export const LANGS_SHORT = LANGS.map((l) => l.split('_')[0])
 
 export const DEFAULT_LANG = 'en_GB'
 
@@ -32,21 +32,16 @@ function getLangFromParam(langParam) {
   // Lang is on of configure...
   if (LANGS_SHORT.includes(langParam)) {
     // Find them...
-    return LANGS.find(l => l.startsWith(langParam))
+    return LANGS.find((l) => l.startsWith(langParam))
   }
   // Fallback 2 default one
   return DEFAULT_LANG
 }
 
 export function getStartLang(pathname) {
-  const langMatchMobile = matchPath('/m/:lang/*', pathname)
-  // No match use default lang
-  if (!langMatchMobile) {
-    const langMatch = matchPath('/:lang/*', pathname)
-    if (langMatch) {
-      return getLangFromParam(langMatch.params.lang)
-    }
-    return DEFAULT_LANG
+  const langMatch = matchPath('/:lang/*', pathname)
+  if (langMatch) {
+    return getLangFromParam(langMatch.params.lang)
   }
-  return getLangFromParam(langMatchMobile.params.lang)
+  return DEFAULT_LANG
 }
