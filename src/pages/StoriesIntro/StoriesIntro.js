@@ -36,7 +36,7 @@ function ScrollControl({
   onProgress,
   numSteps = 3,
 }) {
-  const { ref, height, width } = useComponentSize()
+  const { ref, height } = useComponentSize()
   const stepRef = useRef(0)
 
   function getOpacity(iterStep) {

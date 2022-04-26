@@ -12,6 +12,7 @@ import imageModalTip from './VideoTip.svg'
 import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
+import { useNavigationType } from 'react-router-dom'
 
 function objInTime(obj, seconds) {
   return (
@@ -39,7 +40,9 @@ export default function InteractiveVideoStory({ story }) {
 
   // Playere related hooks
   const playerRef = useRef()
-  const [playing, setPlaying] = useState(false)
+  // NOTE: Not 100% correct but Y know ... When coming from push state auto play stuff
+  const navigationType = useNavigationType()
+  const [playing, setPlaying] = useState(navigationType === 'PUSH')
   const togglePlay = useCallback(() => setPlaying((p) => !p), [])
   const [duration, setDuration] = useState(0)
   const [muted, setMulted] = useState(false)
@@ -107,9 +110,7 @@ export default function InteractiveVideoStory({ story }) {
     <>
       <AutoTipModal
         type="interactiveVideo"
-        text={
-          t('interactiveVideoTip')
-        }
+        text={t('interactiveVideoTip')}
         imageSource={imageModalTip}
       />
       <div className="w-100 h-100 d-flex flex-column">

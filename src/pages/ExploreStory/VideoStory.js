@@ -4,6 +4,7 @@ import VisualModule from '../../components/VisualModule'
 import ChaptersProgressBar from '../../components/ChaptersProgressBar'
 import LangLink from '../../components/LangLink'
 import { ArrowLeft } from 'react-feather'
+import { useNavigationType } from 'react-router-dom'
 
 export default function VideoStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -20,7 +21,9 @@ export default function VideoStory({ story }) {
 
   // Playere related hooks
   const playerRef = useRef()
-  const [playing, setPlaying] = useState(false)
+  // NOTE: Not 100% correct but Y know ... When coming from push state auto play stuff
+  const navigationType = useNavigationType()
+  const [playing, setPlaying] = useState(navigationType === 'PUSH')
   const togglePlay = useCallback(() => setPlaying((p) => !p), [])
   const [duration, setDuration] = useState(0)
   const [muted, setMulted] = useState(false)
