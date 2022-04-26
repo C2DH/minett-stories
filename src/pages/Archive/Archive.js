@@ -61,7 +61,11 @@ export default function Archive() {
       filters: {
         type__in: filters.types.length > 0 ? filters.types : undefined,
       },
-      exclude: { type: 'entity' },
+      where: {
+        'Op.not': [
+          { 'Op.or': [{ type: 'entity' }, { data__type: 'drawing' }] },
+        ],
+      },
     },
   })
 
@@ -91,7 +95,11 @@ export default function Archive() {
             className="d-block d-md-none"
             onClick={() => setShowFilters(!showFilters)}
           >
-            {showFilters ? <X color='white' /> : <Filter fill='white' color='white' />}
+            {showFilters ? (
+              <X color="white" />
+            ) : (
+              <Filter fill="white" color="white" />
+            )}
           </span>
         </>
       }
