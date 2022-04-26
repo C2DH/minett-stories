@@ -80,13 +80,9 @@ function GraphicNoveModuleImage({ millerModule }) {
       ? '80%'
       : '100%'
 
-  console.log(millerModule)
-
   const caption = millerModule.caption
 
-  console.log(caption)
-
-  if (caption !== "") {
+  if (caption !== '') {
     return (
       <div
         className="mx-4 h-100 d-flex flex-column p-3"
@@ -101,9 +97,7 @@ function GraphicNoveModuleImage({ millerModule }) {
           className={`${styles.imgNovel}`}
           alt={millerModule.title}
         />
-        <div className='text-font-abc pt-3 text-center'>
-          {caption}
-        </div>
+        <div className="text-font-abc pt-3 text-center">{caption}</div>
       </div>
     )
   }
