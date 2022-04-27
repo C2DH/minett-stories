@@ -30,10 +30,15 @@ function YearPicker({ year, from, to, onChange }) {
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <Popover hideArrow isOpen={isOpen} placement={'top'} target={ref}>
+      <Popover
+        className={styles.Popover}
+        hideArrow
+        isOpen={isOpen}
+        placement={'top'}
+        target={ref}
+      >
         <PopoverBody
-          className="bg-dark-gray text-white py-0"
-          style={{ height: 100, overflowY: 'auto' }}
+          className={`${styles.PopoverBody} bg-dark-gray text-white py-0`}
         >
           {range(from, to + 1).map((y) => (
             <div
