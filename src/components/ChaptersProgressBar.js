@@ -7,6 +7,7 @@ import {
   Volume1,
   VolumeX,
 } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import { fromSecondsToProgressStr } from '../utils'
 import MediaProgressLine from './MediaProgressLine'
 
@@ -28,6 +29,7 @@ export default function ChaptersProgressBar({
   actions = null,
 }) {
   const selectedChapter = chapters[index]
+  const { t } = useTranslation()
   return (
     <div className="w-100 d-flex bg-white" style={{ height: 64 }}>
       <div className="d-flex align-items-center justify-content-center mx-2 mx-md-5">
@@ -88,7 +90,7 @@ export default function ChaptersProgressBar({
               className="w-100 d-flex justify-content-center cursor-pointer"
             >
               <div className={`text-color-story-${storyType} d-flex align-items-center flex-column`}>
-                <span className='d-none d-md-block'>Go deeper (10 min.)</span>
+                <span className='d-none d-md-block'>{t('go_deeper')}</span>
                 <ArrowDown
                   className="ms-0 ms-md-2"
                   color={`var(--color-story-${storyType})`}

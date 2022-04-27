@@ -43,7 +43,6 @@ function SideDoc({ doc, onClose }) {
     return doc.data.coordinates.geometry.coordinates ?? []
   }, [doc])
 
-  console.log(coordinates, 'coordinates')
 
   return (
     <div className={styles.SideDoc}>
@@ -91,6 +90,8 @@ export default function MapStory({ story }) {
   const millerModule = story.data.chapters[0].contents.modules[0]
 
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
+
+  const { t } = useTranslation()
 
   // NOTE: Ya as other modules this paths sucks...
   // But i am litle less scare cause we handle runtime erros
@@ -177,7 +178,7 @@ export default function MapStory({ story }) {
               <div
                 className={`text-color-story-map d-flex flex-row align-items-center`}
               >
-                <span className="d-none d-md-block">Go deeper (10 min.)</span>
+                <span className="d-none d-md-block">{t('go_deeper')}</span>
                 <ArrowDown className="ms-0" color={`var(--color-story-map)`} />
               </div>
             </div>

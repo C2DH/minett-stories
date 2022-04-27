@@ -77,6 +77,8 @@ export default function Story() {
     ]
   }, [slug, storiesList.results])
 
+  const { t } = useTranslation()
+
   return (
     <Layout>
       <div className="padding-top-bar" />
@@ -109,7 +111,7 @@ export default function Story() {
                 <div
                   className={`${styles.GoDeeperText} text-color-story-${type}`}
                 >
-                  Go deeper (10 min.)
+                  {t('go_deeper')}
                 </div>
                 <ArrowDown color={`var(--color-story-${type})`} />
               </div>
