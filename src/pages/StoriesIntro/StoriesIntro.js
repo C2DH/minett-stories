@@ -128,7 +128,7 @@ export default function StoriesIntro() {
         <div className="flex-1 d-flex flex-column position-relative">
           <div
             style={{ zIndex: 1, top: 60, left: 60, right: 60, bottom: 60 }}
-            className="d-flex flex-column position-absolute"
+            className="d-none d-md-flex flex-column position-absolute"
           >
             <IntroVoronoi
               stories={storiesList.results}

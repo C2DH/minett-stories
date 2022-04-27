@@ -73,7 +73,7 @@ export default function TopBar({ right, linkUrlLogo = '/stories' }) {
         <OffcanvasBody className={styles.OffcanvasBody}>
           <div className='d-flex flex-column'>
             <LinkTop to="/" label={t('intro')} />
-            <LinkTop to="/stories" label={t('stories')} />
+            <LinkTop to="/stories/voronoi" label={t('stories')} />
             <LinkTop to="/archive" label={t('archive')} />
             <LinkTop to="/about" label={t('about')} />
           </div>

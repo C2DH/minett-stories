@@ -7,6 +7,7 @@ import {
   SkipBack,
   SkipForward,
 } from 'react-feather'
+import { useTranslation } from 'react-i18next'
 import styles from './GraphicNovelStory.module.css'
 
 export default function BlockControlsNovel({
@@ -21,6 +22,9 @@ export default function BlockControlsNovel({
   novelChapters,
   setAnimation,
 }) {
+
+  const { t } = useTranslation()
+
   return (
     <div className={`${styles.BlockControls} bg-white d-flex w-100`}>
       <div className="d-flex align-items-center justify-content-start mx-2 mx-md-5 col-2 col-md-1">
@@ -93,7 +97,7 @@ export default function BlockControlsNovel({
               <div
                 className={`text-color-story-graphic-novel d-flex flex-column align-items-center`}
               >
-                <span className="d-none d-md-block">Go deeper (10 min.)</span>
+                <span className="d-none d-md-block">{t('go_deeper')}</span>
                 <ArrowDown
                   className="ms-0"
                   color={`var(--color-story-graphic-novel)`}

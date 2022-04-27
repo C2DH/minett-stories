@@ -42,7 +42,8 @@
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
-      "scrollDown": "Scroll Down"
+      "scrollDown": "Scroll Down",
+      "go_deeper": "Go deeper"
     }
   },
   "en_GB": {
@@ -88,7 +89,8 @@
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
-      "scrollDown": "Scroll Down"
+      "scrollDown": "Scroll Down",
+      "go_deeper": "Go deeper"
     }
   },
   "de_DE": {
@@ -134,7 +136,8 @@
       "interactiveVideoTip": "Move the white circle to interact with the interactive documentary.",
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
-      "scrollDown": "Scroll Down"
+      "scrollDown": "Scroll Down",
+      "go_deeper": "Go deeper"
     }
   }
 }
