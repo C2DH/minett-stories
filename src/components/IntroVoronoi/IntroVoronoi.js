@@ -229,7 +229,10 @@ export default function IntroVoronoi({
         >
           <defs>
             {stories.map((story, i) => {
-              const cover = story.covers[0].data.resolutions.preview.url
+              const cover =
+                story.covers &&
+                story.covers.length > 0 &&
+                story.covers[0].data.resolutions.preview.url
               return (
                 <Fragment key={i}>
                   <pattern
