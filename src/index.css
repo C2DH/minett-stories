@@ -303,6 +303,10 @@ blockquote {
   padding-top: 16px;
 }
 
+.duration-player {
+  min-width: 91px;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;
