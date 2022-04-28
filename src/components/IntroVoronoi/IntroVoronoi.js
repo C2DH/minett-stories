@@ -10,6 +10,7 @@ import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
 import styles from './IntroVoronoi.module.css'
+import get from "lodash/get"
 
 const cornerRadius = 0.5
 const cleanCornerRadius = 12
@@ -233,6 +234,26 @@ export default function IntroVoronoi({
                 story.covers &&
                 story.covers.length > 0 &&
                 story.covers[0].data.resolutions.preview.url
+
+                const bbox = get(story, "data.background.bbox")
+                const hasBbox = Array.isArray(bbox) && bbox.length > 0
+                let w, h, x, y;
+                if(hasBbox){
+                  console.log("v", bbox, story, i)
+                  w = `${bbox[2] - bbox[0]}%`
+                  h = `${bbox[3] - bbox[1]}%`
+                  x = `${-bbox[0]}%`
+                  y = `${-bbox[1]}%`
+
+                } else {
+                  w = "100%"
+                  h = "100%"
+                  x = "-50%"
+                  y = "-50%"
+                }
+
+
+
               return (
                 <Fragment key={i}>
                   <pattern
@@ -243,10 +264,10 @@ export default function IntroVoronoi({
                   >
                     <image
                       href={cover}
-                      width="100%"
-                      height="100%"
-                      x="-50%"
-                      y="-50%"
+                      width={w}
+                      height={h}
+                      x={x}
+                      y={y}
                       preserveAspectRatio="xMidYMid slice"
                       style={{ filter: 'grayscale(1)' }}
                     />
@@ -261,16 +282,15 @@ export default function IntroVoronoi({
                   </pattern>
                   <pattern
                     id={`clean-pic-${i}`}
-                    // patternUnits="userSpaceOnUse"
                     width="100%"
                     height="100%"
                   >
                     <image
                       href={cover}
-                      width="100%"
-                      height="100%"
-                      x="-50%"
-                      y="-50%"
+                      width={w}
+                      height={h}
+                      x={x}
+                      y={y}
                       preserveAspectRatio="xMidYMid slice"
                     />
                   </pattern>
@@ -280,27 +300,7 @@ export default function IntroVoronoi({
           </defs>
           <g>
             {cells.map((cell, i) => {
-              // cells.concat([null])
-              // if (cell === null) {
-              //   if (hoverIndex !== null) {
-              //     return (
-              //       <VoronoiPath
-              //         key={hoverIndex}
-              //         index={hoverIndex}
-              //         cells={cells}
-              //         cellsClassification={cellsClassification}
-              //         controlPoints={controlPoints}
-              //         step={step}
-              //         progress={progress}
-              //       ></VoronoiPath>
-              //     )
-              //   } else {
-              //     return null
-              //   }
-              // }
-              // if (hoverIndex === i) {
-              //   return null
-              // }
+              
               const hoverProps = withHoverEffect
                 ? {
                     notHovered: hoverIndex !== i && hoverIndex !== null,
