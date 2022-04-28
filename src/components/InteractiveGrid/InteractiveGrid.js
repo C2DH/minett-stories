@@ -79,7 +79,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <div
+        {/* <div
           style={{
             position: 'absolute',
             bottom: 0,
@@ -89,15 +89,15 @@ export default function InteractiveGrid({
             minWidth: '70vw',
             height: '100%',
             backgroundPosition: 'top right',
-            backgroundColor: 'var(--brick)',
-            backgroundImage: bottomLeftImageSource
-              ? `url(${bottomLeftImageSource})`
-              : undefined,
+            // backgroundColor: 'var(--brick)',
+            // backgroundImage: bottomLeftImageSource
+            //   ? `url(${bottomLeftImageSource})`
+            //   : undefined,
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
           }}
-        />
-        {bottomLeft && (
+        /> */}
+        {/* {bottomLeft && (
           <div
             style={{
               position: 'absolute',
@@ -109,22 +109,59 @@ export default function InteractiveGrid({
           >
             {bottomLeft}
           </div>
-        )}
+        )} */}
+
+        {/* <div
+            style={{
+              //border: '1px solid red',
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              left: 0,
+            }}
+          > */}
+        <video
+          autoPlay
+          muted
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            height: '100%',
+            //  objectFit: 'cover',
+            objectFit: 'fill',
+            //  backgroundPosition: 'top right',
+            // backgroundColor: 'var(--brick)',
+            // backgroundImage: bottomLeftImageSource
+            //   ? `url(${bottomLeftImageSource})`
+            //   : undefined,
+            //  backgroundSize: 'cover',
+            //  backgroundRepeat: 'no-repeat',
+          }}
+          src="https://player.vimeo.com/progressive_redirect/playback/690885288/rendition/1080p?loc=external&signature=df36ce9c9a8960acfa8de1fe6ff5b8f1f73472c1cc9d8e64f1239cfdaf8818be"
+        />
+        {/* </div> */}
       </div>
 
-      {topLeft && <div
-        style={{
-          backgroundColor: 'var(--black)',
-          zIndex: 3,
-          position: 'absolute',
-          left: 0,
-          width: `${position.left}%`,
-          top: 0,
-          height: `${position.top}%`,
-        }}
-      >
-        {topLeft}
-      </div>}
+      {topLeft && (
+        <div
+          style={{
+            backgroundColor: 'var(--black)',
+            zIndex: 3,
+            position: 'absolute',
+            left: 0,
+            width: `${position.left}%`,
+            top: 0,
+            height: `${position.top}%`,
+          }}
+        >
+          {topLeft}
+        </div>
+      )}
 
       <div
         style={{
@@ -171,23 +208,25 @@ export default function InteractiveGrid({
         )}
       </div>
 
-      {!disableDrag && <DraggableCore handle=".handle" onDrag={handleDrag}>
-        <div
-          className={'handle'}
-          style={{
-            cursor: 'move',
-            backgroundColor: 'white',
-            position: 'absolute',
-            borderRadius: '50%',
-            zIndex: 4,
-            top: `calc(${position.top}% - ${handleRadiusPx / 2}px)`,
-            left: `calc(${position.left}% - ${handleRadiusPx / 2}px)`,
-            right: 0,
-            width: handleRadiusPx,
-            height: handleRadiusPx,
-          }}
-        />
-      </DraggableCore>}
+      {!disableDrag && (
+        <DraggableCore handle=".handle" onDrag={handleDrag}>
+          <div
+            className={'handle'}
+            style={{
+              cursor: 'move',
+              backgroundColor: 'white',
+              position: 'absolute',
+              borderRadius: '50%',
+              zIndex: 4,
+              top: `calc(${position.top}% - ${handleRadiusPx / 2}px)`,
+              left: `calc(${position.left}% - ${handleRadiusPx / 2}px)`,
+              right: 0,
+              width: handleRadiusPx,
+              height: handleRadiusPx,
+            }}
+          />
+        </DraggableCore>
+      )}
     </div>
   )
 }
