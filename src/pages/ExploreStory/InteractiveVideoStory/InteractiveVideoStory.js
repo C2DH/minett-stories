@@ -191,15 +191,8 @@ export default function InteractiveVideoStory({ story }) {
       />
       <div className="w-100 h-100 d-flex flex-column">
         <LangLink
-          style={{
-            position: 'absolute',
-            zIndex: 99,
-            top: 20,
-            left: 20,
-            backgroundColor: 'var(--dark-grey)',
-          }}
           to={`/story/${story.slug}`}
-          className={'btn-circle cursor-pointer no-link'}
+          className={`${styles.BackButton} btn-circle cursor-pointer no-link`}
         >
           <ArrowLeft />
         </LangLink>
@@ -242,12 +235,7 @@ export default function InteractiveVideoStory({ story }) {
                 />
                 {isMobileScreen && (
                   <div
-                    style={{
-                      position: 'absolute',
-                      bottom: 0,
-                      left: 0,
-                      right: 0,
-                    }}
+                    className={styles.subtitlesMobile}
                   >
                     {subtitles.map((sub, i) => (
                       <div key={i}>{sub}</div>
