@@ -10,7 +10,7 @@ import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
 import styles from './IntroVoronoi.module.css'
-import get from "lodash/get"
+import get from 'lodash/get'
 
 const cornerRadius = 0.5
 const cleanCornerRadius = 12
@@ -123,7 +123,7 @@ function VoronoiPath({
   )
 }
 
-export default function IntroVoronoi({
+function IntroVoronoiSvg({
   stories,
   controlPoints = [],
   step,
@@ -131,9 +131,10 @@ export default function IntroVoronoi({
   withHoverEffect,
   onStoryHover,
   onStoryClick,
+  height,
+  width,
 }) {
   const [cells, setCells] = useState([])
-  const { ref, height, width } = useComponentSize()
   const [refPoints, setRefPoints] = useState()
 
   useEffect(() => {
@@ -216,122 +217,123 @@ export default function IntroVoronoi({
     }
   }
 
+  if (stories.length === 0) {
+    return null
+  }
+
+  return (
+    <svg
+      className="bg-site-black"
+      style={{ position: 'absolute', zIndex: 0 }}
+      width={width}
+      height={height}
+      // onDrag={(e) => {
+      //   console.log(e)
+      // }}
+    >
+      <defs>
+        {stories.map((story, i) => {
+          const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
+
+          const bbox = get(story, 'data.background.bbox')
+          const hasBbox = Array.isArray(bbox) && bbox.length > 0
+          let w, h, x, y
+          if (hasBbox) {
+            // console.log("v", bbox, story, i)
+            w = `${bbox[2] - bbox[0]}%`
+            h = `${bbox[3] - bbox[1]}%`
+            x = `${-bbox[0] / 2}%`
+            y = `${-bbox[1]}%`
+          } else {
+            w = '100%'
+            h = '100%'
+            x = '-50%'
+            y = '-50%'
+          }
+
+          return (
+            <Fragment key={i}>
+              <pattern
+                id={`pic-${i}`}
+                // patternUnits="userSpaceOnUse"
+                width="100%"
+                height="100%"
+              >
+                <image
+                  href={cover}
+                  width={w}
+                  height={h}
+                  x={x}
+                  y={y}
+                  preserveAspectRatio="xMidYMid slice"
+                  style={{ filter: 'grayscale(1)' }}
+                />
+                <rect
+                  width="100%"
+                  height="100%"
+                  fill={`var(--color-story-${getStoryType(story)})`}
+                  style={{
+                    mixBlendMode: 'overlay',
+                  }}
+                />
+              </pattern>
+              <pattern id={`clean-pic-${i}`} width="100%" height="100%">
+                <image
+                  href={cover}
+                  width={w}
+                  height={h}
+                  x={x}
+                  y={y}
+                  preserveAspectRatio="xMidYMid slice"
+                />
+              </pattern>
+            </Fragment>
+          )
+        })}
+      </defs>
+      <g>
+        {cells.map((cell, i) => {
+          const hoverProps = withHoverEffect
+            ? {
+                notHovered: hoverIndex !== i && hoverIndex !== null,
+                hovered: hoverIndex === i,
+              }
+            : {}
+          return (
+            <VoronoiPath
+              key={i}
+              index={i}
+              cells={cells}
+              cellsClassification={cellsClassification}
+              controlPoints={controlPoints}
+              step={step}
+              progress={progress}
+              {...hoverProps}
+              withHoverEffect={withHoverEffect}
+              onMouseEnter={() => handleHoverIndexChange(i)}
+              onMouseLeave={() => {
+                handleHoverIndexChange(hoverIndex === i ? null : hoverIndex)
+              }}
+              onClick={
+                typeof onStoryClick === 'function'
+                  ? () => onStoryClick(stories[i])
+                  : undefined
+              }
+            />
+          )
+        })}
+      </g>
+    </svg>
+  )
+}
+
+export default function IntroVoronoi({ hideSvg = false, ...props }) {
+  const { ref, height, width } = useComponentSize()
+
   return (
     <div className="flex-1" ref={ref}>
-      {stories && stories.length > 0 && (
-        <svg
-          className="bg-site-black"
-          style={{ position: 'absolute', zIndex: 0 }}
-          width={width}
-          height={height}
-          // onDrag={(e) => {
-          //   console.log(e)
-          // }}
-        >
-          <defs>
-            {stories.map((story, i) => {
-              const cover =
-                story.covers &&
-                story.covers.length > 0 &&
-                story.covers[0].data.resolutions.preview.url
-
-                const bbox = get(story, "data.background.bbox")
-                const hasBbox = Array.isArray(bbox) && bbox.length > 0
-                let w, h, x, y;
-                if(hasBbox){
-                  console.log("v", bbox, story, i)
-                  w = `${bbox[2] - bbox[0]}%`
-                  h = `${bbox[3] - bbox[1]}%`
-                  x = `${-bbox[0] / 2}%`
-                  y = `${-bbox[1]}%`
-
-                } else {
-                  w = "100%"
-                  h = "100%"
-                  x = "-50%"
-                  y = "-50%"
-                }
-
-
-
-              return (
-                <Fragment key={i}>
-                  <pattern
-                    id={`pic-${i}`}
-                    // patternUnits="userSpaceOnUse"
-                    width="100%"
-                    height="100%"
-                  >
-                    <image
-                      href={cover}
-                      width={w}
-                      height={h}
-                      x={x}
-                      y={y}
-                      preserveAspectRatio="xMidYMid slice"
-                      style={{ filter: 'grayscale(1)' }}
-                    />
-                    <rect
-                      width="100%"
-                      height="100%"
-                      fill={`var(--color-story-${getStoryType(story)})`}
-                      style={{
-                        mixBlendMode: 'overlay',
-                      }}
-                    />
-                  </pattern>
-                  <pattern
-                    id={`clean-pic-${i}`}
-                    width="100%"
-                    height="100%"
-                  >
-                    <image
-                      href={cover}
-                      width={w}
-                      height={h}
-                      x={x}
-                      y={y}
-                      preserveAspectRatio="xMidYMid slice"
-                    />
-                  </pattern>
-                </Fragment>
-              )
-            })}
-          </defs>
-          <g>
-            {cells.map((cell, i) => {
-              
-              const hoverProps = withHoverEffect
-                ? {
-                    notHovered: hoverIndex !== i && hoverIndex !== null,
-                    hovered: hoverIndex === i,
-                  }
-                : {}
-              return (
-                <VoronoiPath
-                  key={i}
-                  index={i}
-                  cells={cells}
-                  cellsClassification={cellsClassification}
-                  controlPoints={controlPoints}
-                  step={step}
-                  progress={progress}
-                  {...hoverProps}
-                  withHoverEffect={withHoverEffect}
-                  onMouseEnter={() => handleHoverIndexChange(i)}
-                  onMouseLeave={() => {
-                    handleHoverIndexChange(hoverIndex === i ? null : hoverIndex)
-                  }}
-                  onClick={
-                    typeof onStoryClick === 'function'
-                      ? () => onStoryClick(stories[i])
-                      : undefined
-                  }
-                />
-              )
-            })}
-          </g>
-        </svg>
+      {width > 0 && !hideSvg && (
+        <IntroVoronoiSvg {...props} width={width} height={height} />
       )}
     </div>
   )
