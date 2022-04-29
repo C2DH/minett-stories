@@ -13,18 +13,28 @@ export default function Skeleton({ appHtml, entrypoints, initialData }) {
           ))}
       </head>
       <body>
-        <div
-          id="root"
-          dangerouslySetInnerHTML={{
-            __html: appHtml,
-          }}
-        />
+        {process.env.EXPORT_STATIC_SPA_APP ? (
+          <div id="root">
+            <noscript>Enable JavaScript to use this website.</noscript>
+          </div>
+        ) : (
+          <>
+            <div
+              id="root"
+              dangerouslySetInnerHTML={{
+                __html: appHtml,
+              }}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.__INITIAL_DATA__ = ${JSON.stringify(
+                  initialData
+                )};`,
+              }}
+            />
+          </>
+        )}
       </body>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `window.__INITIAL_DATA__ = ${JSON.stringify(initialData)};`,
-        }}
-      />
       {entrypoints.main
         .filter((e) => e.endsWith('.js'))
         .map((e) => (

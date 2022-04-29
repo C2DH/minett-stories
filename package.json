@@ -41,13 +41,11 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "snext dev",
+    "build": "snext build",
     "dev": "snext dev",
-    "static-build": "snext build",
-    "staticize": "snext staticize"
+    "staticize": "snext staticize",
+    "staticize-spa": "EXPORT_STATIC_SPA_APP=1 snext staticize -u / --no-crawl -o build"
   },
   "snext": {
     "clientEntry": "./src/index.js",
@@ -57,7 +55,7 @@
     "crawlConcurrency": 4,
     "exitStaticizeOnError": false,
     "outputDir": "build-static",
-    "publicDir": "public-static",
+    "publicDir": "public",
     "urls": [
       "/",
       "/404"
@@ -82,7 +80,6 @@
     ]
   },
   "devDependencies": {
-    "react-scripts": "^5.0.1",
-    "snext": "^0.13.0"
+    "snext": "^0.14.0"
   }
 }
