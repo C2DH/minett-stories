@@ -15,11 +15,133 @@ const DEFAULT_POSITION_BOUNDS = {
 
 const DEFAULT_HANDLE_RADIUS_PX = 40
 
+function getDocImageSource(doc) {
+  if (!doc) {
+    return null
+  }
+  return doc.data?.resolutions?.preview?.url ?? doc.attachment
+}
+
+function getDocVideoSource(doc) {
+  if (!doc) {
+    return null
+  }
+  return doc.data?.streamingUrl
+}
+
+function BottomLeftDoc({ doc }) {
+  if (!doc || doc.type === 'image') {
+    const imageSource = getDocImageSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          minHeight: '70vh',
+          minWidth: '70vw',
+          height: '100%',
+          backgroundPosition: 'top right',
+          backgroundColor: 'var(--brick)',
+          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+    )
+  } else if (doc?.type === 'video') {
+    const videoSource = getDocVideoSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '70vw',
+          height: '60vh',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'var(--brick)',
+          }}
+        >
+          <video
+            muted
+            autoPlay
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={videoSource}
+          />
+        </div>
+      </div>
+    )
+  }
+  return null
+}
+
+function BottomRightDoc({ doc }) {
+  if (!doc || doc.type === 'image') {
+    const imageSource = getDocImageSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '100%',
+          minHeight: '70vh',
+          minWidth: '70vw',
+          maxWidth: '100%',
+          height: '100%',
+          backgroundPosition: 'top left',
+          backgroundColor: 'var(--green)',
+          backgroundImage: imageSource
+            ? `url(${imageSource})`
+            : undefined,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+    )
+  } else if (doc?.type === 'video') {
+    const videoSource = getDocVideoSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '70vw',
+          height: '60vh',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'var(--green)',
+          }}
+        >
+          <video
+            muted
+            autoPlay
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={videoSource}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
 export default function InteractiveGrid({
   video,
-  bottomLeftImageSource,
+  bottomLeftDoc,
   bottomLeft,
-  bottomRightImageSource,
+  bottomRightDoc,
   bottomRight,
   videoContainerStyle,
   topLeft,
@@ -62,7 +184,9 @@ export default function InteractiveGrid({
           left: topLeft ? '30%' : 0,
           right: 0,
           top: 0,
-          bottom: '20%',
+          bottom: controlledPosition
+            ? `${100 - controlledPosition.top}%`
+            : '20%',
           ...videoContainerStyle,
         }}
       >
@@ -79,25 +203,8 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        {/* <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            minHeight: '70vh',
-            minWidth: '70vw',
-            height: '100%',
-            backgroundPosition: 'top right',
-            // backgroundColor: 'var(--brick)',
-            // backgroundImage: bottomLeftImageSource
-            //   ? `url(${bottomLeftImageSource})`
-            //   : undefined,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-        /> */}
-        {/* {bottomLeft && (
+        <BottomLeftDoc doc={bottomLeftDoc} />
+        {bottomLeft && (
           <div
             style={{
               position: 'absolute',
@@ -109,42 +216,7 @@ export default function InteractiveGrid({
           >
             {bottomLeft}
           </div>
-        )} */}
-
-        {/* <div
-            style={{
-              //border: '1px solid red',
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-              left: 0,
-            }}
-          > */}
-        <video
-          autoPlay
-          muted
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            minHeight: '70vh',
-            minWidth: '70vw',
-            height: '100%',
-            //  objectFit: 'cover',
-            objectFit: 'fill',
-            //  backgroundPosition: 'top right',
-            // backgroundColor: 'var(--brick)',
-            // backgroundImage: bottomLeftImageSource
-            //   ? `url(${bottomLeftImageSource})`
-            //   : undefined,
-            //  backgroundSize: 'cover',
-            //  backgroundRepeat: 'no-repeat',
-          }}
-          src="https://player.vimeo.com/progressive_redirect/playback/690885288/rendition/1080p?loc=external&signature=df36ce9c9a8960acfa8de1fe6ff5b8f1f73472c1cc9d8e64f1239cfdaf8818be"
-        />
-        {/* </div> */}
+        )}
       </div>
 
       {topLeft && (
@@ -174,25 +246,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: '100%',
-            minHeight: '70vh',
-            minWidth: '70vw',
-            maxWidth: '100%',
-            height: '100%',
-            backgroundPosition: 'top left',
-            backgroundColor: 'var(--green)',
-            backgroundImage: bottomRightImageSource
-              ? `url(${bottomRightImageSource})`
-              : undefined,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
+        <BottomRightDoc doc={bottomRightDoc} />
         {bottomRight && (
           <div
             style={{

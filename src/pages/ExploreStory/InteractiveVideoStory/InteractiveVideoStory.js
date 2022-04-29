@@ -13,16 +13,13 @@ import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
+import { useDocument } from '@c2dh/react-miller'
 
 function objInTime(obj, seconds) {
   return (
     seconds >= fromProgressStrToSeconds(obj.from) &&
     seconds <= fromProgressStrToSeconds(obj.to)
   )
-}
-
-function getObjImage(obj) {
-  return obj.document.data?.resolutions?.preview?.url ?? obj.document.attachment
 }
 
 export default function InteractiveVideoStory({ story }) {
@@ -57,7 +54,7 @@ export default function InteractiveVideoStory({ story }) {
     //     type: 'vtt',
     //   })?.url ?? null
     // )
-  }, [i18n.language, selectedDoc?.data?.subtitles])
+  }, [chapterIndex])
 
   // Playere related hooks
   const playerRef = useRef()
@@ -140,6 +137,9 @@ export default function InteractiveVideoStory({ story }) {
       setPlaying(false)
     }
   }, [goToNextChapter])
+
+  const [hackVideoDocRelated] = useDocument(39)
+  console.log('-->', hackVideoDocRelated)
 
   // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
@@ -254,7 +254,7 @@ export default function InteractiveVideoStory({ story }) {
                 )}
               </>
             }
-            bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
+            bottomLeftDoc={leftObj?.document ?? null}
             bottomLeft={
               leftObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">
@@ -268,7 +268,7 @@ export default function InteractiveVideoStory({ story }) {
                 </div>
               ) : null
             }
-            bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
+            bottomRightDoc={rightObj?.document ?? null}
             bottomRight={
               rightObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">
