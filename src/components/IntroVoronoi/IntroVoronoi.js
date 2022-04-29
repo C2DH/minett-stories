@@ -242,7 +242,7 @@ export default function IntroVoronoi({
                   console.log("v", bbox, story, i)
                   w = `${bbox[2] - bbox[0]}%`
                   h = `${bbox[3] - bbox[1]}%`
-                  x = `${-bbox[0]}%`
+                  x = `${-bbox[0] / 2}%`
                   y = `${-bbox[1]}%`
 
                 } else {
