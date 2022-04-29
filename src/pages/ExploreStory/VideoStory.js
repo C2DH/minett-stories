@@ -32,18 +32,37 @@ export default function VideoStory({ story }) {
     played: 0,
     playedSeconds: 0,
   })
+  const playerInitRef = useRef(false)
   const onPlayerReady = useCallback(() => {
+    if (playerInitRef.current) {
+      return
+    }
     setDuration(playerRef.current.getDuration())
-  }, [])
-  const handleSeek = useCallback((index, progress) => {
-    setChapterIndex(index)
-    playerRef.current.seekTo(progress, 'fraction')
-  }, [])
+    if (progress.played > 0) {
+      playerRef.current.seekTo(progress.played, 'fraction')
+    }
+    playerInitRef.current = true
+  }, [progress])
+  const handleSeek = useCallback(
+    (index, progress) => {
+      setChapterIndex(index)
+      setProgress({
+        played: progress,
+        playedSeconds: null, // Will auto set by my player
+      })
+      playerRef.current.seekTo(progress, 'fraction')
+      if (index !== chapterIndex) {
+        playerInitRef.current = false
+      }
+    },
+    [chapterIndex]
+  )
   const goToNextChapter = useCallback(() => {
     if (chapterIndex < videoChapters.length - 1) {
       setProgress({ played: 0, playedSeconds: 0 })
       playerRef.current.seekTo(0, 'fraction')
       setChapterIndex(chapterIndex + 1)
+      playerInitRef.current = false
       return true
     }
     return false
