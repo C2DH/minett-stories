@@ -37,7 +37,8 @@
   left: 25px;
 }
 
-.LeftButtonStory > a, .RightButtonStory > a {
+.LeftButtonStory > a,
+.RightButtonStory > a {
   background-color: var(--dark-grey);
 }
 
@@ -48,7 +49,7 @@
   left: calc(100% - 25px);
 }
 
-.ConverExplore {
+.ConverExplore:hover {
   font-family: var(--font-abc-maxi-sharp);
   position: relative;
   background-repeat: no-repeat;
@@ -63,14 +64,75 @@
   align-items: center;
   justify-content: center;
   color: var(--black);
-  width: 155px;
-  height: 170px;
+  width: 160px;
+  height: 160px;
   top: calc(50% - 75px);
   left: calc(50% - 75px);
 }
 
-.ConverExplore:hover {
+.ConverExplore {
+  width: 160px;
+  height: 160px;
+  font-family: var(--font-abc-maxi-sharp);
+  position: relative;
+  background-repeat: no-repeat;
+  background-size: contain;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--black);
+  top: calc(50% - 75px);
+  left: calc(50% - 75px);
+  background: none;
+}
+
+.ConverExplore > div {
+  display: block;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  /* transform: translate3d(-5px, -20px, 0); */
+}
+
+.ConverExplore::before {
+  content: '';
+  -webkit-clip-path: path(
+    'M12.399 130.565C-4.47269 103.697 -4.0906 66.5484 13.3285 40.1885L18.2873 32.6844C39.9598 -0.112076 78.1241 -9.51836 108.817 10.3717L137.613 29.0324C151.864 38.2674 160.527 56.3888 159.975 75.8104V75.8104C159.471 93.5529 151.34 109.715 138.49 118.516L92.1253 150.273C65.2031 168.713 31.0534 160.272 12.399 130.565V130.565Z'
+  );
+  background: #fff;
+  clip-path: path(
+    'M12.399 130.565C-4.47269 103.697 -4.0906 66.5484 13.3285 40.1885L18.2873 32.6844C39.9598 -0.112076 78.1241 -9.51836 108.817 10.3717L137.613 29.0324C151.864 38.2674 160.527 56.3888 159.975 75.8104V75.8104C159.471 93.5529 151.34 109.715 138.49 118.516L92.1253 150.273C65.2031 168.713 31.0534 160.272 12.399 130.565V130.565Z'
+  );
+  /* transform: rotate(0); */
+  transition: transform 0.5s linear, clip-path 0.5s cubic-bezier(0.55, 0.055, 0.675, 0.19);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ConverExplore:hover::before {
+  content: '';
+  -webkit-clip-path: path(
+    'M88.4422 155.254C39.2582 161.135 26.2782 135.691 11.4904 103.851C-6.80676 64.4548 -3.50142 20.0116 34.3602 9.3966L65.5754 3.47511C85.0887 -1.99574 106.255 1.13315 124.592 12.1991L134.694 18.2958C147.214 25.851 156.963 38.0391 162.04 52.4812C173.519 85.1387 168.033 134.112 138.286 143.791L88.4422 155.254Z'
+  );
+  clip-path: path(
+    'M14.4103 130.901C-2.22013 104.442 -4.53067 68.2405 8.07366 52.8792L36.5183 18.783C54.0452 -1.47906 79.1955 -7.05063 109.45 12.5367L137.834 30.9134C151.881 40.0078 160.42 57.8535 159.876 76.9795C159.379 94.4519 165.5 124.011 133.132 142.822L101.745 155.755C77.6345 165.905 32.7979 160.155 14.4103 130.901Z'
+  );
+  /* transition: 0.5s ease; */
+  transform: rotate(45deg);
+  /* position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; */
 }
 
 .TitleStory {

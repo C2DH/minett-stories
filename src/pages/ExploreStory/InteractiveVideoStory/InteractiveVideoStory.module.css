@@ -1,0 +1,31 @@
+.subtitlesContainer {
+  padding-left: 116px;
+  padding-top: 24px;
+  padding-right: 74px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  padding-bottom: 54px;
+  overflow: auto;
+  font-family: var(--font-pp-neue-montreal);
+}
+.BackButton {
+  position: absolute;
+  z-index: 99;
+  top: 20px;
+  left: 20px;
+  background-color: var(--dark-grey);
+}
+
+.subtitlesMobile {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  right: 24px;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: var(--font-pp-neue-montreal);
+  text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+    1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
+}

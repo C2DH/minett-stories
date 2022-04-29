@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useLangPathPrefix } from '../../hooks/langs'
 import { useTranslation } from 'react-i18next'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls'
+import { useIsMobileScreen } from '../../hooks/screen'
 
 const controlPoints = [
   [
@@ -118,6 +119,8 @@ export default function StoriesIntro() {
     }
   }, [navigate, pathPrefix, step])
 
+  const isMobileScreen = useIsMobileScreen(true)
+
   return (
     <div className="h-100">
       <RoundedLanguageControls className={styles.BlockLanguages} />
@@ -128,9 +131,10 @@ export default function StoriesIntro() {
         <div className="flex-1 d-flex flex-column position-relative">
           <div
             style={{ zIndex: 1, top: 60, left: 60, right: 60, bottom: 60 }}
-            className="d-none d-md-flex flex-column position-absolute"
+            className="d-flex flex-column position-absolute"
           >
             <IntroVoronoi
+              hideSvg={isMobileScreen}
               stories={storiesList.results}
               controlPoints={controlPoints}
               step={step}

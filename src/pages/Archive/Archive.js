@@ -50,7 +50,11 @@ export default function Archive() {
   const [docsFacets] = useDocumentsFacets({
     params: {
       facets: 'type',
-      exclude: { type: 'entity' },
+      where: {
+        'Op.not': [
+          { 'Op.or': [{ type: 'entity' }, { data__type: 'drawing' }] },
+        ],
+      },
     },
   })
 
@@ -59,7 +63,7 @@ export default function Archive() {
     suspense: !filtersOn,
     keepPreviousData: true,
     params: {
-      overlaps: `${filters.fromYear}-01-01,${filters.toYear}-12-31`,
+      //overlaps: `${filters.fromYear}-01-01,${filters.toYear}-12-31`,
       // TODO: How to filter noDates???
       limit: 50,
       orderby: filters.orderby,

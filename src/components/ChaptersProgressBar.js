@@ -75,7 +75,7 @@ export default function ChaptersProgressBar({
           className="w-100 d-flex align-items-center text-cadet-blue position-relative"
           style={{ flex: 1 }}
         >
-          <span className="text-cadet-blue d-none d-md-block">
+          <span className="text-cadet-blue d-none d-md-block duration-player">
             {fromSecondsToProgressStr(playedSeconds)}
             {'/'}
             {fromSecondsToProgressStr(duration)}

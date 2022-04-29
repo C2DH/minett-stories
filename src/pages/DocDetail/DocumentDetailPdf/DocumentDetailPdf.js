@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import styles from './DocumentDetailPdf.module.css'
 import { ArrowLeft, ArrowRight, X, ZoomIn, ZoomOut } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import classNames from 'classnames'
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.js`
 
 const ZOOM_SCALE_STEP = 0.2
@@ -79,12 +80,16 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
     }
   }
 
-
   return (
     <div
-      className={isModal ? stylesCommon.DocumentModal : stylesCommon.Document}
+      className={isModal ? stylesCommon.DocumentModalPdf : stylesCommon.Document}
     >
-      <div className="row max-h-100">
+      <div
+        className={classNames('row', {
+          'max-h-100': !isModal,
+          'min-vh-100 max-h-100': isModal,
+        })}
+      >
         <div className="col-md-4 order-1 order-md-0">
           <BlockInfo doc={doc} />
         </div>
@@ -115,7 +120,7 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                   isModal ? styles.PdfControlsModal : styles.PdfControls
                 }
               >
-                <div className='d-flex align-items-center'>
+                <div className="d-flex align-items-center">
                   <button
                     onClick={() => setPageNumber((p) => p - 1)}
                     disabled={pageNumber <= 1}
@@ -142,7 +147,9 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
                     <ArrowRight color="black"></ArrowRight>
                   </button>
                 </div>
-                <div className={`${styles.divisoryControl} d-none d-md-block ms-3`}></div>
+                <div
+                  className={`${styles.divisoryControl} d-none d-md-block ms-3`}
+                ></div>
                 <div className="ms-0 ms-md-3 d-flex">
                   <button
                     className="btn btn-circle bg-light-gray ms-2"

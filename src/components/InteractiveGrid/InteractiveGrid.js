@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { DraggableCore } from 'react-draggable'
 
 const DEFAULT_INITIAL_POSITION = {
@@ -15,11 +15,145 @@ const DEFAULT_POSITION_BOUNDS = {
 
 const DEFAULT_HANDLE_RADIUS_PX = 40
 
+function getDocImageSource(doc) {
+  if (!doc) {
+    return null
+  }
+  return doc.data?.resolutions?.preview?.url ?? doc.attachment
+}
+
+function getDocVideoSource(doc) {
+  if (!doc) {
+    return null
+  }
+  return doc.data?.streamingUrl
+}
+
+function LightVideo({ src, playing, ...props }) {
+  const ref = useRef()
+  useEffect(() => {
+    const video = ref.current
+    if (playing) {
+      video.play().catch((err) => console.log("Cant' play video", err))
+    } else {
+      video.pause()
+    }
+  }, [playing])
+
+  return <video {...props} ref={ref} src={src} />
+}
+
+function BottomLeftDoc({ doc, playing }) {
+  if (!doc || doc.type === 'image') {
+    const imageSource = getDocImageSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          minHeight: '70vh',
+          minWidth: '70vw',
+          height: '100%',
+          backgroundPosition: 'top right',
+          backgroundColor: 'var(--brick)',
+          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+    )
+  } else if (doc?.type === 'video') {
+    const videoSource = getDocVideoSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          width: '70vw',
+          height: '60vh',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'var(--brick)',
+          }}
+        >
+          <LightVideo
+            playing={playing}
+            muted
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={videoSource}
+          />
+        </div>
+      </div>
+    )
+  }
+  return null
+}
+
+function BottomRightDoc({ doc, playing }) {
+  if (!doc || doc.type === 'image') {
+    const imageSource = getDocImageSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '100%',
+          minHeight: '70vh',
+          minWidth: '70vw',
+          maxWidth: '100%',
+          height: '100%',
+          backgroundPosition: 'top left',
+          backgroundColor: 'var(--green)',
+          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
+          backgroundSize: 'cover',
+          backgroundRepeat: 'no-repeat',
+        }}
+      />
+    )
+  } else if (doc?.type === 'video') {
+    const videoSource = getDocVideoSource(doc)
+    return (
+      <div
+        style={{
+          position: 'absolute',
+          bottom: 0,
+          right: 0,
+          width: '70vw',
+          height: '60vh',
+        }}
+      >
+        <div
+          style={{
+            height: '100%',
+            width: '100%',
+            backgroundColor: 'var(--green)',
+          }}
+        >
+          <LightVideo
+            playing={playing}
+            muted
+            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            src={videoSource}
+          />
+        </div>
+      </div>
+    )
+  }
+}
+
 export default function InteractiveGrid({
   video,
-  bottomLeftImageSource,
+  bottomLeftDoc,
   bottomLeft,
-  bottomRightImageSource,
+  bottomRightDoc,
   bottomRight,
   videoContainerStyle,
   topLeft,
@@ -28,6 +162,7 @@ export default function InteractiveGrid({
   handleRadiusPx = DEFAULT_HANDLE_RADIUS_PX,
   disableDrag = false,
   position: controlledPosition,
+  playing = false,
 }) {
   const containerRef = useRef()
 
@@ -62,7 +197,9 @@ export default function InteractiveGrid({
           left: topLeft ? '30%' : 0,
           right: 0,
           top: 0,
-          bottom: '20%',
+          bottom: controlledPosition
+            ? `${100 - controlledPosition.top}%`
+            : '20%',
           ...videoContainerStyle,
         }}
       >
@@ -79,24 +216,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            width: '100%',
-            minHeight: '70vh',
-            minWidth: '70vw',
-            height: '100%',
-            backgroundPosition: 'top right',
-            backgroundColor: 'var(--brick)',
-            backgroundImage: bottomLeftImageSource
-              ? `url(${bottomLeftImageSource})`
-              : undefined,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
+        <BottomLeftDoc playing={playing} doc={bottomLeftDoc} />
         {bottomLeft && (
           <div
             style={{
@@ -112,19 +232,21 @@ export default function InteractiveGrid({
         )}
       </div>
 
-      {topLeft && <div
-        style={{
-          backgroundColor: 'var(--black)',
-          zIndex: 3,
-          position: 'absolute',
-          left: 0,
-          width: `${position.left}%`,
-          top: 0,
-          height: `${position.top}%`,
-        }}
-      >
-        {topLeft}
-      </div>}
+      {topLeft && (
+        <div
+          style={{
+            backgroundColor: 'var(--black)',
+            zIndex: 3,
+            position: 'absolute',
+            left: 0,
+            width: `${position.left}%`,
+            top: 0,
+            height: `${position.top}%`,
+          }}
+        >
+          {topLeft}
+        </div>
+      )}
 
       <div
         style={{
@@ -137,25 +259,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            right: 0,
-            width: '100%',
-            minHeight: '70vh',
-            minWidth: '70vw',
-            maxWidth: '100%',
-            height: '100%',
-            backgroundPosition: 'top left',
-            backgroundColor: 'var(--green)',
-            backgroundImage: bottomRightImageSource
-              ? `url(${bottomRightImageSource})`
-              : undefined,
-            backgroundSize: 'cover',
-            backgroundRepeat: 'no-repeat',
-          }}
-        />
+        <BottomRightDoc playing={playing} doc={bottomRightDoc} />
         {bottomRight && (
           <div
             style={{
@@ -171,23 +275,25 @@ export default function InteractiveGrid({
         )}
       </div>
 
-      {!disableDrag && <DraggableCore handle=".handle" onDrag={handleDrag}>
-        <div
-          className={'handle'}
-          style={{
-            cursor: 'move',
-            backgroundColor: 'white',
-            position: 'absolute',
-            borderRadius: '50%',
-            zIndex: 4,
-            top: `calc(${position.top}% - ${handleRadiusPx / 2}px)`,
-            left: `calc(${position.left}% - ${handleRadiusPx / 2}px)`,
-            right: 0,
-            width: handleRadiusPx,
-            height: handleRadiusPx,
-          }}
-        />
-      </DraggableCore>}
+      {!disableDrag && (
+        <DraggableCore handle=".handle" onDrag={handleDrag}>
+          <div
+            className={'handle'}
+            style={{
+              cursor: 'move',
+              backgroundColor: 'white',
+              position: 'absolute',
+              borderRadius: '50%',
+              zIndex: 4,
+              top: `calc(${position.top}% - ${handleRadiusPx / 2}px)`,
+              left: `calc(${position.left}% - ${handleRadiusPx / 2}px)`,
+              right: 0,
+              width: handleRadiusPx,
+              height: handleRadiusPx,
+            }}
+          />
+        </DraggableCore>
+      )}
     </div>
   )
 }

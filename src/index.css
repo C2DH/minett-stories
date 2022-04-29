@@ -1,7 +1,7 @@
 :root {
   /*** COLORS ***/
   --sienna: #b58b50;
-  --sienna-opacity: rgb(181,139,80, 0.4);
+  --sienna-opacity: rgb(181, 139, 80, 0.4);
   --black: #2e2e2e;
   --cadet-blue: #7a8988;
   --brick: #9e5646;
@@ -282,19 +282,33 @@ blockquote {
   text-decoration: none;
 }
 
-.TopBarMinettText:hover{
+.TopBarMinettText:hover {
   text-decoration: none;
   color: white;
 }
 
-.ControlDisabled{
+.ControlDisabled {
   pointer-events: none;
   opacity: 0.4;
 }
 
-.text-font-abc{
+.text-font-abc {
   font-family: 'ABC Maxi Round Variable';
   font-weight: 400;
+}
+
+.popover {
+  background-color: transparent;
+  border: none;
+  padding-top: 16px;
+}
+
+.duration-player {
+  min-width: 91px;
+}
+
+input:checked {
+  accent-color: var(--black)
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
@@ -315,6 +329,4 @@ blockquote {
     font-size: 16px;
     line-height: 28px;
   }
-
-
 }

@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
 import { fromProgressStrToSeconds } from '../../../utils'
@@ -13,6 +13,8 @@ import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
+import { useDocument } from '@c2dh/react-miller'
+import styles from './InteractiveVideoStory.module.css'
 
 function objInTime(obj, seconds) {
   return (
@@ -21,11 +23,12 @@ function objInTime(obj, seconds) {
   )
 }
 
-function getObjImage(obj) {
-  return obj.document.data?.resolutions?.preview?.url ?? obj.document.attachment
-}
-
 export default function InteractiveVideoStory({ story }) {
+  const { t } = useTranslation()
+
+  // NOTE: Wait first render to decide between mobile / desktop
+  const isMobileScreen = useIsMobileScreen(null)
+
   // NOTE: Very bad implementation ... buy u know ...
   const videoChapters = useMemo(
     () => story.data.chapters.slice(0, -1),
@@ -36,7 +39,24 @@ export default function InteractiveVideoStory({ story }) {
 
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].object.document
-  const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  console.log({ selectedDoc })
+
+  // NOTE: Grab subtitles in current language
+  const subtitlesFile = useMemo(() => {
+    // TODO: Re-enable when got the real vtt
+    if (chapterIndex === 0) {
+      return '/vtt/test.vtt'
+    }
+    return '/vtt/test2.vtt'
+    // return (
+    //   find(selectedDoc?.data?.subtitles ?? [], {
+    //     language: i18n.language,
+    //     availability: true,
+    //     type: 'vtt',
+    //   })?.url ?? null
+    // )
+  }, [chapterIndex])
 
   // Playere related hooks
   const playerRef = useRef()
@@ -51,18 +71,64 @@ export default function InteractiveVideoStory({ story }) {
     played: 0,
     playedSeconds: 0,
   })
+
+  const [subtitles, setSubtitles] = useState([])
+  const handleCueChange = useCallback((e) => {
+    const nextSubtitles = Array.from(e.target.activeCues).map((cue) => cue.text)
+    setSubtitles(nextSubtitles)
+  }, [])
+
+  const trackRef = useRef(null)
+  const playerInitRef = useRef(false)
   const onPlayerReady = useCallback(() => {
+    if (playerInitRef.current) {
+      return
+    }
     setDuration(playerRef.current.getDuration())
-  }, [])
-  const handleSeek = useCallback((index, progress) => {
-    setChapterIndex(index)
-    playerRef.current.seekTo(progress, 'fraction')
-  }, [])
+    if (progress.played > 0) {
+      playerRef.current.seekTo(progress.played, 'fraction')
+    }
+    if (trackRef.current) {
+      trackRef.current.removeEventListener('cuechange', handleCueChange)
+    }
+    const video = playerRef.current.getInternalPlayer()
+    const track = video.textTracks[0]
+    if (track) {
+      track.addEventListener('cuechange', handleCueChange)
+      trackRef.current = track
+    }
+    playerInitRef.current = true
+  }, [handleCueChange, progress])
+
+  useEffect(() => {
+    return () => {
+      if (trackRef.current !== null) {
+        trackRef.current.removeEventListener('cuechange', handleCueChange)
+        trackRef.current = null
+      }
+    }
+  }, [handleCueChange])
+
+  const handleSeek = useCallback(
+    (index, progress) => {
+      setChapterIndex(index)
+      setProgress({
+        played: progress,
+        playedSeconds: null, // Will auto set by my player
+      })
+      playerRef.current.seekTo(progress, 'fraction')
+      if (index !== chapterIndex) {
+        playerInitRef.current = false
+      }
+    },
+    [chapterIndex]
+  )
   const goToNextChapter = useCallback(() => {
     if (chapterIndex < videoChapters.length - 1) {
       setProgress({ played: 0, playedSeconds: 0 })
       playerRef.current.seekTo(0, 'fraction')
       setChapterIndex(chapterIndex + 1)
+      playerInitRef.current = false
       return true
     }
     return false
@@ -74,9 +140,15 @@ export default function InteractiveVideoStory({ story }) {
     }
   }, [goToNextChapter])
 
+  const [hackVideoDocRelated] = useDocument(39)
+  // console.log('-->', hackVideoDocRelated)
+
   // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
   const leftObj = useMemo(() => {
+    if (progress.playedSeconds === null) {
+      return null
+    }
     return (
       find(
         relatedObjs,
@@ -85,6 +157,9 @@ export default function InteractiveVideoStory({ story }) {
     )
   }, [progress.playedSeconds, relatedObjs])
   const rightObj = useMemo(() => {
+    if (progress.playedSeconds === null) {
+      return null
+    }
     return (
       find(
         relatedObjs,
@@ -101,10 +176,18 @@ export default function InteractiveVideoStory({ story }) {
     }, 150)
   }, [])
 
-  // NOTE: Wait first render to decide between mobile / desktop
-  const isMobileScreen = useIsMobileScreen(null)
-
-  const { t } = useTranslation()
+  const tracks = useMemo(() => {
+    if (!subtitlesFile) {
+      return []
+    }
+    return [
+      {
+        kind: 'metadata',
+        src: subtitlesFile,
+        default: true,
+      },
+    ]
+  }, [subtitlesFile])
 
   return (
     <>
@@ -115,15 +198,8 @@ export default function InteractiveVideoStory({ story }) {
       />
       <div className="w-100 h-100 d-flex flex-column">
         <LangLink
-          style={{
-            position: 'absolute',
-            zIndex: 99,
-            top: 20,
-            left: 20,
-            backgroundColor: 'var(--dark-grey)',
-          }}
           to={`/story/${story.slug}`}
-          className={'btn-circle cursor-pointer no-link'}
+          className={`${styles.BackButton} btn-circle cursor-pointer no-link`}
         >
           <ArrowLeft />
         </LangLink>
@@ -132,33 +208,51 @@ export default function InteractiveVideoStory({ story }) {
           <div className="h-100 w-100" />
         ) : (
           <InteractiveGrid
+            playing={playing}
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
-                <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                  Subtitles Here
+                <div
+                  className={`${styles.subtitlesContainer} w-100 h-100 d-flex`}
+                >
+                  {subtitles.map((sub, i) => (
+                    <div key={i}>{sub}</div>
+                  ))}
                 </div>
               )
             }
             disableDrag={isMobileScreen}
             video={
-              <Player
-                onEnded={handleOnPlayEnd}
-                volume={1}
-                muted={muted}
-                className="video-player-cover"
-                progressInterval={200}
-                ref={playerRef}
-                onReady={onPlayerReady}
-                width="100%"
-                height="100%"
-                url={videUrl}
-                playing={playing}
-                onProgress={setProgress}
-                playsinline
-              />
+              <>
+                <Player
+                  onEnded={handleOnPlayEnd}
+                  volume={1}
+                  muted={muted}
+                  className="video-player-cover"
+                  progressInterval={200}
+                  ref={playerRef}
+                  onReady={onPlayerReady}
+                  width="100%"
+                  height="100%"
+                  url={videoUrl}
+                  playing={playing}
+                  onProgress={setProgress}
+                  playsinline
+                  config={{
+                    file: { tracks },
+                  }}
+                />
+                {isMobileScreen && (
+                  <div className={styles.subtitlesMobile}>
+                    {subtitles.map((sub, i) => (
+                      <div key={i}>{sub}</div>
+                    ))}
+                  </div>
+                )}
+              </>
             }
-            bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
+            bottomLeftDoc={leftObj?.document ?? null}
+            // bottomLeftDoc={hackVideoDocRelated}
             bottomLeft={
               leftObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">
@@ -172,7 +266,7 @@ export default function InteractiveVideoStory({ story }) {
                 </div>
               ) : null
             }
-            bottomRightImageSource={rightObj ? getObjImage(rightObj) : null}
+            bottomRightDoc={rightObj?.document ?? null}
             bottomRight={
               rightObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">

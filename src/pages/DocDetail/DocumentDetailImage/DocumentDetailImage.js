@@ -66,7 +66,7 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
       <div
         className={classNames('row', {
           'max-h-100': !isModal,
-          'h-100': isModal
+          'min-vh-100': isModal
         })}
       >
         <div className={'order-1 order-md-0 col-md-4'}>
