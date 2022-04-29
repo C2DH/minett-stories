@@ -11,7 +11,9 @@ import reportWebVitals from './reportWebVitals'
 import App from './App'
 
 // add information on version on startup
-console.info('%cMinett Stories', 'font-weight: bold',
+console.info(
+  '%cMinett Stories',
+  'font-weight: bold',
   process.env.REACT_APP_GIT_TAG || '(latest)',
   process.env.REACT_APP_GIT_BRANCH,
   `\nhttps://github.com/C2DH/minett-stories/commit/${process.env.REACT_APP_GIT_REVISION}`
@@ -54,15 +56,14 @@ if (rootElement.hasChildNodes()) {
     </BrowserRouter>
   )
 } else {
-  ReactDOM.render(
+  ReactDOM.createRoot(rootElement).render(
     <React.StrictMode>
       <BrowserRouter>
         <I18nextProvider i18n={i18n}>
           <App client={queryClient} apiUrl={clientApiUrl} />
         </I18nextProvider>
       </BrowserRouter>
-    </React.StrictMode>,
-    rootElement
+    </React.StrictMode>
   )
 }
 

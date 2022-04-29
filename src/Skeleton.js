@@ -14,9 +14,12 @@ export default function Skeleton({ appHtml, entrypoints, initialData }) {
       </head>
       <body>
         {process.env.EXPORT_STATIC_SPA_APP ? (
-          <div id="root">
-            <noscript>Enable JavaScript to use this website.</noscript>
-          </div>
+          <>
+            <noscript>
+              You need to enable JavaScript to use this website.
+            </noscript>
+            <div id="root" />
+          </>
         ) : (
           <>
             <div

@@ -23,6 +23,11 @@ ENV REACT_APP_GIT_BRANCH=${GIT_BRANCH}
 ENV REACT_APP_GIT_REVISION=${GIT_REVISION}
 
 RUN yarn build
+# This command export the website under ./build folder as single page application
+RUN yarn staticize-spa
+
+# This command export the website under ./build-static as static web site
+# RUN yarn staticize
 
 FROM busybox
 WORKDIR /app
