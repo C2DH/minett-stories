@@ -14,6 +14,7 @@ import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
 import { useDocument } from '@c2dh/react-miller'
+import styles from './InteractiveVideoStory.module.css'
 
 function objInTime(obj, seconds) {
   return (
@@ -210,7 +211,7 @@ export default function InteractiveVideoStory({ story }) {
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
-                <div className="w-100 h-100 d-flex align-items-center justify-content-center">
+                <div className={`${styles.subtitlesContainer} w-100 h-100 d-flex`}>
                   {subtitles.map((sub, i) => (
                     <div key={i}>{sub}</div>
                   ))}
