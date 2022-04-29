@@ -24,7 +24,7 @@ function objInTime(obj, seconds) {
 }
 
 export default function InteractiveVideoStory({ story }) {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
 
   // NOTE: Wait first render to decide between mobile / desktop
   const isMobileScreen = useIsMobileScreen(null)
