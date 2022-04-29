@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
 import { fromProgressStrToSeconds } from '../../../utils'
@@ -26,6 +26,11 @@ function getObjImage(obj) {
 }
 
 export default function InteractiveVideoStory({ story }) {
+  const { t, i18n } = useTranslation()
+
+  // NOTE: Wait first render to decide between mobile / desktop
+  const isMobileScreen = useIsMobileScreen(null)
+
   // NOTE: Very bad implementation ... buy u know ...
   const videoChapters = useMemo(
     () => story.data.chapters.slice(0, -1),
@@ -37,6 +42,22 @@ export default function InteractiveVideoStory({ story }) {
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].object.document
   const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+
+  // NOTE: Grab subtitles in current language
+  const subtitlesFile = useMemo(() => {
+    // TODO: Re-enable when got the real vtt
+    if (chapterIndex === 0) {
+      return '/vtt/test.vtt'
+    }
+    return '/vtt/test2.vtt'
+    // return (
+    //   find(selectedDoc?.data?.subtitles ?? [], {
+    //     language: i18n.language,
+    //     availability: true,
+    //     type: 'vtt',
+    //   })?.url ?? null
+    // )
+  }, [i18n.language, selectedDoc?.data?.subtitles])
 
   // Playere related hooks
   const playerRef = useRef()
@@ -51,18 +72,64 @@ export default function InteractiveVideoStory({ story }) {
     played: 0,
     playedSeconds: 0,
   })
+
+  const [subtitles, setSubtitles] = useState([])
+  const handleCueChange = useCallback((e) => {
+    const nextSubtitles = Array.from(e.target.activeCues).map((cue) => cue.text)
+    setSubtitles(nextSubtitles)
+  }, [])
+
+  const trackRef = useRef(null)
+  const playerInitRef = useRef(false)
   const onPlayerReady = useCallback(() => {
+    if (playerInitRef.current) {
+      return
+    }
     setDuration(playerRef.current.getDuration())
-  }, [])
-  const handleSeek = useCallback((index, progress) => {
-    setChapterIndex(index)
-    playerRef.current.seekTo(progress, 'fraction')
-  }, [])
+    if (progress.played > 0) {
+      playerRef.current.seekTo(progress.played, 'fraction')
+    }
+    if (trackRef.current) {
+      trackRef.current.removeEventListener('cuechange', handleCueChange)
+    }
+    const video = playerRef.current.getInternalPlayer()
+    const track = video.textTracks[0]
+    if (track) {
+      track.addEventListener('cuechange', handleCueChange)
+      trackRef.current = track
+    }
+    playerInitRef.current = true
+  }, [handleCueChange, progress])
+
+  useEffect(() => {
+    return () => {
+      if (trackRef.current !== null) {
+        trackRef.current.removeEventListener('cuechange', handleCueChange)
+        trackRef.current = null
+      }
+    }
+  }, [handleCueChange])
+
+  const handleSeek = useCallback(
+    (index, progress) => {
+      setChapterIndex(index)
+      setProgress({
+        played: progress,
+        playedSeconds: null, // Will auto set by my player
+      })
+      playerRef.current.seekTo(progress, 'fraction')
+      if (index !== chapterIndex) {
+        playerInitRef.current = false
+      }
+    },
+    [chapterIndex]
+  )
   const goToNextChapter = useCallback(() => {
     if (chapterIndex < videoChapters.length - 1) {
       setProgress({ played: 0, playedSeconds: 0 })
       playerRef.current.seekTo(0, 'fraction')
       setChapterIndex(chapterIndex + 1)
+      playerInitRef.current = false
       return true
     }
     return false
@@ -101,10 +168,18 @@ export default function InteractiveVideoStory({ story }) {
     }, 150)
   }, [])
 
-  // NOTE: Wait first render to decide between mobile / desktop
-  const isMobileScreen = useIsMobileScreen(null)
-
-  const { t } = useTranslation()
+  const tracks = useMemo(() => {
+    if (!subtitlesFile) {
+      return []
+    }
+    return [
+      {
+        kind: 'metadata',
+        src: subtitlesFile,
+        default: true,
+      },
+    ]
+  }, [subtitlesFile])
 
   return (
     <>
@@ -136,27 +211,48 @@ export default function InteractiveVideoStory({ story }) {
             topLeft={
               !isMobileScreen && (
                 <div className="w-100 h-100 d-flex align-items-center justify-content-center">
-                  Subtitles Here
+                  {subtitles.map((sub, i) => (
+                    <div key={i}>{sub}</div>
+                  ))}
                 </div>
               )
             }
             disableDrag={isMobileScreen}
             video={
-              <Player
-                onEnded={handleOnPlayEnd}
-                volume={1}
-                muted={muted}
-                className="video-player-cover"
-                progressInterval={200}
-                ref={playerRef}
-                onReady={onPlayerReady}
-                width="100%"
-                height="100%"
-                url={videUrl}
-                playing={playing}
-                onProgress={setProgress}
-                playsinline
-              />
+              <>
+                <Player
+                  onEnded={handleOnPlayEnd}
+                  volume={1}
+                  muted={muted}
+                  className="video-player-cover"
+                  progressInterval={200}
+                  ref={playerRef}
+                  onReady={onPlayerReady}
+                  width="100%"
+                  height="100%"
+                  url={videUrl}
+                  playing={playing}
+                  onProgress={setProgress}
+                  playsinline
+                  config={{
+                    file: { tracks },
+                  }}
+                />
+                {isMobileScreen && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      bottom: 0,
+                      left: 0,
+                      right: 0,
+                    }}
+                  >
+                    {subtitles.map((sub, i) => (
+                      <div key={i}>{sub}</div>
+                    ))}
+                  </div>
+                )}
+              </>
             }
             bottomLeftImageSource={leftObj ? getObjImage(leftObj) : null}
             bottomLeft={
