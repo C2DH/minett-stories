@@ -207,6 +207,7 @@ export default function InteractiveVideoStory({ story }) {
           <div className="h-100 w-100" />
         ) : (
           <InteractiveGrid
+            playing={playing}
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
@@ -255,6 +256,7 @@ export default function InteractiveVideoStory({ story }) {
               </>
             }
             bottomLeftDoc={leftObj?.document ?? null}
+            // bottomLeftDoc={hackVideoDocRelated}
             bottomLeft={
               leftObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">

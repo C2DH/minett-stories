@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { DraggableCore } from 'react-draggable'
 
 const DEFAULT_INITIAL_POSITION = {
@@ -29,7 +29,21 @@ function getDocVideoSource(doc) {
   return doc.data?.streamingUrl
 }
 
-function BottomLeftDoc({ doc }) {
+function LightVideo({ src, playing, ...props }) {
+  const ref = useRef()
+  useEffect(() => {
+    const video = ref.current
+    if (playing) {
+      video.play().catch((err) => console.log("Cant' play video", err))
+    } else {
+      video.pause()
+    }
+  }, [playing])
+
+  return <video {...props} ref={ref} src={src} />
+}
+
+function BottomLeftDoc({ doc, playing }) {
   if (!doc || doc.type === 'image') {
     const imageSource = getDocImageSource(doc)
     return (
@@ -69,9 +83,9 @@ function BottomLeftDoc({ doc }) {
             backgroundColor: 'var(--brick)',
           }}
         >
-          <video
+          <LightVideo
+            playing={playing}
             muted
-            autoPlay
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             src={videoSource}
           />
@@ -82,7 +96,7 @@ function BottomLeftDoc({ doc }) {
   return null
 }
 
-function BottomRightDoc({ doc }) {
+function BottomRightDoc({ doc, playing }) {
   if (!doc || doc.type === 'image') {
     const imageSource = getDocImageSource(doc)
     return (
@@ -98,9 +112,7 @@ function BottomRightDoc({ doc }) {
           height: '100%',
           backgroundPosition: 'top left',
           backgroundColor: 'var(--green)',
-          backgroundImage: imageSource
-            ? `url(${imageSource})`
-            : undefined,
+          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat',
         }}
@@ -125,9 +137,9 @@ function BottomRightDoc({ doc }) {
             backgroundColor: 'var(--green)',
           }}
         >
-          <video
+          <LightVideo
+            playing={playing}
             muted
-            autoPlay
             style={{ width: '100%', height: '100%', objectFit: 'cover' }}
             src={videoSource}
           />
@@ -150,6 +162,7 @@ export default function InteractiveGrid({
   handleRadiusPx = DEFAULT_HANDLE_RADIUS_PX,
   disableDrag = false,
   position: controlledPosition,
+  playing = false,
 }) {
   const containerRef = useRef()
 
@@ -203,7 +216,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <BottomLeftDoc doc={bottomLeftDoc} />
+        <BottomLeftDoc playing={playing} doc={bottomLeftDoc} />
         {bottomLeft && (
           <div
             style={{
@@ -246,7 +259,7 @@ export default function InteractiveGrid({
           bottom: 0,
         }}
       >
-        <BottomRightDoc doc={bottomRightDoc} />
+        <BottomRightDoc playing={playing} doc={bottomRightDoc} />
         {bottomRight && (
           <div
             style={{
