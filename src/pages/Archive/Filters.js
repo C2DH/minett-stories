@@ -60,7 +60,7 @@ function YearPicker({ year, from, to, onChange }) {
         ref={ref}
         className="badge rounded-pill bg-dark-gray py-2 px-3 cursor-pointer position-relative"
       >
-        {year}
+        <span className={styles.BadgeYear}>{year}</span>
       </div>
     </>
   )
@@ -166,7 +166,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       </div>
       <div className="mt-2">
         <label>{t('filter_by_year')}</label>
-        <div className="d-flex align-items-between py-2">
+        <div className="d-flex align-items-between align-items-center py-2">
           <span className="pe-2">From</span>
           <YearPicker
             onChange={(year) => {
