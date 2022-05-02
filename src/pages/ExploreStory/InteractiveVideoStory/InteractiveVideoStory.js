@@ -13,7 +13,6 @@ import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
-import { useDocument } from '@c2dh/react-miller'
 import styles from './InteractiveVideoStory.module.css'
 
 function objInTime(obj, seconds) {
@@ -139,9 +138,6 @@ export default function InteractiveVideoStory({ story }) {
       setPlaying(false)
     }
   }, [goToNextChapter])
-
-  const [hackVideoDocRelated] = useDocument(39)
-  // console.log('-->', hackVideoDocRelated)
 
   // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
