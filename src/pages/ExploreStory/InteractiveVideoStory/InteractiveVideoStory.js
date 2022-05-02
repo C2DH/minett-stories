@@ -39,7 +39,8 @@ export default function InteractiveVideoStory({ story }) {
 
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].object.document
-  const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  console.log({ selectedDoc })
 
   // NOTE: Grab subtitles in current language
   const subtitlesFile = useMemo(() => {
@@ -140,11 +141,14 @@ export default function InteractiveVideoStory({ story }) {
   }, [goToNextChapter])
 
   const [hackVideoDocRelated] = useDocument(39)
-  console.log('-->', hackVideoDocRelated)
+  // console.log('-->', hackVideoDocRelated)
 
   // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
   const leftObj = useMemo(() => {
+    if (progress.playedSeconds === null) {
+      return null
+    }
     return (
       find(
         relatedObjs,
@@ -153,6 +157,9 @@ export default function InteractiveVideoStory({ story }) {
     )
   }, [progress.playedSeconds, relatedObjs])
   const rightObj = useMemo(() => {
+    if (progress.playedSeconds === null) {
+      return null
+    }
     return (
       find(
         relatedObjs,
@@ -205,7 +212,9 @@ export default function InteractiveVideoStory({ story }) {
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
-                <div className={`${styles.subtitlesContainer} w-100 h-100 d-flex`}>
+                <div
+                  className={`${styles.subtitlesContainer} w-100 h-100 d-flex`}
+                >
                   {subtitles.map((sub, i) => (
                     <div key={i}>{sub}</div>
                   ))}
@@ -225,7 +234,7 @@ export default function InteractiveVideoStory({ story }) {
                   onReady={onPlayerReady}
                   width="100%"
                   height="100%"
-                  url={videUrl}
+                  url={videoUrl}
                   playing={playing}
                   onProgress={setProgress}
                   playsinline
@@ -234,9 +243,7 @@ export default function InteractiveVideoStory({ story }) {
                   }}
                 />
                 {isMobileScreen && (
-                  <div
-                    className={styles.subtitlesMobile}
-                  >
+                  <div className={styles.subtitlesMobile}>
                     {subtitles.map((sub, i) => (
                       <div key={i}>{sub}</div>
                     ))}

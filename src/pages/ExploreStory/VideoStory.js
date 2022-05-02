@@ -17,7 +17,7 @@ export default function VideoStory({ story }) {
 
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].document
-  const videUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
 
   // Playere related hooks
   const playerRef = useRef()
@@ -109,7 +109,7 @@ export default function VideoStory({ story }) {
             onReady={onPlayerReady}
             width="100%"
             height="100%"
-            url={videUrl}
+            url={videoUrl}
             playing={playing}
             onProgress={setProgress}
             playsinline
