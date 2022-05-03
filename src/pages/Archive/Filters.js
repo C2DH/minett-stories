@@ -120,7 +120,12 @@ export default function Filters({ facets, filters, onFiltersChage }) {
         <label>{t('sort_items')}</label>
         <div>
           {ORDER_BYS.map((orderBy) => (
-            <div key={orderBy.value}>
+            <div
+              className={classNames({
+                'opacity-05': filters.orderby !== orderBy.value,
+              })}
+              key={orderBy.value}
+            >
               <input
                 onChange={() => {
                   onFiltersChage({
@@ -140,7 +145,12 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       <div>
         <label>{t('filter_by_type')}</label>
         {facets.type.map((facet) => (
-          <div key={facet.type}>
+          <div
+            key={facet.type}
+            className={classNames({
+              'opacity-05': !filters.types.includes(facet.type),
+            })}
+          >
             <input
               onChange={() => {
                 if (filters.types.includes(facet.type)) {
