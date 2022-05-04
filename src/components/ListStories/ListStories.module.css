@@ -38,3 +38,29 @@
 .StoryBlockList {
     position: relative;
 }
+
+@media only screen and (min-width: 150px) and (max-width: 700px) {
+  .ThumbPreview {
+    display: none;
+  }
+
+  .StoryBlockList:hover > div > div > .ThumbPreview {
+    opacity: 1;
+  }
+  
+  .StoryBlockList > div > div > .ThumbPreview {
+    transition: none;
+  }
+  
+  .StoryInfo {
+      transform: none;
+  }
+  
+  .StoryBlockList:hover > div > .StoryInfo {
+    transform: none;
+  }
+  
+  .StoryBlockList > div > .StoryInfo {
+    transition: none;
+  }
+}
