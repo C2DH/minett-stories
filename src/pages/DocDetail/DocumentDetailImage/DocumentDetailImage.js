@@ -28,7 +28,7 @@ function BlockInfo({ doc }) {
       {doc.data.creator && (
         <div className={stylesCommon.Creator}>
           <div className="text-uppercase">{t('provenance')} </div>
-          <div>{doc.data.creator}</div>
+          <div>{doc.data.provenance}</div>
         </div>
       )}
       {doc.data.copyright && (
