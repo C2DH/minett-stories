@@ -44,6 +44,10 @@
     right: 0px;
     top: 50%;
   }
+
+  .react-multi-carousel-track {
+    align-items: center;
+  }
 }
 
 /* .react-multi-carousel-list{
