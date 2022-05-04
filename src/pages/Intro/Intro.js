@@ -14,7 +14,7 @@ export default function Intro() {
       <div className={styles.CoverBackground}></div>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
-        <h1 className={`${styles.HomeMinettText} text-center`}>
+        <h1 className={`${styles.HomeMinettText}`}>
           <span
             className={`${styles.Char} TextABCMaxiSharpRegular`}
             style={{ '--span-index': 0 }}
@@ -104,9 +104,12 @@ export default function Intro() {
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
-        <img src={c2dh} alt="C2dh" />
-        <img src={unilu} alt="Unilu" className="ms-2" />
+        <img src={c2dh} alt="C2dh" className={styles.c2dh} />
+        <img src={unilu} alt="Unilu" className={`${styles.unilu} ms-2`} />
       </div>
+      <LangLink to="/stories/voronoi" className='no-link'>
+        <div className={styles.SkipIntro}>{t('skipIntro')}</div>
+      </LangLink>
     </div>
   )
 }

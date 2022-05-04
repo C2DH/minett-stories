@@ -85,6 +85,7 @@
   font-size: 210px;
   line-height: 136px;
   font-variation-settings: 'wght' 200;
+  text-align: center;
 }
 
 .Char {
@@ -113,11 +114,77 @@
   }
 }
 
+.SkipIntro {
+  display: none;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockLanguages {
     position: absolute;
     right: 10px;
     top: 9px;
     z-index: 11;
+  }
+
+  .HomeMinettText {
+    font-weight: 400;
+    font-size: 48px;
+    line-height: 60px;
+    text-align: left;
+    padding-left: 12px;
+  }
+
+  @keyframes breathe {
+    0% {
+      font-variation-settings: none;
+    }
+    60% {
+      font-variation-settings: none;
+    }
+
+    100% {
+      font-variation-settings: none;
+    }
+  }
+
+  .subtitle {
+    font-family: var(--font-pp-neue-montreal);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-transform: uppercase;
+    text-align: left;
+    padding-left: 16px;
+  }
+
+  .LogoCredits {
+    position: absolute;
+    z-index: 1;
+    bottom: 12px;
+    left: 16px;
+    mix-blend-mode: lighten;
+  }
+
+  .c2dh {
+    width: 80px;
+  }
+
+  .unilu {
+    width: 60px;
+  }
+
+  .SkipIntro {
+    position: absolute;
+    bottom: 12px;
+    right: 16px;
+    display: block;
+    font-family: var(--font-pp-neue-montreal);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    text-decoration-line: underline;
+    text-transform: uppercase;
+    color: white;
+    z-index: 20;
   }
 }
