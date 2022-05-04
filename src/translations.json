@@ -43,7 +43,9 @@
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
       "scrollDown": "Scroll Down",
-      "go_deeper": "Go deeper"
+      "go_deeper": "Go deeper",
+      "open":"Open",
+      "research_by": "Research By"
     }
   },
   "en_GB": {
@@ -90,7 +92,9 @@
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
       "scrollDown": "Scroll Down",
-      "go_deeper": "Go deeper"
+      "go_deeper": "Go deeper",
+      "open": "Open",
+      "research_by": "Research By"
     }
   },
   "de_DE": {
@@ -137,7 +141,9 @@
       "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
       "skipIntro": "Skip Intro",
       "scrollDown": "Scroll Down",
-      "go_deeper": "Go deeper"
+      "go_deeper": "Go deeper",
+      "open": "Open",
+      "research_by": "Research By"
     }
   }
 }

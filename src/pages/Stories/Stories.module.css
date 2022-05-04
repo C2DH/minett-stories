@@ -69,4 +69,30 @@
   .VoronoiMobileBottomPadder {
     height: 30%;
   }
+
+  .ResearchBy {
+    font-family: var(--font-pp-neue-montreal);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    color: var(--cadet-blue);
+    margin-bottom: 22px;
+  }
+
+  .TitleStory {
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    font-family: var(--font-pp-neue-montreal);
+    margin-bottom: 8px;
+  }
+
+  .ButtonOpen {
+    font-family: var(--font-pp-neue-montreal);
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+  }
 }

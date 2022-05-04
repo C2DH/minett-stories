@@ -11,6 +11,7 @@ import StoryPill from '../../components/StoryPill'
 import { getStoryType } from '../../utils'
 import { useIsMobileScreen } from '../../hooks/screen'
 import LangLink from '../../components/LangLink'
+import { useTranslation } from 'react-i18next'
 
 function StoriesVoronoi({ stories }) {
   const [selectedStory, setSelectedStory] = useState(null)
@@ -18,6 +19,8 @@ function StoriesVoronoi({ stories }) {
   const navigate = useNavigate()
 
   const isMobileScreen = useIsMobileScreen()
+
+  const { t } = useTranslation()
 
   return (
     <>
@@ -42,12 +45,18 @@ function StoriesVoronoi({ stories }) {
           {selectedStory && (
             <>
               <StoryPill type={getStoryType(selectedStory)} />
-              <h1 className="mt-3">{selectedStory.data.title}</h1>
+              <h1 className={`${styles.TitleStory} mt-3`}>
+                {selectedStory.data.title}
+              </h1>
+              <div className={`${styles.ResearchBy} text-cadet-blue`}>
+                {t('research_by')}:{' '}
+                {selectedStory.authors.map((a) => a.fullname).join(', ')}
+              </div>
               <LangLink
-                className="btn text-white rounded-pill btn-dark w-100"
+                className={`${styles.ButtonOpen} btn text-white pt-2 pb-2 rounded-pill bg-dark-gray w-100`}
                 to={`/story/${selectedStory.slug}`}
               >
-                Open
+                {t('open')}
               </LangLink>
             </>
           )}

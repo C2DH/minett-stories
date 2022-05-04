@@ -69,12 +69,12 @@
   .Skip {
     position: absolute;
     bottom: 12px;
-    right: 10px;
+    right: 16px;
     color: white;
     z-index: 100;
-    font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
     font-family: var(--font-pp-neue-montreal);
     text-transform: uppercase;
   }
