@@ -239,11 +239,12 @@ function IntroVoronoiSvg({
           const hasBbox = Array.isArray(bbox) && bbox.length > 0
           let w, h, x, y
           if (hasBbox) {
-            // console.log("v", bbox, story, i)
-            w = `${bbox[2] - bbox[0]}%`
-            h = `${bbox[3] - bbox[1]}%`
-            x = `${-bbox[0] / 2}%`
+            console.log("v", bbox, story, i)
+            w = `${bbox[2]}%`
+            h = `${bbox[3]}%`
+            x = `${-bbox[0]}%`
             y = `${-bbox[1]}%`
+            console.log(w, h, x, y)
           } else {
             w = '100%'
             h = '100%'
