@@ -82,7 +82,9 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
 
   return (
     <div
-      className={isModal ? stylesCommon.DocumentModalPdf : stylesCommon.Document}
+      className={
+        isModal ? stylesCommon.DocumentModalPdf : stylesCommon.Document
+      }
     >
       <div
         className={classNames('row', {
@@ -90,7 +92,9 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
           'min-vh-100 max-h-100': isModal,
         })}
       >
-        <div className="col-md-4 order-1 order-md-0">
+        <div
+          className={`col-md-4 order-1 order-md-0 ${stylesCommon.BorderBlackRight}`}
+        >
           <BlockInfo doc={doc} />
         </div>
         <div className="col-md-8 order-0 order-md-1">
