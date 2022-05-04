@@ -81,35 +81,64 @@
 
 .HomeMinettText {
   font-family: var(--font-abc-maxi-sharp);
-  font-weight: 200;
-  font-size: 210px;
+  /* font-weight: 200; */
+  font-size: 10vw;
   line-height: 136px;
-  font-variation-settings: 'wght' 200;
+
   text-align: center;
 }
 
-.Char {
-  --delay: calc((var(--span-index) + 1) * 400ms);
-  animation: breathe 3000ms infinite both;
-  animation-delay: var(--delay);
+.Char200 {
+  animation-play-state: paused;
+  font-weight: 200;
+  font-variation-settings: 'wght' 200;
 }
 
-/* .HomeMinettText:hover span {
+.Char400 {
   animation-play-state: paused;
-} */
+  font-weight: 400;
+  font-variation-settings: 'wght' 400;
+}
 
-@keyframes breathe {
+.Char200:hover {
+  animation-play-state: start !important;
+  animation: breathe200 1500ms infinite all;
+}
+
+
+.Char400:hover {
+  animation-play-state: start !important;
+  animation: breathe400 1500ms infinite both;
+}
+
+@keyframes breathe200 {
   0% {
     font-variation-settings: 'wght' 200;
-    font-size: 10vw;
+    /* font-size: 10vw; */
   }
   60% {
     font-variation-settings: 'wght' 400;
-    font-size: 11vw;
+    /* font-size: 11vw; */
   }
 
   100% {
     font-variation-settings: 'wght' 200;
+    /* font-size: 10vw; */
+  }
+}
+
+@keyframes breathe400 {
+  0% {
+    font-variation-settings: 'wght' 400;
+    font-size: 10vw;
+  }
+  60% {
+    font-variation-settings: 'wght' 200;
+    font-size: 11vw;
+  }
+
+  100% {
+    font-variation-settings: 'wght' 400;
     font-size: 10vw;
   }
 }
@@ -147,7 +176,20 @@
     padding-left: 12px;
   }
 
-  @keyframes breathe {
+  @keyframes breathe200 {
+    0% {
+      font-variation-settings: none;
+    }
+    60% {
+      font-variation-settings: none;
+    }
+
+    100% {
+      font-variation-settings: none;
+    }
+  }
+
+  @keyframes breathe400 {
     0% {
       font-variation-settings: none;
     }

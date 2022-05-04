@@ -1,98 +1,51 @@
 import styles from './Intro.module.css'
 import bgHome from '../../assets/bg-home.png'
+import bgHome2 from '../../assets/bg-home-2.jpg'
+import bgHome3 from '../../assets/bg-home-3.jpg'
 import backgroundStoryLink from '../../assets/ellipse-story.svg'
 import unilu from '../../assets/unilu.png'
 import c2dh from '../../assets/c2dh.png'
 import LangLink from '../../components/LangLink'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls/RoundedLanguageControls'
 import { useTranslation } from 'react-i18next'
+import { useEffect, useState } from 'react'
 
 export default function Intro() {
   const { t } = useTranslation()
+  const backgrounds = [bgHome, bgHome2, bgHome3]
+  const [bg, setBg] = useState(bgHome)
+
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setBg(bgHome2)
+  //   }, 500)
+  // }, [])
+
   return (
-    <div className={styles.Home} style={{ backgroundImage: `url(${bgHome}` }}>
+    <div className={styles.Home} style={{ backgroundImage: `url(${bg}` }}>
       <div className={styles.CoverBackground}></div>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
         <h1 className={`${styles.HomeMinettText}`}>
           <span
-            className={`${styles.Char} TextABCMaxiSharpRegular`}
-            style={{ '--span-index': 0 }}
+            className={`${styles.Char400} TextABCMaxiSharpVariable`}
           >
             M
           </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 1 }}
-          >
-            i
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 2 }}
-          >
-            n
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiRoundVariable`}
-            style={{ '--span-index': 3 }}
-          >
-            e
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiRoundVariable`}
-            style={{ '--span-index': 4 }}
-          >
-            t
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 5 }}
-          >
-            t
-          </span>
-          <span
-            style={{ '--span-index': 6 }}
-            className={`${styles.Char} ms-2 TextABCMaxiRoundVariable`}
-          >
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>i</span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>n</span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>e</span>
+          <span className={`${styles.Char400} TextABCMaxiRoundVariable`}>t</span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>t</span>
+          <span className={`${styles.Char400} ms-2 TextABCMaxiRoundVariable`}>
             S
           </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 7 }}
-          >
-            t
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 8 }}
-          >
-            o
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiRoundVariable`}
-            style={{ '--span-index': 9 }}
-          >
-            r
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiSharpVariable`}
-            style={{ '--span-index': 10 }}
-          >
-            i
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiRoundVariable`}
-            style={{ '--span-index': 11 }}
-          >
-            e
-          </span>
-          <span
-            className={`${styles.Char} TextABCMaxiRoundVariable`}
-            style={{ '--span-index': 12 }}
-          >
-            s
-          </span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>t</span>
+          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>o</span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>r</span>
+          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>i</span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>e</span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>s</span>
         </h1>
         <h3 className={styles.subtitle}>{t('remixing_industrial')}</h3>
         <LangLink
@@ -107,7 +60,7 @@ export default function Intro() {
         <img src={c2dh} alt="C2dh" className={styles.c2dh} />
         <img src={unilu} alt="Unilu" className={`${styles.unilu} ms-2`} />
       </div>
-      <LangLink to="/stories/voronoi" className='no-link'>
+      <LangLink to="/stories/voronoi" className="no-link">
         <div className={styles.SkipIntro}>{t('skipIntro')}</div>
       </LangLink>
     </div>
