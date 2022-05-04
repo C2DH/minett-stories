@@ -71,7 +71,7 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
         className={styles.Offcanvas}
       >
         <OffcanvasBody className={styles.OffcanvasBody}>
-          <div className='d-flex flex-column'>
+          <div className="d-flex flex-column">
             <LinkTop to="/" label={t('intro')} />
             <LinkTop to="/stories/voronoi" label={t('stories')} />
             <LinkTop to="/archive" label={t('archive')} />
@@ -100,9 +100,9 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
                 </LangLink>
               </div>
               <div>
-                <LangLink className={styles.MediumLink} to="/stories">
+                <a className={styles.MediumLink} href={'mailto:c2dh@uni.lu'}>
                   {t('contact_us')}
-                </LangLink>
+                </a>
               </div>
             </div>
             <div>

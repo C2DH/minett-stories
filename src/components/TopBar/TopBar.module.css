@@ -60,6 +60,7 @@
   padding-left: 60px;
   padding-top: 27px;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 .OffcanvasBottom {
