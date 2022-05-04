@@ -23,7 +23,7 @@ function LinkTop({ label, to }) {
   )
 }
 
-export default function TopBar({ right, linkUrlLogo = '/stories' }) {
+export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
