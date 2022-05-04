@@ -221,7 +221,7 @@ a.no-link {
 }
 
 blockquote {
-  font-family: var(--font-sentient-variable);
+  font-family: var(--font-sentient-regular);
   font-style: normal;
   font-weight: 400;
   font-size: 28px;
