@@ -32,6 +32,10 @@
   display: none;
 }
 
+.ResearchBy {
+  display: none;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .Voronoi {
     padding-left: 5px;
@@ -78,6 +82,7 @@
     line-height: 18px;
     color: var(--cadet-blue);
     margin-bottom: 22px;
+    display: block;
   }
 
   .TitleStory {

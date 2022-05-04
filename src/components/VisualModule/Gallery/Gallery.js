@@ -76,7 +76,7 @@ export default function Gallery({ objects, caption }) {
     },
   }
   return (
-    <div className={`LightGrayBackground pt-4 ms-1 me-1 pb-4 my-4 row`}>
+    <div className={`LightGrayBackground pt-4 ms-md-1 me-md-1 pb-4 my-4 row`}>
       <div className="offset-md-1 col-md-10 position-relative">
         <Carousel
           renderButtonGroupOutside={true}
