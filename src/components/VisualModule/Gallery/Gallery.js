@@ -7,9 +7,10 @@ import Caption from '../Caption'
 import './Gallery.css'
 
 const GalleryItem = memo(({ document }) => {
+  console.log(document)
   return (
     <DocLink
-      className="d-flex flex-column me-0 me-md-3"
+      className="d-flex flex-column me-0 me-md-3 no-link"
       slugOrId={document.document_id}
     >
       <img
@@ -17,9 +18,13 @@ const GalleryItem = memo(({ document }) => {
         alt={document.data.title}
         className="customCursor"
       />
-      {document.caption && (
-        <div>
-          <Caption caption={document.caption} />
+      {document.data.title && (
+        <div className='no-link'>
+          <Caption
+            type={document.type}
+            year={document.data.year}
+            caption={document.title}
+          />
         </div>
       )}
     </DocLink>
@@ -97,11 +102,11 @@ export default function Gallery({ objects, caption }) {
               )
           )}
         </Carousel>
-        {caption && (
+        {/* {caption && (
           <div>
             <Caption caption={caption} />
           </div>
-        )}
+        )} */}
       </div>
     </div>
   )

@@ -29,7 +29,7 @@
 }
 
 .LightGrayBackground{
-  background-color: rgba(222,222,222, 0.25);
+  background-color: rgba(222,222,222, 0.4);
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
