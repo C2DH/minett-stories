@@ -311,6 +311,10 @@ input:checked {
   accent-color: var(--black)
 }
 
+.opacity-05{
+  opacity: 0.5;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;

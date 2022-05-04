@@ -26,7 +26,7 @@
 .blockSearch,
 .blockSize,
 .blockOrder {
-  margin-bottom: 48px;
+  margin-bottom: 30px;
 }
 
 label {
@@ -98,13 +98,27 @@ label {
   letter-spacing: -0.01em;
 }
 
-.PopoverBody{
+.PopoverBody {
   border-radius: 20px;
   padding-top: 16px !important;
   padding-bottom: 16px !important;
   height: 128px;
   overflow-y: auto;
-  
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: var(--font-pp-neue-montreal);
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+  align-items: center;
+}
+
+.BadgeYear {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: var(--font-pp-neue-montreal);
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {

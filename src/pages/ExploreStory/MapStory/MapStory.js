@@ -37,12 +37,10 @@ function SideDoc({ doc, onClose }) {
   const imageUrl =
     doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
   const { t } = useTranslation()
-  
 
   const coordinates = useMemo(() => {
     return doc.data.coordinates.geometry.coordinates ?? []
   }, [doc])
-
 
   return (
     <div className={styles.SideDoc}>
@@ -91,26 +89,13 @@ export default function MapStory({ story }) {
 
   const longScrollStory = story.data.chapters[story.data.chapters.length - 1]
 
-  const { t } = useTranslation()
+  const { t } = useTranslation()
 
   // NOTE: Ya as other modules this paths sucks...
   // But i am litle less scare cause we handle runtime erros
   const mapObjects = useMemo(() => {
-    return (
-      millerModule.map.objects
-        .filter(
-          (o) => o.document.data.coordinates.geometry.coordinates.length === 2
-        )
-        // FIXME: THIS IS AN HACK 2 TEST RELATED STUFF!!!
-        .map((obj) => ({
-          ...obj,
-          document: {
-            ...obj.document,
-            attachment:
-              '/media/image/snapshots/ch14-33-Portraet-Batty-Weber-72-0-260-0.jpg',
-            document_id: 99,
-          },
-        }))
+    return millerModule.map.objects.filter(
+      (o) => o.document.data.coordinates.geometry.coordinates.length === 2
     )
   }, [millerModule])
 

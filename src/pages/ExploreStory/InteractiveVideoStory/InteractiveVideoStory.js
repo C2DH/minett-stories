@@ -13,7 +13,6 @@ import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
-import { useDocument } from '@c2dh/react-miller'
 import styles from './InteractiveVideoStory.module.css'
 
 function objInTime(obj, seconds) {
@@ -40,7 +39,6 @@ export default function InteractiveVideoStory({ story }) {
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].object.document
   const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
-  console.log({ selectedDoc })
 
   // NOTE: Grab subtitles in current language
   const subtitlesFile = useMemo(() => {
@@ -140,11 +138,10 @@ export default function InteractiveVideoStory({ story }) {
     }
   }, [goToNextChapter])
 
-  const [hackVideoDocRelated] = useDocument(39)
-  // console.log('-->', hackVideoDocRelated)
-
   // Find stuff related 2 video player time
   const relatedObjs = selectedChapter.contents.modules[0].objects
+  const speakers = selectedChapter.contents.modules[0].speakers
+
   const leftObj = useMemo(() => {
     if (progress.playedSeconds === null) {
       return null
@@ -167,6 +164,18 @@ export default function InteractiveVideoStory({ story }) {
       ) ?? null
     )
   }, [progress.playedSeconds, relatedObjs])
+
+  const speakingSpeaker = useMemo(() => {
+    if (progress.playedSeconds === null) {
+      return null
+    }
+    return (
+      find(
+        speakers,
+        (o) => objInTime(o, progress.playedSeconds)
+      ) ?? null
+    )
+  }, [progress.playedSeconds, speakers])
 
   const [goDeeper, setGoDeeper] = useState(false)
   const onGoDeeper = useCallback(() => {
@@ -212,12 +221,17 @@ export default function InteractiveVideoStory({ story }) {
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
-                <div
-                  className={`${styles.subtitlesContainer} w-100 h-100 d-flex`}
-                >
-                  {subtitles.map((sub, i) => (
-                    <div key={i}>{sub}</div>
-                  ))}
+                <div className={`${styles.subtitlesContainer} w-100 h-100 d-flex flex-column`}>
+                  <div
+                    className={'w-100 flex-1 d-flex flex-column'}
+                  >
+                    {subtitles.map((sub, i) => (
+                      <div key={i}>{sub}</div>
+                    ))}
+                  </div>
+                  {speakingSpeaker && <div className={styles.subtitlesSpeaker}>
+                    {speakingSpeaker.document.data.title}
+                  </div>}
                 </div>
               )
             }
