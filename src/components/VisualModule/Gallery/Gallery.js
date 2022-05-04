@@ -17,22 +17,40 @@ const GalleryItem = memo(({ document }) => {
         alt={document.data.title}
         className="customCursor"
       />
+      {document.caption && (
+        <div>
+          <Caption caption={document.caption} />
+        </div>
+      )}
     </DocLink>
   )
 })
 
-const CustomButtonGroup = ({ next, previous, goToSlide, carouselState }) => {
+const CustomButtonGroup = ({
+  next,
+  previous,
+  goToSlide,
+  carouselState,
+  objects,
+}) => {
   return (
     <div className="custom-button-group">
-      <div
-        className="prev-button btn-circle bg-dark cursor-pointer"
-        onClick={() => previous()}
-      >
-        <ChevronLeft size={15} />
-      </div>
-      <div className="next-button btn-circle bg-dark cursor-pointer" onClick={() => next()}>
-        <ChevronRight size={15} />
-      </div>
+      {objects.length > 2 && (
+        <>
+          <div
+            className="prev-button btn-circle bg-dark cursor-pointer"
+            onClick={() => previous()}
+          >
+            <ChevronLeft size={15} />
+          </div>
+          <div
+            className="next-button btn-circle bg-dark cursor-pointer"
+            onClick={() => next()}
+          >
+            <ChevronRight size={15} />
+          </div>
+        </>
+      )}
     </div>
   )
 }
@@ -58,11 +76,11 @@ export default function Gallery({ objects, caption }) {
     },
   }
   return (
-    <div className="my-4 row">
+    <div className={`LightGrayBackground pt-4 ms-1 me-1 pb-4 my-4 row`}>
       <div className="offset-md-1 col-md-10 position-relative">
         <Carousel
           renderButtonGroupOutside={true}
-          customButtonGroup={<CustomButtonGroup />}
+          customButtonGroup={<CustomButtonGroup objects={objects} />}
           swipeable={false}
           arrows={false}
           autoPlay={false}

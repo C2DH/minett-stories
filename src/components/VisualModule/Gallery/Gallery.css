@@ -1,5 +1,5 @@
 .react-multi-carousel-track {
-  align-items: center;
+  align-items: flex-end;
 }
 
 .react-multiple-carousel__arrow--left {
@@ -26,6 +26,10 @@
   position: absolute;
   right: -50px;
   top: 50%;
+}
+
+.LightGrayBackground{
+  background-color: rgba(222,222,222, 0.25);
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
