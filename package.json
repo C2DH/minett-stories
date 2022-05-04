@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "https://minett-stories.lu",
   "dependencies": {
-    "@c2dh/react-miller": "^1.0.0-beta.6",
+    "@c2dh/react-miller": "^1.0.0-beta.9",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -22,8 +22,8 @@
     "js-clipper": "^1.0.1",
     "lodash": "^4.17.21",
     "mapbox-gl": "^2.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
     "react-draggable": "^4.4.4",
     "react-feather": "^2.0.9",
     "react-hammerjs": "^1.0.1",
@@ -33,7 +33,6 @@
     "react-pdf": "^5.7.1",
     "react-player": "^2.10.0",
     "react-router-dom": "^6.2.2",
-    "react-scripts": "5.0.0",
     "react-use-size": "^2.0.4",
     "react-waypoint": "^10.1.0",
     "reactstrap": "^9.0.1",
@@ -42,16 +41,28 @@
     "web-vitals": "^2.1.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "snext dev",
+    "build": "snext build",
+    "dev": "snext dev",
+    "staticize": "snext staticize",
+    "staticize-spa": "EXPORT_STATIC_SPA_APP=1 snext staticize -u / --no-crawl -o build"
+  },
+  "snext": {
+    "clientEntry": "./src/index.js",
+    "skeletonComponent": "./src/Skeleton.js",
+    "serverComponent": "./src/StaticApp.js",
+    "proxy": "https://minett-stories.lu",
+    "crawlConcurrency": 4,
+    "exitStaticizeOnError": false,
+    "outputDir": "build-static",
+    "publicDir": "public",
+    "urls": [
+      "/",
+      "/404"
+    ]
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "extends": "react-app"
   },
   "browserslist": {
     "production": [
@@ -67,5 +78,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-react-app": "^7.0.1",
+    "snext": "^0.14.0"
   }
 }

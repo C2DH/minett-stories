@@ -119,11 +119,12 @@ function LangRoutes() {
   )
 }
 
-function App({ client, apiUrl }) {
+function App({ client, apiUrl, requestsCache }) {
   const { i18n } = useTranslation()
   return (
     <ErrorBoundary>
       <Miller
+        requestsCache={requestsCache}
         client={client}
         apiUrl={apiUrl}
         langs={LANGS}

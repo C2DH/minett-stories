@@ -1,4 +1,4 @@
-FROM node:17-alpine as builder
+FROM node:17-alpine
 
 ARG GIT_TAG
 ARG GIT_BRANCH
@@ -27,8 +27,4 @@ RUN yarn build
 RUN yarn staticize-spa
 
 # This command export the website under ./build-static as static web site
-# RUN yarn staticize
-
-FROM busybox
-WORKDIR /app
-COPY --from=builder /app/build ./
+RUN yarn staticize

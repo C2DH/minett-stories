@@ -1,6 +1,10 @@
 import Layout from '../../components/Layout'
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { useDocumentsFacets, useInfiniteDocuments } from '@c2dh/react-miller'
+import {
+  useDocumentsFacets,
+  useGetFlatDocuments,
+  useInfiniteDocuments,
+} from '@c2dh/react-miller'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import DocItem from '../../components/DocItem'
 import { useTranslation } from 'react-i18next'
@@ -11,6 +15,8 @@ import Filters, { MAX_YEAR, MIN_YEAR } from './Filters'
 import classNames from 'classnames'
 import DocLink from '../../components/DocLink'
 import { Filter, X } from 'react-feather'
+import { useCrawl } from 'snext/crawl'
+import { useLangPathPrefix } from '../../hooks/langs'
 
 function useFilterRedirect() {
   const location = useLocation()
@@ -84,6 +90,20 @@ export default function Archive() {
       return all
     }, [])
   }, [docGroups])
+
+  const getFlatDocs = useGetFlatDocuments()
+  const pathPrefix = useLangPathPrefix()
+  useCrawl(async () => {
+    if (filtersOn) {
+      return []
+    }
+    const flatDocs = await getFlatDocs({
+      limit: 623,
+      exclude: { type: 'entity' },
+    })
+    return flatDocs.map((doc) => `${pathPrefix}/document/${doc.slug}`)
+  })
+  useCrawl(`${pathPrefix}/archive/filter`)
 
   return (
     <Layout
