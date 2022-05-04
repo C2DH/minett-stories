@@ -69,7 +69,7 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
           'min-vh-100': isModal
         })}
       >
-        <div className={'order-1 order-md-0 col-md-4'}>
+        <div className={`order-1 order-md-0 col-md-4 ${stylesCommon.BorderBlackRight}`}>
           <BlockInfo doc={doc} />
         </div>
         <div className={'order-0 order-md-1 col-md-8'}>
