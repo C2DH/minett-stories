@@ -102,7 +102,7 @@
 
 .Char200:hover {
   animation-play-state: start !important;
-  animation: breathe200 1500ms infinite all;
+  animation: breathe200 1500ms infinite;
 }
 
 
