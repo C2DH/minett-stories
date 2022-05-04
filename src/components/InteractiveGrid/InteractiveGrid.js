@@ -2,8 +2,8 @@ import { useEffect, useRef, useState } from 'react'
 import { DraggableCore } from 'react-draggable'
 
 const DEFAULT_INITIAL_POSITION = {
-  left: 60,
-  top: 60,
+  left: 33,
+  top: 72,
 }
 
 const DEFAULT_POSITION_BOUNDS = {
