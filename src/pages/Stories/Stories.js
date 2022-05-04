@@ -1,4 +1,5 @@
 import { useStories } from '@c2dh/react-miller'
+import { useCrawl } from 'snext/crawl'
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { FormGroup, Input, Label } from 'reactstrap'
 import Layout from '../../components/Layout'
@@ -85,6 +86,13 @@ export default function Stories() {
       },
     },
   })
+
+  useCrawl([
+    `${basePath}/stories/list`,
+    `${basePath}/archive`,
+    `${basePath}/archive/filter`,
+    `${basePath}/about`,
+  ])
 
   return (
     <Layout
