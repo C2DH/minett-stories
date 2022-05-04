@@ -115,7 +115,20 @@
 }
 
 .SkipIntro {
-  display: none;
+  position: absolute;
+  bottom: 32px;
+  right: 55px;
+  color: white;
+  z-index: 100;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  font-family: var(--font-pp-neue-montreal);
+  text-transform: uppercase;
+  text-decoration: underline;
+}
+.SkipIntro:hover {
+  color: inherit;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
