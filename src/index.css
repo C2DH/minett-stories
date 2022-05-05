@@ -316,6 +316,11 @@ input:checked {
   opacity: 0.5;
 }
 
+em {
+  font-family: var(--font-sentient-variable);
+  font-style: italic;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;
