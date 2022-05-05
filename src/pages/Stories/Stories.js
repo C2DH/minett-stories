@@ -38,6 +38,7 @@ function StoriesVoronoi({ stories }) {
             }
           }}
         />
+        <div className={styles.Instructions}>"Interact with the images to discover the Minett Stories"</div>
         <div
           className={classNames(styles.VoronoiSelectedStory, {
             [styles.VoronoiSelectedStoryActive]: selectedStory !== null,

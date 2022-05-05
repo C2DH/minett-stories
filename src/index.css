@@ -331,12 +331,17 @@ em {
   }
 
   .text-object-story {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .text-object-story > h2 {
     font-size: 24px;
     line-height: 28px;
   }
 
   blockquote {
-    font-size: 24px;
+    font-size: 2wpx;
     line-height: 28px;
   }
 }

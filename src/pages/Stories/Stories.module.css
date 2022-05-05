@@ -43,6 +43,21 @@
   font-family: var(--font-pp-neue-montreal);
 }
 
+.Instructions {
+  position: absolute;
+  bottom: 20px;
+  width: calc(100% - 60px);
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-pp-neue-montreal);
+  color: white;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  opacity: 0.3;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .Voronoi {
     padding-left: 5px;
@@ -106,5 +121,9 @@
     font-weight: 500;
     font-size: 20px;
     line-height: 24px;
+  }
+
+  .Instructions {
+    display: none;
   }
 }

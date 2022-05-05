@@ -4,7 +4,9 @@ import { ArrowLeft } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
+import StoryPill from '../../../components/StoryPill'
 import VisualModule from '../../../components/VisualModule'
+import { getStoryType } from '../../../utils'
 import BlockControlsNovel from './BlockControlsNovel'
 import styles from './GraphicNovelStory.module.css'
 import imageModalTip from './GraphicNovelTip.svg'
@@ -192,6 +194,7 @@ export default function GraphicNovelStory({ story }) {
   }, [])
 
   const { t } = useTranslation()
+  const type = getStoryType(story)
 
   return (
     <>
@@ -255,10 +258,23 @@ export default function GraphicNovelStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
+        <div className="bg-white">
+          <div className="row pt-4 text-black">
+            <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+              <StoryPill type={type} />
+              <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+                {story.data.title}
+              </h1>
+              <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+                {story.authors.map((a) => a.fullname).join(', ')}
+              </div>
+            </div>
+          </div>
+          <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
         </div>
       )}
     </>

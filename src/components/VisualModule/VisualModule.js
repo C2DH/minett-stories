@@ -12,7 +12,7 @@ export default function VisualModule({ millerModule }) {
       return (
         <div className='row'>
           <ModuleText
-            className={'text-black offset-md-3 offset-xl-4 col-xl-4 col-md-6 mt-2 mb-2'}
+            className={'text-black offset-md-3 col-md-6 mt-2 mb-2'}
             millerModule={millerModule}
           />
         </div>
