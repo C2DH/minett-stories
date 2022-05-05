@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'react-feather'
 import DocLink from '../../DocLink'
 import Caption from '../Caption'
 import './Gallery.css'
+import classNames from 'classnames'
 
 const GalleryItem = memo(({ document }) => {
   console.log(document)
@@ -43,7 +44,7 @@ const CustomButtonGroup = ({
       {objects.length > 2 && (
         <>
           <div
-            className="prev-button btn-circle bg-dark cursor-pointer"
+            className={classNames("prev-button btn-circle bg-dark cursor-pointer")}
             onClick={() => previous()}
           >
             <ChevronLeft size={15} />
@@ -91,7 +92,7 @@ export default function Gallery({ objects, caption }) {
           autoPlay={false}
           draggable={false}
           shouldResetAutoplay={false}
-          infinite={true}
+          infinite={false}
           showDots={false}
           responsive={responsive}
         >
