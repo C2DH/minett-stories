@@ -95,31 +95,56 @@ function VoronoiPath({
   onMouseLeave,
   onClick,
   withHoverEffect,
+  blendColor,
   hovered,
   notHovered,
   className,
 }) {
   return (
-    <path
-      key={index}
-      d={xline(cells[index])}
-      stroke={'var(--black)'}
-      style={{
-        strokeWidth: cellStrokeWidth,
-        opacity: controlPoints.length
-          ? getOpacity(cellsClassification[index], step, progress)
-          : 1,
-      }}
-      fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
-      className={classNames(styles.voronoiPath, className, {
-        [styles.voronoiPathWithHoverEffect]: withHoverEffect,
-        [styles.vornoiPathHovered]: hovered,
-        [styles.vornoiPathNotHovered]: notHovered,
-      })}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      onClick={onClick}
-    />
+    <>
+      <path
+        d={xline(cells[index])}
+        stroke={'var(--black)'}
+        style={{
+          // strokeWidth: cellStrokeWidth,
+          opacity: controlPoints.length
+            ? getOpacity(cellsClassification[index], step, progress)
+            : 1,
+        }}
+        fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
+        className={classNames(styles.voronoiPath, className, {
+          [styles.voronoiPathWithHoverEffect]: withHoverEffect,
+          [styles.vornoiPathHovered]: hovered,
+          [styles.vornoiPathNotHovered]: notHovered,
+        })}
+        // onMouseEnter={onMouseEnter}
+        // onMouseLeave={onMouseLeave}
+        // onClick={onClick}
+      />
+      <path
+        d={xline(cells[index])}
+        stroke={'var(--black)'}
+        style={{
+          strokeWidth: cellStrokeWidth,
+          opacity: controlPoints.length
+            ? getOpacity(cellsClassification[index], step, progress)
+            : 1,
+          mixBlendMode: 'overlay',
+        }}
+        // style={{
+        // }}
+        fill={hovered ? 'transparent' : blendColor}
+        // fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
+        className={classNames(styles.voronoiPath, className, {
+          [styles.voronoiPathWithHoverEffect]: withHoverEffect,
+          // [styles.vornoiPathHovered]: hovered,
+          [styles.vornoiPathNotHovered]: notHovered,
+        })}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        onClick={onClick}
+      />
+    </>
   )
 }
 
@@ -223,6 +248,7 @@ function IntroVoronoiSvg({
 
   return (
     <svg
+      xmlns="http://www.w3.org/2000/svg"
       className="bg-site-black"
       style={{ position: 'absolute', zIndex: 0 }}
       width={width}
@@ -232,6 +258,9 @@ function IntroVoronoiSvg({
       // }}
     >
       <defs>
+        <filter id='greyscale'>
+          <feColorMatrix type='saturate' values='0'/>
+        </filter>
         {stories.map((story, i) => {
           const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
 
@@ -239,7 +268,6 @@ function IntroVoronoiSvg({
           const hasBbox = Array.isArray(bbox) && bbox.length > 0
           let w, h, x, y
           if (hasBbox) {
-            console.log('v', bbox, story, i)
             w = `${bbox[2] - bbox[0]}%`
             h = `${bbox[3] - bbox[1]}%`
             x = `${-bbox[0]}%`
@@ -267,15 +295,7 @@ function IntroVoronoiSvg({
                   x={x}
                   y={y}
                   preserveAspectRatio="xMidYMid slice"
-                  style={{ filter: 'grayscale(1)' }}
-                />
-                <rect
-                  width="100%"
-                  height="100%"
-                  fill={`var(--color-story-${getStoryType(story)})`}
-                  style={{
-                    mixBlendMode: 'overlay',
-                  }}
+                  filter='url(#greyscale)'
                 />
               </pattern>
               <pattern id={`clean-pic-${i}`} width="100%" height="100%">
@@ -303,6 +323,7 @@ function IntroVoronoiSvg({
           return (
             <VoronoiPath
               key={i}
+              blendColor={`var(--color-story-${getStoryType(stories[i])})`}
               index={i}
               cells={cells}
               cellsClassification={cellsClassification}
