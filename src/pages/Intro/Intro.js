@@ -2,7 +2,6 @@ import styles from './Intro.module.css'
 import bgHome from '../../assets/bg-home.png'
 import bgHome2 from '../../assets/bg-home-2.jpg'
 import bgHome3 from '../../assets/bg-home-3.jpg'
-import backgroundStoryLink from '../../assets/ellipse-story.svg'
 import unilu from '../../assets/unilu.png'
 import c2dh from '../../assets/c2dh.png'
 import LangLink from '../../components/LangLink'
@@ -13,16 +12,20 @@ import { useEffect, useState } from 'react'
 export default function Intro() {
   const { t } = useTranslation()
   const backgrounds = [bgHome, bgHome2, bgHome3]
-  const [bg, setBg] = useState(bgHome)
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setBg(bgHome2)
-  //   }, 500)
-  // }, [])
+  const [position, setPosition] = useState(0)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (position === 2) setPosition(0)
+      else setPosition(position + 1)
+    }, 5000)
+    return () => clearInterval(interval)
+  }, [position])
 
   return (
-    <div className={styles.Home} style={{ backgroundImage: `url(${bg}` }}>
+    <div
+      className={styles.Home}
+      style={{ backgroundImage: `url(${backgrounds[position]}` }}
+    >
       <div className={styles.CoverBackground}></div>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
