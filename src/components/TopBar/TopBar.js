@@ -75,7 +75,6 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
             <LinkTop to="/" label={t('intro')} />
             <LinkTop to="/stories/voronoi" label={t('stories')} />
             <LinkTop to="/archive" label={t('archive')} />
-            <LinkTop to="/about" label={t('about')} />
           </div>
           <div className={styles.OffcanvasBottom}>
             <div className={styles.BlockLanguages}>
@@ -94,6 +93,16 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
               ))}
             </div>
             <div className={styles.BlockTerms}>
+              <div>
+                <LangLink className={styles.MediumLink} to="/about">
+                  {t('about')}
+                </LangLink>
+              </div>
+              <div>
+                <LangLink className={styles.MediumLink} to="/about">
+                  {t('education')}
+                </LangLink>
+              </div>
               <div>
                 <LangLink className={styles.MediumLink} to="/">
                   {t('terms_of_use')}

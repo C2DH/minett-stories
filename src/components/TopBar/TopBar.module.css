@@ -45,10 +45,6 @@
   line-height: 65px;
 }
 
-.BigLinkAction::before {
-  content: '-';
-}
-
 .BigLink:hover,
 .MediumLink:hover,
 .BigLinkAction:hover {

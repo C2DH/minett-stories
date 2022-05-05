@@ -6,8 +6,8 @@
       "stories": "Stories",
       "archive": "Archive",
       "about": "About",
-      "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us",
+      "terms_of_use": "Terms of use",
+      "contact_us": "Contact us",
       "close_options": "Close options",
       "documentType_audio": "Audio",
       "documentType_pdf": "Documents",
@@ -45,7 +45,8 @@
       "scrollDown": "Scroll Down",
       "go_deeper": "Go deeper",
       "open":"Open",
-      "research_by": "Research By"
+      "research_by": "Research By",
+      "education": "Education"
     }
   },
   "en_GB": {
@@ -55,8 +56,8 @@
       "stories": "Stories",
       "archive": "Archive",
       "about": "About",
-      "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us",
+      "terms_of_use": "Terms of use",
+      "contact_us": "Contact us",
       "close_options": "Close options",
       "documentType_audio": "Audio",
       "documentType_pdf": "Documents",
@@ -94,7 +95,8 @@
       "scrollDown": "Scroll Down",
       "go_deeper": "Go deeper",
       "open": "Open",
-      "research_by": "Research By"
+      "research_by": "Research By",
+      "education": "Education"
     }
   },
   "de_DE": {
@@ -104,8 +106,8 @@
       "stories": "Stories",
       "archive": "Archive",
       "about": "About",
-      "terms_of_use": "Terms Of Use",
-      "contact_us": "Contact Us",
+      "terms_of_use": "Terms of use",
+      "contact_us": "Contact us",
       "close_options": "Close options",
       "documentType_audio": "Audio",
       "documentType_pdf": "Documents",
@@ -143,7 +145,8 @@
       "scrollDown": "Scroll Down",
       "go_deeper": "Go deeper",
       "open": "Open",
-      "research_by": "Research By"
+      "research_by": "Research By",
+      "education": "Education"
     }
   }
 }
