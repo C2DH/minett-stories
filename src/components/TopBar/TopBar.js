@@ -99,12 +99,12 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
                 </LangLink>
               </div>
               <div>
-                <LangLink className={styles.MediumLink} to="/about">
+                <LangLink className={styles.MediumLink} to="/education">
                   {t('education')}
                 </LangLink>
               </div>
               <div>
-                <LangLink className={styles.MediumLink} to="/">
+                <LangLink className={styles.MediumLink} to="/terms-of-use">
                   {t('terms_of_use')}
                 </LangLink>
               </div>

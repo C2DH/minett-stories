@@ -2,7 +2,6 @@ import { Routes, Route, useParams, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
-import About from './pages/About'
 import NotFound from './pages/NotFound'
 import { DEFAULT_LANG, LANGS, LANGS_SHORT } from './i18n'
 import NavigationWrapper from './components/NavigationWrapper'
@@ -15,6 +14,9 @@ import ExploreStory from './pages/ExploreStory'
 import ErrorBoundary from './ErrorBoundary'
 import Intro from './pages/Intro'
 import StoriesIntro from './pages/StoriesIntro'
+import About from './pages/About'
+import TermsOfUse from './pages/TermsOfUse/TermsOfUse'
+import Education from './pages/Education'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -104,6 +106,8 @@ function LangRoutes() {
             <Route path="archive" element={<Archive />} />
             <Route path="archive/filter" element={<Archive />} />
             <Route path="about" element={<About />} />
+            <Route path="terms-of-use" element={<TermsOfUse />} />
+            <Route path="education" element={<Education />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
