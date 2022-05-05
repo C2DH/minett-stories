@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-player/lib/ReactPlayer.js b/node_modules/react-player/lib/ReactPlayer.js
+index 34cdfa4..cda5beb 100644
+--- a/node_modules/react-player/lib/ReactPlayer.js
++++ b/node_modules/react-player/lib/ReactPlayer.js
+@@ -77,7 +77,7 @@ var IS_GLOBAL = typeof global !== 'undefined' && global.window && global.window.
+ var SUPPORTED_PROPS = Object.keys(_props.propTypes); // Return null when rendering on the server
+ // as Suspense is not supported yet
+ 
+-var UniversalSuspense = IS_BROWSER || IS_GLOBAL ? _react.Suspense : function () {
++var UniversalSuspense = true ? _react.Suspense : function () {
+   return null;
+ };
+ var customPlayers = [];
