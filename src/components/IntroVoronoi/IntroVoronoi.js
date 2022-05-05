@@ -5,7 +5,7 @@ import classNames from 'classnames'
 import { Delaunay } from 'd3-delaunay'
 import { curveBasisClosed, line } from 'd3-shape'
 import clipper from 'js-clipper'
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
+import { Fragment, memo, useCallback, useEffect, useMemo, useState } from 'react'
 import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
@@ -148,6 +148,64 @@ function VoronoiPath({
   )
 }
 
+const VoronoiDefs = memo(({ stories }) => (
+  <defs>
+    <filter id="greyscale">
+      <feColorMatrix type="saturate" values="0" />
+    </filter>
+    {stories.map((story, i) => {
+      const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
+
+      const bbox = get(story, 'data.background.bbox')
+      const hasBbox = Array.isArray(bbox) && bbox.length > 0
+      let w, h, x, y
+      if (hasBbox) {
+        w = `${bbox[2] - bbox[0]}%`
+        h = `${bbox[3] - bbox[1]}%`
+        x = `${-bbox[0]}%`
+        y = `${-bbox[1]}%`
+        // console.log(w, h, x, y)
+      } else {
+        w = '100%'
+        h = '100%'
+        x = '-50%'
+        y = '-50%'
+      }
+
+      return (
+        <Fragment key={i}>
+          <pattern
+            id={`pic-${i}`}
+            // patternUnits="userSpaceOnUse"
+            width="100%"
+            height="100%"
+          >
+            <image
+              href={cover}
+              width={w}
+              height={h}
+              x={x}
+              y={y}
+              preserveAspectRatio="xMidYMid slice"
+              filter="url(#greyscale)"
+            />
+          </pattern>
+          <pattern id={`clean-pic-${i}`} width="100%" height="100%">
+            <image
+              href={cover}
+              width={w}
+              height={h}
+              x={x}
+              y={y}
+              preserveAspectRatio="xMidYMid slice"
+            />
+          </pattern>
+        </Fragment>
+      )
+    })}
+  </defs>
+))
+
 function IntroVoronoiSvg({
   stories,
   controlPoints = [],
@@ -159,7 +217,6 @@ function IntroVoronoiSvg({
   height,
   width,
 }) {
-  const [cells, setCells] = useState([])
   const [refPoints, setRefPoints] = useState()
 
   useEffect(() => {
@@ -183,7 +240,7 @@ function IntroVoronoiSvg({
 
   const [hoverIndex, setHoverIndex] = useState(null)
 
-  useEffect(() => {
+  const cells = useMemo(() => {
     const delaunay = Delaunay.from(points)
     const voronoi = delaunay.voronoi([0, 0, width, height])
 
@@ -191,7 +248,7 @@ function IntroVoronoiSvg({
     const polys = polyCells.map((cell) => resample(cleanPoints(cell)))
 
     // const polys = polyCells.map((cell, i) => voronoi.renderCell(i));
-    setCells(polys)
+    return polys
   }, [height, points, width])
 
   const controlAreas = useMemo(() => {
@@ -257,61 +314,7 @@ function IntroVoronoiSvg({
       //   console.log(e)
       // }}
     >
-      <defs>
-        <filter id='greyscale'>
-          <feColorMatrix type='saturate' values='0'/>
-        </filter>
-        {stories.map((story, i) => {
-          const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
-
-          const bbox = get(story, 'data.background.bbox')
-          const hasBbox = Array.isArray(bbox) && bbox.length > 0
-          let w, h, x, y
-          if (hasBbox) {
-            w = `${bbox[2] - bbox[0]}%`
-            h = `${bbox[3] - bbox[1]}%`
-            x = `${-bbox[0]}%`
-            y = `${-bbox[1]}%`
-            console.log(w, h, x, y)
-          } else {
-            w = '100%'
-            h = '100%'
-            x = '-50%'
-            y = '-50%'
-          }
-
-          return (
-            <Fragment key={i}>
-              <pattern
-                id={`pic-${i}`}
-                // patternUnits="userSpaceOnUse"
-                width="100%"
-                height="100%"
-              >
-                <image
-                  href={cover}
-                  width={w}
-                  height={h}
-                  x={x}
-                  y={y}
-                  preserveAspectRatio="xMidYMid slice"
-                  filter='url(#greyscale)'
-                />
-              </pattern>
-              <pattern id={`clean-pic-${i}`} width="100%" height="100%">
-                <image
-                  href={cover}
-                  width={w}
-                  height={h}
-                  x={x}
-                  y={y}
-                  preserveAspectRatio="xMidYMid slice"
-                />
-              </pattern>
-            </Fragment>
-          )
-        })}
-      </defs>
+      <VoronoiDefs stories={stories} />
       <g>
         {cells.map((cell, i) => {
           const hoverProps = withHoverEffect
