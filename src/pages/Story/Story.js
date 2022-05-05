@@ -92,7 +92,7 @@ export default function Story() {
       </div>
       <div className={styles.Content}>
         <div className="row pt-4 text-black">
-          <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+          <div className="col-md-6 offset-md-4 col-xl-4 offset-md-3 d-flex flex-column align-items-start">
             <StoryPill type={type} />
             <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
               {story.data.title}
