@@ -17,10 +17,11 @@ function SideDocRelated({ docId }) {
 
   return (
     <>
-      {mainDoc.documents.map((doc) => {
+      {mainDoc.documents.map((doc, index) => {
         const imageUrl =
           doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
         return (
+          index !== 0 && 
           <div className="border-bottom mt-2 pb-3 pt-3">
             <h4 className={styles.Title}>{doc.data.title}</h4>
             <div className="w-100">
