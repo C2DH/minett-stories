@@ -76,6 +76,8 @@ export default function Stories() {
   const { pathname: basePath } = useResolvedPath('..')
   const navigate = useNavigate()
 
+  const { t } = useTranslation()
+
   const [storiesList] = useStories({
     params: {
       limit: 1000,
@@ -100,7 +102,7 @@ export default function Stories() {
       right={
         <div className="d-flex align-items-center">
           <div className="d-none d-md-inline-block me-2 top-switch-stories">
-            Mix view
+            {t('mix_view')}
           </div>
           {/* NOTE: avoid switch for now see https://github.com/reactstrap/reactstrap/issues/2415 */}
           <FormGroup className={'ms-0 form-switch mt-4'}>
@@ -122,7 +124,7 @@ export default function Stories() {
               for="switch"
               className="ms-2 text-white top-switch-stories d-none d-md-inline-block"
             >
-              List View
+              {t('list_view')}
             </Label>
           </FormGroup>
         </div>

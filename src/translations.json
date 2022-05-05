@@ -46,7 +46,9 @@
       "go_deeper": "Go deeper",
       "open":"Open",
       "research_by": "Research By",
-      "education": "Education"
+      "education": "Education",
+      "mix_view": "Mix View",
+      "list_view": "List View"
     }
   },
   "en_GB": {
@@ -96,7 +98,9 @@
       "go_deeper": "Go deeper",
       "open": "Open",
       "research_by": "Research By",
-      "education": "Education"
+      "education": "Education",
+      "mix_view": "Mix View",
+      "list_view": "List View"
     }
   },
   "de_DE": {
@@ -146,7 +150,9 @@
       "go_deeper": "Go deeper",
       "open": "Open",
       "research_by": "Research By",
-      "education": "Education"
+      "education": "Education",
+      "mix_view": "Mix View",
+      "list_view": "List View"
     }
   }
 }
