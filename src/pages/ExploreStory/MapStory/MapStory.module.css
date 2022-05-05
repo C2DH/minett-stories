@@ -121,7 +121,6 @@
   color: var(--black);
 }
 
-
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockInfo {
     padding: 24px;
@@ -137,5 +136,15 @@
 
   .ContainerMapAndSideDoc {
     overflow: auto;
+  }
+
+  .TitleStory {
+    font-size: 32px;
+    line-height: 38px;
+  }
+
+  .AbstractText {
+    font-size: 24px;
+    line-height: 32px;
   }
 }

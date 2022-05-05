@@ -175,12 +175,12 @@
   }
 
   .TitleStory {
-    font-size: 24px;
-    line-height: 29px;
+    font-size: 32px;
+    line-height: 38px;
   }
 
   .AbstractText {
-    font-size: 20px;
+    font-size: 24px;
     line-height: 32px;
   }
 }
