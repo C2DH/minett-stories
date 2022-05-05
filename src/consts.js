@@ -9,6 +9,7 @@ export const STORY_ICONS = {
   map: mapIcon,
   audio: audioIcon,
   'interactive-video': videoIcon,
+  'interactive-audio': audioIcon,
   article: articleIcon,
   'graphic-novel': novelIcon,
 }

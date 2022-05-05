@@ -12,6 +12,7 @@
   --light-grey: #dedede;
   --dark-grey: #383838;
   --blacky-border: #424242;
+  --light-red: #823524;
   --top-bar-height: 56px;
   --font-sentient-regular: 'Sentient-Regular';
   --font-sentient-variable: 'Sentient-Variable';
@@ -29,6 +30,8 @@
   --color-story-audio: var(--brick);
   --opacity-color-story-audio: var(--brick-opacity);
   --opacity-color-story-graphic-novel: var(--sienna-opacity);
+  --color-story-interactive-audio: var(--light-red);
+  /* --color-story-interactive-video: var(--green); */
 }
 
 body,
@@ -118,6 +121,9 @@ a.no-link {
 }
 .bg-story-audio {
   background-color: var(--color-story-audio) !important;
+}
+.bg-story-interactive-audio {
+  background-color: var(--color-story-interactive-audio) !important;
 }
 /* COLOR */
 .text-color-story-map {

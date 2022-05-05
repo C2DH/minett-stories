@@ -22,6 +22,9 @@ function ExpolorLink({ slug, type }) {
     case 'interactive-video':
       label = t('watch')
       break
+    case 'interactive-audio':
+      label = t('watch')
+      break
     case 'audio':
       label = t('listen')
       break

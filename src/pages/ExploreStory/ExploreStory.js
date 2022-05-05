@@ -17,6 +17,8 @@ export default function ExploreStory() {
   switch (type) {
     case 'interactive-video':
       return <InteractiveVideoStory {...passProps} />
+    case 'interactive-audio':
+      return <InteractiveVideoStory {...passProps} />
     case 'video':
       return <VideoStory {...passProps} />
     case 'audio':
