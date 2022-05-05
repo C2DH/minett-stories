@@ -27,33 +27,49 @@ export default function Intro() {
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
         <h1 className={`${styles.HomeMinettText}`}>
-          <span
-            className={`${styles.Char400} TextABCMaxiSharpVariable`}
-          >
+          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>
             M
           </span>
-          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>i</span>
-          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>n</span>
-          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>e</span>
-          <span className={`${styles.Char400} TextABCMaxiRoundVariable`}>t</span>
-          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>t</span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>
+            i
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>
+            n
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>
+            e
+          </span>
+          <span className={`${styles.Char400} TextABCMaxiRoundVariable`}>
+            t
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>
+            t
+          </span>
           <span className={`${styles.Char400} ms-2 TextABCMaxiRoundVariable`}>
             S
           </span>
-          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>t</span>
-          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>o</span>
-          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>r</span>
-          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>i</span>
-          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>e</span>
-          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>s</span>
+          <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>
+            t
+          </span>
+          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>
+            o
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>
+            r
+          </span>
+          <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>
+            i
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>
+            e
+          </span>
+          <span className={`${styles.Char200} TextABCMaxiRoundVariable`}>
+            s
+          </span>
         </h1>
         <h3 className={styles.subtitle}>{t('remixing_industrial')}</h3>
-        <LangLink
-          style={{ backgroundImage: `url(${backgroundStoryLink})` }}
-          className={styles.HomeStart}
-          to="/stories"
-        >
-          {t('start')}
+        <LangLink className={`${styles.LinkExplore} no-link`} to="/stories">
+          <div className={styles.Gooey}>{t('start')}</div>
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>

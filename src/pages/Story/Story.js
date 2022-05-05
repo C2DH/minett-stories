@@ -33,11 +33,12 @@ function ExpolorLink({ slug, type }) {
   }
   return (
     <LangLink
+      className={`${styles.LinkExplore} no-link`}
       to={`/story/${slug}/explore`}
-      className={`${styles.ConverExplore}`}
-      // style={{ backgroundImage: `url(${backgroundStoryLink})` }}
     >
-      <div>{label}</div>
+      <div className={styles.Gooey}>
+        <div>{label}</div>
+      </div>
     </LangLink>
   )
 }
