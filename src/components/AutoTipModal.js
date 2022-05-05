@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { Modal, ModalBody } from 'reactstrap'
 
 export default function AutoTipModal({ text, imageSource, type }) {
@@ -11,6 +12,8 @@ export default function AutoTipModal({ text, imageSource, type }) {
       setIsOpen(true)
     }
   }, [storeKey])
+
+  const { t } = useTranslation()
 
   return (
     <Modal isOpen={isOpen} centered>
@@ -27,7 +30,7 @@ export default function AutoTipModal({ text, imageSource, type }) {
               sessionStorage.setItem(storeKey, 'yes')
             }}
           >
-            Ok, I got this
+            {t('ok_i_got')}
           </button>
         </div>
       </ModalBody>
