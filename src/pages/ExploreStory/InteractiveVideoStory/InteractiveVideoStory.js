@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
 import find from 'lodash/find'
-import { fromProgressStrToSeconds } from '../../../utils'
+import { fromProgressStrToSeconds, getStoryType } from '../../../utils'
 import InteractiveGrid from '../../../components/InteractiveGrid'
 import LangLink from '../../../components/LangLink'
 import DocLink from '../../../components/DocLink'
@@ -14,6 +14,7 @@ import { useIsMobileScreen } from '../../../hooks/screen'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
 import styles from './InteractiveVideoStory.module.css'
+import StoryPill from '../../../components/StoryPill'
 
 function objInTime(obj, seconds) {
   return (
@@ -169,12 +170,7 @@ export default function InteractiveVideoStory({ story }) {
     if (progress.playedSeconds === null) {
       return null
     }
-    return (
-      find(
-        speakers,
-        (o) => objInTime(o, progress.playedSeconds)
-      ) ?? null
-    )
+    return find(speakers, (o) => objInTime(o, progress.playedSeconds)) ?? null
   }, [progress.playedSeconds, speakers])
 
   const [goDeeper, setGoDeeper] = useState(false)
@@ -197,6 +193,8 @@ export default function InteractiveVideoStory({ story }) {
       },
     ]
   }, [subtitlesFile])
+
+  const type = getStoryType(story)
 
   return (
     <>
@@ -221,17 +219,19 @@ export default function InteractiveVideoStory({ story }) {
             position={isMobileScreen ? { top: 50, left: 50 } : null}
             topLeft={
               !isMobileScreen && (
-                <div className={`${styles.subtitlesContainer} w-100 h-100 d-flex flex-column`}>
-                  <div
-                    className={'w-100 flex-1 d-flex flex-column'}
-                  >
+                <div
+                  className={`${styles.subtitlesContainer} w-100 h-100 d-flex flex-column`}
+                >
+                  <div className={'w-100 flex-1 d-flex flex-column'}>
                     {subtitles.map((sub, i) => (
                       <div key={i}>{sub}</div>
                     ))}
                   </div>
-                  {speakingSpeaker && <div className={styles.subtitlesSpeaker}>
-                    {speakingSpeaker.document.data.title}
-                  </div>}
+                  {speakingSpeaker && (
+                    <div className={styles.subtitlesSpeaker}>
+                      {speakingSpeaker.document.data.title}
+                    </div>
+                  )}
                 </div>
               )
             }
@@ -314,10 +314,25 @@ export default function InteractiveVideoStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className="bg-white ps-3 pe-3 ps-md-0 pe-md-0">
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
+        <div>
+          <div className="bg-white">
+            <div className="row pt-4 text-black">
+              <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+                <StoryPill type={type} />
+                <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+                  {story.data.title}
+                </h1>
+                <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+                  {story.authors.map((a) => a.fullname).join(', ')}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white ps-3 pe-3 ps-md-0 pe-md-0">
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
         </div>
       )}
     </>

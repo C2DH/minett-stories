@@ -10,6 +10,8 @@ import googlePodcast from './assets/google-podcast.png'
 import applePodcast from './assets/apple-podcast.png'
 import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
+import StoryPill from '../../../components/StoryPill'
+import { getStoryType } from '../../../utils'
 
 export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -52,17 +54,20 @@ export default function AudioStory({ story }) {
     }
     playerInitRef.current = true
   }, [progress])
-  const handleSeek = useCallback((index, progress) => {
-    setChapterIndex(index)
-    setProgress({
-      played: progress,
-      playedSeconds: null, // Will auto set by my player
-    })
-    playerRef.current.seekTo(progress, 'fraction')
-    if (index !== chapterIndex) {
-      playerInitRef.current = false
-    }
-  }, [chapterIndex])
+  const handleSeek = useCallback(
+    (index, progress) => {
+      setChapterIndex(index)
+      setProgress({
+        played: progress,
+        playedSeconds: null, // Will auto set by my player
+      })
+      playerRef.current.seekTo(progress, 'fraction')
+      if (index !== chapterIndex) {
+        playerInitRef.current = false
+      }
+    },
+    [chapterIndex]
+  )
   const goToNextChapter = useCallback(() => {
     if (chapterIndex < videoChapters.length - 1) {
       setProgress({ played: 0, playedSeconds: 0 })
@@ -89,6 +94,8 @@ export default function AudioStory({ story }) {
   }, [])
 
   const [showPodcast, setShowPodcast] = useState(false)
+
+  const type = getStoryType(story)
 
   return (
     <>
@@ -147,7 +154,7 @@ export default function AudioStory({ story }) {
               <div className="text-center mt-4">
                 <img width={108} src={applePodcast} alt="Apple Podcast" />
               </div>
-              <div className='d-flex justify-content-center mt-4'>
+              <div className="d-flex justify-content-center mt-4">
                 <div className={styles.DownloadFile}>{t('download-file')}</div>
               </div>
             </div>
@@ -180,9 +187,23 @@ export default function AudioStory({ story }) {
       </div>
       {goDeeper && (
         <div className="bg-white">
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
+          <div className="row pt-4 text-black">
+            <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+              <StoryPill type={type} />
+              <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+                {story.data.title}
+              </h1>
+              <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+                {story.authors.map((a) => a.fullname).join(', ')}
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-white">
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
         </div>
       )}
     </>

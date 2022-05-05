@@ -1,10 +1,13 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
-import VisualModule from '../../components/VisualModule'
-import ChaptersProgressBar from '../../components/ChaptersProgressBar'
-import LangLink from '../../components/LangLink'
 import { ArrowLeft } from 'react-feather'
 import { useNavigationType } from 'react-router-dom'
+import styles from './VideoStory.module.css'
+import LangLink from '../../../components/LangLink'
+import { getStoryType } from '../../../utils'
+import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
+import StoryPill from '../../../components/StoryPill'
+import VisualModule from '../../../components/VisualModule'
 
 export default function VideoStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -82,6 +85,8 @@ export default function VideoStory({ story }) {
     }, 150)
   }, [])
 
+  const type = getStoryType(story)
+
   return (
     <>
       <div className="w-100 h-100 d-flex flex-column">
@@ -134,9 +139,22 @@ export default function VideoStory({ story }) {
       </div>
       {goDeeper && (
         <div className="bg-white">
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
+          <div className="row pt-4 text-black">
+            <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+              <StoryPill type={type} />
+              <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+                {story.data.title}
+              </h1>
+              <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+                {story.authors.map((a) => a.fullname).join(', ')}
+              </div>
+            </div>
+          </div>
+          <div className="bg-white">
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
         </div>
       )}
     </>

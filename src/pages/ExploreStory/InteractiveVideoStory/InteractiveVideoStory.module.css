@@ -36,3 +36,22 @@
   text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
     1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
 }
+
+.TitleStory {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.ResearchText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AbstractText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--black);
+}
