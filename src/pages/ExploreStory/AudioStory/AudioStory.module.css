@@ -16,9 +16,28 @@
   letter-spacing: -0.01em;
 }
 
-.DownloadFile{
-    width: max-content;
-    border-radius: 40px;
-    background-color: var(--cadet-blue);
-    padding: 10px 24px;
+.DownloadFile {
+  width: max-content;
+  border-radius: 40px;
+  background-color: var(--cadet-blue);
+  padding: 10px 24px;
+}
+
+.TitleStory {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.ResearchText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AbstractText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--black);
 }

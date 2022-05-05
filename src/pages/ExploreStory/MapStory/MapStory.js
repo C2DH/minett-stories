@@ -6,6 +6,8 @@ import LangLink from '../../../components/LangLink'
 import { ArrowDown, ArrowLeft, X } from 'react-feather'
 import VisualModule from '../../../components/VisualModule'
 import { useTranslation } from 'react-i18next'
+import StoryPill from '../../../components/StoryPill'
+import { getStoryType } from '../../../utils'
 
 const MapWrapper = lazy(() => import('./MapWrapper'))
 
@@ -110,6 +112,8 @@ export default function MapStory({ story }) {
     }, 150)
   }, [])
 
+  const type = getStoryType(story)
+
   return (
     <>
       <div className="h-100 w-100 d-flex flex-column">
@@ -171,10 +175,23 @@ export default function MapStory({ story }) {
         </div>
       </div>
       {goDeeper && (
-        <div className="bg-white ps-3 pe-3 ps-md-0 pe-md-0">
-          {longScrollStory.contents.modules.map((millerModule, i) => (
-            <VisualModule key={i} millerModule={millerModule} />
-          ))}
+        <div className="bg-white">
+          <div className="row pt-4 text-black">
+            <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
+              <StoryPill type={type} />
+              <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
+                {story.data.title}
+              </h1>
+              <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
+                {story.authors.map((a) => a.fullname).join(', ')}
+              </div>
+            </div>
+          </div>
+          <div className="bg-white ps-3 pe-3 ps-md-0 pe-md-0">
+            {longScrollStory.contents.modules.map((millerModule, i) => (
+              <VisualModule key={i} millerModule={millerModule} />
+            ))}
+          </div>
         </div>
       )}
     </>

@@ -28,37 +28,14 @@
   margin-bottom: 64px;
 }
 
-.HomeStart {
-  font-family: var(--font-abc-maxi-round);
-  position: relative;
-  background-repeat: no-repeat;
-  background-size: contain;
-  text-decoration: none;
-  text-transform: uppercase;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--black);
-  width: 155px;
-  height: 170px;
-  top: calc(0%);
-  left: calc(50% - 75px);
-}
-
-.HomeStart:hover {
-  color: var(--black);
-}
-
 .Home {
   background-size: cover;
   width: 100%;
   height: 100vh;
   z-index: 1;
+  transition: background 1s ease-in-out;
 }
+
 
 .CoverBackground {
   position: absolute;
@@ -104,7 +81,6 @@
   animation-play-state: start !important;
   animation: breathe200 1500ms infinite;
 }
-
 
 .Char400:hover {
   animation-play-state: start !important;
@@ -159,6 +135,59 @@
 .SkipIntro:hover {
   color: inherit;
 }
+
+.Gooey {
+  background-color: white;
+  border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  width: 150px;
+  height: 144px;
+  animation: morph 6s linear infinite;
+  outline: 1px solid transparent;
+  will-change: border-radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  transform: scale(1);
+  transition: transform 0.4s ease-out;
+}
+
+.Gooey:hover {
+  animation-play-state: paused;
+  transform: scale(1.1);
+}
+
+.LinkExplore {
+  text-decoration: none !important;
+  text-transform: uppercase;
+  white-space: nowrap;
+  font-family: var(--font-abc-maxi-round);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--black) !important;
+}
+
+@keyframes morph {
+  0%,
+  100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+  }
+  34% {
+    border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+  }
+  67% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+  }
+}
+
+
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockLanguages {

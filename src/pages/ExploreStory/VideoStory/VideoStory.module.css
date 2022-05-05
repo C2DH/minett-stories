@@ -1,0 +1,18 @@
+.TitleStory {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 40px;
+  line-height: 48px;
+}
+
+.ResearchText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.AbstractText {
+  font-family: var(--font-pp-neue-montreal);
+  font-size: 24px;
+  line-height: 32px;
+  color: var(--black);
+}
