@@ -8,29 +8,34 @@ import VisualModule from '../../../components/VisualModule'
 import { useTranslation } from 'react-i18next'
 import StoryPill from '../../../components/StoryPill'
 import { getStoryType } from '../../../utils'
+import DocLink from '../../../components/DocLink'
 
 const MapWrapper = lazy(() => import('./MapWrapper'))
 
 function SideDocRelated({ docId }) {
   const [mainDoc] = useDocument(docId)
 
-  const imageUrl =
-    mainDoc.data.resolutions?.thumbnail.url ??
-    mainDoc.snapshot ??
-    mainDoc.attachment
-
   return (
     <>
-      {mainDoc.documents.map((doc) => (
-        <div className="border-bottom mt-2 pb-3 pt-3">
-          <h4 className={styles.Title}>{doc.data.title}</h4>
-          <div className="w-100">
-            <img className="w-100" src={imageUrl} alt={doc.data.title} />
+      {mainDoc.documents.map((doc) => {
+        const imageUrl =
+          doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
+        return (
+          <div className="border-bottom mt-2 pb-3 pt-3">
+            <h4 className={styles.Title}>{doc.data.title}</h4>
+            <div className="w-100">
+              <DocLink
+                slugOrId={doc.slug}
+                className="text-decoration-none"
+              >
+                <img className="w-100 cursor-pointer" src={imageUrl} alt={doc.data.title} />
+              </DocLink>
+            </div>
+            <div className={styles.Year}>{doc.data.year}</div>
+            <div className={styles.Description}>{doc.data.description}</div>
           </div>
-          <div className={styles.Year}>{doc.data.year}</div>
-          <div className={styles.Description}>{doc.data.description}</div>
-        </div>
-      ))}
+        )
+      })}
     </>
   )
 }
@@ -156,7 +161,7 @@ export default function MapStory({ story }) {
         </div>
         <div
           className="bg-white text-black d-flex align-items-center"
-          style={{ height: 50 }}
+          style={{ height: 70 }}
         >
           {!goDeeper && (
             <div
