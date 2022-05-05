@@ -8,7 +8,9 @@
 
 @font-face {
   font-family: 'Sentient-Variable';
-  src: url('style/fonts/Sentient-Variable.woff') format('woff');
+  src: url('style/fonts/Sentient-Variable.woff2') format('woff2'),
+    url('style/fonts/Sentient-Variable.woff') format('woff'),
+    url('style/fonts/Sentient-Variable.ttf') format('truetype');
   font-weight: 200 700;
   font-display: swap;
   font-style: normal;
@@ -66,12 +68,16 @@
 
 @font-face {
   font-family: 'ABC Maxi Round Variable';
-  src: url('style/fonts/ABCMaxiRoundVariable.woff') format('woff');
+  src: url('style/fonts/ABCMaxiRoundVariable.woff2') format('woff2'),
+    url('style/fonts/ABCMaxiRoundVariable.woff') format('woff'),
+    url('style/fonts/ABCMaxiRoundVariable.ttf') format('truetype');
   font-display: swap;
 }
 
 @font-face {
   font-family: 'ABC Maxi Sharp Variable';
-  src: url('style/fonts/ABCMaxiSharpVariable.woff') format('woff');
+  src: url('style/fonts/ABCMaxiSharpVariable.woff2') format('woff2'),
+    url('style/fonts/ABCMaxiSharpVariable.woff') format('woff'),
+    url('style/fonts/ABCMaxiSharpVariable.ttf') format('truetype');
   font-display: swap;
 }
