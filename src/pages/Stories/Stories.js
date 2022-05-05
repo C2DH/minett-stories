@@ -38,7 +38,7 @@ function StoriesVoronoi({ stories }) {
             }
           }}
         />
-        <div className={styles.Instructions}>"{t('interact_label')}"</div>
+        <div className={styles.Instructions}>{t('interact_label')}</div>
         <div
           className={classNames(styles.VoronoiSelectedStory, {
             [styles.VoronoiSelectedStoryActive]: selectedStory !== null,
