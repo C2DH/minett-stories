@@ -1,7 +1,7 @@
 import styles from './Intro.module.css'
-import bgHome from '../../assets/bg-home.png'
-import bgHome2 from '../../assets/bg-home-2.jpg'
-import bgHome3 from '../../assets/bg-home-3.jpg'
+import intro1 from '../../assets/intro1.jpg'
+import intro2 from '../../assets/intro2.jpg'
+import intro3 from '../../assets/intro3.jpg'
 import unilu from '../../assets/unilu.png'
 import c2dh from '../../assets/c2dh.png'
 import LangLink from '../../components/LangLink'
@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 
 export default function Intro() {
   const { t } = useTranslation()
-  const backgrounds = [bgHome, bgHome2, bgHome3]
+  const backgrounds = [intro1, intro2, intro3]
   const [position, setPosition] = useState(0)
   useEffect(() => {
     const interval = setInterval(() => {
@@ -26,7 +26,6 @@ export default function Intro() {
       className={styles.Home}
       style={{ backgroundImage: `url(${backgrounds[position]}` }}
     >
-      <div className={styles.CoverBackground}></div>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
         <h1 className={`${styles.HomeMinettText}`}>
