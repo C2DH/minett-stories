@@ -65,9 +65,11 @@ function SideDoc({ doc, onClose }) {
       </div>
       <div className="border-bottom pb-3 pt-3">
         <h4 className={styles.Title}>{doc.data.title}</h4>
-        <div className="w-100">
-          <img className="w-100" src={imageUrl} alt={doc.data.title} />
-        </div>
+        <DocLink slugOrId={doc.slug} className="text-decoration-none">
+          <div className="w-100">
+            <img className="w-100" src={imageUrl} alt={doc.data.title} />
+          </div>
+        </DocLink>
         <div className={styles.Year}>{doc.data.year}</div>
         <div className={styles.Description}>{doc.data.description}</div>
         <a
