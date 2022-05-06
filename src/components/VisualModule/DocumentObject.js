@@ -47,7 +47,6 @@ export default function DocumentObject({ doc, caption, className, size }) {
         : 'offset-md-3 col-md-6'
       : ''
     const dateToUse = doc.data.year ? doc.data.year : doc.data.date
-    console.log(doc)
     return (
       <div className={`${className} ${classNameCols}`}>
         <DocLink className="no-link" slugOrId={doc.document_id}>
