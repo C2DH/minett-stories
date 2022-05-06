@@ -328,7 +328,7 @@ export default function InteractiveVideoStory({ story }) {
               </div>
             </div>
           </div>
-          <div className="bg-white ps-3 pe-3 ps-md-0 pe-md-0">
+          <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
             {longScrollStory.contents.modules.map((millerModule, i) => (
               <VisualModule key={i} millerModule={millerModule} />
             ))}

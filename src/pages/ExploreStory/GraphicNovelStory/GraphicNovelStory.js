@@ -258,7 +258,7 @@ export default function GraphicNovelStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className="bg-white">
+        <div className={`${styles.ContentLongScroll} bg-white`}>
           <div className="row pt-4 text-black">
             <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
               <StoryPill type={type} />
@@ -270,7 +270,7 @@ export default function GraphicNovelStory({ story }) {
               </div>
             </div>
           </div>
-          <div className="bg-white  ps-3 pe-3 ps-md-0 pe-md-0">
+          <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
             {longScrollStory.contents.modules.map((millerModule, i) => (
               <VisualModule key={i} millerModule={millerModule} />
             ))}

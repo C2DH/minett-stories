@@ -11,13 +11,13 @@
   transform: translateX(-100%);
 }
 
-.BlockControls{
+.BlockControls {
   height: 64px;
   padding-left: 64px;
   padding-right: 64px;
 }
 
-.imgNovel{
+.imgNovel {
   border-radius: 100px;
   background-repeat: no-repeat;
 }
@@ -42,7 +42,7 @@
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
-  .BlockControls{
+  .BlockControls {
     height: 64px;
     padding-left: 12px;
     padding-right: 12px;
@@ -56,5 +56,13 @@
   .AbstractText {
     font-size: 24px;
     line-height: 32px;
+  }
+
+  .ContentLongScroll {
+    margin: 0px;
+    padding-bottom: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: white;
   }
 }

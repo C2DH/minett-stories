@@ -150,7 +150,7 @@ export default function VideoStory({ story }) {
               </div>
             </div>
           </div>
-          <div className="bg-white">
+          <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
             {longScrollStory.contents.modules.map((millerModule, i) => (
               <VisualModule key={i} millerModule={millerModule} />
             ))}
