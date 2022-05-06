@@ -327,6 +327,10 @@ em {
   font-style: italic;
 }
 
+.loader-container {
+  height: calc(100% - var(--top-bar-height));
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;
