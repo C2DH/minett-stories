@@ -5,7 +5,14 @@ import classNames from 'classnames'
 import { Delaunay } from 'd3-delaunay'
 import { curveBasisClosed, line } from 'd3-shape'
 import clipper from 'js-clipper'
-import { Fragment, memo, useCallback, useEffect, useMemo, useState } from 'react'
+import {
+  Fragment,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
@@ -99,10 +106,12 @@ function VoronoiPath({
   notHovered,
   className,
 }) {
+  const cell = cells[index]
+  const pathD = useMemo(() => xline(cell), [cell])
   return (
     <>
       <path
-        d={xline(cells[index])}
+        d={pathD}
         stroke={'var(--black)'}
         style={{
           // strokeWidth: cellStrokeWidth,
@@ -121,7 +130,7 @@ function VoronoiPath({
         // onClick={onClick}
       />
       <path
-        d={xline(cells[index])}
+        d={pathD}
         stroke={'var(--black)'}
         style={{
           strokeWidth: cellStrokeWidth,
