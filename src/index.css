@@ -92,6 +92,10 @@ a.no-link {
   color: inherit;
 }
 
+.progress-bar-story {
+  width: 78.5%;
+}
+
 /*
   TODO: This can be implement better or auto generated \w SASS but for now keep here
 */
@@ -334,6 +338,10 @@ em {
   height: calc(100% - var(--top-bar-height));
 }
 
+.flex-1-mobile{
+  flex: unset;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;
@@ -356,5 +364,13 @@ em {
   blockquote {
     font-size: 22px;
     line-height: 28px;
+  }
+
+  .progress-bar-story {
+    width: 100%;
+  }
+
+  .flex-1-mobile{
+    flex: 1;
   }
 }
