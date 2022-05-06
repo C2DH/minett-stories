@@ -174,7 +174,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
           </div>
         ))}
       </div>
-      <div className="mt-2">
+      <div className="mt-4">
         <label>{t('filter_by_year')}</label>
         <div className="d-flex align-items-between align-items-center py-2">
           <span className="pe-2">From</span>
@@ -202,7 +202,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
             to={MAX_YEAR}
           />
         </div>
-        <div>
+        {/* <div>
           <input
             type="checkbox"
             checked={filters.noDates}
@@ -214,7 +214,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
             }}
           />
           <span className="ms-2">{t('include_no_dates')}</span>
-        </div>
+        </div> */}
       </div>
     </div>
   )

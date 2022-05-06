@@ -2,8 +2,8 @@ import styles from './Intro.module.css'
 import intro1 from '../../assets/intro1.jpg'
 import intro2 from '../../assets/intro2.jpg'
 import intro3 from '../../assets/intro3.jpg'
-import unilu from '../../assets/unilu.png'
-import c2dh from '../../assets/c2dh.png'
+import unilu from '../../assets/logo_unilu.png'
+import esch22 from '../../assets/logo_esch22.png'
 import LangLink from '../../components/LangLink'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls/RoundedLanguageControls'
 import { useTranslation } from 'react-i18next'
@@ -75,8 +75,8 @@ export default function Intro() {
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
-        <img src={c2dh} alt="C2dh" className={styles.c2dh} />
-        <img src={unilu} alt="Unilu" className={`${styles.unilu} ms-2`} />
+        <img src={unilu} alt="Unilu" className={`${styles.unilu}`} />
+        <img src={esch22} alt="Esch22" className={`${styles.esch22}  ms-2`} />
       </div>
       <LangLink to="/stories/voronoi" className="no-link">
         <div className={styles.SkipIntro}>{t('skipIntro')}</div>

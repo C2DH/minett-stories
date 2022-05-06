@@ -188,6 +188,14 @@
   }
 }
 
+.esch22 {
+  width: 88px;
+}
+
+.unilu {
+  width: 285px;
+}
+
 
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {
@@ -250,14 +258,14 @@
     mix-blend-mode: lighten;
   }
 
-  .c2dh {
-    width: 80px;
-  }
-
   .unilu {
-    width: 60px;
+    width: 165px;
   }
 
+  .esch22 {
+    width: 68px;
+  }
+  
   .SkipIntro {
     position: absolute;
     bottom: 12px;

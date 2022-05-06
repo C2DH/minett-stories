@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import { Menu, X } from 'react-feather'
 import ChangeLangLink from '../ChangeLangLink'
-import c2dh from './assets/c2dh.svg'
-import unilu from './assets/unilu.svg'
+import unilu from './assets/logo_unilu.png'
+import esch22 from './assets/logo_esch22.png'
 import LangLink from '../LangLink'
 import styles from './TopBar.module.css'
 import { useTranslation } from 'react-i18next'
@@ -116,13 +116,13 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
             </div>
             <div>
               <img
-                src={c2dh}
-                className={styles.c2dh}
+                src={unilu}
+                className={styles.unilu}
                 alt="Luxembourg Centre for Contemporary and digital History"
               />
               <img
-                src={unilu}
-                className={styles.logoUnilu}
+                src={esch22}
+                className={styles.esch22}
                 alt="Universitè du Luxembourg"
               />
             </div>

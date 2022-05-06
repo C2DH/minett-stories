@@ -43,7 +43,7 @@ export default function Archive() {
     types: searchParams.getAll('types') ?? [],
     q: searchParams.get('q') ?? '',
     orderby: searchParams.get('orderby') ?? 'data__date',
-    noDates: (searchParams.get('noDates') ?? 'true') === 'true',
+    // noDates: (searchParams.get('noDates') ?? 'true') === 'true',
     fromYear: Number(searchParams.get('fromYear') ?? MIN_YEAR),
     toYear: Number(searchParams.get('toYear') ?? MAX_YEAR),
   }

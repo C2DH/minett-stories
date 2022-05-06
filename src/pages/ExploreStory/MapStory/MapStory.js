@@ -1,6 +1,5 @@
 import { useDocument } from '@c2dh/react-miller'
 import { lazy, Suspense, useCallback, useMemo, useState } from 'react'
-import { Spinner } from 'reactstrap'
 import styles from './MapStory.module.css'
 import LangLink from '../../../components/LangLink'
 import { ArrowDown, ArrowLeft, X } from 'react-feather'
