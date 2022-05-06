@@ -8,7 +8,7 @@ export default function NavigationWrapper() {
     <Suspense
       fallback={
         <Layout>
-          <div className='padding-top-bar'>
+          <div className="padding-top-bar d-flex align-items-center justify-content-center loader-container w-100">
             <Loader />
           </div>
         </Layout>

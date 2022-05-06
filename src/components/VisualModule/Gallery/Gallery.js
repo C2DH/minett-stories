@@ -8,7 +8,6 @@ import './Gallery.css'
 import classNames from 'classnames'
 
 const GalleryItem = memo(({ document }) => {
-  console.log(document)
   return (
     <DocLink
       style={{ height: 'auto' }}
@@ -18,7 +17,6 @@ const GalleryItem = memo(({ document }) => {
       <img
         src={document.data.resolutions.preview.url}
         alt={document.data.title}
-        // style={{ height: 'auto' }}
         className="customCursor img-fluid"
       />
       {document.data.title && (
@@ -104,11 +102,6 @@ export default function Gallery({ objects, caption }) {
               )
           )}
         </Carousel>
-        {/* {caption && (
-          <div>
-            <Caption caption={caption} />
-          </div>
-        )} */}
       </div>
     </div>
   )
