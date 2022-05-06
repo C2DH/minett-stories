@@ -90,6 +90,26 @@ function getOpacity(cellStep, step, progress) {
   return 0
 }
 
+function naiveGetBrowserVendor() {
+  if (typeof window === 'undefined') {
+    // Running React on the Server
+    return 'SSR'
+  }
+  const userAgent = window.navigator.userAgent
+  if (userAgent.includes('Chrome')) {
+    return 'Chrome'
+  }
+  if (userAgent.includes('Firefox')) {
+    return 'Firefox'
+  }
+  if (userAgent.includes('Safari')) {
+    return 'Safari'
+  }
+  return 'Other'
+}
+
+const BROWSER_VENDOR = naiveGetBrowserVendor()
+
 function VoronoiPath({
   index,
   controlPoints,
@@ -108,26 +128,36 @@ function VoronoiPath({
 }) {
   const cell = cells[index]
   const pathD = useMemo(() => xline(cell), [cell])
+
+  // NOTE: Why????? Are you dub or so?
+  // No! I don't known why but on FireFox when apply greyscale on pattern
+  // starts lags as fuck ... on the other hand in Safari applying greyscale
+  // on image make all lags as fuck so ... this is it
+  let fill, filter
+  if (BROWSER_VENDOR === 'Firefox') {
+    fill = `url(#pic-${index})`
+    filter = hovered ? undefined : 'grayscale(1)'
+  } else {
+    fill = hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`
+  }
+
   return (
     <>
       <path
         d={pathD}
         stroke={'var(--black)'}
         style={{
-          // strokeWidth: cellStrokeWidth,
           opacity: controlPoints.length
             ? getOpacity(cellsClassification[index], step, progress)
             : 1,
         }}
-        fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
+        fill={fill}
+        filter={filter}
         className={classNames(styles.voronoiPath, className, {
           [styles.voronoiPathWithHoverEffect]: withHoverEffect,
           [styles.vornoiPathHovered]: hovered,
           [styles.vornoiPathNotHovered]: notHovered,
         })}
-        // onMouseEnter={onMouseEnter}
-        // onMouseLeave={onMouseLeave}
-        // onClick={onClick}
       />
       <path
         d={pathD}
@@ -139,10 +169,7 @@ function VoronoiPath({
             : 1,
           mixBlendMode: 'overlay',
         }}
-        // style={{
-        // }}
         fill={hovered ? 'transparent' : blendColor}
-        // fill={hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`}
         className={classNames(styles.voronoiPath, className, {
           [styles.voronoiPathWithHoverEffect]: withHoverEffect,
           // [styles.vornoiPathHovered]: hovered,
@@ -156,62 +183,79 @@ function VoronoiPath({
   )
 }
 
-const VoronoiDefs = memo(({ stories }) => (
-  <defs>
-    <filter id="greyscale">
-      <feColorMatrix type="saturate" values="0" />
-    </filter>
-    {stories.map((story, i) => {
-      const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
+const VoronoiDefs = memo(({ stories }) => {
+  let filter
+  if (BROWSER_VENDOR === 'Firefox') {
+    // NOTE: On firefox run filter on path instead of pattern
+    filter = undefined
+  } else if (BROWSER_VENDOR === 'Safari') {
+    // NOTE: Safari has not native greyscale filter
+    filter = 'url(#greyscale)'
+  } else {
+    filter = 'grayscale(1)'
+  }
+  // console.log('O.o', filter)
 
-      const bbox = get(story, 'data.background.bbox')
-      const hasBbox = Array.isArray(bbox) && bbox.length > 0
-      let w, h, x, y
-      if (hasBbox) {
-        w = `${bbox[2] - bbox[0]}%`
-        h = `${bbox[3] - bbox[1]}%`
-        x = `${-bbox[0]}%`
-        y = `${-bbox[1]}%`
-      } else {
-        w = '100%'
-        h = '100%'
-        x = '-50%'
-        y = '-50%'
-      }
+  return (
+    <defs>
+      {/* NOTE: Safari has not native greyscale filter */}
+      {BROWSER_VENDOR === 'Safari' && (
+        <filter id="greyscale">
+          <feColorMatrix type="saturate" values="0" />
+        </filter>
+      )}
+      {stories.map((story, i) => {
+        const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
 
-      return (
-        <Fragment key={i}>
-          <pattern
-            id={`pic-${i}`}
-            // patternUnits="userSpaceOnUse"
-            width="100%"
-            height="100%"
-          >
-            <image
-              href={cover}
-              width={w}
-              height={h}
-              x={x}
-              y={y}
-              preserveAspectRatio="xMidYMid slice"
-              filter="url(#greyscale)"
-            />
-          </pattern>
-          <pattern id={`clean-pic-${i}`} width="100%" height="100%">
-            <image
-              href={cover}
-              width={w}
-              height={h}
-              x={x}
-              y={y}
-              preserveAspectRatio="xMidYMid slice"
-            />
-          </pattern>
-        </Fragment>
-      )
-    })}
-  </defs>
-))
+        const bbox = get(story, 'data.background.bbox')
+        const hasBbox = Array.isArray(bbox) && bbox.length > 0
+        let w, h, x, y
+        if (hasBbox) {
+          w = `${bbox[2] - bbox[0]}%`
+          h = `${bbox[3] - bbox[1]}%`
+          x = `${-bbox[0]}%`
+          y = `${-bbox[1]}%`
+        } else {
+          w = '100%'
+          h = '100%'
+          x = '-50%'
+          y = '-50%'
+        }
+
+        return (
+          <Fragment key={i}>
+            <pattern
+              id={`pic-${i}`}
+              // patternUnits="userSpaceOnUse"
+              width="100%"
+              height="100%"
+            >
+              <image
+                href={cover}
+                width={w}
+                height={h}
+                x={x}
+                y={y}
+                preserveAspectRatio="xMidYMid slice"
+                filter={filter}
+              />
+            </pattern>
+            <pattern id={`clean-pic-${i}`} width="100%" height="100%">
+              <image
+                href={cover}
+                width={w}
+                height={h}
+                x={x}
+                y={y}
+                preserveAspectRatio="xMidYMid slice"
+              />
+            </pattern>
+          </Fragment>
+        )
+      })}
+    </defs>
+  )
+})
 
 function IntroVoronoiSvg({
   stories,
