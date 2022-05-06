@@ -7,6 +7,8 @@
   --brick: #9e5646;
   --brick-opacity: rgb(158, 86, 70, 0.4);
   --orange: #bc6d3f;
+  --light-orange: #C98019;
+  --light-orange-opacity:  rgb(201, 128, 25, 0.4);
   --orange-opacity: rgb(188, 109, 63, 0.4);
   --green: #798774;
   --light-grey: #dedede;
@@ -23,8 +25,8 @@
   --color-story-map: var(--green);
   --color-story-graphic-novel: var(--sienna);
   --color-story-article: var(--cadet-blue);
-  --color-story-video: var(--orange);
-  --opacity-color-story-video: var(--orange-opacity);
+  --color-story-video: var(--light-orange);
+  --opacity-color-story-video: var(--light-orange-opacity);
   --color-story-interactive-video: var(--orange);
   --opacity-color-story-interactive-video: var(--orange-opacity);
   --color-story-audio: var(--brick);
