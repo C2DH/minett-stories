@@ -129,7 +129,6 @@ export default function BlockControlsNovel({
                 left: element.scrollLeft - width / 2,
                 behavior: 'smooth',
               })
-              // console.log({ element })
             }
           }}
         >
@@ -156,7 +155,6 @@ export default function BlockControlsNovel({
                 left: element.scrollLeft + width / 2,
                 behavior: 'smooth',
               })
-              // console.log({ element })
             }
           }}
         >

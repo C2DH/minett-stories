@@ -72,7 +72,6 @@ function resample(points) {
 }
 
 function getOpacity(cellStep, step, progress) {
-  // console.log("c", cellStep, step, progress)
   if (step >= cellStep) {
     return 1
   }
@@ -164,7 +163,6 @@ const VoronoiDefs = memo(({ stories }) => (
         h = `${bbox[3] - bbox[1]}%`
         x = `${-bbox[0]}%`
         y = `${-bbox[1]}%`
-        // console.log(w, h, x, y)
       } else {
         w = '100%'
         h = '100%'
@@ -310,9 +308,6 @@ function IntroVoronoiSvg({
       style={{ position: 'absolute', zIndex: 0 }}
       width={width}
       height={height}
-      // onDrag={(e) => {
-      //   console.log(e)
-      // }}
     >
       <VoronoiDefs stories={stories} />
       <g>

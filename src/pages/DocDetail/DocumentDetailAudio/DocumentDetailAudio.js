@@ -4,7 +4,6 @@ import stylesCommon from '../DocDetail.module.css'
 import styles from './DocumentDetailAudio.module.css'
 
 export default function DocumentDetailAudio({ isModal, doc, onClose }) {
-  console.log(doc)
   const audioUrl = doc.url ? doc.url : doc.attachment
   const { t } = useTranslation()
   return (

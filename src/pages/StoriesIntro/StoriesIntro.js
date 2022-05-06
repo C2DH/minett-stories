@@ -53,8 +53,6 @@ function ScrollControl({
       className="flex-1"
       style={{ overflowY: 'auto' }}
       onScroll={(e) => {
-        // console.log(e.target.scrollTop, height)
-
         const currentStepFractional = e.target.scrollTop / height
         const currentStep = parseInt(currentStepFractional)
         const fraction = currentStepFractional - currentStep

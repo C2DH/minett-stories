@@ -5,9 +5,6 @@ import styles from './TermsOfUse.module.css'
 
 export default function About() {
   const [story] = useStory('terms-of-use')
-
-  console.log(story)
-
   return (
     <Layout>
       <div className="container-fluid padding-top-bar">

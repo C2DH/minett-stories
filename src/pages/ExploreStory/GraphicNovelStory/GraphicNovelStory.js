@@ -117,7 +117,6 @@ function GraphicNoveModuleImage({ millerModule }) {
 }
 
 function GraphicNovelModule({ millerModule }) {
-  console.log(millerModule)
   switch (millerModule.module) {
     case 'text':
       return <GraphicNoveModuleText millerModule={millerModule} />

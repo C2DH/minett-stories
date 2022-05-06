@@ -5,9 +5,6 @@ import styles from './About.module.css'
 
 export default function About() {
   const [story] = useStory('about')
-
-  console.log(story)
-
   return (
     <Layout>
       <div className="container-fluid padding-top-bar">
