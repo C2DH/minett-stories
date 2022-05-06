@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next'
 import StoryPill from '../../../components/StoryPill'
 import { getStoryType } from '../../../utils'
 import DocLink from '../../../components/DocLink'
+import loader from '../../../assets/loader.gif'
 
 const MapWrapper = lazy(() => import('./MapWrapper'))
 
@@ -21,20 +22,22 @@ function SideDocRelated({ docId }) {
         const imageUrl =
           doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
         return (
-          index !== 0 && 
-          <div className="border-bottom mt-2 pb-3 pt-3">
-            <h4 className={styles.Title}>{doc.data.title}</h4>
-            <div className="w-100">
-              <DocLink
-                slugOrId={doc.slug}
-                className="text-decoration-none"
-              >
-                <img className="w-100 cursor-pointer" src={imageUrl} alt={doc.data.title} />
-              </DocLink>
+          index !== 0 && (
+            <div className="border-bottom mt-2 pb-3 pt-3">
+              <h4 className={styles.Title}>{doc.data.title}</h4>
+              <div className="w-100">
+                <DocLink slugOrId={doc.slug} className="text-decoration-none">
+                  <img
+                    className="w-100 cursor-pointer"
+                    src={imageUrl}
+                    alt={doc.data.title}
+                  />
+                </DocLink>
+              </div>
+              <div className={styles.Year}>{doc.data.year}</div>
+              <div className={styles.Description}>{doc.data.description}</div>
             </div>
-            <div className={styles.Year}>{doc.data.year}</div>
-            <div className={styles.Description}>{doc.data.description}</div>
-          </div>
+          )
         )
       })}
     </>
@@ -81,8 +84,8 @@ function SideDoc({ doc, onClose }) {
       </div>
       <Suspense
         fallback={
-          <div className="text-center py-2">
-            <Spinner color="white" />
+          <div className="w-100 loader-container d-flex align-items-center justify-content-center">
+            <img src={loader} alt="Loading" />
           </div>
         }
       >
@@ -148,8 +151,8 @@ export default function MapStory({ story }) {
           </div>
           <Suspense
             fallback={
-              <div className="text-center w-100 pt-4">
-                <Spinner />
+              <div className="w-100 loader-container d-flex align-items-center justify-content-center">
+                <img src={loader} alt="Loading" />
               </div>
             }
           >
