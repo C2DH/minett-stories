@@ -11,19 +11,21 @@ const GalleryItem = memo(({ document }) => {
   console.log(document)
   return (
     <DocLink
+      style={{ height: 'auto' }}
       className="d-flex flex-column me-0 me-md-3 no-link"
       slugOrId={document.document_id}
     >
       <img
         src={document.data.resolutions.preview.url}
         alt={document.data.title}
-        className="customCursor"
+        // style={{ height: 'auto' }}
+        className="customCursor img-fluid"
       />
       {document.data.title && (
-        <div className='no-link'>
+        <div className="no-link">
           <Caption
             type={document.type}
-            year={document.data.year}
+            year={document.data.year || document.data.date}
             caption={document.title}
           />
         </div>
@@ -32,19 +34,15 @@ const GalleryItem = memo(({ document }) => {
   )
 })
 
-const CustomButtonGroup = ({
-  next,
-  previous,
-  goToSlide,
-  carouselState,
-  objects,
-}) => {
+const CustomButtonGroup = ({ next, previous, objects }) => {
   return (
     <div className="custom-button-group">
       {objects.length > 2 && (
         <>
           <div
-            className={classNames("prev-button btn-circle bg-dark cursor-pointer")}
+            className={classNames(
+              'prev-button btn-circle bg-dark cursor-pointer'
+            )}
             onClick={() => previous()}
           >
             <ChevronLeft size={15} />
@@ -90,7 +88,10 @@ export default function Gallery({ objects, caption }) {
           swipeable={false}
           arrows={false}
           autoPlay={false}
+          containerClass={'flex-row align-items-end'}
+          className={''}
           draggable={false}
+          itemClass={'h-auto'}
           shouldResetAutoplay={false}
           infinite={false}
           showDots={false}
