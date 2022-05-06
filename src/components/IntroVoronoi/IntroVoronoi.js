@@ -17,7 +17,7 @@ import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
 import styles from './IntroVoronoi.module.css'
-import get from 'lodash/get'
+// import get from 'lodash/get'
 
 const cornerRadius = 0.5
 const cleanCornerRadius = 12
@@ -207,26 +207,30 @@ const VoronoiDefs = memo(({ stories }) => {
       {stories.map((story, i) => {
         const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
 
-        const bbox = get(story, 'data.background.bbox')
-        const hasBbox = Array.isArray(bbox) && bbox.length > 0
+        // const bbox = get(story, 'data.background.bbox')
+        // const hasBbox = Array.isArray(bbox) && bbox.length > 0
         let w, h, x, y
-        if (hasBbox) {
-          w = `${bbox[2] - bbox[0]}%`
-          h = `${bbox[3] - bbox[1]}%`
-          x = `${-bbox[0]}%`
-          y = `${-bbox[1]}%`
-        } else {
-          w = '100%'
-          h = '100%'
-          x = '-50%'
-          y = '-50%'
-        }
+        // if (hasBbox) {
+        //   w = `${bbox[2] - bbox[0]}%`
+        //   h = `${bbox[3] - bbox[1]}%`
+        //   x = `${-bbox[0]}%`
+        //   y = `${-bbox[1]}%`
+        // } else {
+        //   w = '100%'
+        //   h = '100%'
+        //   x = '-50%'
+        //   y = '-50%'
+        // }
+        w = '100%'
+        h = '100%'
+        x = '0'
+        y = '0'
 
         return (
           <Fragment key={i}>
             <pattern
               id={`pic-${i}`}
-              // patternUnits="userSpaceOnUse"
+              patternUnits="userSpaceOnUse"
               width="100%"
               height="100%"
             >
@@ -240,7 +244,12 @@ const VoronoiDefs = memo(({ stories }) => {
                 filter={filter}
               />
             </pattern>
-            <pattern id={`clean-pic-${i}`} width="100%" height="100%">
+            <pattern
+              id={`clean-pic-${i}`}
+              width="100%"
+              height="100%"
+              patternUnits="userSpaceOnUse"
+            >
               <image
                 href={cover}
                 width={w}
