@@ -1,5 +1,7 @@
+import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { DraggableCore } from 'react-draggable'
+import styles from './InteractiveGrid.module.css'
 
 const DEFAULT_INITIAL_POSITION = {
   left: 33,
@@ -47,50 +49,95 @@ function BottomLeftDoc({ doc, playing }) {
   if (!doc || doc.type === 'image') {
     const imageSource = getDocImageSource(doc)
     return (
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '100%',
-          minHeight: '70vh',
-          minWidth: '70vw',
-          height: '100%',
-          backgroundPosition: 'top right',
-          backgroundColor: 'var(--brick)',
-          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+      <>
+        <div
+          key="placeholder"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            height: '100%',
+            backgroundPosition: 'top right',
+            backgroundColor: 'var(--brick)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        <div
+          key="content"
+          className={classNames(styles.GridDoc, {
+            [styles.GridDocEntered]: Boolean(imageSource),
+          })}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            height: '100%',
+            backgroundPosition: 'top right',
+            backgroundColor: 'var(--brick)',
+            backgroundImage: imageSource ? `url(${imageSource})` : undefined,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+      </>
     )
   } else if (doc?.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          width: '70vw',
-          height: '60vh',
-        }}
-      >
+      <>
         <div
+          key="placeholder"
           style={{
-            height: '100%',
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
             width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            height: '100%',
+            backgroundPosition: 'top right',
+            backgroundColor: 'var(--brick)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        <div
+          key="content"
+          className={classNames(styles.GridDoc, {
+            [styles.GridDocEntered]: true,
+          })}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            left: 0,
+            width: '70vw',
+            height: '60vh',
             backgroundColor: 'var(--brick)',
           }}
         >
-          <LightVideo
-            playing={playing}
-            muted
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            src={videoSource}
-          />
+          <div
+            style={{
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'var(--brick)',
+            }}
+          >
+            <LightVideo
+              playing={playing}
+              muted
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src={videoSource}
+            />
+          </div>
         </div>
-      </div>
+      </>
     )
   }
   return null
@@ -100,51 +147,98 @@ function BottomRightDoc({ doc, playing }) {
   if (!doc || doc.type === 'image') {
     const imageSource = getDocImageSource(doc)
     return (
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          width: '100%',
-          minHeight: '70vh',
-          minWidth: '70vw',
-          maxWidth: '100%',
-          height: '100%',
-          backgroundPosition: 'top left',
-          backgroundColor: 'var(--green)',
-          backgroundImage: imageSource ? `url(${imageSource})` : undefined,
-          backgroundSize: 'cover',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+      <>
+        <div
+          key="placeholder"
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            maxWidth: '100%',
+            height: '100%',
+            backgroundPosition: 'top left',
+            backgroundColor: 'var(--green)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        <div
+          key="content"
+          className={classNames(styles.GridDoc, {
+            [styles.GridDocEntered]: Boolean(imageSource),
+          })}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            maxWidth: '100%',
+            height: '100%',
+            backgroundPosition: 'top left',
+            backgroundColor: 'var(--green)',
+            backgroundImage: imageSource ? `url(${imageSource})` : undefined,
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+      </>
     )
   } else if (doc?.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
-      <div
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          right: 0,
-          width: '70vw',
-          height: '60vh',
-        }}
-      >
+      <>
         <div
+          key="placeholder"
           style={{
-            height: '100%',
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
             width: '100%',
+            minHeight: '70vh',
+            minWidth: '70vw',
+            maxWidth: '100%',
+            height: '100%',
+            backgroundPosition: 'top left',
+            backgroundColor: 'var(--green)',
+            backgroundSize: 'cover',
+            backgroundRepeat: 'no-repeat',
+          }}
+        />
+        <div
+          key="content"
+          className={classNames(styles.GridDoc, {
+            [styles.GridDocEntered]: true,
+          })}
+          style={{
+            position: 'absolute',
+            bottom: 0,
+            right: 0,
+            width: '70vw',
+            height: '60vh',
             backgroundColor: 'var(--green)',
           }}
         >
-          <LightVideo
-            playing={playing}
-            muted
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            src={videoSource}
-          />
+          <div
+            style={{
+              height: '100%',
+              width: '100%',
+              backgroundColor: 'var(--green)',
+            }}
+          >
+            <LightVideo
+              playing={playing}
+              muted
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              src={videoSource}
+            />
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
