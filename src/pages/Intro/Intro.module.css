@@ -109,16 +109,16 @@
 @keyframes breathe400 {
   0% {
     font-variation-settings: 'wght' 400;
-    font-size: 10vw;
+    /* font-size: 10vw; */
   }
   60% {
     font-variation-settings: 'wght' 200;
-    font-size: 11vw;
+    /* font-size: 11vw; */
   }
 
   100% {
     font-variation-settings: 'wght' 400;
-    font-size: 10vw;
+    /* font-size: 10vw; */
   }
 }
 
