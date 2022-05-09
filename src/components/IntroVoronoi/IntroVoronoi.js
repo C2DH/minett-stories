@@ -12,6 +12,7 @@ import {
   useEffect,
   useMemo,
   useState,
+  startTransition,
 } from 'react'
 import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
@@ -355,7 +356,9 @@ function IntroVoronoiSvg({
     setHoverIndex(index)
     if (typeof onStoryHover === 'function') {
       const deStory = index === null ? null : stories[index]
-      onStoryHover(deStory)
+      startTransition(() => {
+        onStoryHover(deStory)
+      })
     }
   }
 
