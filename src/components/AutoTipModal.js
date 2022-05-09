@@ -13,7 +13,7 @@ export default function AutoTipModal({ text, imageSource, type }) {
     }
   }, [storeKey])
 
-  const { t } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <Modal isOpen={isOpen} centered>

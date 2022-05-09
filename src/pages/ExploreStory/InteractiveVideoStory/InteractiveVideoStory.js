@@ -198,11 +198,13 @@ export default function InteractiveVideoStory({ story }) {
 
   return (
     <>
-      <AutoTipModal
-        type="interactiveVideo"
-        text={t('interactiveVideoTip')}
-        imageSource={imageModalTip}
-      />
+      {isMobileScreen === false && (
+        <AutoTipModal
+          type="interactiveVideo"
+          text={t('interactiveVideoTip')}
+          imageSource={imageModalTip}
+        />
+      )}
       <div className="w-100 h-100 d-flex flex-column">
         <LangLink
           to={`/story/${story.slug}`}
