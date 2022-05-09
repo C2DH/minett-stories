@@ -135,12 +135,45 @@ function GraphicNovelModule({ millerModule }) {
   }
 }
 
-function GraphicNovelChapter({ chapter }) {
+function GraphicNovelChapter({
+  chapter,
+  chapterIndex,
+  chapters,
+  animation,
+  setAnimation,
+  setChapterIndex,
+}) {
+  const { t } = useTranslation()
   return (
     <>
       {chapter.contents.modules.map((millerModule, i) => (
         <GraphicNovelModule millerModule={millerModule} key={i} />
       ))}
+      {((chapterIndex === 0 && chapters.length > 1) ||
+        (chapters.length > 1 && chapterIndex !== chapters.length - 1)) && (
+        <div
+          className="h-100 mx-4 pointer"
+          onClick={() => {
+            if (!animation && chapterIndex < chapters.length - 1) {
+              setChapterIndex((i) => i + 1)
+              setAnimation('enter-next')
+            }
+          }}
+        >
+          <div
+            className="h-100 cursor-pointer text-uppercase text-decoration-underline d-flex align-items-center justify-content-center text-font-abc"
+            style={{
+              background: 'var(--dark-grey)',
+              width: 360,
+              borderRadius: 100,
+              fontSize: 22,
+              color: 'white',
+            }}
+          >
+            {t('Go_to_the_next_chapter')}
+          </div>
+        </div>
+      )}
     </>
   )
 }
@@ -227,7 +260,14 @@ export default function GraphicNovelStory({ story }) {
                   setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
                 }}
               >
-                <GraphicNovelChapter chapter={selectedChapter} />
+                <GraphicNovelChapter
+                  chapter={selectedChapter}
+                  chapterIndex={chapterIndex}
+                  chapters={novelChapters}
+                  setChapterIndex={setChapterIndex}
+                  setAnimation={setAnimation}
+                  animation={animation}
+                />
               </div>
             )}
 
@@ -238,7 +278,14 @@ export default function GraphicNovelStory({ story }) {
                 style={{ overflowY: 'auto' }}
                 onTransitionEnd={() => setAnimation(null)}
               >
-                <GraphicNovelChapter chapter={enteringChapter} />
+                <GraphicNovelChapter
+                  chapter={enteringChapter}
+                  chapterIndex={chapterIndex}
+                  chapters={novelChapters}
+                  setChapterIndex={setChapterIndex}
+                  setAnimation={setAnimation}
+                  animation={animation}
+                />
               </div>
             )}
           </div>

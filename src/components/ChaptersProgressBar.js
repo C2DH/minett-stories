@@ -30,7 +30,6 @@ export default function ChaptersProgressBar({
 }) {
   const selectedChapter = chapters[index]
   const { t } = useTranslation()
-  console.log(chapters)
   return (
     <div className='bg-white d-flex flex-column align-items-center'>
       <div className="progress-bar-story d-flex ms-md-5 me-md-5" style={{ height: 8 }}>
