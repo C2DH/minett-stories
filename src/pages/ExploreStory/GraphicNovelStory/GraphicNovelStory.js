@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { useCallback, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import AutoTipModal from '../../../components/AutoTipModal'
@@ -217,6 +217,44 @@ export default function GraphicNovelStory({ story }) {
 
   const containerRef = useRef()
 
+  const scrollNext = useCallback(() => {
+    const element = containerRef.current
+    if (element) {
+      const { width } = element.getBoundingClientRect()
+      element.scroll({
+        left: element.scrollLeft + width / 2,
+        behavior: 'smooth',
+      })
+    }
+  }, [])
+
+  const scrollPrev = useCallback(() => {
+    const element = containerRef.current
+    if (element) {
+      const { width } = element.getBoundingClientRect()
+      element.scroll({
+        left: element.scrollLeft - width / 2,
+        behavior: 'smooth',
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault()
+        scrollPrev()
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault()
+        scrollNext()
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [scrollNext, scrollPrev])
+
   const [goDeeper, setGoDeeper] = useState(false)
   const onGoDeeper = useCallback(() => {
     setGoDeeper(true)
@@ -291,7 +329,8 @@ export default function GraphicNovelStory({ story }) {
           </div>
         </div>
         <BlockControlsNovel
-          containerRef={containerRef}
+          scrollNext={scrollNext}
+          scrollPrev={scrollPrev}
           story={story}
           selectedChapter={selectedChapter}
           setAnimation={setAnimation}

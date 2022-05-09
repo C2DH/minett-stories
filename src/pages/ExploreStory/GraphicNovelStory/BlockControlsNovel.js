@@ -10,7 +10,8 @@ import {
 import { useTranslation } from 'react-i18next'
 
 export default function BlockControlsNovel({
-  containerRef,
+  scrollNext,
+  scrollPrev,
   story,
   selectedChapter,
   goDeeper,
@@ -118,14 +119,7 @@ export default function BlockControlsNovel({
               'btn-circle text-white bg-dark-gray cursor-pointer me-2'
             )}
             onClick={() => {
-              const element = containerRef.current
-              if (element) {
-                const { width } = element.getBoundingClientRect()
-                element.scroll({
-                  left: element.scrollLeft - width / 2,
-                  behavior: 'smooth',
-                })
-              }
+              scrollPrev()
             }}
           >
             <ChevronLeft />
@@ -135,14 +129,7 @@ export default function BlockControlsNovel({
               'btn-circle text-white bg-dark-gray cursor-pointer'
             )}
             onClick={() => {
-              const element = containerRef.current
-              if (element) {
-                const { width } = element.getBoundingClientRect()
-                element.scroll({
-                  left: element.scrollLeft + width / 2,
-                  behavior: 'smooth',
-                })
-              }
+              scrollNext()
             }}
           >
             <ChevronRight />
