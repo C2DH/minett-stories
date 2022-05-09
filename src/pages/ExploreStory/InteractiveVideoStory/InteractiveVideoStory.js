@@ -317,13 +317,15 @@ export default function InteractiveVideoStory({ story }) {
             <div className="me-2 cursor-pointer text-black">
               <Maximize
                 onClick={() => {
-                  import('screenfull').then(({ default: screenfull }) => {
-                    console.log(screenfull)
-                    if (screenfull.isEnabled) {
-                      const video = playerRef.current.getInternalPlayer()
-                      screenfull.request(video)
-                    }
-                  })
+                  if (!process.env.IS_SNEXT_SERVER) {
+                    import('screenfull').then(({ default: screenfull }) => {
+                      console.log(screenfull)
+                      if (screenfull.isEnabled) {
+                        const video = playerRef.current.getInternalPlayer()
+                        screenfull.request(video)
+                      }
+                    })
+                  }
                 }}
                 color="var(--black)"
               />
