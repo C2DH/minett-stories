@@ -62,7 +62,7 @@ function YearPicker({ year, from, to, onChange, filters }) {
           'badge rounded-pill bg-dark-gray py-2 px-3 cursor-pointer position-relative',
           {
             'bg-dark-gray': filters.fromYear !== '-' && filters.toYear !== '-',
-            'bg-secondary': filters.fromYear === '-' || filters.toYear === '-'
+            'opacity-05': filters.fromYear === '-' || filters.toYear === '-'
           }
         )}
       >
@@ -183,7 +183,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       <div className="mt-4">
         <label>{t('filter_by_year')}</label>
         <div className="d-flex align-items-between align-items-center py-2">
-          <span className="pe-2">From</span>
+          <span className="pe-2">{t('from')}</span>
           <YearPicker
             onChange={(year) => {
               onFiltersChage({
@@ -196,7 +196,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
             filters={filters}
             to={MAX_YEAR}
           />
-          <span className="px-2">To</span>
+          <span className="px-2">{t('to')}</span>
           <YearPicker
             onChange={(year) => {
               onFiltersChage({
