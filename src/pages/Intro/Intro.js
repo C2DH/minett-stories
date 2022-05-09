@@ -75,8 +75,17 @@ export default function Intro() {
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
-        <img src={unilu} alt="Unilu" className={`${styles.unilu}`} />
-        <img src={esch22} alt="Esch22" className={`${styles.esch22}  ms-2`} />
+        <a href="https://www.c2dh.uni.lu/" rel={'noreferrer'} target={'_blank'}>
+          <img src={unilu} alt="Unilu" className={`${styles.unilu}`} />
+        </a>
+        <a
+          className="ms-2"
+          href="https://www.c2dh.uni.lu/"
+          rel={'noreferrer'}
+          target={'_blank'}
+        >
+          <img src={esch22} alt="Esch22" className={`${styles.esch22}`} />
+        </a>
       </div>
       <LangLink to="/stories/voronoi" className="no-link">
         <div className={styles.SkipIntro}>{t('skipIntro')}</div>

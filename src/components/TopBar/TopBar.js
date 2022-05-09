@@ -115,16 +115,29 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
               </div>
             </div>
             <div>
-              <img
-                src={unilu}
-                className={styles.unilu}
-                alt="Luxembourg Centre for Contemporary and digital History"
-              />
-              <img
-                src={esch22}
-                className={styles.esch22}
-                alt="Universitè du Luxembourg"
-              />
+              <a
+                href="https://www.c2dh.uni.lu/"
+                rel={'noreferrer'}
+                target={'_blank'}
+              >
+                <img
+                  src={unilu}
+                  className={styles.unilu}
+                  alt="Luxembourg Centre for Contemporary and digital History"
+                />
+              </a>
+              <a
+                className="ms-2"
+                href="https://www.c2dh.uni.lu/"
+                rel={'noreferrer'}
+                target={'_blank'}
+              >
+                <img
+                  src={esch22}
+                  className={styles.esch22}
+                  alt="Universitè du Luxembourg"
+                />
+              </a>
             </div>
           </div>
         </OffcanvasBody>
