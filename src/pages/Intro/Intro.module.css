@@ -191,11 +191,11 @@
 }
 
 .esch22 {
-  width: 88px;
+  height: 88px;
 }
 
 .unilu {
-  width: 285px;
+  height: 88px;
 }
 
 
@@ -262,10 +262,12 @@
 
   .unilu {
     width: 165px;
+    height: auto;
   }
 
   .esch22 {
     width: 68px;
+    height: auto;
   }
   
   .SkipIntro {
