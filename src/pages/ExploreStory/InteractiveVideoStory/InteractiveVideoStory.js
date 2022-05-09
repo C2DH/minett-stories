@@ -5,9 +5,8 @@ import { fromProgressStrToSeconds, getStoryType } from '../../../utils'
 import InteractiveGrid from '../../../components/InteractiveGrid'
 import LangLink from '../../../components/LangLink'
 import DocLink from '../../../components/DocLink'
-import VisualModule from '../../../components/VisualModule'
 import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
-import { ArrowLeft } from 'react-feather'
+import { ArrowLeft, Maximize } from 'react-feather'
 import imageModalTip from './VideoTip.svg'
 import AutoTipModal from '../../../components/AutoTipModal'
 import { useIsMobileScreen } from '../../../hooks/screen'
@@ -314,6 +313,22 @@ export default function InteractiveVideoStory({ story }) {
           toggleMuted={toggleMuted}
           goDeeper={goDeeper}
           onGoDeeper={onGoDeeper}
+          actions={
+            <div className="me-2 cursor-pointer text-black">
+              <Maximize
+                onClick={() => {
+                  import('screenfull').then(({ default: screenfull }) => {
+                    console.log(screenfull)
+                    if (screenfull.isEnabled) {
+                      const video = playerRef.current.getInternalPlayer()
+                      screenfull.request(video)
+                    }
+                  })
+                }}
+                color="var(--black)"
+              />
+            </div>
+          }
         />
       </div>
       {goDeeper && (
