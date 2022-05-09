@@ -15,6 +15,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
 import styles from './InteractiveVideoStory.module.css'
 import StoryPill from '../../../components/StoryPill'
+import LongScrollStory from '../../../components/LongScrollStory'
 
 function objInTime(obj, seconds) {
   return (
@@ -331,9 +332,7 @@ export default function InteractiveVideoStory({ story }) {
             </div>
           </div>
           <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
-            {longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            <LongScrollStory story={longScrollStory} />
           </div>
         </div>
       )}

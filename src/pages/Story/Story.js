@@ -10,6 +10,7 @@ import StoryPill from '../../components/StoryPill'
 import VisualModule from '../../components/VisualModule'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
+import LongScrollStory from '../../components/LongScrollStory'
 
 function ExpolorLink({ slug, type }) {
   const { t } = useTranslation()
@@ -123,10 +124,7 @@ export default function Story() {
         </div>
         {(goDeeper || type === 'article') && (
           <div>
-            {longScrollStory &&
-              longScrollStory.contents.modules.map((millerModule, i) => (
-                <VisualModule key={i} millerModule={millerModule} />
-              ))}
+            {longScrollStory && <LongScrollStory story={longScrollStory} />}
           </div>
         )}
         <div className={`${styles.LeftButtonStory}`}>

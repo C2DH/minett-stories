@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next'
 import { useNavigationType } from 'react-router-dom'
 import StoryPill from '../../../components/StoryPill'
 import { getStoryType } from '../../../utils'
+import LongScrollStory from '../../../components/LongScrollStory'
 
 export default function AudioStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -200,9 +201,7 @@ export default function AudioStory({ story }) {
           </div>
 
           <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
-            {longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            <LongScrollStory story={longScrollStory} />
           </div>
         </div>
       )}

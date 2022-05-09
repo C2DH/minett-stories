@@ -4,6 +4,7 @@ import { ArrowLeft } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
+import LongScrollStory from '../../../components/LongScrollStory'
 import StoryPill from '../../../components/StoryPill'
 import VisualModule from '../../../components/VisualModule'
 import { getStoryType } from '../../../utils'
@@ -356,9 +357,7 @@ export default function GraphicNovelStory({ story }) {
             </div>
           </div>
           <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
-            {longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            <LongScrollStory story={longScrollStory} />
           </div>
         </div>
       )}

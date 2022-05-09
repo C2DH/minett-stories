@@ -8,6 +8,7 @@ import { getStoryType } from '../../../utils'
 import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import StoryPill from '../../../components/StoryPill'
 import VisualModule from '../../../components/VisualModule'
+import LongScrollStory from '../../../components/LongScrollStory'
 
 export default function VideoStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -151,9 +152,7 @@ export default function VideoStory({ story }) {
             </div>
           </div>
           <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
-            {longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            <LongScrollStory story={longScrollStory} />
           </div>
         </div>
       )}

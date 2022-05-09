@@ -9,6 +9,7 @@ import StoryPill from '../../../components/StoryPill'
 import { getStoryType } from '../../../utils'
 import DocLink from '../../../components/DocLink'
 import loader from '../../../assets/loader.gif'
+import LongScrollStory from '../../../components/LongScrollStory'
 
 const MapWrapper = lazy(() => import('./MapWrapper'))
 
@@ -198,9 +199,7 @@ export default function MapStory({ story }) {
             </div>
           </div>
           <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
-            {longScrollStory.contents.modules.map((millerModule, i) => (
-              <VisualModule key={i} millerModule={millerModule} />
-            ))}
+            <LongScrollStory story={longScrollStory} />
           </div>
         </div>
       )}
