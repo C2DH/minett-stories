@@ -43,9 +43,8 @@ export default function Archive() {
     types: searchParams.getAll('types') ?? [],
     q: searchParams.get('q') ?? '',
     orderby: searchParams.get('orderby') ?? 'data__date',
-    // noDates: (searchParams.get('noDates') ?? 'true') === 'true',
-    fromYear: Number(searchParams.get('fromYear') ?? MIN_YEAR),
-    toYear: Number(searchParams.get('toYear') ?? MAX_YEAR),
+    fromYear: searchParams.get('fromYear') ?? '-',
+    toYear: searchParams.get('toYear') ?? '-',
   }
   const [docsFacets] = useDocumentsFacets({
     params: {
@@ -59,12 +58,17 @@ export default function Archive() {
   })
 
   const filtersOn = useFilterRedirect()
+  let overlapsParam
+  if (!isNaN(parseInt(filters.fromYear)) && !isNaN(parseInt(filters.toYear))) {
+    overlapsParam = `${parseInt(filters.fromYear)}-01-01,${parseInt(
+      filters.toYear
+    )}-12-31`
+  }
   const [docGroups, infiniteDocs] = useInfiniteDocuments({
     suspense: !filtersOn,
     keepPreviousData: true,
     params: {
-      //overlaps: `${filters.fromYear}-01-01,${filters.toYear}-12-31`,
-      // TODO: How to filter noDates???
+      overlaps: overlapsParam,
       limit: 50,
       orderby: filters.orderby,
       q: filters.q,
@@ -98,8 +102,11 @@ export default function Archive() {
       return []
     }
     const flatDocs = await getFlatDocs({
-      limit: 623,
-      exclude: { type: 'entity' },
+      where: {
+        'Op.not': [
+          { 'Op.or': [{ type: 'entity' }, { data__type: 'drawing' }] },
+        ],
+      },
     })
     return flatDocs.map((doc) => `${pathPrefix}/document/${doc.slug}`)
   })

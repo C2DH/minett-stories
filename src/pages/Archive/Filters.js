@@ -40,7 +40,7 @@ function YearPicker({ year, from, to, onChange }) {
         <PopoverBody
           className={`${styles.PopoverBody} bg-dark-gray text-white py-0`}
         >
-          {range(from, to + 1).map((y) => (
+          {['-'].concat(range(from, to + 1)).map((y) => (
             <div
               onClick={() => {
                 onChange(y)
