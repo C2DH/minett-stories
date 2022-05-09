@@ -98,6 +98,10 @@ label {
   letter-spacing: -0.01em;
 }
 
+.Popover {
+  min-width: 70px;
+}
+
 .PopoverBody {
   border-radius: 20px;
   padding-top: 16px !important;

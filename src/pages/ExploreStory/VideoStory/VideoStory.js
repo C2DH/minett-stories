@@ -7,7 +7,6 @@ import LangLink from '../../../components/LangLink'
 import { getStoryType } from '../../../utils'
 import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import StoryPill from '../../../components/StoryPill'
-import VisualModule from '../../../components/VisualModule'
 import LongScrollStory from '../../../components/LongScrollStory'
 
 export default function VideoStory({ story }) {

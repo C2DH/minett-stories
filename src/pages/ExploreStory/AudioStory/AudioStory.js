@@ -1,6 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
-import VisualModule from '../../../components/VisualModule'
 import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import LangLink from '../../../components/LangLink'
 import { ArrowLeft, MoreVertical } from 'react-feather'
