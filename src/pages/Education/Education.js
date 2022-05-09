@@ -1,4 +1,5 @@
 import { useStory } from '@c2dh/react-miller'
+import { Helmet } from 'react-helmet'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import styles from './Education.module.css'
@@ -7,6 +8,9 @@ export default function About() {
   const [story] = useStory('education')
   return (
     <Layout>
+      <Helmet defer={false}>
+        <title>{`Minett Stories | Education`}</title>
+      </Helmet>
       <div className="container-fluid padding-top-bar">
         <div className="row">
           <div className="col-md-8">

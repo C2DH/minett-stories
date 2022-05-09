@@ -1,5 +1,6 @@
 import findIndex from 'lodash/findIndex'
 import { useMemo, useState } from 'react'
+import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
 import { useTranslation } from 'react-i18next'
@@ -7,7 +8,6 @@ import Layout from '../../components/Layout'
 import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
-import VisualModule from '../../components/VisualModule'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
 import LongScrollStory from '../../components/LongScrollStory'
@@ -85,6 +85,9 @@ export default function Story() {
 
   return (
     <Layout>
+      <Helmet defer={false}>
+        <title>{`Minett Stories | ${story.data.title}`}</title>
+      </Helmet>
       <div className="padding-top-bar" />
       <div className={`${styles.Cover}`}>
         <div

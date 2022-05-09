@@ -2,6 +2,7 @@ import { useStories } from '@c2dh/react-miller'
 import { useCrawl } from 'snext/crawl'
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { FormGroup, Input, Label } from 'reactstrap'
+import { Helmet } from 'react-helmet'
 import Layout from '../../components/Layout'
 import ListStories from '../../components/ListStories/ListStories'
 import IntroVoronoi from '../../components/IntroVoronoi'
@@ -26,6 +27,9 @@ function StoriesVoronoi({ stories }) {
   return (
     <>
       <div className={classNames(`d-flex flex-column ${styles.Voronoi}`)}>
+        <Helmet defer={false}>
+          <title>{`Minett Stories | Stories`}</title>
+        </Helmet>
         <IntroVoronoi
           stories={stories}
           withHoverEffect={!isMobileScreen}
