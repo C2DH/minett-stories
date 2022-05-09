@@ -56,6 +56,10 @@
   color: var(--black);
 }
 
+.Content {
+  background-color: white;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TitleStory {
     font-size: 32px;
@@ -65,5 +69,12 @@
   .AbstractText {
     font-size: 24px;
     line-height: 32px;
+  }
+
+  .Content {
+    margin: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: white;
   }
 }

@@ -186,7 +186,7 @@ export default function AudioStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className="bg-white">
+        <div className={styles.Content}>
           <div className="row pt-4 text-black">
             <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
               <StoryPill type={type} />
@@ -196,10 +196,12 @@ export default function AudioStory({ story }) {
               <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
                 {story.authors.map((a) => a.fullname).join(', ')}
               </div>
+              <p className={`${styles.AbstractText} mt-3`}>
+                {story.data.abstract}
+              </p>
             </div>
           </div>
-
-          <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
+          <div className="bg-white">
             <LongScrollStory story={longScrollStory} />
           </div>
         </div>
