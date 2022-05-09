@@ -27,6 +27,7 @@
     "react-draggable": "^4.4.4",
     "react-feather": "^2.0.9",
     "react-hammerjs": "^1.0.1",
+    "react-helmet": "^6.1.0",
     "react-i18next": "^11.15.5",
     "react-markdown": "^8.0.0",
     "react-multi-carousel": "^2.8.0",
@@ -85,6 +86,6 @@
     "eslint-config-react-app": "^7.0.1",
     "patch-package": "^6.4.7",
     "postinstall-postinstall": "^2.1.0",
-    "snext": "^0.15.0"
+    "snext": "^0.16.0"
   }
 }

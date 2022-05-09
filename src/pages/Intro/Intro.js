@@ -8,6 +8,7 @@ import LangLink from '../../components/LangLink'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls/RoundedLanguageControls'
 import { useTranslation } from 'react-i18next'
 import { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet'
 
 export default function Intro() {
   const { t } = useTranslation()
@@ -26,6 +27,9 @@ export default function Intro() {
       className={styles.Home}
       style={{ backgroundImage: `url(${backgrounds[position]}` }}
     >
+      <Helmet defer={false}>
+        <title>{`Minett Stories`}</title>
+      </Helmet>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
         <h1 className={`${styles.HomeMinettText}`}>

@@ -1,4 +1,7 @@
+import { Helmet } from 'react-helmet'
+
 export default function Skeleton({ appHtml, entrypoints, initialData }) {
+  const helmet = Helmet.renderStatic()
   return (
     <html>
       <head>
@@ -11,6 +14,9 @@ export default function Skeleton({ appHtml, entrypoints, initialData }) {
           .map((e) => (
             <link key={e} href={`/${e}`} rel="stylesheet" />
           ))}
+        {helmet.title.toComponent()}
+        {helmet.meta.toComponent()}
+        {helmet.link.toComponent()}
       </head>
       <body>
         {process.env.EXPORT_STATIC_SPA_APP ? (

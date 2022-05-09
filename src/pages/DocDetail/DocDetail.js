@@ -1,6 +1,7 @@
 import { useDocument } from '@c2dh/react-miller'
 import { Suspense, useCallback, useEffect } from 'react'
 import { ArrowLeft, ArrowRight } from 'react-feather'
+import { Helmet } from 'react-helmet'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
@@ -26,16 +27,29 @@ function DisplayDoc({ isModal = false }) {
     onClose,
   }
 
+  let element = null
   if (doc.type === 'image') {
-    return <DocumentDetailImage {...passProps} />
+    element = <DocumentDetailImage {...passProps} />
   } else if (doc.type === 'video') {
-    return <DocumentDetailVideo {...passProps} />
+    element = <DocumentDetailVideo {...passProps} />
   } else if (doc.type === 'audio') {
-    return <DocumentDetailAudio {...passProps} />
+    element = <DocumentDetailAudio {...passProps} />
   } else if (doc.type === 'pdf') {
-    return <DocumentDetailPdf {...passProps} />
+    element = <DocumentDetailPdf {...passProps} />
   }
   // TODO: Implement other document types ....
+
+  if (!isModal) {
+    return (
+      <>
+        <Helmet defer={false}>
+          <title>{`Minett Stories | ${doc.data.title ?? doc.title}`}</title>
+        </Helmet>
+        {element}
+      </>
+    )
+  }
+  return element
 }
 
 // TODO: Implement much much better
