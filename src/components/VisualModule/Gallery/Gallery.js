@@ -12,7 +12,7 @@ const GalleryItem = memo(({ document }) => {
     <DocLink
       style={{ height: 'auto' }}
       className="d-flex flex-column me-0 me-md-3 no-link"
-      slugOrId={document.document_id}
+      slugOrId={document.slug}
     >
       <img
         src={document.data.resolutions.preview.url}
