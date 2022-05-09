@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
 import Player from 'react-player'
-import { ArrowLeft } from 'react-feather'
+import { ArrowLeft, Maximize } from 'react-feather'
 import { useNavigationType } from 'react-router-dom'
 import styles from './VideoStory.module.css'
 import LangLink from '../../../components/LangLink'
@@ -135,6 +135,24 @@ export default function VideoStory({ story }) {
           toggleMuted={toggleMuted}
           goDeeper={goDeeper}
           onGoDeeper={onGoDeeper}
+          actions={
+            <div className="me-3 cursor-pointer text-black">
+              <Maximize
+                onClick={() => {
+                  if (!process.env.IS_SNEXT_SERVER) {
+                    import('screenfull').then(({ default: screenfull }) => {
+                      console.log(screenfull)
+                      if (screenfull.isEnabled) {
+                        const video = playerRef.current.getInternalPlayer()
+                        screenfull.request(video)
+                      }
+                    })
+                  }
+                }}
+                color="var(--black)"
+              />
+            </div>
+          }
         />
       </div>
       {goDeeper && (

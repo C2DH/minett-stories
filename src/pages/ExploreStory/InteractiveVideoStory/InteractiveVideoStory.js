@@ -314,7 +314,7 @@ export default function InteractiveVideoStory({ story }) {
           goDeeper={goDeeper}
           onGoDeeper={onGoDeeper}
           actions={
-            <div className="me-2 cursor-pointer text-black">
+            <div className="me-3 cursor-pointer text-black">
               <Maximize
                 onClick={() => {
                   if (!process.env.IS_SNEXT_SERVER) {
