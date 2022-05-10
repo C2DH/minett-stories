@@ -132,13 +132,17 @@ function VoronoiPath({
   // NOTE: Why????? Are you dub or so?
   // No! I don't known why but on FireFox when apply greyscale on pattern
   // starts lags as fuck ... on the other hand in Safari applying greyscale
-  // on image make all lags as fuck so ... this is it
+  // on path make all lags as fuck so ... this is it
   let fill, filter
   if (BROWSER_VENDOR === 'Firefox') {
     fill = `url(#pic-${index})`
     filter = hovered ? undefined : 'grayscale(1)'
   } else {
     fill = hovered ? `url(#clean-pic-${index})` : `url(#pic-${index})`
+    // NOTE: This makes super lags on safari but is the only solution 4 now
+    if (BROWSER_VENDOR === 'Safari') {
+      filter = 'url(#greyscale)'
+    }
   }
 
   return (
@@ -192,11 +196,12 @@ const VoronoiDefs = memo(({ stories }) => {
     filter = undefined
   } else if (BROWSER_VENDOR === 'Safari') {
     // NOTE: Safari has not native greyscale filter
-    filter = 'url(#greyscale)'
+    // NOTE: In previous varsione filter was apply here but now wont work
+    // filter = 'url(#greyscale)'
+    filter = undefined
   } else {
     filter = 'grayscale(1)'
   }
-  // console.log('O.o', filter)
 
   return (
     <defs>
