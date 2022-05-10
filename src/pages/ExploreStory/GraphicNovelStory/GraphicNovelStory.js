@@ -6,7 +6,6 @@ import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
 import LongScrollStory from '../../../components/LongScrollStory'
 import StoryPill from '../../../components/StoryPill'
-import VisualModule from '../../../components/VisualModule'
 import { getStoryType } from '../../../utils'
 import BlockControlsNovel from './BlockControlsNovel'
 import styles from './GraphicNovelStory.module.css'
@@ -313,7 +312,7 @@ export default function GraphicNovelStory({ story }) {
             {enteringChapter && (
               <div
                 key={enteringChapter.id}
-                className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
+                className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${enterClass}`}
                 style={{ overflowY: 'auto' }}
                 onTransitionEnd={() => setAnimation(null)}
               >
@@ -344,7 +343,7 @@ export default function GraphicNovelStory({ story }) {
         />
       </div>
       {goDeeper && (
-        <div className={`${styles.ContentLongScroll} bg-white`}>
+        <div className={styles.Content}>
           <div className="row pt-4 text-black">
             <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
               <StoryPill type={type} />
@@ -354,9 +353,12 @@ export default function GraphicNovelStory({ story }) {
               <div className={`${styles.ResearchText} text-cadet-blue mt-3`}>
                 {story.authors.map((a) => a.fullname).join(', ')}
               </div>
+              <p className={`${styles.AbstractText} mt-3`}>
+                {story.data.abstract}
+              </p>
             </div>
           </div>
-          <div className="bg-white ps-0 pe-0 ps-md-0 pe-md-0">
+          <div className="bg-white">
             <LongScrollStory story={longScrollStory} />
           </div>
         </div>

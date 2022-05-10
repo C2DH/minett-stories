@@ -5,13 +5,14 @@ import {
   useGetFlatDocuments,
   useInfiniteDocuments,
 } from '@c2dh/react-miller'
+import { Helmet } from 'react-helmet'
 import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import DocItem from '../../components/DocItem'
 import { useTranslation } from 'react-i18next'
 import { Waypoint } from 'react-waypoint'
 import { Offcanvas, OffcanvasBody } from 'reactstrap'
 import styles from './Archive.module.css'
-import Filters, { MAX_YEAR, MIN_YEAR } from './Filters'
+import Filters from './Filters'
 import classNames from 'classnames'
 import DocLink from '../../components/DocLink'
 import { Filter, X } from 'react-feather'
@@ -135,6 +136,9 @@ export default function Archive() {
         </>
       }
     >
+      <Helmet defer={false}>
+        <title>{`Minett Stories | Archive`}</title>
+      </Helmet>
       <Offcanvas
         toggle={() => setShowFilters(!showFilters)}
         backdropClassName={styles.Backdrop}

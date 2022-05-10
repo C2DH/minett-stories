@@ -1,14 +1,15 @@
 .novel {
   transition: all 1.5s ease-in;
   padding-left: 100px;
+  opacity: 1;
 }
 
 .novel.flyRight {
-  transform: translateX(100%);
+  opacity: 0;
 }
 
 .novel.flyLeft {
-  transform: translateX(-100%);
+  opacity: 0;
 }
 
 .BlockControls {
@@ -58,9 +59,8 @@
     line-height: 32px;
   }
 
-  .ContentLongScroll {
+  .Content {
     margin: 0px;
-    padding-bottom: 50px;
     padding-left: 16px;
     padding-right: 16px;
     background-color: white;

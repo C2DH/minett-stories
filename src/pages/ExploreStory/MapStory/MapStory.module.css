@@ -147,4 +147,11 @@
     font-size: 24px;
     line-height: 32px;
   }
+
+  .Content {
+    margin: 0px;
+    padding-left: 16px;
+    padding-right: 16px;
+    background-color: white;
+  }
 }

@@ -52,7 +52,9 @@
       "list_view": "List View",
       "interact_label": "Interact with the images to discover the Minett Stories",
       "ok_i_got": "Ok, I got this",
-      "Go_to_the_next_chapter": "Go to the next chapter"
+      "Go_to_the_next_chapter": "Go to the next chapter",
+      "from": "From",
+      "to": "To"
     }
   },
   "en_GB": {
@@ -108,7 +110,9 @@
       "list_view": "List View",
       "interact_label": "Interact with the images to discover the Minett Stories",
       "ok_i_got": "Ok, I got this",
-      "Go_to_the_next_chapter": "Go to the next chapter"
+      "Go_to_the_next_chapter": "Go to the next chapter",
+      "from": "From",
+      "to": "To"
     }
   },
   "de_DE": {
@@ -164,7 +168,9 @@
       "list_view": "List View",
       "interact_label": "Interact with the images to discover the Minett Stories",
       "ok_i_got": "Ok, I got this",
-      "Go_to_the_next_chapter": "Go to the next chapter"
+      "Go_to_the_next_chapter": "Go to the next chapter",
+      "from": "From",
+      "to": "To"
     }
   }
 }

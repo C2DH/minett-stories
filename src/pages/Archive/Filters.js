@@ -25,7 +25,7 @@ const ORDER_BYS = [
   },
 ]
 
-function YearPicker({ year, from, to, onChange }) {
+function YearPicker({ year, from, to, onChange, filters }) {
   const ref = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
   return (
@@ -55,10 +55,16 @@ function YearPicker({ year, from, to, onChange }) {
         </PopoverBody>
       </Popover>
       <div
-        style={{ userSelect: 'none' }}
+        style={{ userSelect: 'none', minWidth: 72 }}
         onClick={() => setIsOpen(!isOpen)}
         ref={ref}
-        className="badge rounded-pill bg-dark-gray py-2 px-3 cursor-pointer position-relative"
+        className={classNames(
+          'badge rounded-pill bg-dark-gray py-2 px-3 cursor-pointer position-relative',
+          {
+            'bg-dark-gray': filters.fromYear !== '-' && filters.toYear !== '-',
+            'opacity-05': filters.fromYear === '-' || filters.toYear === '-'
+          }
+        )}
       >
         <span className={styles.BadgeYear}>{year}</span>
       </div>
@@ -177,7 +183,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
       <div className="mt-4">
         <label>{t('filter_by_year')}</label>
         <div className="d-flex align-items-between align-items-center py-2">
-          <span className="pe-2">From</span>
+          <span className="pe-2">{t('from')}</span>
           <YearPicker
             onChange={(year) => {
               onFiltersChage({
@@ -187,9 +193,10 @@ export default function Filters({ facets, filters, onFiltersChage }) {
             }}
             year={filters.fromYear}
             from={MIN_YEAR}
+            filters={filters}
             to={MAX_YEAR}
           />
-          <span className="px-2">To</span>
+          <span className="px-2">{t('to')}</span>
           <YearPicker
             onChange={(year) => {
               onFiltersChage({
@@ -197,6 +204,7 @@ export default function Filters({ facets, filters, onFiltersChage }) {
                 toYear: year,
               })
             }}
+            filters={filters}
             year={filters.toYear}
             from={MIN_YEAR}
             to={MAX_YEAR}
