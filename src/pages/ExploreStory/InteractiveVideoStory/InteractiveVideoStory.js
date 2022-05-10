@@ -24,7 +24,7 @@ function objInTime(obj, seconds) {
 }
 
 export default function InteractiveVideoStory({ story }) {
-  const { t } = useTranslation()
+  const { t, i18n } = useTranslation()
 
   // NOTE: Wait first render to decide between mobile / desktop
   const isMobileScreen = useIsMobileScreen(null)
@@ -43,19 +43,14 @@ export default function InteractiveVideoStory({ story }) {
 
   // NOTE: Grab subtitles in current language
   const subtitlesFile = useMemo(() => {
-    // TODO: Re-enable when got the real vtt
-    if (chapterIndex === 0) {
-      return '/vtt/test.vtt'
-    }
-    return '/vtt/test2.vtt'
-    // return (
-    //   find(selectedDoc?.data?.subtitles ?? [], {
-    //     language: i18n.language,
-    //     availability: true,
-    //     type: 'vtt',
-    //   })?.url ?? null
-    // )
-  }, [chapterIndex])
+    return (
+      find(selectedDoc?.data?.subtitles ?? [], {
+        language: i18n.language,
+        availability: true,
+        type: 'vtt',
+      })?.url ?? null
+    )
+  }, [i18n.language, selectedDoc?.data?.subtitles])
 
   // Playere related hooks
   const playerRef = useRef()
