@@ -157,7 +157,7 @@ export default function VideoStory({ story }) {
       </div>
       {goDeeper && (
         <div className={styles.Content}>
-          <div className="row pt-4 text-black">
+          <div className="row pt-4 text-black bg-white">
             <div className="col-md-6 offset-md-3 d-flex flex-column align-items-start">
               <StoryPill type={type} />
               <h1 className={`${styles.TitleStory} m-0 p-0 mt-3`}>
