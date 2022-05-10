@@ -344,6 +344,14 @@ em {
   flex: unset;
 }
 
+.min-vh-100{
+  min-height: 100vh !important;
+}
+
+.max-vh-100 {
+  max-height: 100vh !important;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;
@@ -374,5 +382,13 @@ em {
 
   .flex-1-mobile{
     flex: 1;
+  }
+
+  .min-vh-100{
+    min-height: unset !important;
+  }
+  
+  .max-vh-100 {
+    max-height: unset !important;
   }
 }

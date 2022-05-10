@@ -42,6 +42,8 @@ function BlockInfo({ doc }) {
 }
 
 export default function DocumentDetailPdf({ isModal, doc, onClose }) {
+
+  console.log(doc)
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
   const [scale, setScale] = useState(1)
@@ -89,15 +91,19 @@ export default function DocumentDetailPdf({ isModal, doc, onClose }) {
       <div
         className={classNames('row', {
           'max-h-100': !isModal,
-          'min-vh-100 max-h-100': isModal,
+          'min-vh-100 max-vh-100': isModal,
         })}
       >
         <div
-          className={`col-md-4 order-1 order-md-0 ${stylesCommon.BorderBlackRight}`}
+          className={classNames(`col-md-4 order-1 order-md-0 ${stylesCommon.BorderBlackRight}`,{
+            'min-vh-100 max-vh-100 overflow-auto pb-5': isModal
+          })}
         >
           <BlockInfo doc={doc} />
         </div>
-        <div className="col-md-8 order-0 order-md-1">
+        <div className={classNames("col-md-8 order-0 order-md-1",{
+          'min-vh-100 max-vh-100': isModal
+        })}>
           <div className={styles.InfoPdfContainer}>
             <div className={styles.PdfContainer}>
               <div
