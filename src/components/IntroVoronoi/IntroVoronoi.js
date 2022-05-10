@@ -208,55 +208,40 @@ const VoronoiDefs = memo(({ stories }) => {
       {stories.map((story, i) => {
         const cover = story.covers?.[0]?.data?.resolutions?.preview?.url
 
-        // const bbox = get(story, 'data.background.bbox')
-        // const hasBbox = Array.isArray(bbox) && bbox.length > 0
-        let w, h, x, y
-        // if (hasBbox) {
-        //   w = `${bbox[2] - bbox[0]}%`
-        //   h = `${bbox[3] - bbox[1]}%`
-        //   x = `${-bbox[0]}%`
-        //   y = `${-bbox[1]}%`
-        // } else {
-        //   w = '100%'
-        //   h = '100%'
-        //   x = '-50%'
-        //   y = '-50%'
-        // }
-        w = '100%'
-        h = '100%'
-        x = '0'
-        y = '0'
-
         return (
           <Fragment key={i}>
             <pattern
               id={`pic-${i}`}
-              patternUnits="userSpaceOnUse"
-              width="100%"
-              height="100%"
+              patternUnits="objectBoundingBox"
+              viewBox="0 0 1 1"
+              width="1"
+              preserveAspectRatio="xMidYMid slice"
+              height="1"
             >
               <image
                 href={cover}
-                width={w}
-                height={h}
-                x={x}
-                y={y}
+                width={'1'}
+                height={'1'}
+                x={'0'}
+                y={'0'}
                 preserveAspectRatio="xMidYMid slice"
                 filter={filter}
               />
             </pattern>
             <pattern
               id={`clean-pic-${i}`}
-              width="100%"
-              height="100%"
-              patternUnits="userSpaceOnUse"
+              patternUnits="objectBoundingBox"
+              viewBox="0 0 1 1"
+              width="1"
+              preserveAspectRatio="xMidYMid slice"
+              height="1"
             >
               <image
                 href={cover}
-                width={w}
-                height={h}
-                x={x}
-                y={y}
+                width={'1'}
+                height={'1'}
+                x={'0'}
+                y={'0'}
                 preserveAspectRatio="xMidYMid slice"
               />
             </pattern>
