@@ -1,14 +1,15 @@
 .novel {
   transition: all 1.5s ease-in;
   padding-left: 100px;
+  opacity: 1;
 }
 
 .novel.flyRight {
-  transform: translateX(100%);
+  opacity: 0;
 }
 
 .novel.flyLeft {
-  transform: translateX(-100%);
+  opacity: 0;
 }
 
 .BlockControls {

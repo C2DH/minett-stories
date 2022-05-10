@@ -312,7 +312,7 @@ export default function GraphicNovelStory({ story }) {
             {enteringChapter && (
               <div
                 key={enteringChapter.id}
-                className={`h-100 w-100 py-4 d-flex align-items-center ${styles.novel} ${enterClass}`}
+                className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${enterClass}`}
                 style={{ overflowY: 'auto' }}
                 onTransitionEnd={() => setAnimation(null)}
               >
