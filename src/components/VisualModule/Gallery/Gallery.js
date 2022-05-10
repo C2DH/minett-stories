@@ -32,21 +32,36 @@ const GalleryItem = memo(({ document }) => {
   )
 })
 
-const CustomButtonGroup = ({ next, previous, objects }) => {
+const CustomButtonGroup = ({ next, previous, objects, goToSlide, ...rest }) => {
+  const {
+    carouselState: { currentSlide },
+  } = rest
+  const lastImageIndex = objects.length - 1
+
+  console.log(lastImageIndex, 'last')
+
   return (
     <div className="custom-button-group">
       {objects.length > 2 && (
         <>
           <div
             className={classNames(
-              'prev-button btn-circle bg-dark cursor-pointer'
+              'prev-button btn-circle bg-dark cursor-pointer',
+              {
+                'opacity-50': currentSlide === 0,
+              }
             )}
             onClick={() => previous()}
           >
             <ChevronLeft size={15} />
           </div>
           <div
-            className="next-button btn-circle bg-dark cursor-pointer"
+            className={classNames(
+              'next-button btn-circle bg-dark cursor-pointer',
+              {
+                'opacity-50': currentSlide === Math.ceil(lastImageIndex / 2),
+              }
+            )}
             onClick={() => next()}
           >
             <ChevronRight size={15} />
