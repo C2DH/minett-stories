@@ -18,7 +18,6 @@ import { useComponentSize } from 'react-use-size'
 import { getStoryType } from '../../utils'
 import { generateReferencepPoints, repojectPoints } from '../../voronoiUtils'
 import styles from './IntroVoronoi.module.css'
-// import get from 'lodash/get'
 
 const cornerRadius = 0.5
 const cleanCornerRadius = 12
@@ -147,6 +146,7 @@ function VoronoiPath({
       <path
         d={pathD}
         stroke={'var(--black)'}
+        strokeWidth={2}
         style={{
           opacity: controlPoints.length
             ? getOpacity(cellsClassification[index], step, progress)
@@ -162,7 +162,8 @@ function VoronoiPath({
       />
       <path
         d={pathD}
-        stroke={'var(--black)'}
+        stroke={'transparent'}
+        strokeWidth={2}
         style={{
           strokeWidth: cellStrokeWidth,
           opacity: controlPoints.length
