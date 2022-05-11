@@ -49,11 +49,13 @@ const rootElement = document.getElementById('root')
 if (rootElement.hasChildNodes()) {
   ReactDOM.hydrateRoot(
     rootElement,
-    <BrowserRouter>
-      <I18nextProvider i18n={i18n}>
-        <App client={queryClient} apiUrl={clientApiUrl} />
-      </I18nextProvider>
-    </BrowserRouter>
+    <React.StrictMode>
+      <BrowserRouter>
+        <I18nextProvider i18n={i18n}>
+          <App client={queryClient} apiUrl={clientApiUrl} />
+        </I18nextProvider>
+      </BrowserRouter>
+    </React.StrictMode>
   )
 } else {
   ReactDOM.createRoot(rootElement).render(
