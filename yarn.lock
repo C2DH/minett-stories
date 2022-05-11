@@ -1035,14 +1035,14 @@
     "@babel/helper-validator-identifier" "^7.16.7"
     to-fast-properties "^2.0.0"
 
-"@c2dh/react-miller@^1.0.0-beta.9":
-  version "1.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.9.tgz#a8f1158363f9328b4698535102dfe0aebd938488"
-  integrity sha512-ssVqMksoE0RXcTi0C8LjSroLjN7RnjAFpTNWve9QmBFX8gY5Qyy19PPvOEv45phLheZgYHJiutn4VaPONQybxg==
+"@c2dh/react-miller@^1.0.0-beta.10":
+  version "1.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@c2dh/react-miller/-/react-miller-1.0.0-beta.10.tgz#d5dd913389b9d6eae832522e247155061a5042c7"
+  integrity sha512-FS/V1Z15OEB/xWlRjAZJvao8Ozubw4dZUOyL4PhXpp3sp5UHqxZZ4xX+Kox58IkCP0fhm4sNwbXxydk0npZcIg==
   dependencies:
     "@babel/runtime" "^7.17.2"
     axios "^0.26.0"
-    react-query "^3.34.15"
+    react-query "^3.39.0"
 
 "@csstools/normalize.css@*":
   version "12.0.0"
@@ -5779,10 +5779,10 @@ react-popper@^2.2.4:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
 
-react-query@^3.34.15:
-  version "3.38.0"
-  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.38.0.tgz#e7f4081e45ba47a4119e548ddcfd0fab18f0580e"
-  integrity sha512-VRbCTRrDfC5FsB70+JfZuxFRv9SAvkZ1h36MsN8+QaDN+NWB6s1vJndqpoLQnJqN0COTG2zsInMq0KFdYze6TA==
+react-query@^3.39.0:
+  version "3.39.0"
+  resolved "https://registry.yarnpkg.com/react-query/-/react-query-3.39.0.tgz#0caca7b0da98e65008bbcd4df0d25618c2100050"
+  integrity sha512-Od0IkSuS79WJOhzWBx/ys0x13+7wFqgnn64vBqqAAnZ9whocVhl/y1padD5uuZ6EIkXbFbInax0qvY7zGM0thA==
   dependencies:
     "@babel/runtime" "^7.5.5"
     broadcast-channel "^3.4.1"

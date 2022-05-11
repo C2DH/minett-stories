@@ -31,7 +31,7 @@ function DocVideo({ doc, caption, className }) {
           <track kind="subtitles" src={subtitlesFile} default />
         )}
       </video>
-      <DocLink className="text-decoration-none" slugOrId={doc.slug}>
+      <DocLink prefetchOnOver className="text-decoration-none" slugOrId={doc.slug}>
         <Caption year={dateToUse} type={doc.type} caption={caption} />
       </DocLink>
     </div>
@@ -49,7 +49,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
     const dateToUse = doc.data.year ? doc.data.year : doc.data.date
     return (
       <div className={`${className} ${classNameCols}`}>
-        <DocLink className="no-link" slugOrId={doc.slug}>
+        <DocLink prefetchOnOver className="no-link" slugOrId={doc.slug}>
           <img
             alt={doc.data.title}
             src={imagePreviewUrl}
@@ -72,7 +72,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
         {audioUrl && (
           <audio src={audioUrl} controls style={{ width: '100%' }} />
         )}
-        <DocLink slugOrId={document.slug}>
+        <DocLink prefetchOnOver slugOrId={document.slug}>
           <Caption year={dateToUse} type={doc.type} caption={caption} />
         </DocLink>
       </div>

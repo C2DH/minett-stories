@@ -1,4 +1,4 @@
-import { useStories } from '@c2dh/react-miller'
+import { usePrefetchStoryWithChapters, useStories } from '@c2dh/react-miller'
 import { useCrawl } from 'snext/crawl'
 import { useNavigate, useParams, useResolvedPath } from 'react-router-dom'
 import { FormGroup, Input, Label } from 'reactstrap'
@@ -24,6 +24,8 @@ function StoriesVoronoi({ stories }) {
 
   const { t } = useTranslation()
 
+  const prefetchStoryWithChapters = usePrefetchStoryWithChapters()
+
   return (
     <>
       <div className={classNames(`d-flex flex-column ${styles.Voronoi}`)}>
@@ -39,6 +41,7 @@ function StoriesVoronoi({ stories }) {
               setSelectedStory(story)
             } else {
               navigate(`${basePath}/story/${story.slug}`)
+              prefetchStoryWithChapters(story.slug)
             }
           }}
         />
@@ -59,6 +62,9 @@ function StoriesVoronoi({ stories }) {
                 {selectedStory.authors.map((a) => a.fullname).join(', ')}
               </div>
               <LangLink
+                onClick={() => {
+                  prefetchStoryWithChapters(selectedStory.slug)
+                }}
                 className={`${styles.ButtonOpen} btn text-white pt-2 pb-2 rounded-pill bg-dark-gray w-100`}
                 to={`/story/${selectedStory.slug}`}
               >

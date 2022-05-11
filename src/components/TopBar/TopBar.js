@@ -9,6 +9,7 @@ import styles from './TopBar.module.css'
 import { useTranslation } from 'react-i18next'
 import { LANGS } from '../../i18n'
 import NavLangLink from '../NavLangLink'
+import { usePrefetchStory } from '@c2dh/react-miller'
 
 function LinkTop({ label, to }) {
   return (
@@ -27,6 +28,7 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
+  const prefetchStory = usePrefetchStory()
   return (
     <>
       <div className={styles.TopBar}>
@@ -94,17 +96,35 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
             </div>
             <div className={styles.BlockTerms}>
               <div>
-                <LangLink className={styles.MediumLink} to="/about">
+                <LangLink
+                  onMouseOver={() => {
+                    prefetchStory('about')
+                  }}
+                  className={styles.MediumLink}
+                  to="/about"
+                >
                   {t('about')}
                 </LangLink>
               </div>
               <div>
-                <LangLink className={styles.MediumLink} to="/education">
+                <LangLink
+                  onMouseOver={() => {
+                    prefetchStory('education')
+                  }}
+                  className={styles.MediumLink}
+                  to="/education"
+                >
                   {t('education')}
                 </LangLink>
               </div>
               <div>
-                <LangLink className={styles.MediumLink} to="/terms-of-use">
+                <LangLink
+                  onMouseOver={() => {
+                    prefetchStory('terms-of-use')
+                  }}
+                  className={styles.MediumLink}
+                  to="/terms-of-use"
+                >
                   {t('terms_of_use')}
                 </LangLink>
               </div>

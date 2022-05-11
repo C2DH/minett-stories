@@ -1,11 +1,12 @@
-import { useDocument } from '@c2dh/react-miller'
-import { Suspense, useCallback, useEffect } from 'react'
+import { useDocument, usePrefetchDocument } from '@c2dh/react-miller'
+import { Suspense, useCallback, useEffect, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from 'react-feather'
 import { Helmet } from 'react-helmet'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import LangLink from '../../components/LangLink'
 import Layout from '../../components/Layout'
 import Loader from '../../components/Loader'
+import { useLangPathPrefix } from '../../hooks/langs'
 import styles from './DocDetail.module.css'
 import DocumentDetailAudio from './DocumentDetailAudio'
 import DocumentDetailImage from './DocumentDetailImage'
@@ -52,15 +53,26 @@ function DisplayDoc({ isModal = false }) {
   return element
 }
 
-// TODO: Implement much much better
-function WrapWithNextPrev({ children }) {
-  const { slug } = useParams()
+function MaybeWrapWithNextPrev({ children }) {
   const location = useLocation()
   const cyclesDocSlugs = location.state?.cyclesDocSlugs
+
   if (!cyclesDocSlugs) {
     return children
   }
+
+  return (
+    <WrapWithNextPrev cyclesDocSlugs={cyclesDocSlugs}>
+      {children}
+    </WrapWithNextPrev>
+  )
+}
+
+function WrapWithNextPrev({ children, cyclesDocSlugs }) {
+  const location = useLocation()
+  const { slug } = useParams()
   const backgroundLocation = location.state.backgroundLocation
+  const prefetchDocument = usePrefetchDocument()
 
   const i = cyclesDocSlugs.indexOf(slug)
   const prevIndex = i === 0 ? cyclesDocSlugs.length - 1 : i - 1
@@ -69,10 +81,50 @@ function WrapWithNextPrev({ children }) {
   const prevSlug = cyclesDocSlugs[prevIndex]
   const nextSlug = cyclesDocSlugs[nextIndex]
 
+  const langPrefix = useLangPathPrefix()
+  const navigate = useNavigate()
+
+  function handleNextPrevKeyDown(e) {
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      prefetchDocument(prevSlug)
+      navigate(`${langPrefix}/document/${prevSlug}`, {
+        replace: true,
+        state: { cyclesDocSlugs, backgroundLocation },
+      })
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      prefetchDocument(nextSlug)
+      navigate(`${langPrefix}/document/${nextSlug}`, {
+        replace: true,
+        state: { cyclesDocSlugs, backgroundLocation },
+      })
+    }
+  }
+
+  const keyDownRef = useRef(handleNextPrevKeyDown)
+  useEffect(() => {
+    keyDownRef.current = handleNextPrevKeyDown
+  })
+
+  useEffect(() => {
+    function handleKeyDown(e) {
+      const cb = keyDownRef.current
+      if (typeof cb === 'function') {
+        cb(e)
+      }
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [])
+
   return (
     <>
       <div className={styles.LeftArrow}>
         <LangLink
+          onMouseOver={() => prefetchDocument(prevSlug)}
           replace
           className={'btn-circle text-white bg-dark-gray'}
           to={`/document/${prevSlug}`}
@@ -84,6 +136,7 @@ function WrapWithNextPrev({ children }) {
       {children}
       <div className={styles.RightArrow}>
         <LangLink
+          onMouseOver={() => prefetchDocument(nextSlug)}
           replace
           className={'btn-circle text-white bg-dark-gray'}
           to={`/document/${nextSlug}`}
@@ -108,9 +161,9 @@ export default function DocDetail({ isModal = false }) {
     return (
       <div className={`${styles.ModalDoc} h-100`}>
         <Suspense fallback={<Loader />}>
-          <WrapWithNextPrev>
+          <MaybeWrapWithNextPrev>
             <DisplayDoc isModal />
-          </WrapWithNextPrev>
+          </MaybeWrapWithNextPrev>
         </Suspense>
       </div>
     )

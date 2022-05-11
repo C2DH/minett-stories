@@ -170,6 +170,7 @@ export default function Archive() {
                       key={doc.id}
                     >
                       <DocLink
+                        prefetchOnClick
                         slugOrId={doc.slug}
                         className="text-decoration-none"
                         state={{ cyclesDocSlugs }}

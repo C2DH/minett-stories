@@ -5,7 +5,11 @@ import { useParams } from 'react-router-dom'
 import { ArrowDown, ArrowLeft, ArrowRight } from 'react-feather'
 import { useTranslation } from 'react-i18next'
 import Layout from '../../components/Layout'
-import { useStories, useStoryWithChapters } from '@c2dh/react-miller'
+import {
+  usePrefetchStoryWithChapters,
+  useStories,
+  useStoryWithChapters,
+} from '@c2dh/react-miller'
 import { getStoryType } from '../../utils'
 import StoryPill from '../../components/StoryPill'
 import styles from './Story.module.css'
@@ -83,6 +87,8 @@ export default function Story() {
 
   const { t } = useTranslation()
 
+  const prefetchStoryWithChapters = usePrefetchStoryWithChapters()
+
   return (
     <Layout>
       <Helmet defer={false}>
@@ -132,6 +138,9 @@ export default function Story() {
         )}
         <div className={`${styles.LeftButtonStory}`}>
           <LangLink
+            onMouseOver={() => {
+              prefetchStoryWithChapters(prevSlug)
+            }}
             onClick={() => setGoDeeper(false)}
             to={`/story/${prevSlug}`}
             className={`btn-circle cursor-pointer no-link`}
@@ -141,6 +150,9 @@ export default function Story() {
         </div>
         <div className={`${styles.RightButtonStory}`}>
           <LangLink
+            onMouseOver={() => {
+              prefetchStoryWithChapters(nextSlug)
+            }}
             onClick={() => setGoDeeper(false)}
             to={`/story/${nextSlug}`}
             className={`btn-circle cursor-pointer no-link`}

@@ -25,7 +25,7 @@ function SideDocRelated({ docId }) {
             <div className="border-bottom mt-2 pb-3 pt-3">
               <h4 className={styles.Title}>{doc.data.title}</h4>
               <div className="w-100">
-                <DocLink slugOrId={doc.slug} className="text-decoration-none">
+                <DocLink prefetchOnClick slugOrId={doc.slug} className="text-decoration-none">
                   <img
                     className="w-100 cursor-pointer"
                     src={imageUrl}
@@ -65,7 +65,7 @@ function SideDoc({ doc, onClose }) {
       </div>
       <div className="border-bottom pb-3 pt-3">
         <h4 className={styles.Title}>{doc.data.title}</h4>
-        <DocLink slugOrId={doc.slug} className="text-decoration-none">
+        <DocLink prefetchOnClick slugOrId={doc.slug} className="text-decoration-none">
           <div className="w-100">
             <img className="w-100" src={imageUrl} alt={doc.data.title} />
           </div>

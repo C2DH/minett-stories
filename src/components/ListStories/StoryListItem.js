@@ -1,3 +1,4 @@
+import { usePrefetchStoryWithChapters } from '@c2dh/react-miller'
 import { memo } from 'react'
 import { getStoryType } from '../../utils'
 import LangLink from '../LangLink'
@@ -7,8 +8,16 @@ import styles from './ListStories.module.css'
 function StoryListItem({ story }) {
   const type = getStoryType(story)
   const thumbUrl = story.covers[0]?.data?.resolutions?.thumbnail?.url
+  const prefetchStoryWithChapters = usePrefetchStoryWithChapters()
+
   return (
-    <LangLink to={`/story/${story.slug}`} className="no-link">
+    <LangLink
+      onClick={() => {
+        prefetchStoryWithChapters(story.slug)
+      }}
+      to={`/story/${story.slug}`}
+      className="no-link"
+    >
       <div
         className={`${styles.StoryBlockList} ps-3 ps-md-5 border-top border-bottom border-right border-color-blacky d-flex flex-column align-items-start py-4`}
       >

@@ -10,6 +10,7 @@ import classNames from 'classnames'
 const GalleryItem = memo(({ document }) => {
   return (
     <DocLink
+      prefetchOnClick
       style={{ height: 'auto' }}
       className="d-flex flex-column me-0 me-md-3 no-link"
       slugOrId={document.slug}

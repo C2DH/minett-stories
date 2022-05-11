@@ -270,6 +270,7 @@ export default function InteractiveVideoStory({ story }) {
               leftObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">
                   <DocLink
+                    prefetchOnOver
                     onClick={() => setPlaying(false)}
                     slugOrId={leftObj.document.slug}
                     className="ms-4 mb-4 no-link"
@@ -284,6 +285,7 @@ export default function InteractiveVideoStory({ story }) {
               rightObj ? (
                 <div className="w-100 h-100 d-flex align-items-end">
                   <DocLink
+                    prefetchOnOver
                     slugOrId={rightObj.document.slug}
                     onClick={() => setPlaying(false)}
                     className="ms-4 mb-4 no-link"
