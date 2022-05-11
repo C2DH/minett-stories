@@ -5,6 +5,7 @@ import Layout from '../../components/Layout'
 import styles from './About.module.css'
 import unilu from '../../assets/logo_unilu.png'
 import esch22 from '../../assets/logo_esch22.png'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 
 export default function About() {
   const [story] = useStory('about')
@@ -12,6 +13,7 @@ export default function About() {
     <Layout>
       <Helmet defer={false}>
         <title>{`Minett Stories | About`}</title>
+        <meta property="og:image" content={socialMediaImage} />
       </Helmet>
       <div className={`padding-top-bar`}>
         <h1 className={`${styles.Title}`}>{story.data.title}</h1>

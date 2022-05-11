@@ -10,6 +10,8 @@ import { useLangPathPrefix } from '../../hooks/langs'
 import { useTranslation } from 'react-i18next'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls'
 import { useIsMobileScreen } from '../../hooks/screen'
+import { Helmet } from 'react-helmet'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 
 const controlPoints = [
   [
@@ -121,6 +123,10 @@ export default function StoriesIntro() {
 
   return (
     <div className="h-100">
+      <Helmet defer={false}>
+        <title>{`Minett Stories | Intro`}</title>
+        <meta property="og:image" content={socialMediaImage} />
+      </Helmet>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className="h-100 d-flex flex-column">
         <LangLink className={`${styles.Skip}`} to="/stories/voronoi">

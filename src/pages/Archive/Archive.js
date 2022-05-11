@@ -18,6 +18,7 @@ import DocLink from '../../components/DocLink'
 import { Filter, X } from 'react-feather'
 import { useCrawl } from 'snext/crawl'
 import { useLangPathPrefix } from '../../hooks/langs'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 
 function useFilterRedirect() {
   const location = useLocation()
@@ -138,6 +139,7 @@ export default function Archive() {
     >
       <Helmet defer={false}>
         <title>{`Minett Stories | Archive`}</title>
+        <meta property="og:image" content={socialMediaImage} />
       </Helmet>
       <Offcanvas
         toggle={() => setShowFilters(!showFilters)}

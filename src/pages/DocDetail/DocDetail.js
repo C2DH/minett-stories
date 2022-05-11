@@ -38,13 +38,15 @@ function DisplayDoc({ isModal = false }) {
   } else if (doc.type === 'pdf') {
     element = <DocumentDetailPdf {...passProps} />
   }
-  // TODO: Implement other document types ....
 
   if (!isModal) {
+    const socialImageUrl =
+      doc.data.resolutions?.preview?.url ?? doc.snapshot ?? doc.attachment
     return (
       <>
         <Helmet defer={false}>
           <title>{`Minett Stories | ${doc.data.title ?? doc.title}`}</title>
+          <meta property="og:image" content={socialImageUrl} />
         </Helmet>
         {element}
       </>

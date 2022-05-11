@@ -1,20 +1,21 @@
 import { useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import find from 'lodash/find'
 import DocLink from '../DocLink'
 import Caption from './Caption'
 
 function DocVideo({ doc, caption, className }) {
+  const { i18n } = useTranslation()
   const videoUrl = doc?.data?.streamingUrl ?? doc.url
   const subtitlesFile = useMemo(() => {
-    // TODO: Re-enable when got the real vtt
-    return '/vtt/test.vtt'
-    // return (
-    //   find(doc?.data?.subtitles ?? [], {
-    //     language: i18n.language,
-    //     availability: true,
-    //     type: 'vtt',
-    //   })?.url ?? null
-    // )
-  }, [])
+    return (
+      find(doc?.data?.subtitles ?? [], {
+        language: i18n.language,
+        availability: true,
+        type: 'vtt',
+      })?.url ?? null
+    )
+  }, [doc?.data?.subtitles, i18n.language])
   const dateToUse = useMemo(() => {
     if (doc.data.year) {
       return doc.data.year

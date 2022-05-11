@@ -93,6 +93,7 @@ export default function Story() {
     <Layout>
       <Helmet defer={false}>
         <title>{`Minett Stories | ${story.data.title}`}</title>
+        <meta property="og:image" content={coverImage} />
       </Helmet>
       <div className="padding-top-bar" />
       <div className={`${styles.Cover}`}>

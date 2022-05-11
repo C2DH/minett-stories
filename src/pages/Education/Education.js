@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import styles from './Education.module.css'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 
 export default function About() {
   const [story] = useStory('education')
@@ -10,6 +11,7 @@ export default function About() {
     <Layout>
       <Helmet defer={false}>
         <title>{`Minett Stories | Education`}</title>
+        <meta property="og:image" content={socialMediaImage} />
       </Helmet>
       <div className="container-fluid padding-top-bar">
         <div className="row">

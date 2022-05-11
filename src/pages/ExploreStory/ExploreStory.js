@@ -1,4 +1,5 @@
 import { useStoryWithChapters } from '@c2dh/react-miller'
+import { Helmet } from 'react-helmet'
 import { useParams } from 'react-router-dom'
 import { getStoryType } from '../../utils'
 import AudioStory from './AudioStory'
@@ -14,21 +15,42 @@ export default function ExploreStory() {
 
   const passProps = { story }
 
+  let element
   switch (type) {
     case 'interactive-video':
-      return <InteractiveVideoStory {...passProps} />
+      element = <InteractiveVideoStory {...passProps} />
+      break
     case 'interactive-audio':
-      return <InteractiveVideoStory {...passProps} />
+      element = <InteractiveVideoStory {...passProps} />
+      break
     case 'video':
-      return <VideoStory {...passProps} />
+      element = <VideoStory {...passProps} />
+      break
     case 'audio':
-      return <AudioStory {...passProps} />
+      element = <AudioStory {...passProps} />
+      break
     case 'graphic-novel':
-      return <GraphicNovelStory {...passProps} />
+      element = <GraphicNovelStory {...passProps} />
+      break
     case 'map':
-      return <MapStory {...passProps} />
+      element = <MapStory {...passProps} />
+      break
     default:
       console.warn('Inalid story type', type)
-      return null
+      element = null
+      break
   }
+
+  const coverImage =
+    story.covers?.[0]?.data?.resolutions?.preview?.url ??
+    story.covers?.[0]?.attachment
+  return (
+    <>
+      <Helmet defer={false}>
+        <title>{`Minett Stories | Explore ${story.data.title}`}</title>
+        <meta property="og:image" content={coverImage} />
+      </Helmet>
+      {element}
+    </>
+  )
 }

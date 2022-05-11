@@ -4,6 +4,7 @@ import intro2 from '../../assets/intro2.jpg'
 import intro3 from '../../assets/intro3.jpg'
 import unilu from '../../assets/logo_unilu.png'
 import esch22 from '../../assets/logo_esch22.png'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 import LangLink from '../../components/LangLink'
 import RoundedLanguageControls from '../../components/RoundedLanguageControls/RoundedLanguageControls'
 import { useTranslation } from 'react-i18next'
@@ -29,6 +30,7 @@ export default function Intro() {
     >
       <Helmet defer={false}>
         <title>{`Minett Stories`}</title>
+        <meta property="og:image" content={socialMediaImage} />
       </Helmet>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>

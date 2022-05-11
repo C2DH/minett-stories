@@ -7,6 +7,7 @@ import Layout from '../../components/Layout'
 import ListStories from '../../components/ListStories/ListStories'
 import IntroVoronoi from '../../components/IntroVoronoi'
 import styles from './Stories.module.css'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 import classNames from 'classnames'
 import { useState } from 'react'
 import StoryPill from '../../components/StoryPill'
@@ -29,9 +30,6 @@ function StoriesVoronoi({ stories }) {
   return (
     <>
       <div className={classNames(`d-flex flex-column ${styles.Voronoi}`)}>
-        <Helmet defer={false}>
-          <title>{`Minett Stories | Stories`}</title>
-        </Helmet>
         <IntroVoronoi
           stories={stories}
           withHoverEffect={!isMobileScreen}
@@ -140,6 +138,10 @@ export default function Stories() {
         </div>
       }
     >
+      <Helmet defer={false}>
+        <title>{`Minett Stories | Stories`}</title>
+        <meta property="og:image" content={socialMediaImage} />
+      </Helmet>
       {type === 'list' && <ListStories stories={storiesList.results} />}
       {type === 'voronoi' && <StoriesVoronoi stories={storiesList.results} />}
     </Layout>

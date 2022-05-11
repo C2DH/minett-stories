@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet'
 import ReactMarkdown from 'react-markdown'
 import Layout from '../../components/Layout'
 import styles from './TermsOfUse.module.css'
+import socialMediaImage from '../../assets/socialMediaImage.png'
 
 export default function TermsOfUse() {
   const [story] = useStory('terms-of-use')
@@ -10,6 +11,7 @@ export default function TermsOfUse() {
     <Layout>
       <Helmet defer={false}>
         <title>{`Minett Stories | Terms of use`}</title>
+        <meta property="og:image" content={socialMediaImage} />
       </Helmet>
       <div className={`padding-top-bar`}>
         <h1 className={`${styles.Title}`}>{story.data.title}</h1>

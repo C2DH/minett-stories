@@ -4,7 +4,7 @@ import styles from './DocItem.module.css'
 
 function DocItem({ doc, grid }) {
   const imageUrl =
-    doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
+    doc.data.resolutions?.thumbnail?.url ?? doc.snapshot ?? doc.attachment
 
   return (
     <div
