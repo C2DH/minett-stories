@@ -391,8 +391,19 @@ em {
   .min-vh-100{
     min-height: unset !important;
   }
-  
+
   .max-vh-100 {
     max-height: unset !important;
+  }
+}
+
+
+@media only screen and (min-width: 2000px) {
+  .offset-gigaxl-4 {
+    margin-left: 33.33333333% !important;
+  }
+  .col-gigaxl-4 {
+    flex: 0 0 auto !important;
+    width: 33.33333333% !important;
   }
 }
