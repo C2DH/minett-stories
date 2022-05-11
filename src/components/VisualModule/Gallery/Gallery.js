@@ -38,8 +38,6 @@ const CustomButtonGroup = ({ next, previous, objects, goToSlide, ...rest }) => {
   } = rest
   const lastImageIndex = objects.length - 1
 
-  console.log(lastImageIndex, 'last')
-
   return (
     <div className="custom-button-group">
       {objects.length > 2 && (

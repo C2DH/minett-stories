@@ -118,7 +118,7 @@ function BottomLeftDoc({ doc, playing }) {
             bottom: 0,
             left: 0,
             width: '70vw',
-            height: '60vh',
+            height: '70vh',
             backgroundColor: 'var(--brick)',
           }}
         >
@@ -219,7 +219,7 @@ function BottomRightDoc({ doc, playing }) {
             bottom: 0,
             right: 0,
             width: '70vw',
-            height: '60vh',
+            height: '70vh',
             backgroundColor: 'var(--green)',
           }}
         >
