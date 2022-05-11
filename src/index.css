@@ -219,6 +219,10 @@ a.no-link {
   line-height: 32px;
 }
 
+.text-object-story > p > a {
+  color: var(--brick);
+}
+
 .text-object-story > h2 {
   font-family: var(--font-pp-neue-montreal);
   font-style: normal;
