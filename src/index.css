@@ -7,8 +7,8 @@
   --brick: #9e5646;
   --brick-opacity: rgb(158, 86, 70, 0.4);
   --orange: #bc6d3f;
-  --light-orange: #C98019;
-  --light-orange-opacity:  rgb(201, 128, 25, 0.4);
+  --light-orange: #c98019;
+  --light-orange-opacity: rgb(201, 128, 25, 0.4);
   --orange-opacity: rgb(188, 109, 63, 0.4);
   --green: #798774;
   --light-grey: #dedede;
@@ -229,6 +229,10 @@ a.no-link {
   font-weight: 400;
   font-size: 32px;
   line-height: 38px;
+  border-top: 1px solid #dedede;
+  padding-top: 48px;
+  margin-top: 48px;
+  margin-bottom: 24px;
 }
 
 .text-caption-story {
@@ -344,11 +348,11 @@ em {
   height: calc(100% - var(--top-bar-height));
 }
 
-.flex-1-mobile{
+.flex-1-mobile {
   flex: unset;
 }
 
-.min-vh-100{
+.min-vh-100 {
   min-height: 100vh !important;
 }
 
@@ -384,11 +388,11 @@ em {
     width: 100%;
   }
 
-  .flex-1-mobile{
+  .flex-1-mobile {
     flex: 1;
   }
 
-  .min-vh-100{
+  .min-vh-100 {
     min-height: unset !important;
   }
 
@@ -396,7 +400,6 @@ em {
     max-height: unset !important;
   }
 }
-
 
 @media only screen and (min-width: 2000px) {
   .offset-gigaxl-4 {
