@@ -17,14 +17,14 @@ export default function AutoTipModal({ text, imageSource, type }) {
 
   return (
     <Modal isOpen={isOpen} centered>
-      <ModalBody className="bg-site-black rounded">
+      <ModalBody className="auto-tip-modal bg-site-black rounded">
         <p className="text-center">{text}</p>
         <div className="d-flex justify-content-center my-4">
           <img src={imageSource} alt="tip" />
         </div>
         <div className="text-center">
           <button
-            className="btn text-white rounded-pill btn-dark"
+            className="btn-auto-tip btn text-white rounded-pill bg-dark-gray"
             onClick={() => {
               setIsOpen(false)
               sessionStorage.setItem(storeKey, 'yes')
