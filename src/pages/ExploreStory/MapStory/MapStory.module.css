@@ -130,12 +130,19 @@
   }
 
   .SideDoc {
-    width: 80%;
+    width: 70%;
+    background: var(--black);
     overflow: auto;
+    position: absolute;
+    top: 0px;
+    overflow: auto;
+    z-index: 199;
+    height: 100%;
   }
 
   .ContainerMapAndSideDoc {
     overflow: auto;
+    position: relative;
   }
 
   .TitleStory {
@@ -153,5 +160,12 @@
     padding-left: 16px;
     padding-right: 16px;
     background-color: white;
+  }
+
+  .TextContent {
+    font-family: var(--font-pp-neue-montreal);
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
