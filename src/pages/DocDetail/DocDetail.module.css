@@ -131,7 +131,7 @@
     margin-left: 0px;
     margin-right: 0px;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 100px !important;
     min-height: 100%;
     height: unset;
     background-color: var(--dark-grey);
@@ -145,7 +145,7 @@
     margin-left: 0px;
     margin-right: 0px;
     position: relative;
-    padding-bottom: 100px;
+    padding-bottom: 100px !important;
     min-height: 100%;
     height: 100%;
     background-color: var(--dark-grey);
