@@ -223,7 +223,8 @@ a.no-link {
   color: var(--brick);
 }
 
-.text-object-story > h2 {
+.text-object-story > h2,
+.text-object-story-biblio > h2 {
   font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: 400;
@@ -233,6 +234,14 @@ a.no-link {
   padding-top: 48px;
   margin-top: 48px;
   margin-bottom: 24px;
+  color: var(--black);
+}
+
+.text-object-story-biblio {
+  font-size: 16px;
+  font-family: var(--font-sentient-variable);
+  font-weight: 400;
+  color: var(--cadet-blue);
 }
 
 .text-caption-story {
@@ -371,7 +380,7 @@ em {
   border-radius: 20px !important;
 }
 
-.btn-auto-tip{
+.btn-auto-tip {
   height: 48px;
   padding: 12px 24px;
 }
@@ -430,6 +439,16 @@ em {
   }
   .col-gigaxl-1 {
     flex: 0 0 auto !important;
-    width: 8.33333333% !important; 
-}
+    width: 8.33333333% !important;
+  }
+
+  .offset-gigaxl-2 {
+    margin-left: 16.66666667%;
+  }
+  .col-gigaxl-8 {
+    flex: 0 0 auto;
+    width: 66.66666667%;
+  }
+
+
 }

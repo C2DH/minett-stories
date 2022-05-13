@@ -7,7 +7,7 @@ export default function ModuleTextObject({ millerModule }) {
     <div className="row">
       <div
         className={classNames('mt-2',{
-          'order-0 offset-md-1 col-md-2': millerModule.layout === 'object-text',
+          'order-0 offset-gigaxl-2 offset-md-1 col-md-2': millerModule.layout === 'object-text',
           'order-1 col-md-2': millerModule.layout === 'text-object',
         })}
       >
@@ -23,8 +23,8 @@ export default function ModuleTextObject({ millerModule }) {
       </div>
       <div
         className={classNames({
-          'order-1 col-md-6': millerModule.layout === 'object-text',
-          'order-0 offset-md-3 col-md-6': millerModule.layout === 'text-object',
+          'order-1 col-gigaxl-4 col-md-6': millerModule.layout === 'object-text',
+          'order-0 offset-gigaxl-4 col-gigaxl-4 offset-md-3 col-md-6': millerModule.layout === 'text-object',
         })}
       >
         <ModuleText

@@ -22,7 +22,7 @@ function DocVideo({ doc, caption, className }) {
     } else return doc.data.date
   }, [doc])
   return (
-    <div className={`${className} offset-md-1 col-md-10`}>
+    <div className={`${className} offset-gigaxl-2 col-gigaxl-8 offset-md-1 col-md-10`}>
       <video
         src={videoUrl}
         controls
@@ -44,8 +44,8 @@ export default function DocumentObject({ doc, caption, className, size }) {
     const imagePreviewUrl = doc.data.resolutions?.preview?.url
     const classNameCols = size
       ? size === 'big'
-        ? 'offset-md-1 col-md-10'
-        : 'offset-md-3 col-md-6'
+        ? 'offset-gigaxl-2 col-gigaxl-8 offset-md-1 col-md-10'
+        : 'offset-gigaxl-4 col-gigaxl-4 offset-md-3 col-md-6'
       : ''
     const dateToUse = doc.data.year ? doc.data.year : doc.data.date
     return (
@@ -69,7 +69,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
     const audioUrl = doc.url ? doc.url : doc.attachment
     const dateToUse = doc.data.year ? doc.data.year : doc.data.date
     return (
-      <div className={`${className} offset-md-1 col-md-10`}>
+      <div className={`${className} offset-gigaxl-2 col-gigaxl-8 offset-md-1 col-md-10`}>
         {audioUrl && (
           <audio src={audioUrl} controls style={{ width: '100%' }} />
         )}
