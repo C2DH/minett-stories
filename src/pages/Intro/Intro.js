@@ -53,7 +53,7 @@ export default function Intro() {
           <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>
             t
           </span>
-          <span className={`${styles.Char400} ms-5 TextABCMaxiRoundVariable`}>
+          <span className={`${styles.Char400} ms-3 ms-md-5 TextABCMaxiRoundVariable`}>
             S
           </span>
           <span className={`${styles.Char200} TextABCMaxiSharpVariable`}>

@@ -39,7 +39,6 @@
   /* transition-delay: 1.5s; */
 }
 
-
 .CoverBackground {
   position: absolute;
   left: 0;
@@ -198,8 +197,6 @@
   height: 88px;
 }
 
-
-
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .BlockLanguages {
     position: absolute;
@@ -208,11 +205,26 @@
     z-index: 11;
   }
 
+  .BlockTextHome {
+    z-index: 10;
+    position: absolute;
+    display: flex;
+    top: -350px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    justify-content: center;
+    flex-direction: column;
+  }
+
   .HomeMinettText {
     font-weight: 400;
     font-size: 48px;
     line-height: 60px;
     text-align: left;
+    font-weight: 400;
+    font-size: 44px;
+    line-height: 60px;
     padding-left: 12px;
   }
 
@@ -245,11 +257,13 @@
   .subtitle {
     font-family: var(--font-pp-neue-montreal);
     font-weight: 500;
-    font-size: 14px;
-    line-height: 17px;
+    font-size: 18px;
+    line-height: 22px;
     text-transform: uppercase;
     text-align: left;
     padding-left: 16px;
+    margin-bottom: 64px;
+    margin-top: 0px;
   }
 
   .LogoCredits {
@@ -269,7 +283,7 @@
     width: 68px;
     height: auto;
   }
-  
+
   .SkipIntro {
     position: absolute;
     bottom: 12px;
