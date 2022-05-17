@@ -141,7 +141,7 @@ function InnerTopBar({
             </div>
             <div>
               <a
-                href="https://www.c2dh.uni.lu/"
+                href="https://www.uni.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >
@@ -153,7 +153,7 @@ function InnerTopBar({
               </a>
               <a
                 className="ms-2"
-                href="https://www.c2dh.uni.lu/"
+                href="https://www.uni.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >

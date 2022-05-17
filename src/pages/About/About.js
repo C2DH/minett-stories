@@ -28,7 +28,7 @@ export default function About() {
           <div className={styles.LogoCredits}>
             <div className="ps-5 pt-5">
               <a
-                href="https://www.c2dh.uni.lu/"
+                href="https://www.uni.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >
@@ -40,7 +40,7 @@ export default function About() {
                 />
               </a>
               <a
-                href="https://www.c2dh.uni.lu/"
+                href="https://www.uni.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >

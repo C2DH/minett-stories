@@ -81,12 +81,12 @@ export default function Intro() {
         </LangLink>
       </div>
       <div className={styles.LogoCredits}>
-        <a href="https://www.c2dh.uni.lu/" rel={'noreferrer'} target={'_blank'}>
+        <a href="https://www.uni.lu/" rel={'noreferrer'} target={'_blank'}>
           <img src={unilu} alt="Unilu" className={`${styles.unilu}`} />
         </a>
         <a
           className="ms-2"
-          href="https://www.c2dh.uni.lu/"
+          href="https://www.uni.lu/"
           rel={'noreferrer'}
           target={'_blank'}
         >
