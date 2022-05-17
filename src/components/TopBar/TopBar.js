@@ -24,11 +24,16 @@ function LinkTop({ label, to }) {
   )
 }
 
-export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
+function noop() {}
+
+function InnerTopBar({
+  prefetchStory = noop,
+  right,
+  linkUrlLogo = '/stories/voronoi',
+}) {
   const [open, setOpen] = useState(false)
   const { t } = useTranslation()
   const { i18n } = useTranslation()
-  const prefetchStory = usePrefetchStory()
   return (
     <>
       <div className={styles.TopBar}>
@@ -164,4 +169,17 @@ export default function TopBar({ right, linkUrlLogo = '/stories/voronoi' }) {
       </Offcanvas>
     </>
   )
+}
+
+function TopBarWithPrefetch(props) {
+  const prefetchStory = usePrefetchStory()
+  return <InnerTopBar prefetchStory={prefetchStory} {...props} />
+}
+
+export default function TopBar({ noPrefetch = false, ...props }) {
+  if (noPrefetch) {
+    return <InnerTopBar {...props} />
+  } else {
+    return <TopBarWithPrefetch {...props} />
+  }
 }
