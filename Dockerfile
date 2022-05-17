@@ -8,12 +8,12 @@ WORKDIR /app
 
 COPY package.json .
 COPY yarn.lock .
+COPY patches ./patches
 
 RUN yarn install
 
 COPY public ./public
 COPY src ./src
-COPY patches ./patches
 COPY .env .
 
 ENV NODE_ENV production
