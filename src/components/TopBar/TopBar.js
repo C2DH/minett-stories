@@ -153,14 +153,14 @@ function InnerTopBar({
               </a>
               <a
                 className="ms-2"
-                href="https://www.uni.lu/"
+                href="https://esch2022.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >
                 <img
                   src={esch22}
                   className={styles.esch22}
-                  alt="Universitè du Luxembourg"
+                  alt="Esch-sur-Alzette European Capital of Culture 2022"
                 />
               </a>
             </div>

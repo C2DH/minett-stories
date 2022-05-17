@@ -40,11 +40,11 @@ export default function About() {
                 />
               </a>
               <a
-                href="https://www.uni.lu/"
+                href="https://esch2022.lu/"
                 rel={'noreferrer'}
                 target={'_blank'}
               >
-                <img width={120} className="mt-4" src={esch22} alt="Esch22" />
+                <img width={120} className="mt-4" src={esch22} alt="Esch-sur-Alzette European Capital of Culture 2022" />
               </a>
             </div>
           </div>
