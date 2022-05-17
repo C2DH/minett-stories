@@ -86,11 +86,11 @@ export default function Intro() {
         </a>
         <a
           className="ms-2"
-          href="https://www.uni.lu/"
+          href="https://esch2022.lu/en/"
           rel={'noreferrer'}
           target={'_blank'}
         >
-          <img src={esch22} alt="Esch22" className={`${styles.esch22}`} />
+          <img src={esch22} alt="Esch-sur-Alzette European Capital of Culture 2022" className={`${styles.esch22}`} />
         </a>
       </div>
       <LangLink to="/stories/voronoi" className="no-link">
