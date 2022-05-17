@@ -14,14 +14,18 @@ import imageModalTip from './GraphicNovelTip.svg'
 function GraphicNoveModuleGallery({ millerModule }) {
   return (
     <div className="h-100 d-flex align-items-center">
-      {millerModule.objects.map((obj) => (
-        <img
-          className="h-100"
-          src={obj.document.attachment}
-          key={obj.id}
-          alt={obj.document.data.title}
-        />
-      ))}
+      {millerModule.objects.map((obj) => {
+        const source =
+          obj.document.data?.translated_urls ?? obj.document.attachment
+        return (
+          <img
+            className="h-100"
+            src={source}
+            key={obj.id}
+            alt={obj.document.data.title}
+          />
+        )
+      })}
     </div>
   )
 }
