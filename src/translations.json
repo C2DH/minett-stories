@@ -54,7 +54,8 @@
       "ok_i_got": "Ok, I got this",
       "Go_to_the_next_chapter": "Go to the next chapter",
       "from": "From",
-      "to": "To"
+      "to": "To",
+      "Menu": "Menu"
     }
   },
   "en_GB": {
@@ -112,7 +113,8 @@
       "ok_i_got": "Ok, I got this",
       "Go_to_the_next_chapter": "Go to the next chapter",
       "from": "From",
-      "to": "To"
+      "to": "To",
+      "Menu": "Menu"
     }
   },
   "de_DE": {
@@ -170,7 +172,8 @@
       "ok_i_got": "Ok, I got this",
       "Go_to_the_next_chapter": "Go to the next chapter",
       "from": "From",
-      "to": "To"
+      "to": "To",
+      "Menu": "Menu"
     }
   }
 }

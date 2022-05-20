@@ -47,6 +47,9 @@ function InnerTopBar({
           ) : (
             <Menu className="cursor-pointer" onClick={() => setOpen(true)} />
           )}
+          <span className={`${styles.LabelMenu} d-none d-md-block`}>
+            {t('Menu')}
+          </span>
         </div>
         <LangLink to={linkUrlLogo} className="TopBarMinettText">
           <div className="cursor-pointer">
@@ -163,6 +166,10 @@ function InnerTopBar({
                   alt="Esch-sur-Alzette European Capital of Culture 2022"
                 />
               </a>
+            </div>
+            <div className={styles.Copyright}>
+              Copyright © Université du Luxembourg 2022. <br /> All rights
+              reserved.
             </div>
           </div>
         </OffcanvasBody>
