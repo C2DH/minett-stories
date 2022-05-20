@@ -134,7 +134,7 @@ function InnerTopBar({
                 </LangLink>
               </div>
               <div>
-                <a className={styles.MediumLink} href={'mailto:c2dh@uni.lu'}>
+                <a className={styles.MediumLink} href={'mailto:remix@uni.lu'}>
                   {t('contact_us')}
                 </a>
               </div>
