@@ -203,8 +203,7 @@ export default function ZoomAndPanMedia({ src, isModal }) {
             />
           </ReactHammer>
         </div>
-      </div>
-      <div
+        <div
         className={
           isModal
             ? styles.ZoomAndPanMediaControlsModal
@@ -232,6 +231,8 @@ export default function ZoomAndPanMedia({ src, isModal }) {
           </div>
         </div>
       </div>
+      </div>
+      
     </>
   )
 }

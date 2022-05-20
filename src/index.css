@@ -372,6 +372,10 @@ em {
   max-height: 100vh !important;
 }
 
+.min-height-100{
+  min-height: 100% !important;
+}
+
 .modal-content {
   background-color: var(--black);
   border-radius: 20px !important;

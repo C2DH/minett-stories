@@ -1,4 +1,3 @@
-import styles from './DocumentDetailImage.module.css'
 import stylesCommon from '../DocDetail.module.css'
 import { usePreloadImage } from '../../../hooks/preloadImage'
 import ZoomAndPanMedia from '../../../components/ZoomAndPanMedia/ZoomAndPanMedia'
@@ -66,16 +65,16 @@ export default function DocumentDetailImage({ isModal, doc, onClose }) {
       <div
         className={classNames('row', {
           'max-h-100': !isModal,
-          'min-vh-100': isModal
+          'min-vh-100': isModal,
         })}
       >
-        <div className={`order-1 order-md-0 col-md-4 ${stylesCommon.BorderBlackRight}`}>
+        <div
+          className={`order-1 order-md-0 col-md-4 ${stylesCommon.BorderBlackRight}`}
+        >
           <BlockInfo doc={doc} />
         </div>
-        <div className={'order-0 order-md-1 col-md-8'}>
-          <div className={styles.BlockImage}>
-            <ZoomAndPanMedia isModal={isModal} src={imageUrl} />
-          </div>
+        <div className={'order-0 order-md-1 col-md-8 min-height-100'}>
+          <ZoomAndPanMedia isModal={isModal} src={imageUrl} />
         </div>
       </div>
       {isModal && (
