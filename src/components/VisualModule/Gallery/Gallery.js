@@ -8,6 +8,7 @@ import './Gallery.css'
 import classNames from 'classnames'
 
 const GalleryItem = memo(({ document }) => {
+  console.log(document, document.type)
   return (
     <DocLink
       prefetchOnClick
@@ -25,7 +26,7 @@ const GalleryItem = memo(({ document }) => {
           <Caption
             type={document.type}
             year={document.data.year || document.data.date}
-            caption={document.title}
+            caption={document.title || document.data.title}
           />
         </div>
       )}
