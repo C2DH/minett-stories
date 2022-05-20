@@ -13,9 +13,9 @@ const ClusterMarker = ({ longitude, latitude, pointCount }) => (
 
 export default function MapWrapper({ mapObjects, selectedDoc, setSelectedDoc }) {
   const [viewport, setViewport] = useState({
-    longitude: 5.918,
-    latitude: 49.509,
-    zoom: 10,
+    longitude: 5.9744098,
+    latitude: 49.495999,
+    zoom: 11,
   })
   const [hoverDoc, setHoverDoc] = useState(null)
   return (
