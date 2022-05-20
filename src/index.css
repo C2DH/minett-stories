@@ -1,16 +1,16 @@
 :root {
   /*** COLORS ***/
-  --sienna: #b58b50;
-  --sienna-opacity: rgb(181, 139, 80, 0.4);
+  --sienna: #93703E;
+  --sienna-opacity: rgb(147,112,62, 0.4);
   --black: #2e2e2e;
-  --cadet-blue: #7a8988;
+  --cadet-blue: #6C7978;
   --brick: #9e5646;
   --brick-opacity: rgb(158, 86, 70, 0.4);
-  --orange: #bc6d3f;
-  --light-orange: #c98019;
-  --light-orange-opacity: rgb(201, 128, 25, 0.4);
-  --orange-opacity: rgb(188, 109, 63, 0.4);
-  --green: #798774;
+  --orange: #AD643A;
+  --light-orange: #A66915;
+  --light-orange-opacity: rgb(166,105,21, 0.4);
+  --orange-opacity: rgb(173,100,58, 0.4);
+  --green: #6D7A69;
   --light-grey: #dedede;
   --dark-grey: #383838;
   --blacky-border: #424242;
