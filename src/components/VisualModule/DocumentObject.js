@@ -4,7 +4,7 @@ import find from 'lodash/find'
 import DocLink from '../DocLink'
 import Caption from './Caption'
 
-function DocVideo({ doc, caption, className }) {
+function DocVideo({ doc, caption, className, size }) {
   const { i18n } = useTranslation()
   const videoUrl = doc?.data?.streamingUrl ?? doc.url
   const subtitlesFile = useMemo(() => {
@@ -21,8 +21,13 @@ function DocVideo({ doc, caption, className }) {
       return doc.data.year
     } else return doc.data.date
   }, [doc])
+  const classNameCols = size
+      ? size === 'big'
+        ? 'offset-gigaxl-2 col-gigaxl-8 offset-md-1 col-md-10'
+        : 'offset-gigaxl-4 col-gigaxl-4 offset-md-3 col-md-6'
+      : ''
   return (
-    <div className={`${className} offset-gigaxl-2 col-gigaxl-8 offset-md-1 col-md-10`}>
+    <div className={`${className} ${classNameCols}`}>
       <video
         src={videoUrl}
         controls
@@ -64,7 +69,7 @@ export default function DocumentObject({ doc, caption, className, size }) {
       </div>
     )
   } else if (doc.type === 'video') {
-    return <DocVideo doc={doc} caption={caption} className={className} />
+    return <DocVideo size={size} doc={doc} caption={caption} className={className} />
   } else if (doc.type === 'audio') {
     const audioUrl = doc.url ? doc.url : doc.attachment
     const dateToUse = doc.data.year ? doc.data.year : doc.data.date
