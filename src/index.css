@@ -250,6 +250,7 @@ a.no-link {
   font-weight: 400;
   font-size: 14px;
   line-height: 18px;
+  min-height: 46px;
 }
 
 blockquote {

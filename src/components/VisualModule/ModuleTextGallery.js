@@ -11,7 +11,7 @@ export default function ModuleTextGallery({ millerModule }) {
             caption={millerModule.gallery.caption}
           />
         </div>
-        <div className="text-black offset-md-3 col-md-6 mt-2 mb-2">
+        <div className="text-black offset-gigaxl-4 col-gigaxl-4 col-md-6 offset-md-3 mt-2 mb-2">
           <ReactMarkdown
             className="text-object-story text-black"
             skipHtml={true}
@@ -24,7 +24,7 @@ export default function ModuleTextGallery({ millerModule }) {
   } else {
     return (
       <div className="row">
-        <div className="text-black offset-md-3 col-md-6 mt-2 mb-2">
+        <div className="text-black offset-gigaxl-4 col-gigaxl-4 col-md-6 offset-md-3 mt-2 mb-2">
           <ReactMarkdown className="text-object-story" skipHtml={true}>
             {millerModule.text.content}
           </ReactMarkdown>

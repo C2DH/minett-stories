@@ -141,7 +141,6 @@ export default function VideoStory({ story }) {
                 onClick={() => {
                   if (!process.env.IS_SNEXT_SERVER) {
                     import('screenfull').then(({ default: screenfull }) => {
-                      console.log(screenfull)
                       if (screenfull.isEnabled) {
                         const video = playerRef.current.getInternalPlayer()
                         screenfull.request(video)

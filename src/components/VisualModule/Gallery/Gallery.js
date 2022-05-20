@@ -8,7 +8,6 @@ import './Gallery.css'
 import classNames from 'classnames'
 
 const GalleryItem = memo(({ document }) => {
-  console.log(document, document.type)
   return (
     <DocLink
       prefetchOnClick

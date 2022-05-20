@@ -42,8 +42,6 @@ function BlockInfo({ doc }) {
 }
 
 export default function DocumentDetailPdf({ isModal, doc, onClose }) {
-
-  console.log(doc)
   const [numPages, setNumPages] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
   const [scale, setScale] = useState(1)

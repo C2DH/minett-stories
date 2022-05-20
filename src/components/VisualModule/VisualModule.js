@@ -6,7 +6,6 @@ import ModuleTextGallery from './ModuleTextGallery'
 import ModuleTextObject from './ModuleTextObject'
 
 export default function VisualModule({ millerModule }) {
-  console.log(millerModule.module)
   switch (millerModule.module) {
     case 'text_object':
       return <ModuleTextObject millerModule={millerModule} />
