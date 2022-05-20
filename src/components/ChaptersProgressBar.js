@@ -31,8 +31,11 @@ export default function ChaptersProgressBar({
   const selectedChapter = chapters[index]
   const { t } = useTranslation()
   return (
-    <div className='bg-white d-flex flex-column align-items-center'>
-      <div className="progress-bar-story d-flex ms-md-5 me-md-5" style={{ height: 8 }}>
+    <div className="bg-white d-flex flex-column align-items-center">
+      <div
+        className="progress-bar-story d-flex ms-md-5 me-md-5"
+        style={{ height: 8 }}
+      >
         {chapters.map((chapter, i) => (
           <Fragment key={chapter.id}>
             {i !== 0 && (
@@ -47,7 +50,10 @@ export default function ChaptersProgressBar({
           </Fragment>
         ))}
       </div>
-      <div className="w-100 d-flex justify-content-between bg-white" style={{ height: 64 }}>
+      <div
+        className="w-100 d-flex justify-content-between bg-white"
+        style={{ height: 64 }}
+      >
         <div className="d-flex flex-1-mobile align-items-center justify-content-center mx-md-5">
           {playing ? (
             <Pause
@@ -64,14 +70,16 @@ export default function ChaptersProgressBar({
               fill="black"
             />
           )}
-          <SkipForward
-            onClick={goToNextChapter}
-            className="ms-2 cursor-pointer"
-            color="black"
-            fill="black"
-          />
+          {chapters.length > 1 && (
+            <SkipForward
+              onClick={goToNextChapter}
+              className="ms-2 cursor-pointer"
+              color="black"
+              fill="black"
+            />
+          )}
         </div>
-        <div className="d-flex flex-column"  style={{ flex: 1 }}>
+        <div className="d-flex flex-column" style={{ flex: 1 }}>
           <div
             className="w-100 d-flex align-items-center text-cadet-blue position-relative"
             style={{ flex: 1 }}
