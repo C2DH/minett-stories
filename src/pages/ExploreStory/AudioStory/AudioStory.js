@@ -182,6 +182,16 @@ export default function AudioStory({ story }) {
             playsinline
             config={{ file: { forceAudio: true, tracks } }}
           />
+          <div
+            style={{ zIndex: 2 }}
+            className={`${styles.subtitlesContainer} w-100 d-flex flex-column`}
+          >
+            <div className={`${styles.subtitles} w-100 flex-1 d-flex flex-column`}>
+              {subtitles.map((sub, i) => (
+                <div key={i}>{sub}</div>
+              ))}
+            </div>
+          </div>
           {showPodcast && (
             <div className={styles.showPodcast}>
               <div className={styles.TitlePopupPodcast}>
