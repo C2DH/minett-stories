@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useRef, useState } from 'react'
+import find from 'lodash/find'
 import Player from 'react-player'
 import { ArrowLeft, Maximize } from 'react-feather'
 import { useNavigationType } from 'react-router-dom'
@@ -8,6 +9,7 @@ import { getStoryType } from '../../../utils'
 import ChaptersProgressBar from '../../../components/ChaptersProgressBar'
 import StoryPill from '../../../components/StoryPill'
 import LongScrollStory from '../../../components/LongScrollStory'
+import { useTranslation } from 'react-i18next'
 
 export default function VideoStory({ story }) {
   // NOTE: Very bad implementation ... buy u know ...
@@ -35,6 +37,12 @@ export default function VideoStory({ story }) {
     played: 0,
     playedSeconds: 0,
   })
+  const [subtitles, setSubtitles] = useState([])
+  const handleCueChange = useCallback((e) => {
+    const nextSubtitles = Array.from(e.target.activeCues).map((cue) => cue.text)
+    setSubtitles(nextSubtitles)
+  }, [])
+  const trackRef = useRef(null)
   const playerInitRef = useRef(false)
   const onPlayerReady = useCallback(() => {
     if (playerInitRef.current) {
@@ -44,15 +52,26 @@ export default function VideoStory({ story }) {
     if (progress.played > 0) {
       playerRef.current.seekTo(progress.played, 'fraction')
     }
+    if (trackRef.current) {
+      trackRef.current.removeEventListener('cuechange', handleCueChange)
+    }
+    const video = playerRef.current.getInternalPlayer()
+    const track = video.textTracks[0]
+    if (track) {
+      track.addEventListener('cuechange', handleCueChange)
+      trackRef.current = track
+    }
     playerInitRef.current = true
-  }, [progress])
+  }, [handleCueChange, progress.played])
   const handleSeek = useCallback(
     (index, progress) => {
       setChapterIndex(index)
-      setProgress({
+      setProgress((prev) => ({
         played: progress,
-        playedSeconds: null, // Will auto set by my player
-      })
+        // NOTE: Keep prev value too avoid flikr
+        playedSeconds: prev.playedSeconds,
+        // playedSeconds: null, // Will auto set by my player
+      }))
       playerRef.current.seekTo(progress, 'fraction')
       if (index !== chapterIndex) {
         playerInitRef.current = false
@@ -87,6 +106,32 @@ export default function VideoStory({ story }) {
 
   const type = getStoryType(story)
 
+  const { i18n } = useTranslation()
+
+  // NOTE: Grab subtitles in current language
+  const subtitlesFile = useMemo(() => {
+    return (
+      find(selectedDoc?.data?.subtitles ?? [], {
+        language: i18n.language,
+        availability: true,
+        type: 'vtt',
+      })?.url ?? null
+    )
+  }, [i18n.language, selectedDoc?.data?.subtitles])
+
+  const tracks = useMemo(() => {
+    if (!subtitlesFile) {
+      return []
+    }
+    return [
+      {
+        kind: 'metadata',
+        src: subtitlesFile,
+        default: true,
+      },
+    ]
+  }, [subtitlesFile])
+
   return (
     <>
       <div className="w-100 h-100 d-flex flex-column">
@@ -118,6 +163,9 @@ export default function VideoStory({ story }) {
             playing={playing}
             onProgress={setProgress}
             playsinline
+            config={{
+              file: { tracks },
+            }}
           />
         </div>
         <ChaptersProgressBar

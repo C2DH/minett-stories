@@ -73,10 +73,12 @@ export default function AudioStory({ story }) {
   const handleSeek = useCallback(
     (index, progress) => {
       setChapterIndex(index)
-      setProgress({
+      setProgress(prev => ({
         played: progress,
-        playedSeconds: null, // Will auto set by my player
-      })
+        // NOTE: Keep prev value too avoid flikr
+        playedSeconds: prev.playedSeconds,
+        // playedSeconds: null, // Will auto set by my player
+      }))
       playerRef.current.seekTo(progress, 'fraction')
       if (index !== chapterIndex) {
         playerInitRef.current = false
