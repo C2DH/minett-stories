@@ -27,6 +27,7 @@ function LinkTop({ label, to }) {
 function noop() {}
 
 function InnerTopBar({
+  className = '',
   prefetchStory = noop,
   right,
   linkUrlLogo = '/stories/voronoi',
@@ -36,7 +37,7 @@ function InnerTopBar({
   const { i18n } = useTranslation()
   return (
     <>
-      <div className={styles.TopBar}>
+      <div className={`${styles.TopBar} ${className}`}>
         <div className="position-absolute left-topbar">
           {open ? (
             <X

@@ -5,6 +5,7 @@ import { getStoryType } from '../../utils'
 import AudioStory from './AudioStory'
 import GraphicNovelStory from './GraphicNovelStory'
 import InteractiveVideoStory from './InteractiveVideoStory'
+import ScrollTopBar from '../../components/ScrollTopBar'
 import MapStory from './MapStory'
 import VideoStory from './VideoStory'
 
@@ -50,6 +51,7 @@ export default function ExploreStory() {
         <title>{`Minett Stories | Explore ${story.data.title}`}</title>
         <meta property="og:image" content={coverImage} />
       </Helmet>
+      <ScrollTopBar />
       {element}
     </>
   )

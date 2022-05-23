@@ -1,0 +1,15 @@
+.TopbarFader {
+  opacity: 0;
+}
+
+.TopbarFader.TopbarFaderTransition {
+  transition: opacity 0.3s ease-out;
+}
+
+.TopbarFader.TopbarFaderIn {
+  opacity: 1;
+}
+
+.TopbarFader.TopbarFaderOut {
+  pointer-events: none;
+}
