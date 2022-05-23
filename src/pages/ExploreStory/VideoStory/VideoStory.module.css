@@ -17,6 +17,17 @@
   color: var(--black);
 }
 
+.subtitlesContainer {
+  position: absolute;
+  left: 116px;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  bottom: 41px;
+  overflow: auto;
+  font-family: var(--font-pp-neue-montreal);
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TitleStory {
     font-size: 32px;
@@ -33,5 +44,20 @@
     padding-left: 16px;
     padding-right: 16px;
     background-color: white;
+  }
+
+  .subtitlesContainer {
+    position: absolute;
+    bottom: 20px;
+    width: calc(100% - 48px) !important;
+    left: 24px;
+    right: 24px;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+    font-family: var(--font-pp-neue-montreal);
+    text-shadow: 2px 0 0 #000, -2px 0 0 #000, 0 2px 0 #000, 0 -2px 0 #000,
+      1px 1px #000, -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000;
   }
 }
