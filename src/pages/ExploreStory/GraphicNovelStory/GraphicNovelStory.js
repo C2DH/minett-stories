@@ -2,6 +2,7 @@ import classNames from 'classnames'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import ReactMarkdown from 'react-markdown'
 import AutoTipModal from '../../../components/AutoTipModal'
 import LangLink from '../../../components/LangLink'
 import LongScrollStory from '../../../components/LongScrollStory'
@@ -52,9 +53,14 @@ function GraphicNoveModuleTextObject({ millerModule }) {
       </div>
       <div
         style={{ minWidth: 400 }}
-        className="p-3 text-font-abc d-flex align-items-center justify-content-center"
+        className="p-3  d-flex align-items-center justify-content-center"
       >
-        {millerModule.text.content}
+        <ReactMarkdown
+          className={classNames('text-graphic-novel')}
+          skipHtml={true}
+        >
+          {millerModule.text.content}
+        </ReactMarkdown>
       </div>
     </div>
   )
@@ -64,7 +70,7 @@ function GraphicNoveModuleText({ millerModule }) {
   return (
     <div className="h-100 mx-4">
       <div
-        className="h-100 d-flex align-items-center justify-content-center text-font-abc"
+        className="h-100 d-flex align-items-center justify-content-center"
         style={{
           background: millerModule.background.color,
           width: 530,
@@ -72,7 +78,12 @@ function GraphicNoveModuleText({ millerModule }) {
           color: millerModule.text.color,
         }}
       >
-        {millerModule.text.content}
+        <ReactMarkdown
+          className={classNames('text-graphic-novel')}
+          skipHtml={true}
+        >
+          {millerModule.text.content}
+        </ReactMarkdown>
       </div>
     </div>
   )
@@ -103,7 +114,14 @@ function GraphicNoveModuleImage({ millerModule }) {
           className={`${styles.imgNovel}`}
           alt={millerModule.title}
         />
-        <div className="text-font-abc pt-3 text-center">{caption}</div>
+        <div className="pt-3 text-center">
+          <ReactMarkdown
+            className={classNames('text-graphic-novel')}
+            skipHtml={true}
+          >
+            {caption}
+          </ReactMarkdown>
+        </div>
       </div>
     )
   }
