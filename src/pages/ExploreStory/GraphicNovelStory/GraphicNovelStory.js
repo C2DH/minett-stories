@@ -308,7 +308,7 @@ export default function GraphicNovelStory({ story }) {
         >
           <ArrowLeft />
         </LangLink>
-        <div className={styles.GraphicNovelScrollContainer}>
+        <div className="h-100 w-100" style={{ overflow: 'hidden' }}>
           {(!animation || !animation.startsWith('end-')) && (
             <div
               key={selectedChapter.id}
@@ -334,7 +334,7 @@ export default function GraphicNovelStory({ story }) {
             <div
               key={enteringChapter.id}
               className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${enterClass}`}
-              style={{ overflowY: 'auto' }}
+              style={{ overflowX: 'auto', overflowY: 'hidden' }}
               onTransitionEnd={() => setAnimation(null)}
             >
               <GraphicNovelChapter

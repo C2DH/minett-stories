@@ -7,7 +7,6 @@ import {
   SkipBack,
   SkipForward,
 } from 'react-feather'
-import styles from './GraphicNovelStory.module.css'
 import { useTranslation } from 'react-i18next'
 
 export default function BlockControlsNovel({
@@ -26,9 +25,7 @@ export default function BlockControlsNovel({
   const { t } = useTranslation()
 
   return (
-    <div
-      className={`bg-white d-flex flex-column align-items-center ${styles.GraphicNovelBottomBar}`}
-    >
+    <div className="bg-white d-flex flex-column align-items-center">
       <div
         className="progress-bar-story d-flex ms-md-5 me-md-5"
         style={{ height: 8 }}
@@ -88,7 +85,7 @@ export default function BlockControlsNovel({
             opacity={chapterIndex !== novelChapters.length - 1 ? 1 : 0.4}
           />
         </div>
-        <div className="d-flex flex-column" style={{ flex: 1 }}>
+        <div className="d-flex flex-column"  style={{ flex: 1 }}>
           <div
             className="w-100 d-flex align-items-center text-cadet-blue position-relative"
             style={{ flex: 1 }}
