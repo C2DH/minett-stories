@@ -1,3 +1,7 @@
+:root {
+  --graphic-novel-bar-height: 72px;
+}
+
 .novel {
   transition: opacity 1.5s ease-in;
   padding-left: 100px;
@@ -40,6 +44,16 @@
   font-size: 24px;
   line-height: 32px;
   color: var(--black);
+}
+
+.GraphicNovelBottomBar {
+  height: var(--graphic-novel-bar-height);
+}
+
+.GraphicNovelScrollContainer {
+  height: calc(100% - var(--graphic-novel-bar-height));
+  overflow: hidden;
+  width: 100%;
 }
 
 @media only screen and (min-width: 150px) and (max-width: 700px) {

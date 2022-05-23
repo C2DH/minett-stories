@@ -308,47 +308,45 @@ export default function GraphicNovelStory({ story }) {
         >
           <ArrowLeft />
         </LangLink>
-        <div className="flex-1" style={{ overflow: 'hidden' }}>
-          <div className="h-100 w-100">
-            {(!animation || !animation.startsWith('end-')) && (
-              <div
-                key={selectedChapter.id}
-                ref={containerRef}
-                className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${selectedClass}`}
-                style={{ overflowY: 'auto' }}
-                onTransitionEnd={() => {
-                  setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
-                }}
-              >
-                <GraphicNovelChapter
-                  chapter={selectedChapter}
-                  chapterIndex={chapterIndex}
-                  chapters={novelChapters}
-                  setChapterIndex={setChapterIndex}
-                  setAnimation={setAnimation}
-                  animation={animation}
-                />
-              </div>
-            )}
+        <div className={styles.GraphicNovelScrollContainer}>
+          {(!animation || !animation.startsWith('end-')) && (
+            <div
+              key={selectedChapter.id}
+              ref={containerRef}
+              className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${selectedClass}`}
+              style={{ overflowY: 'auto' }}
+              onTransitionEnd={() => {
+                setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
+              }}
+            >
+              <GraphicNovelChapter
+                chapter={selectedChapter}
+                chapterIndex={chapterIndex}
+                chapters={novelChapters}
+                setChapterIndex={setChapterIndex}
+                setAnimation={setAnimation}
+                animation={animation}
+              />
+            </div>
+          )}
 
-            {enteringChapter && (
-              <div
-                key={enteringChapter.id}
-                className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${enterClass}`}
-                style={{ overflowY: 'auto' }}
-                onTransitionEnd={() => setAnimation(null)}
-              >
-                <GraphicNovelChapter
-                  chapter={enteringChapter}
-                  chapterIndex={chapterIndex}
-                  chapters={novelChapters}
-                  setChapterIndex={setChapterIndex}
-                  setAnimation={setAnimation}
-                  animation={animation}
-                />
-              </div>
-            )}
-          </div>
+          {enteringChapter && (
+            <div
+              key={enteringChapter.id}
+              className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${enterClass}`}
+              style={{ overflowY: 'auto' }}
+              onTransitionEnd={() => setAnimation(null)}
+            >
+              <GraphicNovelChapter
+                chapter={enteringChapter}
+                chapterIndex={chapterIndex}
+                chapters={novelChapters}
+                setChapterIndex={setChapterIndex}
+                setAnimation={setAnimation}
+                animation={animation}
+              />
+            </div>
+          )}
         </div>
         <BlockControlsNovel
           scrollNext={scrollNext}
