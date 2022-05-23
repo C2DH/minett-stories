@@ -314,7 +314,7 @@ export default function GraphicNovelStory({ story }) {
               key={selectedChapter.id}
               ref={containerRef}
               className={`h-100 w-100 d-flex align-items-center ${styles.novel} ${selectedClass}`}
-              style={{ overflowY: 'auto' }}
+              style={{ overflowX: 'auto', overflowY: 'hidden' }}
               onTransitionEnd={() => {
                 setAnimation((a) => (a ? 'end-' + a.split('-')[1] : null))
               }}
