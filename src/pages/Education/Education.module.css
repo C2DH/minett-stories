@@ -1,8 +1,48 @@
-.TextAbout {
-    font-family: var(--font-sentient-variable);
-    font-style: normal;
-    font-weight: 400;
-    font-size: 24px;
-    line-height: 36px;
-  }
-  
+.Education {
+  padding-left: 64px;
+  padding-right: 64px;
+  display: flex;
+}
+
+
+.TextEducation {
+  font-family: var(--font-sentient-variable);
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.Title {
+  font-style: normal;
+  font-weight: 500;
+  font-family: var(--font-sentient-variable);
+  font-size: 72px;
+  line-height: 86px;
+  padding-top: 40px;
+  padding-left: 64px;
+  padding-right: 64px;
+}
+
+.Education > div > div > p > a {
+  color: white;
+  text-decoration: none;
+}
+
+.TermsOfUse > div > div > p > a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.Education > div > div > h4 {
+  color: var(--brick);
+  margin-top: 24px;
+}
+
+.EducationInfo{
+  width: 70%;
+}
+
+.LogoCredits{
+  width: 30%;
+}
