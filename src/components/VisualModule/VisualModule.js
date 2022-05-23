@@ -27,9 +27,16 @@ export default function VisualModule({ millerModule }) {
     case 'gallery':
       return <ModuleGallery millerModule={millerModule} />
     case 'text_bibliography':
-      return <ModuleBiobliography className={
-        'offset-md-3 pb-5 col-md-6 mt-2 mb-2 offset-gigaxl-4 col-gigaxl-4'
-      } millerModule={millerModule} />
+      return (
+        <div className="row">
+          <ModuleBiobliography
+            className={
+              'offset-md-3 pb-5 col-md-6 mt-2 mb-2 offset-gigaxl-4 col-gigaxl-4'
+            }
+            millerModule={millerModule}
+          />
+        </div>
+      )
     default:
       console.warn('Missing Component for Miller Module', millerModule.module)
       return null

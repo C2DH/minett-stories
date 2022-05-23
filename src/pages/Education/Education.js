@@ -5,7 +5,7 @@ import Layout from '../../components/Layout'
 import styles from './Education.module.css'
 import socialMediaImage from '../../assets/socialMediaImage.png'
 
-export default function About() {
+export default function Education() {
   const [story] = useStory('education')
   return (
     <Layout>
@@ -13,11 +13,11 @@ export default function About() {
         <title>{`Minett Stories | Education`}</title>
         <meta property="og:image" content={socialMediaImage} />
       </Helmet>
-      <div className="container-fluid padding-top-bar">
-        <div className="row">
-          <div className="col-md-8">
-            <h1>{story.data.title}</h1>
-            <div className={styles.TextAbout}>
+      <div className={`padding-top-bar`}>
+        <h1 className={`${styles.Title}`}>{story.data.title}</h1>
+        <div className={`${styles.Education}`}>
+          <div className={`${styles.EducationInfo}`}>
+            <div className={styles.TextEducation}>
               <ReactMarkdown linkTarget="_blank">
                 {story.data.abstract}
               </ReactMarkdown>
