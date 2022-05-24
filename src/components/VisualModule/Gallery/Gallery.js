@@ -25,7 +25,7 @@ const GalleryItem = memo(({ document }) => {
           <Caption
             type={document.type}
             year={document.data.year || document.data.date}
-            caption={document.title || document.data.title}
+            caption={document.data.title || document.title}
           />
         </div>
       )}
