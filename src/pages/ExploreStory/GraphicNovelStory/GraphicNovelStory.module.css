@@ -1,3 +1,17 @@
+:root {
+  --graphic-novel-bar-height: 72px;
+}
+
+.GraphicNovelBottomBar {
+  height: var(--graphic-novel-bar-height);
+}
+
+.GraphicNovelScrollContainer {
+  height: calc(100% - var(--graphic-novel-bar-height));
+  overflow: hidden;
+  width: 100%;
+}
+
 .novel {
   transition: opacity 1.5s ease-in;
   padding-left: 100px;

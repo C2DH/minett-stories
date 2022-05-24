@@ -8,6 +8,7 @@ import {
   SkipForward,
 } from 'react-feather'
 import { useTranslation } from 'react-i18next'
+import styles from './GraphicNovelStory.module.css'
 
 export default function BlockControlsNovel({
   scrollNext,
@@ -25,7 +26,7 @@ export default function BlockControlsNovel({
   const { t } = useTranslation()
 
   return (
-    <div className="bg-white d-flex flex-column align-items-center">
+    <div className={`bg-white d-flex flex-column align-items-center ${styles.GraphicNovelBottomBar}`}>
       <div
         className="progress-bar-story d-flex ms-md-5 me-md-5"
         style={{ height: 8 }}

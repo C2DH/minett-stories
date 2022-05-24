@@ -308,7 +308,7 @@ export default function GraphicNovelStory({ story }) {
         >
           <ArrowLeft />
         </LangLink>
-        <div className="h-100 w-100" style={{ overflow: 'hidden' }}>
+        <div className={styles.GraphicNovelScrollContainer} style={{ overflow: 'hidden' }}>
           {(!animation || !animation.startsWith('end-')) && (
             <div
               key={selectedChapter.id}
