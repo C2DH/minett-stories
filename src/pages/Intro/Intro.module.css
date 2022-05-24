@@ -21,8 +21,9 @@
   font-family: var(--font-pp-neue-montreal);
   font-style: normal;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 32px;
   line-height: 24px;
+  letter-spacing: 1px;
   text-align: center;
   text-transform: uppercase;
   margin-bottom: 64px;
@@ -61,7 +62,7 @@
 .HomeMinettText {
   font-family: var(--font-abc-maxi-sharp);
   /* font-weight: 200; */
-  font-size: 10vw;
+  font-size: 15vw;
   line-height: 136px;
   cursor: default;
   text-align: center;
@@ -219,13 +220,12 @@
 
   .HomeMinettText {
     font-weight: 400;
-    font-size: 48px;
+    /* font-size: 48px; */
     line-height: 60px;
-    text-align: left;
+    /* text-align: left; */
     font-weight: 400;
-    font-size: 44px;
     line-height: 60px;
-    padding-left: 12px;
+    /* padding-left: 12px; */
   }
 
   @keyframes breathe200 {
@@ -259,11 +259,14 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 22px;
+    letter-spacing: 1px;
     text-transform: uppercase;
-    text-align: left;
-    padding-left: 16px;
-    margin-bottom: 64px;
+    text-align: center;
+    /* padding-left: 16px; */
+    margin-bottom: 150px;
     margin-top: 0px;
+    margin-left: 50px;
+    margin-right: 50px;
   }
 
   .LogoCredits {
