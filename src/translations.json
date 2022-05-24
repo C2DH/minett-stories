@@ -3,7 +3,7 @@
     "translation": {
       "view_options": "Afficher les options"
  ,
-"intro": "Introduction"
+"intro": "Intro"
  ,
 "stories": "Histoires"
  ,
@@ -103,7 +103,7 @@
  ,
 "ok_i_got": "Ok, j'ai compris"
  ,
-"Go_to_the_next_chapter": "Minett Story suivante"
+"Go_to_the_next_chapter": "Passer au chapitre suivant"
  ,
 "from": "De"
  ,
@@ -227,7 +227,7 @@
 ,
   "intro":"Intro"
 ,
-  "stories":"Geschichten"
+  "stories":"Stories"
 ,
   "archive":"Archiv"
 ,
@@ -325,7 +325,7 @@
 ,
   "ok_i_got":"Ok, verstanden"
 ,
-  "Go_to_the_next_chapter":"Nächste Minett Story"
+  "Go_to_the_next_chapter":"Nächste Kapitel"
 ,
   "from":"Von"
 ,
