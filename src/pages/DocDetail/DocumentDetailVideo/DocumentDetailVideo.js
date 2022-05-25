@@ -23,7 +23,7 @@ export default function DocumentDetailVideo({ isModal, doc, onClose }) {
             {doc.data.year}
           </div>
           <div className="order-0 mt-5 pt-2 order-md-3">
-            <video controls style={{ objectFit: 'cover', width: '100%' }}>
+            <video playsinline controls style={{ objectFit: 'cover', width: '100%' }}>
               <source src={videoUrl} />
             </video>
           </div>

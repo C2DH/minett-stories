@@ -29,6 +29,7 @@ function DocVideo({ doc, caption, className, size }) {
   return (
     <div className={`${className} ${classNameCols}`}>
       <video
+        playsinline
         src={videoUrl}
         controls
         style={{ width: '100%', height: 'auto', objectFit: 'fill' }}

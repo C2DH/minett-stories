@@ -43,7 +43,7 @@ function LightVideo({ src, playing, ...props }) {
     }
   }, [playing])
 
-  return <video {...props} ref={ref} src={src} />
+  return <video playsInline {...props} ref={ref} src={src} />
 }
 
 function BottomLeftDoc({ doc, playing }) {
