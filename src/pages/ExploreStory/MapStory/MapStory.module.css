@@ -130,7 +130,7 @@
   }
 
   .SideDoc {
-    width: 70%;
+    width: 100%;
     background: var(--black);
     overflow: auto;
     position: absolute;
