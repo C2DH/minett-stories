@@ -265,36 +265,9 @@ export default function InteractiveVideoStory({ story }) {
               </>
             }
             bottomLeftDoc={leftObj?.document ?? null}
-            // bottomLeftDoc={hackVideoDocRelated}
-            bottomLeft={
-              leftObj ? (
-                <div className="w-100 h-100 d-flex align-items-end">
-                  <DocLink
-                    prefetchOnOver
-                    onClick={() => setPlaying(false)}
-                    slugOrId={leftObj.document.slug}
-                    className="ms-4 mb-4 no-link"
-                  >
-                    {leftObj.document.data.title}
-                  </DocLink>
-                </div>
-              ) : null
-            }
+            onLeftDocClick={() => setPlaying(false)}
             bottomRightDoc={rightObj?.document ?? null}
-            bottomRight={
-              rightObj ? (
-                <div className="w-100 h-100 d-flex align-items-end">
-                  <DocLink
-                    prefetchOnOver
-                    slugOrId={rightObj.document.slug}
-                    onClick={() => setPlaying(false)}
-                    className="ms-4 mb-4 no-link"
-                  >
-                    {rightObj.document.data.title}
-                  </DocLink>
-                </div>
-              ) : null
-            }
+            onRighDocClick={() => setPlaying(false)}
           />
         )}
         <ChaptersProgressBar

@@ -1,6 +1,7 @@
 import classNames from 'classnames'
 import { useEffect, useRef, useState } from 'react'
 import { DraggableCore } from 'react-draggable'
+import DocLink from '../DocLink'
 import styles from './InteractiveGrid.module.css'
 
 const DEFAULT_INITIAL_POSITION = {
@@ -246,9 +247,9 @@ function BottomRightDoc({ doc, playing }) {
 export default function InteractiveGrid({
   video,
   bottomLeftDoc,
-  bottomLeft,
   bottomRightDoc,
-  bottomRight,
+  onLeftDocClick,
+  onRighDocClick,
   videoContainerStyle,
   topLeft,
   intialPosition = DEFAULT_INITIAL_POSITION,
@@ -311,18 +312,27 @@ export default function InteractiveGrid({
         }}
       >
         <BottomLeftDoc playing={playing} doc={bottomLeftDoc} />
-        {bottomLeft && (
-          <div
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-              left: 0,
-            }}
+        {bottomLeftDoc && (
+          <DocLink
+            prefetchOnClick
+            onClick={onLeftDocClick}
+            slugOrId={bottomLeftDoc.slug}
+            className="no-link"
           >
-            {bottomLeft}
-          </div>
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                bottom: 0,
+                left: 0,
+              }}
+            >
+              <div className="w-100 h-100 d-flex align-items-end">
+                <div className="ms-4 mb-4">{bottomLeftDoc.data.title}</div>
+              </div>
+            </div>
+          </DocLink>
         )}
       </div>
 
@@ -354,18 +364,29 @@ export default function InteractiveGrid({
         }}
       >
         <BottomRightDoc playing={playing} doc={bottomRightDoc} />
-        {bottomRight && (
-          <div
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-              left: 0,
-            }}
+        {bottomRightDoc && (
+          <DocLink
+            prefetchOnClick
+            onClick={onRighDocClick}
+            slugOrId={bottomRightDoc.slug}
+            className="no-link"
           >
-            {bottomRight}
-          </div>
+            <div
+              style={{
+                position: 'absolute',
+                right: 0,
+                top: 0,
+                bottom: 0,
+                left: 0,
+              }}
+            >
+              <div className="w-100 h-100 d-flex align-items-end">
+                <div className="ms-4 mb-4 no-link">
+                  {bottomRightDoc.data.title}
+                </div>
+              </div>
+            </div>
+          </DocLink>
         )}
       </div>
 
