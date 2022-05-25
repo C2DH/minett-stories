@@ -18,6 +18,7 @@ import About from './pages/About'
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse'
 import Education from './pages/Education'
 import Anaylitcs from './components/Analytics'
+import CookieConsent from './components/CookieConsent'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -143,6 +144,7 @@ function App({ client, apiUrl, requestsCache }) {
       </ErrorBoundary>
       {/* NOTE: Here to avoid re-sending page view on 404 and so on ... */}
       <Anaylitcs />
+      <CookieConsent />
     </>
   )
 }

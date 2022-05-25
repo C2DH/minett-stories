@@ -3,15 +3,15 @@ import { useTranslation } from 'react-i18next'
 import { Modal, ModalBody } from 'reactstrap'
 
 export default function CookieConsent() {
-  const [isOpen, setIsOpen] = useState(true)
-//   const storeKey = 'modalTip:' + type
+  const [isOpen, setIsOpen] = useState(false)
+  const storeKey = 'cookieconsent'
 
-//   useEffect(() => {
-//     const showed = sessionStorage.getItem(storeKey)
-//     if (!showed) {
-//       setIsOpen(true)
-//     }
-//   }, [storeKey])
+  useEffect(() => {
+    const showed = sessionStorage.getItem(storeKey)
+    if (!showed) {
+      setIsOpen(true)
+    }
+  }, [storeKey])
 
   const { t } = useTranslation()
 
@@ -24,14 +24,14 @@ export default function CookieConsent() {
         <div className="text-center">
             {t('read_more')}
         </div>
-        
+
         <div className="text-center mt-2">
           <button
             className="btn-auto-tip btn text-white rounded-pill bg-dark-gray"
-            // onClick={() => {
-            //   setIsOpen(false)
-            //   sessionStorage.setItem(storeKey, 'yes')
-            // }}
+            onClick={() => {
+              setIsOpen(false)
+              sessionStorage.setItem(storeKey, 'yes')
+            }}
           >
             {t('ok_i_got')}
           </button>
