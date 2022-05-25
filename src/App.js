@@ -17,6 +17,7 @@ import StoriesIntro from './pages/StoriesIntro'
 import About from './pages/About'
 import TermsOfUse from './pages/TermsOfUse/TermsOfUse'
 import Education from './pages/Education'
+import Anaylitcs from './components/Analytics'
 
 // NOTE: This sync lang when changed from push state navigation
 // (user press back, forward history)
@@ -126,19 +127,23 @@ function LangRoutes() {
 function App({ client, apiUrl, requestsCache }) {
   const { i18n } = useTranslation()
   return (
-    <ErrorBoundary>
-      <Miller
-        requestsCache={requestsCache}
-        client={client}
-        apiUrl={apiUrl}
-        langs={LANGS}
-        lang={i18n.language}
-      >
-        <Routes>
-          <Route path="/*" element={<LangRoutes />} />
-        </Routes>
-      </Miller>
-    </ErrorBoundary>
+    <>
+      <ErrorBoundary>
+        <Miller
+          requestsCache={requestsCache}
+          client={client}
+          apiUrl={apiUrl}
+          langs={LANGS}
+          lang={i18n.language}
+        >
+          <Routes>
+            <Route path="/*" element={<LangRoutes />} />
+          </Routes>
+        </Miller>
+      </ErrorBoundary>
+      {/* NOTE: Here to avoid re-sending page view on 404 and so on ... */}
+      <Anaylitcs />
+    </>
   )
 }
 
