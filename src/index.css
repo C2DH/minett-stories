@@ -400,6 +400,12 @@ em {
   line-height: 32px;
 }
 
+.cookie-consent-modal {
+  position: absolute;
+  bottom: 0px;
+  right: 16px;
+}
+
 @media only screen and (min-width: 150px) and (max-width: 700px) {
   .TopBarMinettText {
     font-size: 24px;

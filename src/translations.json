@@ -1,335 +1,182 @@
 {
   "fr_FR": {
     "translation": {
-      "view_options": "Afficher les options"
- ,
-"intro": "Intro"
- ,
-"stories": "Histoires"
- ,
-"archive": "Archive"
- ,
-"about": "Sur nous"
- ,
-"terms_of_use": "Conditions d'utilisation"
- ,
-"contact_us": "Contact"
- ,
-"close_options": "Fermer les options"
- ,
-"documentType_audio": "Audios"
- ,
-"documentType_pdf": "Documents"
- ,
-"documentType_video": "Vidéos"
- ,
-"documentType_image": "Photographies"
- ,
-"orderBy_most_recent": "Du plus récent"
- ,
-"orderBy_least_recent": "Du moins récent"
- ,
-"orderBy_by_type": "Par type"
- ,
-"include_no_dates": "Inclure des éléments sans dates"
- ,
-"grid_size": "Taille de la grille"
- ,
-"sort_items": "Trier les éléments"
- ,
-"search": "Recherche"
- ,
-"filter_by_type": "Filtre par type"
- ,
-"filter_by_year": "Filtre par année"
- ,
-"story-video": "vidéo"
- ,
-"story-interactive-video": "vidéo interactive"
- ,
-"story-interactive-audio": "audio interactif"
- ,
-"story-audio": "audio"
- ,
-"story-map": "carte interactive"
- ,
-"story-graphic-novel": "roman graphique"
- ,
-"story-article": "article"
- ,
-"explore": "explorer"
- ,
-"watch": "regardez"
- ,
-"listen": "écoutez"
- ,
-"start": "lancer"
- ,
-"creator": "créateur"
- ,
-"provenance": "provenance"
- ,
-"copyright": "droits d'auteur"
- ,
-"listen-to-podcast": "Écoutez le podcast sur votre lecteur de podcast préféré :"
- ,
-"download-file": "Télécharger le fichier"
- ,
-"remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
- ,
-"take_me_there": "Emmenez-moi là-bas"
- ,
-"interactiveVideoTip": "Déplacez le cercle blanc pour interagir avec le documentaire interactif"
- ,
-"graphicNovelTip": "Faites défiler horizontalement pour lire le roman graphique ou utiliser les flèches"
- ,
-"skipIntro": "Ignorer l’intro"
- ,
-"scrollDown": "Défiler vers le bas"
- ,
-"go_deeper": "En savoir plus"
- ,
-"open": "Ouvrir"
- ,
-"research_by": null
- ,
-"education": "Éducation"
- ,
-"mix_view": "Afficher mosaïque"
- ,
-"list_view": "Afficher liste"
- ,
-"interact_label": "Interagissez avec les images pour découvrir les Minett Stories"
- ,
-"ok_i_got": "Ok, j'ai compris"
- ,
-"Go_to_the_next_chapter": "Passer au chapitre suivant"
- ,
-"from": "De"
- ,
-"to": "À"
+      "view_options": "Afficher les options",
+      "intro": "Intro",
+      "stories": "Histoires",
+      "archive": "Archive",
+      "about": "Sur nous",
+      "terms_of_use": "Conditions d'utilisation",
+      "contact_us": "Contact",
+      "close_options": "Fermer les options",
+      "documentType_audio": "Audios",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Vidéos",
+      "documentType_image": "Photographies",
+      "orderBy_most_recent": "Du plus récent",
+      "orderBy_least_recent": "Du moins récent",
+      "orderBy_by_type": "Par type",
+      "include_no_dates": "Inclure des éléments sans dates",
+      "grid_size": "Taille de la grille",
+      "sort_items": "Trier les éléments",
+      "search": "Recherche",
+      "filter_by_type": "Filtre par type",
+      "filter_by_year": "Filtre par année",
+      "story-video": "vidéo",
+      "story-interactive-video": "vidéo interactive",
+      "story-interactive-audio": "audio interactif",
+      "story-audio": "audio",
+      "story-map": "carte interactive",
+      "story-graphic-novel": "roman graphique",
+      "story-article": "article",
+      "explore": "explorer",
+      "watch": "regardez",
+      "listen": "écoutez",
+      "start": "lancer",
+      "creator": "créateur",
+      "provenance": "provenance",
+      "copyright": "droits d'auteur",
+      "listen-to-podcast": "Écoutez le podcast sur votre lecteur de podcast préféré :",
+      "download-file": "Télécharger le fichier",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Emmenez-moi là-bas",
+      "interactiveVideoTip": "Déplacez le cercle blanc pour interagir avec le documentaire interactif",
+      "graphicNovelTip": "Faites défiler horizontalement pour lire le roman graphique ou utiliser les flèches",
+      "skipIntro": "Ignorer l’intro",
+      "scrollDown": "Défiler vers le bas",
+      "go_deeper": "En savoir plus",
+      "open": "Ouvrir",
+      "research_by": null,
+      "education": "Éducation",
+      "mix_view": "Afficher mosaïque",
+      "list_view": "Afficher liste",
+      "interact_label": "Interagissez avec les images pour découvrir les Minett Stories",
+      "ok_i_got": "Ok, j'ai compris",
+      "Go_to_the_next_chapter": "Passer au chapitre suivant",
+      "from": "De",
+      "to": "À",
+      "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
+      "read_more": "Read more"
     }
   },
   "en_GB": {
     "translation": {
-      "view_options": "View options"
-   ,
-  "intro": "Intro"
-   ,
-  "stories": "Stories"
-   ,
-  "archive": "Archive"
-   ,
-  "about": "About us"
-   ,
-  "terms_of_use": "Terms of use"
-   ,
-  "contact_us": "Contact"
-   ,
-  "close_options": "Close options"
-   ,
-  "documentType_audio": "Audios"
-   ,
-  "documentType_pdf": "Documents"
-   ,
-  "documentType_video": "Videos"
-   ,
-  "documentType_image": "Photographs"
-   ,
-  "orderBy_most_recent": "From most recent"
-   ,
-  "orderBy_least_recent": "From least recent"
-   ,
-  "orderBy_by_type": "By type"
-   ,
-  "include_no_dates": "Include items without dates"
-   ,
-  "grid_size": "Grid size"
-   ,
-  "sort_items": "Sort items"
-   ,
-  "search": "Search"
-   ,
-  "filter_by_type": "Filter by type"
-   ,
-  "filter_by_year": "Filter by year"
-   ,
-  "story-video": "video"
-   ,
-  "story-interactive-video": "interactive video"
-   ,
-  "story-interactive-audio": "interactive audio"
-   ,
-  "story-audio": "audio"
-   ,
-  "story-map": "interactive map"
-   ,
-  "story-graphic-novel": "graphic novel"
-   ,
-  "story-article": "article"
-   ,
-  "explore": "explore"
-   ,
-  "watch": "watch"
-   ,
-  "listen": "listen"
-   ,
-  "start": "start"
-   ,
-  "creator": "creator"
-   ,
-  "provenance": "provenance"
-   ,
-  "copyright": "copyright"
-   ,
-  "listen-to-podcast": "Listen to the podcast on your favourite podcast player:"
-   ,
-  "download-file": "Download file"
-   ,
-  "remixing_industrial": "Remixing Industrial Pasts in the Digital Age"
-   ,
-  "take_me_there": "Take me there"
-   ,
-  "interactiveVideoTip": "Move the white circle to interact with the interactive documentary"
-   ,
-  "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows"
-   ,
-  "skipIntro": "Skip intro"
-   ,
-  "scrollDown": "Scroll down"
-   ,
-  "go_deeper": "Learn more"
-   ,
-  "open": "Open"
-   ,
-  "research_by": null
-   ,
-  "education": "Education"
-   ,
-  "mix_view": "Mosaic view"
-   ,
-  "list_view": "List view"
-   ,
-  "interact_label": "Interact with the images to discover the Minett Stories"
-   ,
-  "ok_i_got": "Ok, I understand"
-   ,
-  "Go_to_the_next_chapter": "Next Chapter"
-   ,
-  "from": "From"
-   ,
-  "to": "To"
+      "view_options": "View options",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archive",
+      "about": "About us",
+      "terms_of_use": "Terms of use",
+      "contact_us": "Contact",
+      "close_options": "Close options",
+      "documentType_audio": "Audios",
+      "documentType_pdf": "Documents",
+      "documentType_video": "Videos",
+      "documentType_image": "Photographs",
+      "orderBy_most_recent": "From most recent",
+      "orderBy_least_recent": "From least recent",
+      "orderBy_by_type": "By type",
+      "include_no_dates": "Include items without dates",
+      "grid_size": "Grid size",
+      "sort_items": "Sort items",
+      "search": "Search",
+      "filter_by_type": "Filter by type",
+      "filter_by_year": "Filter by year",
+      "story-video": "video",
+      "story-interactive-video": "interactive video",
+      "story-interactive-audio": "interactive audio",
+      "story-audio": "audio",
+      "story-map": "interactive map",
+      "story-graphic-novel": "graphic novel",
+      "story-article": "article",
+      "explore": "explore",
+      "watch": "watch",
+      "listen": "listen",
+      "start": "start",
+      "creator": "creator",
+      "provenance": "provenance",
+      "copyright": "copyright",
+      "listen-to-podcast": "Listen to the podcast on your favourite podcast player:",
+      "download-file": "Download file",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Take me there",
+      "interactiveVideoTip": "Move the white circle to interact with the interactive documentary",
+      "graphicNovelTip": "Scroll horizontally to read the graphic novel or use the arrows",
+      "skipIntro": "Skip intro",
+      "scrollDown": "Scroll down",
+      "go_deeper": "Learn more",
+      "open": "Open",
+      "research_by": null,
+      "education": "Education",
+      "mix_view": "Mosaic view",
+      "list_view": "List view",
+      "interact_label": "Interact with the images to discover the Minett Stories",
+      "ok_i_got": "Ok, I understand",
+      "Go_to_the_next_chapter": "Next Chapter",
+      "from": "From",
+      "to": "To",
+      "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
+      "read_more": "Read more"
     }
   },
   "de_DE": {
     "translation": {
-      "view_options":"Anzeigeoptionen"
-,
-  "intro":"Intro"
-,
-  "stories":"Stories"
-,
-  "archive":"Archiv"
-,
-  "about":"Über uns"
-,
-  "terms_of_use":"Nutzungsbedingungen"
-,
-  "contact_us":"Kontakt"
-,
-  "close_options":"Optionen schließen"
-,
-  "documentType_audio":"Audios"
-,
-  "documentType_pdf":"Dokumente"
-,
-  "documentType_video":"Videos"
-,
-  "documentType_image":"Fotos"
-,
-  "orderBy_most_recent":"Neueste zuerst"
-,
-  "orderBy_least_recent":"Älteste zuerst"
-,
-  "orderBy_by_type":"Nach Typ"
-,
-  "include_no_dates":"Elemente ohne Datum einschließen"
-,
-  "grid_size":"Rastergröße"
-,
-  "sort_items":"Elemente sortieren"
-,
-  "search":"Suche"
-,
-  "filter_by_type":"Filter nach Typ"
-,
-  "filter_by_year":"Filter nach Jahr"
-,
-  "story-video":"Video"
-,
-  "story-interactive-video":"Interaktives Video"
-,
-  "story-interactive-audio":"Interaktives Audio"
-,
-  "story-audio":"Audio"
-,
-  "story-map":"Interaktive Karte"
-,
-  "story-graphic-novel":"Graphic Novel"
-,
-  "story-article":"Artikel"
-,
-  "explore":"entdecken"
-,
-  "watch":"ansehen"
-,
-  "listen":"anhören"
-,
-  "start":"starten"
-,
-  "creator":"Urheber"
-,
-  "provenance":"Herkunft"
-,
-  "copyright":"Urheberrechte"
-,
-  "listen-to-podcast":"Hören Sie den Podcast in Ihrem Lieblings-Podcast-Player:"
-,
-  "download-file":"Datei herunterladen"
-,
-  "remixing_industrial":"Remixing Industrial Pasts in the Digital Age"
-,
-  "take_me_there":"Bring mich dahin"
-,
-  "interactiveVideoTip":"Bewegen Sie den weißen Kreis, um mit dem interaktiven Dokumentarfilm zu interagieren"
-,
-  "graphicNovelTip":"Scrollen Sie horizontal oder nutzen Sie die Pfeiltasten, um die Graphic Novel zu lesen"
-,
-  "skipIntro":"Intro überspringen"
-,
-  "scrollDown":"Runterscrollen"
-,
-  "go_deeper":"Mehr erfahren"
-,
-  "open":"Öffnen"
-,
-  "research_by":null
-,
-  "education":"Didaktik"
-,
-  "mix_view":"Mosaik"
-,
-  "list_view":"Listenansicht"
-,
-  "interact_label":"Interagieren Sie mit den Bildern, um das Minett Stories zu entdecken"
-,
-  "ok_i_got":"Ok, verstanden"
-,
-  "Go_to_the_next_chapter":"Nächste Kapitel"
-,
-  "from":"Von"
-,
-  "to":"Bis"
+      "view_options": "Anzeigeoptionen",
+      "intro": "Intro",
+      "stories": "Stories",
+      "archive": "Archiv",
+      "about": "Über uns",
+      "terms_of_use": "Nutzungsbedingungen",
+      "contact_us": "Kontakt",
+      "close_options": "Optionen schließen",
+      "documentType_audio": "Audios",
+      "documentType_pdf": "Dokumente",
+      "documentType_video": "Videos",
+      "documentType_image": "Fotos",
+      "orderBy_most_recent": "Neueste zuerst",
+      "orderBy_least_recent": "Älteste zuerst",
+      "orderBy_by_type": "Nach Typ",
+      "include_no_dates": "Elemente ohne Datum einschließen",
+      "grid_size": "Rastergröße",
+      "sort_items": "Elemente sortieren",
+      "search": "Suche",
+      "filter_by_type": "Filter nach Typ",
+      "filter_by_year": "Filter nach Jahr",
+      "story-video": "Video",
+      "story-interactive-video": "Interaktives Video",
+      "story-interactive-audio": "Interaktives Audio",
+      "story-audio": "Audio",
+      "story-map": "Interaktive Karte",
+      "story-graphic-novel": "Graphic Novel",
+      "story-article": "Artikel",
+      "explore": "entdecken",
+      "watch": "ansehen",
+      "listen": "anhören",
+      "start": "starten",
+      "creator": "Urheber",
+      "provenance": "Herkunft",
+      "copyright": "Urheberrechte",
+      "listen-to-podcast": "Hören Sie den Podcast in Ihrem Lieblings-Podcast-Player:",
+      "download-file": "Datei herunterladen",
+      "remixing_industrial": "Remixing Industrial Pasts in the Digital Age",
+      "take_me_there": "Bring mich dahin",
+      "interactiveVideoTip": "Bewegen Sie den weißen Kreis, um mit dem interaktiven Dokumentarfilm zu interagieren",
+      "graphicNovelTip": "Scrollen Sie horizontal oder nutzen Sie die Pfeiltasten, um die Graphic Novel zu lesen",
+      "skipIntro": "Intro überspringen",
+      "scrollDown": "Runterscrollen",
+      "go_deeper": "Mehr erfahren",
+      "open": "Öffnen",
+      "research_by": null,
+      "education": "Didaktik",
+      "mix_view": "Mosaik",
+      "list_view": "Listenansicht",
+      "interact_label": "Interagieren Sie mit den Bildern, um das Minett Stories zu entdecken",
+      "ok_i_got": "Ok, verstanden",
+      "Go_to_the_next_chapter": "Nächste Kapitel",
+      "from": "Von",
+      "to": "Bis",
+      "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
+      "read_more": "Read more"
     }
   }
 }
