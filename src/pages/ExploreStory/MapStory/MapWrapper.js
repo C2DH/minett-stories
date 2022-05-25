@@ -62,6 +62,7 @@ export default function MapWrapper({ mapObjects, selectedDoc, setSelectedDoc }) 
       </Cluster>
       {hoverDoc && (
         <Popup
+          className='d-none d-md-flex'
           // maxWidth="310"
           longitude={+hoverDoc.data.coordinates.geometry.coordinates[1]}
           latitude={+hoverDoc.data.coordinates.geometry.coordinates[0]}
