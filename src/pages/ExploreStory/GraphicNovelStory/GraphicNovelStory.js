@@ -39,7 +39,7 @@ function GraphicNoveModuleTextObject({ millerModule }) {
         borderRadius: 100,
         color: millerModule.text.color,
       }}
-      className={classNames('h-100 d-flex mx-4', {
+      className={classNames('h-100 d-flex mx-4 align-items-center', {
         'flex-row-reverse': millerModule.layout === 'text-object',
       })}
     >
@@ -53,7 +53,7 @@ function GraphicNoveModuleTextObject({ millerModule }) {
       </div>
       <div
         style={{ minWidth: 400 }}
-        className="p-3  d-flex align-items-center justify-content-center"
+        className="p-3 d-flex align-items-center justify-content-center"
       >
         <ReactMarkdown
           className={classNames('text-graphic-novel')}
@@ -102,7 +102,7 @@ function GraphicNoveModuleImage({ millerModule }) {
   if (caption !== '') {
     return (
       <div
-        className="mx-4 h-100 d-flex flex-column p-3"
+        className="mx-4 h-100 d-flex align-items-center flex-column p-3"
         style={{
           background: millerModule.background.color,
           borderRadius: 100,
@@ -308,7 +308,7 @@ export default function GraphicNovelStory({ story }) {
         >
           <ArrowLeft />
         </LangLink>
-        <div className={styles.GraphicNovelScrollContainer} style={{ overflow: 'hidden' }}>
+        <div className={styles.GraphicNovelScrollContainer}>
           {(!animation || !animation.startsWith('end-')) && (
             <div
               key={selectedChapter.id}
