@@ -34,7 +34,9 @@ export default function Intro() {
       </Helmet>
       <RoundedLanguageControls className={styles.BlockLanguages} />
       <div className={styles.BlockTextHome}>
-        <h1 className={`${styles.HomeMinettText}`}>
+       <div>
+         <div className='d-flex justify-content-center'>
+         <h1 className={`${styles.HomeMinettText}`}>
           <span className={`${styles.Char400} TextABCMaxiSharpVariable`}>
             M
           </span>
@@ -75,10 +77,15 @@ export default function Intro() {
             s
           </span>
         </h1>
+         </div>
+        
         <h3 className={styles.subtitle}>{t('remixing_industrial')}</h3>
+        
+        
         <LangLink className={`${styles.LinkExplore} no-link`} to="/stories">
           <div className={styles.Gooey}>{t('start')}</div>
         </LangLink>
+        </div>
       </div>
       <div className={styles.LogoCredits}>
         <a href="https://www.uni.lu/" rel={'noreferrer'} target={'_blank'}>
