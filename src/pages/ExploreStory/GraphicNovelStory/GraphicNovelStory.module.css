@@ -37,6 +37,10 @@
   background-repeat: no-repeat;
 }
 
+.imgCaptionCont{
+  min-width: 35%;
+}
+
 .TitleStory {
   font-family: var(--font-pp-neue-montreal);
   font-size: 40px;
@@ -66,6 +70,10 @@
   .TitleStory {
     font-size: 32px;
     line-height: 38px;
+  }
+
+  .imgCaptionCont{
+    min-width: 100%;
   }
 
   .AbstractText {

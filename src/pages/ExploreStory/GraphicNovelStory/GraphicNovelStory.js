@@ -102,19 +102,26 @@ function GraphicNoveModuleImage({ millerModule }) {
   if (caption !== '') {
     return (
       <div
-        className="mx-4 h-100 d-flex align-items-center flex-column p-3"
+        className={`mx-4 h-100 d-flex align-items-center flex-column p-3 ${styles.imgCaptionCont}`}
         style={{
           background: millerModule.background.color,
-          borderRadius: 100,
+          borderRadius: 50,
         }}
+
       >
-        <img
+        {/* <img
           src={millerModule.document.attachment}
           style={{ height: '85%' }}
           className={`${styles.imgNovel}`}
           alt={millerModule.title}
+        /> */}
+                <img
+          src={millerModule.document.attachment}
+          className={`${styles.imgNovel} flex-grow-1 flex-shrink-1 h-100 w-100`}
+          style={{objectFit:'cover'}}
+          alt={millerModule.title}
         />
-        <div className="pt-3 text-center">
+        <div className="pt-3 text-center flex-grow-0 flex-shrink-0">
           <ReactMarkdown
             className={classNames('text-graphic-novel')}
             skipHtml={true}
