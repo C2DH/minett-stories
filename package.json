@@ -26,7 +26,7 @@
     "react-dom": "^18.1.0",
     "react-draggable": "^4.4.4",
     "react-feather": "^2.0.9",
-    "react-ga": "^3.3.0",
+    "react-ga4": "^1.4.1",
     "react-hammerjs": "^1.0.1",
     "react-helmet": "^6.1.0",
     "react-i18next": "^11.15.5",
@@ -53,6 +53,7 @@
   },
   "snext": {
     "clientEntry": "./src/index.js",
+    "port": 4000,
     "skeletonComponent": "./src/Skeleton.js",
     "serverComponent": "./src/StaticApp.js",
     "proxy": "https://minett-stories.lu",
