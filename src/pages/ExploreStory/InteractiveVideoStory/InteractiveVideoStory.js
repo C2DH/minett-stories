@@ -39,7 +39,13 @@ export default function InteractiveVideoStory({ story }) {
 
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].object.document
-  const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  // // fund videoUrl based on language
+  let videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url;
+
+  if (typeof selectedDoc?.data?.translated_urls === 'string') {
+    videoUrl = selectedDoc?.data?.translated_urls;
+    console.debug('[InteractiveVideoStory] set language specific streaming url:', videoUrl)
+  }
 
   // NOTE: Grab subtitles in current language
   const subtitlesFile = useMemo(() => {
