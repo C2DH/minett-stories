@@ -1,5 +1,6 @@
 import classNames from 'classnames'
 import { memo } from 'react'
+import { Headphones, Video } from 'react-feather'
 import styles from './DocItem.module.css'
 
 function DocItem({ doc, grid }) {
@@ -14,7 +15,12 @@ function DocItem({ doc, grid }) {
     >
       <div className={styles.itemImageContainer}>
         <div className={styles.innerImageContainer}>
-          <img className={styles.image} src={imageUrl} alt={doc.data.title} />
+          {doc.type === 'audio'
+            ? <Headphones color="white"/>
+            : doc.type === 'video' && !imageUrl
+              ? <Video color="white"/>
+              : <img className={styles.image} src={imageUrl} alt={doc.data.title} />
+          }
         </div>
       </div>
       {grid !== 'S' && (
