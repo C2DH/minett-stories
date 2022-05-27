@@ -52,7 +52,7 @@
 
   .subtitlesContainer {
     position: absolute;
-    bottom: 20px;
+    bottom: 100px;
     width: calc(100% - 48px) !important;
     left: 24px;
     right: 24px;
