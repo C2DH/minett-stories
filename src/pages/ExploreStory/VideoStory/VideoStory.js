@@ -22,7 +22,12 @@ export default function VideoStory({ story }) {
 
   const selectedChapter = videoChapters[chapterIndex]
   const selectedDoc = selectedChapter.contents.modules[0].document
-  const videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+
+  let videoUrl = selectedDoc?.data?.streamingUrl ?? selectedDoc.url
+  if (typeof selectedDoc?.data?.translated_urls === 'string') {
+    videoUrl = selectedDoc?.data?.translated_urls;
+    console.debug('[VideoStory] set language specific streaming url:', videoUrl)
+  }
 
   // Playere related hooks
   const playerRef = useRef()
