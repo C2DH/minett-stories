@@ -56,7 +56,8 @@
       "from": "De",
       "to": "À",
       "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
-      "read_more": "Read more"
+      "read_more": "Read more",
+      "site_description": "Découvrez l'histoire et l'identité du Minett, la région industrielle du sud du Luxembourg, dans notre exposition virtuelle."
     }
   },
   "en_GB": {
@@ -116,7 +117,8 @@
       "from": "From",
       "to": "To",
       "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
-      "read_more": "Read more"
+      "read_more": "Read more",
+      "site_description": "Discover the history and identity of the Minett, the industrial region in southern Luxembourg, in our virtual exhibition Minett Stories."
     }
   },
   "de_DE": {
@@ -176,7 +178,8 @@
       "from": "Von",
       "to": "Bis",
       "text_cookie_consent": "We use cookies to improve your experience. By continuing to use this site you are giving consent to cookies being used. For more information, please visit our terms and conditions page.",
-      "read_more": "Read more"
+      "read_more": "Read more",
+      "site_description": "Entdecken Sie die Geschichte und Identität des Minetts, der Industrieregion im Süden Luxemburgs, in unserer virtuellen Ausstelling Minett Stories."
     }
   }
 }
