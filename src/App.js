@@ -1,4 +1,5 @@
 import { Routes, Route, useParams, Outlet, useLocation } from 'react-router-dom'
+import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Suspense, useEffect, useRef } from 'react'
 import { Miller } from '@c2dh/react-miller'
@@ -126,7 +127,7 @@ function LangRoutes() {
 }
 
 function App({ client, apiUrl, requestsCache }) {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   return (
     <>
       <ErrorBoundary>
@@ -145,6 +146,10 @@ function App({ client, apiUrl, requestsCache }) {
       {/* NOTE: Here to avoid re-sending page view on 404 and so on ... */}
       <Anaylitcs />
       <CookieConsent />
+      <Helmet defer={false}>
+        <title>{`Minett Stories | app`}</title>
+        <description>{t('site_description')}</description>
+      </Helmet>
     </>
   )
 }
