@@ -10,7 +10,7 @@ import {
   useStories,
   useStoryWithChapters,
 } from '@c2dh/react-miller'
-import { getStoryType } from '../../utils'
+import { getStoryType, truncateString } from '../../utils'
 import StoryPill from '../../components/StoryPill'
 import styles from './Story.module.css'
 import LangLink from '../../components/LangLink'
@@ -89,11 +89,18 @@ export default function Story() {
 
   const prefetchStoryWithChapters = usePrefetchStoryWithChapters()
 
+  const excerpt = truncateString(story.data.abstract)
+
   return (
     <Layout>
       <Helmet defer={false}>
         <title>{`Minett Stories | ${story.data.title}`}</title>
         <meta property="og:image" content={coverImage} />
+        <meta name="description" content={excerpt} />
+        <meta property="og:description" content={excerpt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:label1" value={t('authors')} />
+        <meta name="twitter:data1" value={story.authors.map((a) => a.fullname).join(', ')} />
       </Helmet>
       <div className="padding-top-bar" />
       <div className={`${styles.Cover}`}>

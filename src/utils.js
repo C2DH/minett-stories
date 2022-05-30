@@ -18,3 +18,22 @@ export function getStoryType(story) {
   // NOTE: Naive implementation lol
   return find(story.tags, (t) => t.category === 'keyword')?.name ?? null
 }
+
+export function truncateString(str, num=100, ellipsis='[...]') {
+  const s = String(str).trim()
+
+  if (s.length <= num) {
+    return s
+  }
+
+  const punkt = '.!?;,/- &()'
+  let truncated = s.substring(0, num)
+  let lastChar = truncated.slice(-1)
+
+  while (punkt.indexOf(lastChar) === -1) {
+    truncated = truncated.substring(0, truncated.length -1)
+    lastChar = truncated.slice(-1)
+  }
+
+  return truncated + ' ' + ellipsis
+}
