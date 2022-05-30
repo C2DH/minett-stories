@@ -89,8 +89,7 @@ export default function Story() {
 
   const prefetchStoryWithChapters = usePrefetchStoryWithChapters()
 
-  const excerpt = truncateString(story.data.abstract)
-
+  const excerpt = truncateString(story.data.abstract || '')
   return (
     <Layout>
       <Helmet defer={false}>
