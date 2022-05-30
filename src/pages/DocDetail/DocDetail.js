@@ -1,4 +1,5 @@
 import { useDocument, usePrefetchDocument } from '@c2dh/react-miller'
+import { useTranslation }  from 'react-i18next'
 import { Suspense, useCallback, useEffect, useRef } from 'react'
 import { ArrowLeft, ArrowRight } from 'react-feather'
 import { Helmet } from 'react-helmet'
@@ -14,6 +15,7 @@ import DocumentDetailPdf from './DocumentDetailPdf'
 import DocumentDetailVideo from './DocumentDetailVideo'
 
 function DisplayDoc({ isModal = false }) {
+  const { t } = useTranslation()
   const { slug } = useParams()
   const [doc] = useDocument(slug)
   const navigate = useNavigate()
@@ -42,11 +44,19 @@ function DisplayDoc({ isModal = false }) {
   if (!isModal) {
     const socialImageUrl =
       doc.data.resolutions?.preview?.url ?? doc.snapshot ?? doc.attachment
+
     return (
       <>
         <Helmet defer={false}>
           <title>{`Minett Stories | ${doc.data.title ?? doc.title}`}</title>
           <meta property="og:image" content={socialImageUrl} />
+          <meta name="twitter:card" content="summary_large_image" />
+          <meta name="twitter:label1" value={t('site_helmet_provenance')} />
+          <meta name="twitter:data1" value={doc.data.provenance} />
+          <meta name="twitter:label2" value={t('site_helmet_copyright')} />
+          <meta name="twitter:data2" value={doc.data.copyright} />
+          <meta name="twitter:label3" value={t('site_helmet_creator')} />
+          <meta name="twitter:data3" value={doc.data.creator} />
         </Helmet>
         {element}
       </>
@@ -170,7 +180,7 @@ export default function DocDetail({ isModal = false }) {
       </div>
     )
   }
-
+  console.debug('[DocDetail] is not modal')
   return (
     <Layout>
       <div className="h-100 padding-top-bar pb-4">
