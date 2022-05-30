@@ -6,6 +6,10 @@ export default function Skeleton({ appHtml, entrypoints, initialData }) {
     <html>
       <head>
         <meta charSet="utf-8" />
+        {process.env.REACT_APP_GOOGLE_SITE_VERIFICATION
+          ? <meta name="google-site-verification" content={process.env.REACT_APP_GOOGLE_SITE_VERIFICATION} />
+          : null
+        }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#2e2e2e" />
         <link rel="shortcut icon" href="/favicon.ico" />
