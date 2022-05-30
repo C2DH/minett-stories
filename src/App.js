@@ -147,8 +147,10 @@ function App({ client, apiUrl, requestsCache }) {
       <Anaylitcs />
       <CookieConsent />
       <Helmet defer={false}>
-        <title>{`Minett Stories | app`}</title>
-        <description>{t('site_description')}</description>
+        <title>{`Minett Stories`}</title>
+        <meta property="og:title" content="Minett Stories" />
+        <meta name="description" content={t('site_description')} />
+        <meta property="og:description" content={t('site_description')} />
       </Helmet>
     </>
   )
