@@ -47,7 +47,7 @@ function LightVideo({ src, playing, ...props }) {
 }
 
 function BottomLeftDoc({ doc, playing }) {
-  if (!doc || doc.type === 'image') {
+  if (!doc || ['image', 'pdf'].includes(doc.type)) {
     const imageSource = getDocImageSource(doc)
     return (
       <>
