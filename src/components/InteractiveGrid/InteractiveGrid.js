@@ -47,7 +47,10 @@ function LightVideo({ src, playing, ...props }) {
 }
 
 function BottomLeftDoc({ doc, playing }) {
-  if (!doc || ['image', 'pdf'].includes(doc.type)) {
+  if (!doc) {
+    return null
+  }
+  if (['image', 'pdf'].includes(doc.type)) {
     const imageSource = getDocImageSource(doc)
     return (
       <>
@@ -89,7 +92,7 @@ function BottomLeftDoc({ doc, playing }) {
         />
       </>
     )
-  } else if (doc?.type === 'video') {
+  } else if (doc.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
       <>
@@ -145,7 +148,10 @@ function BottomLeftDoc({ doc, playing }) {
 }
 
 function BottomRightDoc({ doc, playing }) {
-  if (!doc || doc.type === 'image') {
+  if (!doc) {
+    return null
+  }
+  if (['image', 'pdf'].includes(doc.type)) {
     const imageSource = getDocImageSource(doc)
     return (
       <>
@@ -189,7 +195,7 @@ function BottomRightDoc({ doc, playing }) {
         />
       </>
     )
-  } else if (doc?.type === 'video') {
+  } else if (doc.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
       <>
@@ -242,6 +248,7 @@ function BottomRightDoc({ doc, playing }) {
       </>
     )
   }
+  return null
 }
 
 export default function InteractiveGrid({
@@ -326,10 +333,15 @@ export default function InteractiveGrid({
                 top: 0,
                 bottom: 0,
                 left: 0,
+                backgroundColor: 'var(--brick-opacity)'
               }}
             >
               <div className="w-100 h-100 d-flex align-items-end">
-                <div className="ms-4 mb-4">{bottomLeftDoc.data.title}</div>
+                <div className="ms-4 mb-4"
+                  style={{
+                    textShadow: 'var(--brick) 0px 0px 2px'
+                  }}
+                >{bottomLeftDoc.data.title}</div>
               </div>
             </div>
           </DocLink>
@@ -378,10 +390,11 @@ export default function InteractiveGrid({
                 top: 0,
                 bottom: 0,
                 left: 0,
+                backgroundColor: 'var(--brick-opacity)'
               }}
             >
               <div className="w-100 h-100 d-flex align-items-end">
-                <div className="ms-4 mb-4 no-link">
+                <div className="ms-4 mb-4 no-link" style={{textShadow: 'var(--brick) 0px 0px 2px'}}>
                   {bottomRightDoc.data.title}
                 </div>
               </div>
