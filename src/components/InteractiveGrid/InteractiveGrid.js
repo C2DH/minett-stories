@@ -47,10 +47,8 @@ function LightVideo({ src, playing, ...props }) {
 }
 
 function BottomLeftDoc({ doc, playing }) {
-  if (!doc) {
-    return null
-  }
-  if (['image', 'pdf'].includes(doc.type)) {
+  // if there's no doc, we want to display the colored overlay
+  if (!doc || ['image', 'pdf'].includes(doc?.type)) {
     const imageSource = getDocImageSource(doc)
     return (
       <>
@@ -92,7 +90,7 @@ function BottomLeftDoc({ doc, playing }) {
         />
       </>
     )
-  } else if (doc.type === 'video') {
+  } else if (doc?.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
       <>
@@ -148,10 +146,7 @@ function BottomLeftDoc({ doc, playing }) {
 }
 
 function BottomRightDoc({ doc, playing }) {
-  if (!doc) {
-    return null
-  }
-  if (['image', 'pdf'].includes(doc.type)) {
+  if (!doc || ['image', 'pdf'].includes(doc?.type)) {
     const imageSource = getDocImageSource(doc)
     return (
       <>
@@ -195,7 +190,7 @@ function BottomRightDoc({ doc, playing }) {
         />
       </>
     )
-  } else if (doc.type === 'video') {
+  } else if (doc?.type === 'video') {
     const videoSource = getDocVideoSource(doc)
     return (
       <>
