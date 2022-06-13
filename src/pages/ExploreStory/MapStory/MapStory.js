@@ -14,29 +14,27 @@ const MapWrapper = lazy(() => import('./MapWrapper'))
 
 function SideDocRelated({ docId }) {
   const [mainDoc] = useDocument(docId)
-
   return (
     <>
-      {mainDoc.documents.map((doc, index) => {
+      {mainDoc.documents.filter(d=> d.id !== docId).map((doc, index) => {
         const imageUrl =
           doc.data.resolutions?.thumbnail.url ?? doc.snapshot ?? doc.attachment
+
         return (
-          index !== 0 && (
-            <div className="border-bottom mt-2 pb-3 pt-3">
-              <h4 className={styles.Title}>{doc.data.title}</h4>
-              <div className="w-100">
-                <DocLink prefetchOnClick slugOrId={doc.slug} className="text-decoration-none">
-                  <img
-                    className="w-100 cursor-pointer"
-                    src={imageUrl}
-                    alt={doc.data.title}
-                  />
-                </DocLink>
-              </div>
-              <div className={styles.Year}>{doc.data.year}</div>
-              <div className={styles.Description}>{doc.data.description}</div>
+          <div className="border-bottom mt-2 pb-3 pt-3">
+            <h4 className={styles.Title}>{doc.data.title}</h4>
+            <div className="w-100">
+              <DocLink prefetchOnClick slugOrId={doc.slug} className="text-decoration-none">
+                <img
+                  className="w-100 cursor-pointer"
+                  src={imageUrl}
+                  alt={doc.data.title}
+                />
+              </DocLink>
             </div>
-          )
+            <div className={styles.Year}>{doc.data.year}</div>
+            <div className={styles.Description}>{doc.data.description}</div>
+          </div>
         )
       })}
     </>
