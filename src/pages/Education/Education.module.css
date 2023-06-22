@@ -11,6 +11,30 @@
   font-weight: 400;
   font-size: 24px;
   line-height: 36px;
+  margin-bottom: 48px;
+}
+
+.TextEducation h2 {
+  margin-top: 24px;
+}
+
+.TextEducation a {
+  color: var(--light-grey);
+  box-shadow: inset 0 -2px 0 0 var(--light-grey);
+}
+.TextEducation a:hover {
+  box-shadow: inset 0 -2px 0 0 var(--bs-white);
+  color: var(--bs-white);
+}
+
+.TextEducation ol{
+  padding-left: 0;
+  margin-top: 24px;
+}
+.TextEducation hr{
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border: 1px solid var(--brick);
 }
 
 .Title {
